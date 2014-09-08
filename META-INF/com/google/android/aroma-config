@@ -23,16 +23,16 @@
 writetmpfile(
 	"device.prop",
 
-	"name=BRINGUP\n"+
+	"name=Samsung Galaxy S3\n"+
 	"dpi=320\n"+
-	"kernel=BRINGUP\n"+ # CORE
-	"recovery=BRINGUP\n"+ # CORE
-	"modem=BRINGUP\n"+ # CORE
-	"system=BRINGUP\n"+
-	"data=BRINGUP\n"+
-	"cache=BRINGUP\n"+
-	"preload=BRINGUP\n"+
-	"extsd=BRINGUP\n"
+	"kernel=/dev/block/platform/dw_mmc/by-name/BOOT\n"+ # CORE
+	"recovery=/dev/block/platform/dw_mmc/by-name/RECOVERY\n"+ # CORE
+	"modem=/dev/block/platform/dw_mmc/by-name/RADIO\n"+ # CORE
+	"system=/dev/block/platform/dw_mmc/by-name/SYSTEM\n"+
+	"data=/dev/block/platform/dw_mmc/by-name/USERDATA\n"+
+	"cache=/dev/block/platform/dw_mmc/by-name/CACHE\n"+
+	"preload=/dev/block/platform/dw_mmc/by-name/HIDDEN\n"+
+	"extsd=/dev/block/platform/s3c-sdhci.2/by-num/p1\n"
 );
 
 
@@ -272,10 +272,10 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"stock","Stock","<~archidroid.kernel.stock.desc>","select.selected",
 
 		"dpi","<#selectbg_g>DPI</#>","","group",
-		"80","80","","select",
-		"120","120","","select",
-		"160","160","","select",
-		"200","200","","select",
+		#"80","80","","select",
+		#"120","120","","select",
+		#"160","160","","select",
+		#"200","200","","select",
 		"240","240","","select.selected",
 		"280","280","","select",
 		"320","320","","select",
