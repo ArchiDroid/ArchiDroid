@@ -1,0 +1,208 @@
+﻿### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+#
+#
+### ArchiDroid Language File
+#
+# How to create your own language translation
+# 1. Copy en.lang file to your own language.lang, f.e. fr.lang if you're creating French language.
+# 2. Start translating strings (everything after "=" should be translated)
+# 3. Change language and author information below when you're done
+# 4. Send pull request with your updated strings, wait for approval and adding to aroma
+# 5. Thank you for contributing to ArchiDroid project!
+#
+# Please note that you can use language-specific chars, f.e. ą ę ó ć ü ń or any non-standard letters.
+# All of them should be displayed properly in aroma
+#
+# Files should have UNIX-style endings (LF) and should be encoded in UTF-8 format.
+# Typically any file copied from en.lang should be already well formatted. Otherwise make sure that they're right.
+# In Notepad++ it's: Format -> UTF-8 and Edit -> EOL Conversion -> Convert to UNIX format
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language  : Türkçe
+#   By        : ZiR0, MadCoderz
+#
+
+#
+#--- AROMA STRINGS
+#
+text_ok=Tamam
+text_next=İleri
+text_back=Geri
+text_yes=Evet
+text_no=Hayır
+text_about=Hakkında
+text_calibrating=Kalibrasyon Araçları
+text_quit=Yükleyiciden Çıkış
+text_quit_msg=Çıkmak istediğinize emin misiniz?
+
+#
+#-- ARCHIDROID STRINGS
+#
+common.for=için
+common.none=None
+common.reboot=Reboot
+common.replaces=Replaces
+common.inverted=Renkler ters çevrilmiş (Inverted)
+common.experimental=DENEYSEL
+common.deprecated=ÖNERİLMEMEKTE
+common.obsolete=ESKİ
+terms.check=Şart ve koşulları kabul ediyorum.
+terms.confirm=Sözleşmeyi kabul edin!
+
+archidroid.tos=ArchiDroid Şart ve Koşullar
+archidroid.preview.desc=When checked, you'll see a sample of the selected item on the next page
+
+archidroid.detect.fail=Mevcut ArchiDroid yüklemesi bulunamadı. Tam silme mi yapılsın? Farklı bir ROM'dan mı geçmek istiyorsunuz?
+archidroid.detect.fail.yes=Evet, ArchiDroid'i ilk defa yükleyeceğim.
+archidroid.detect.fail.no=Hayır, zaten ArchiDroid yüklü.
+archidroid.detect.fail.alert.yes=Tamam, ArchiDroid yüklenecek.
+archidroid.detect.fail.alert.no=Ters olan bir şeyler var. Güncellemeyi deneyeceğim ancak ArchiDroid mevcut değilse kesinlikle önerilmez.
+archidroid.detect.pass=ArchiDroid yüklemesi başarılı bir şekilde bulundu. Güncellensin mi?
+archidroid.detect.pass.yes=Evet güncellemeyi dene.
+archidroid.detect.pass.no=Hayır, temiz kurulum yap.
+archidroid.detect.pass.alert.no=Tamam, temiz ArchiDroid yüklemesi başlatılacak.
+archidroid.detect.force=Would you like to use forced update mode? This tells ArchiDroid RunOnce to perform advanced tweaks, which normally would be executed only during install mode. Select No if you're unsure
+
+archidroid.hardswap.desc=ArchiDroid Hardswap allows you to trade your flash memory speed and lifetime for more memory. This option will create special swap file on your desired location and let Android use it for extra memory. Every chunk of extra memory results in small decrease in I/O speed. <b><#f00>Please note that using hardswap may significantly decrease your flash memory lifetime</#></b>
+archidroid.hardswap.remove.desc=Removes hardswap from this partition
+archidroid.hardswap.size.default.desc=Maximum suggested size for hardswap partition
+
+archidroid.partition.wizard.desc=ArchiDroid Partition Wizard shows only partitions, which are currently supported. F2FS requires special recovery and kernel (selected on the previous page) to be available\
+\
+<b><#f00>WARNING! REPARTITIONING CAN LEAD TO SOFT AND HARD BRICKS IF SOMETHING GOES WRONG. YOU SHOULDN'T TOUCH THESE SETTINGS UNLESS YOU KNOW WHAT YOU'RE DOING</#></b>\
+\
+In addition to that, during repartitioning <b><#f00>ALL DATA WILL BE LOST</#></b>
+
+archidroid.filesystem.ext4.desc=Fourth Extended File System. Proven to be stable and reliable. Supported by all kernels
+archidroid.filesystem.f2fs.desc=Flash-Friendly File System. Optimized for NAND flash memory-based storage devices, gives significant I/O boost compared to EXT4. Supported only by a few custom kernels
+archidroid.partition.wizard.finish.desc=ArchiDroid Partition Wizard has finished repartitioning your partition. If RETURN STATUS is equal to 0, everything ended successfully
+
+archidroid.preset.recovery.desc=Will flash recovery (only) instead of a ROM. May be useful if recovery update is required prior to flashing
+archidroid.recovery.philz.desc=The most feature-rich custom recovery ever created, developed by Phil
+archidroid.recovery.devil.desc=Alternative recovery developed by Devil, which includes dual-boot support and F2FS filesystem
+
+archidroid.preset=ArchiDroid Yükleyici Profili
+archidroid.preset.desc=Lütfen bir profil seçin:
+archidroid.preset.group=Hazır profil
+archidroid.preset.custom=Özelleştirilebilir
+archidroid.preset.custom.desc=Kendi ayarlamalarınızı yapın.
+archidroid.preset.barebones=Sade kurulum
+archidroid.preset.barebones.desc=Saf ROM. Test amaçlıdır, önerilmez.
+archidroid.preset.previous=Previous Preset
+archidroid.preset.previous.desc=Loads your previous custom installation preset (if available)
+archidroid.preset.previousexpert.desc=Same as Previous Preset, but will load raw data and allow you to customize preset before flashing
+
+archidroid.detect.previouspreset.fail=Could not load your previous preset, either it failed integrity check or doesn't exist
+
+archidroid.custom=ArchiDroid Özelleştirici
+archidroid.custom.extra=ArchiDroid Ekstra Özelleştirme
+archidroid.custom.desc=Lütfen kullanım tarzınıza göre özelleştirin.
+
+archidroid.kernel.boeffla.desc=Herkese tavsiye edilen mükemmel bir başyapıt, Boeffla ses ve bir çok özelliğe sahip.
+archidroid.kernel.archi.desc=Featuring perfect synergy with ArchiDroid ROM
+archidroid.kernel.yank.desc=Recommended as an alternative
+archidroid.kernel.agni.desc=A very sophisticated kernel, featuring F2FS support
+archidroid.kernel.stock.desc=ROM ile birlikte gelen kernel.
+
+archidroid.dpi.240w.desc=DİKKAT! Bu DPI ayarı görüntü bozuklukları yaratabilir.
+archidroid.dpi.240.desc=Her şey daha küçük olacak. Yazılar, butonlar, genel görünüm. ArchiDroid için en uygun olanıdır.
+archidroid.dpi.280.desc=Stok ile 240 DPI arasında dengeli bir seçim.
+archidroid.dpi.320.desc=Stok
+
+archidroid.launcher.nova.desc=Yüksek performans ve esneklik.
+archidroid.launcher.google.desc=Recommended for pure google experience, also known as Google Home
+archidroid.launcher.stock.desc=ROM başlatıcısı
+archidroid.launcher.none.desc=No launcher. WARNING! Don't tick if you're after full wipe! You need at least one custom launcher before first boot!
+
+archidroid.keyboard=Klavye
+archidroid.keyboard.google.desc=Oldukça esnek kaydırarak yazma seçeneği olan önerilen klavye.
+archidroid.keyboard.hackers.desc=TouchPal alternatifi. Kaydırarak yazmayı kullanmayacaksanız önerilir.
+archidroid.keyboard.both.desc=İki klavyeyi de aynı anda kullanmak isteyenler için.
+archidroid.keyboard.stock.desc=ROM'un kendi klavyesi.
+archidroid.keyboard.none.desc=No keyboard. WARNING! Don't tick if you're after full wipe! You need at least one custom keyboard before first boot!
+
+archidroid.bootanimation=Bootanimation
+archidroid.bootanimation.archi.desc=New fancy ArchiDroid bootanimation
+archidroid.bootanimation.archilegacy.desc=Old ArchiDroid 1.X bootanimation
+archidroid.bootanimation.logcat.desc=Normal başlangıç animasyonu yerine logcat gösteren başlangıç animasyonu.
+archidroid.bootanimation.stock.desc=Stock bootanimation provided by ROM
+archidroid.bootanimation.none.desc=No bootanimation, for slightly faster bootup
+
+archidroid.superuser.koush.desc=Free, open-source, stable and secure
+archidroid.superuser.chainfire.desc=Free, closed-source, widely supported and modern
+archidroid.superuser.none.desc=No superuser, for extra security when you don't need a root access
+
+archidroid.other=Diğer
+archidroid.ota.desc=ArchiDroid'e yüklenmesi önerilir. UpdateMe sayesinde OTA güncelleştirmesi edinebilirsiniz.
+archidroid.xposed.desc=Çeşitli Xposed modüllerini kontrol eder. El ile aktifleştirilmelidir.
+archidroid.crossbreeder.desc=Ekstra performans ve esneklik için önerilir, Seeder uygulaması ile uyumsuzdur.
+archidroid.updatemodem=Modem Güncelle
+archidroid.updatemodem.desc=En son modemi yüklemek isterseniz seçin.
+archidroid.updaterecovery=Recovery Güncelle
+archidroid.updaterecovery.desc=Yeni bir recovery isterseniz seçin.
+
+archidroid.apps.titaniumbackup.desc=Uygulamalarınızı yedeklemeye ve geri yüklemeye yarar.
+archidroid.apps.greenify.desc=Şarj performansına katkıda bulunan, çalışan uygulama uyutucu.
+archidroid.apps.lmt.desc=Ekrana hareket atama, PIE için ideal.
+archidroid.apps.mxplayer.desc=En iyi video oynatıcı.
+archidroid.apps.spiritfm.desc=Bedava Spirit FM radyo uygulaması.
+archidroid.apps.cooltool.desc=Durum çubuğunda sistem kullanım bilgileri sağlayan uygulama.
+archidroid.apps.rootbrowser.desc=Kök dizinine erişebilen dosya yönetici.
+
+archidroid.tweaks.buildtweaks.desc=Pek çok build.prop optimizasyonları, performans ve şarj düzenlemeleri.
+archidroid.tweaks.nocell.desc=Gereksiz olarak kabul edilir. Silmek istemiyorsanız seçmeyin.
+
+archidroid.preset.no=Ön ayar yok
+archidroid.preset.no.desc=Önerilmez çünkü Archi'nin çoğu optimizasyonunu kaçıracaksınız.
+
+archidroid.preset.kernel.boeffla.archiperformance=ArchiDroid Performans
+archidroid.preset.kernel.boeffla.archiperformance.desc=Oyuncular için tasarlanan, CPU & GPU overclock içeren bir ön ayar. Daha iyi performans, daha kötü pil ömrü.
+archidroid.preset.kernel.boeffla.archipowersave=ArchiDroid Güç Tasarrufu
+archidroid.preset.kernel.boeffla.archipowersave.desc=Çoğu kullanıcı için varsayılan ön ayar, çok az uV içerir. Dengeli performans ve pil ömrü. Archi tarafından önerilir.
+archidroid.preset.kernel.boeffla.archiultrapowersave=ArchiDroid Ultra Güç Tasarrufu
+archidroid.preset.kernel.boeffla.archiultrapowersave.desc=Maksimum batarya ömrü için bir ön ayar, orta uV içerir. Daha iyi pil ömrü, daha kötü performans.
+
+
+archidroid.xposed.gravitybox.desc=A complex and feature-rich customizable tweak box
+archidroid.xposed.xprivacy.desc=Uygulama izinlerini kontrol etmenizi sağlar.
+archidroid.xposed.wanam.desc=Masterpiece from Wanam. Enhances ArchiDroid's flexibility and provides a ton of customization options
+
+archidroid.wizard.reboot=ArchiDroid başarıyla yüklendi. Cihazınızı yeniden başlatmak ister misiniz?
+
+archidroid.prepinstall=Yüklemeye hazır
+common.flash=Yükle
+common.back=Geri
+
+archidroid.prepinstall.desc=Şu anda yüklemeyi başlatmaya hazırsınız.\
+Yüklemeyi başlatmak için <b>Yükle</b> butonuna basın.\
+Eğer ayarlarınızı tekrar gözden geçirmek ve değiştirmek istiyorsanız, <b>Geri</b> butonuna basın.
+
+common.finish=Son
+common.flashing=Yükleniyor
+
+archidroid.install.desc=<b>ArchiDroid</b> şuan yükleniyor\
+Lütfen <b>ArchiDroid</b> yüklenene kadar bekleyin\
+<b>Yükleme sırasında donma meydana gelirse güç düğmesine basılı tutarak cihazı yeniden başlatın.</b>
+
+archidroid.install.finish=ArchiDroid sihirbazı <b>ArchiDroid<b>'i başarıyla yükledi.\
+Devam etmek için <b>Bitir</b> butonuna basın.
+
+archidroid.buildtweaks.fastdormancy.desc=Untick to disable fast dormancy, may improve battery life if your provider doesn't support it
+archidroid.buildtweaks.zerowakeup.desc=Tick to enable ZeroWakeUp, it will put CPU into sleep mode (instead of deep/deeper sleep), reducing wake up delay to the minimum
+archidroid.buildtweaks.navibar.desc=Tick to enable Navigation Bar, which is normally hidden on devices with hardware keys available

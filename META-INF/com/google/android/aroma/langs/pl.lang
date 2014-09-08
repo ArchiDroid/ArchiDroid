@@ -1,0 +1,208 @@
+﻿### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+#
+#
+### ArchiDroid Language File
+#
+# How to create your own language translation
+# 1. Copy en.lang file to your own language.lang, f.e. fr.lang if you're creating French language.
+# 2. Start translating strings (everything after "=" should be translated)
+# 3. Change language and author information below when you're done
+# 4. Send pull request with your updated strings, wait for approval and adding to aroma
+# 5. Thank you for contributing to ArchiDroid project!
+#
+# Please note that you can use language-specific chars, f.e. ą ę ó ć ü ń or any non-standard letters.
+# All of them should be displayed properly in aroma
+#
+# Files should have UNIX-style endings (LF) and should be encoded in UTF-8 format.
+# Typically any file copied from en.lang should be already well formatted. Otherwise make sure that they're right.
+# In Notepad++ it's: Format -> UTF-8 and Edit -> EOL Conversion -> Convert to UNIX format
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language  : Polish
+#   By        : JustArchi & mrtur
+#
+
+#
+#--- AROMA STRINGS
+#
+text_ok=OK
+text_next=Dalej
+text_back=Wstecz
+text_yes=Tak
+text_no=Nie
+text_about=O Aplikacji
+text_calibrating=Narzędzia Kalibracyjne
+text_quit=Zakończ Instalację
+text_quit_msg=Czy jesteś pewny, że chcesz zakończyć instalację?
+
+#
+#-- ARCHIDROID STRINGS
+#
+common.for=dla
+common.none=Brak
+common.reboot=Restart
+common.replaces=Zastępuje
+common.inverted=Ciemny
+common.experimental=EKSPERYMENTALNE
+common.deprecated=PRZESTARZAŁE
+common.obsolete=NIEWSPIERANE
+terms.check=Zgadzam się z tymi warunkami
+terms.confirm=Musisz wyrazić zgodę aby kontynuować!
+
+archidroid.tos=Warunki używania ArchiDroid
+archidroid.preview.desc=Po zaznaczeniu, będziesz mógł podejrzeć na następnej stronie jak wygląda wybrana opcja
+
+archidroid.detect.fail=ArchiDroid nie mógł wykryć poprzedniej instalacji. Czy zrobiłeś full wipe lub posiadasz inny ROM?
+archidroid.detect.fail.yes=Tak, nie mam ArchiDroida
+archidroid.detect.fail.no=Nie, mam ArchiDroida!
+archidroid.detect.fail.alert.yes=OK, wybrałem dla ciebie tryb instalacyjny.
+archidroid.detect.fail.alert.no=To niedobrze. Sfałszuję wyniki, ale nie wybieraj trybu aktualizacji, jeśli nie posiadasz ArchiDroida!
+archidroid.detect.pass=ArchiDroid pomyślnie wykrył poprzednią instalację. Czy chciałbyś spróbować trybu aktualizacji?
+archidroid.detect.pass.yes=Tak, spróbuj aktualizacji
+archidroid.detect.pass.no=Nie, full wipe
+archidroid.detect.pass.alert.no=OK, wybrałem tryb instalacji, czyli dokonania full wipe.
+archidroid.detect.force=Czy chciałbyś użyć trybu wymuszonej aktualizacji? Ta opcja powoduje wykonanie przez ArchiDroid RunOnce wielu zaawansowanych modyfikacji, które normalnie byłyby wykonane wyłącznie podczas trybu instalacji. Wybierz Nie jeśli nie jesteś pewny
+
+archidroid.hardswap.desc=ArchiDroid Hardswap pozwala Ci na poświęcenie szybkości i życia Twojej pamięci flash na dodatkową pamięć. Ta opcja utworzy specjalny plik swap w wybranej przez Ciebie lokacji i pozwoli Androidowi używać go jako dodatkowej pamięci RAM. Czym więcej dodatkowej pamięci, tym wolniejsza szybkość I/O. <b><#f00>Weź pod uwagę fakt, że używanie hardswapu może znacznie skrócić czas życia twojej pamięci flash</#></b>
+archidroid.hardswap.remove.desc=Usuwa hardswap z tej partycji
+archidroid.hardswap.size.default.desc=Sugerowany maksymalny rozmiar dla hardswapu
+
+archidroid.partition.wizard.desc=Menadżer partycjonowania ArchiDroid pokazuje wyłącznie partycje, które są aktualnie wspierane. F2FS wymaga specjalnego recovery i kernela (wybranego wcześniej), aby być dostępnym na liście\
+\
+<b><#f00>UWAGA! REPARTYCJONOWANIE MOŻE PROWADZIĆ DO SOFT ORAZ HARD BRICKÓW JEŚLI SIĘ NIE POWIEDZIE. NIE POWINIENEŚ DOTYKAĆ TYCH USTAWIEŃ, CHYBA ŻE MASZ ABSOLUTNE POJĘCIE NA TEMAT TEGO CO ROBISZ</#></b>\
+\
+W dodatku do powyższego <b><#f00>WSZYSTKIE DANE BĘDĄ UTRACONE</#></b>
+
+archidroid.filesystem.ext4.desc=Czwarta wersja rozszerzonego systemu plików. Stabilny i zaufany system plików. Wspierany przez wszystkie dostępne kernele
+archidroid.filesystem.f2fs.desc=Flash-Friendly File System, "System Przyjazny Pamięciom Flash". Zoptymalizowany pod kątem pamięci NAND, oferuje pokaźne przyspieszenie I/O w porównaniu do EXT4. Wspierany wyłącznie przez określone custom kernele
+archidroid.partition.wizard.finish.desc=Menadżer partycjonowania ArchiDroid zakończył repartycjonowanie twojej partycji. Jeśli RETURN STATUS wynosi 0, wszystko powiodło się pomyślnie
+
+archidroid.preset.recovery.desc=Ta funkcja sflashuje wyłącznie recovery zamiast ROMu. Może być użyteczne w przypadku, gdy update recovery będzie wymagany przed flashowaniem samego ROMu
+archidroid.recovery.philz.desc=Najbardziej bogate w funkcje i zaawansowane recovery, jakie kiedykolwiek zostało stworzone. Tworzone przez Phila
+archidroid.recovery.devil.desc=Alternatywne recovery tworzone przez Devila, wyróżniające się wsparciem dual-boot oraz F2FS
+
+archidroid.preset=Preset Instalacji ArchiDroid
+archidroid.preset.desc=Wybierz proszę swój preset:
+archidroid.preset.group=Preset
+archidroid.preset.custom=Własny
+archidroid.preset.custom.desc=Będziesz mógł dostosować każdy aspekt instalacji
+archidroid.preset.barebones=Sam Szkielet
+archidroid.preset.barebones.desc=Czysty ROM. Tylko dla testów ewentualnych błędów, niezalecane
+archidroid.preset.previous=Poprzedni Preset
+archidroid.preset.previous.desc=Ładuje Twój poprzednio wybrany preset (o ile dostępny)
+archidroid.preset.previousexpert.desc=Działa identycznie jak Poprzedni Preset, ale ładuje surowe dane i pozwala na modyfikację presetu przed flashowaniem
+
+archidroid.detect.previouspreset.fail=Nie mogłem załadować Twojego poprzedniego presetu, ponieważ nie przeszedł testów integralności lub nie został znaleziony
+
+archidroid.custom=Dostosowywanie ArchiDroid
+archidroid.custom.extra=Dostosywywanie Ekstra ArchiDroid
+archidroid.custom.desc=Zmodyfikuj proszę poniższe ustawienia do Twoich predyspozycji:
+
+archidroid.kernel.boeffla.desc=Wysoce zalecane arcydzieło dla każdego, wyróżniające się silnikiem boeffla oraz wieloma innymi usprawnieniami
+archidroid.kernel.archi.desc=Zalecany dla pełnej synergii z romem ArchiDroid
+archidroid.kernel.yank.desc=Zalecany jako alternatywa
+archidroid.kernel.agni.desc=Bardzo wyrafinowany kernel, zawierający m.in wsparcie F2FS
+archidroid.kernel.stock.desc=Pochodzący prosto z ROMu
+
+archidroid.dpi.240w.desc=UWAGA! Możliwe niewielkie bugi graficzne
+archidroid.dpi.240.desc=Wszystko będzie o wiele mniejsze niż standardowo. Wysoce zalecane
+archidroid.dpi.280.desc=Dobry kompromis pomiędzy 320, a 240 DPI
+archidroid.dpi.320.desc=Wartość domyślna
+
+archidroid.launcher.nova.desc=Zalecany dla o wiele większej wydajności i elastyczności
+archidroid.launcher.google.desc=Zalecany dla google experience w czystej postaci, znany również pod nazwą Google Home
+archidroid.launcher.stock.desc=Pochodzący z samego ROMu
+archidroid.launcher.none.desc=Brak Launchera. UWAGA! Nie zaznaczaj tej opcji jeśli wykonałeś full wipe. Potrzebujesz przynajmniej 1 własnego launchera przed pierwszym bootem!
+
+archidroid.keyboard=Klawiatura
+archidroid.keyboard.google.desc=Zalecana jako świetna i bardzo elastyczna klawiatura Swype/Curve
+archidroid.keyboard.hackers.desc=Świetna alternatywa dla TouchPal'a jeśli nie potrzebujemy Swype/Curve
+archidroid.keyboard.both.desc=Jeśli z jakiegoś powodu chciałbyś zainstalować obydwie te klawiatury
+archidroid.keyboard.stock.desc=Jeśli chciałbyś pozostać przy klawiaturze prosto z ROM
+archidroid.keyboard.none.desc=Brak Klawiatury. UWAGA! Nie zaznaczaj tej opcji jeśli wykonałeś full wipe. Potrzebujesz przynajmniej 1 własnej klawiatury przed pierwszym bootem!
+
+archidroid.bootanimation=Animacja Ładowania
+archidroid.bootanimation.archi.desc=Nowa odświeżona animacja ArchiDroid
+archidroid.bootanimation.archilegacy.desc=Stara klasyczna animacja ArchiDroid 1.X
+archidroid.bootanimation.logcat.desc=Zamienia domyślną bootanimację na logcata
+archidroid.bootanimation.stock.desc=Stockowa animacja dostarczona wraz z ROMem
+archidroid.bootanimation.none.desc=Brak animacji ładowania, dla nieco szybszego startu
+
+archidroid.superuser.koush.desc=Darmowy, open-source, stabilny i bezpieczny
+archidroid.superuser.chainfire.desc=Darmowy, closed-source, dobrze wspierany i nowoczesny
+archidroid.superuser.none.desc=Brak superusera, dla dodatkowego bezpieczeństwa, gdy nie potrzebujesz dostępu root
+
+archidroid.other=Inne
+archidroid.ota.desc=Wysoce zalecane. Zainstaluję aplikację UpdateMe oraz włączę aktualizacje OTA via build.prop
+archidroid.xposed.desc=Pozwala na używanie wielu modułów. Musi zostać włączony manualnie
+archidroid.crossbreeder.desc=Wysoce zalecany dla lepszej wydajności, blokowania reklam i wielu innych tweaków
+archidroid.updatemodem=Zaktualizuj Modem
+archidroid.updatemodem.desc=Jeśli chcesz używać najnowszego modemu
+archidroid.updaterecovery=Zaktualizuj Recovery
+archidroid.updaterecovery.desc=Jeśli chcesz używać najnowszego recovery
+
+archidroid.apps.titaniumbackup.desc=Świetne narzędzie do zarządzania kopiami zapasowymi pomiędzy flashami romów
+archidroid.apps.greenify.desc=Użyteczne w celu zamrażania zbędnych aplikacji
+archidroid.apps.lmt.desc=Użyteczne narzędzie znane jako pie ze SlimBeana
+archidroid.apps.mxplayer.desc=Prawdopodobnie najlepszy odtwarzacz wideo dla Androida
+archidroid.apps.spiritfm.desc=Darmowe radio działające na CyanogenMod
+archidroid.apps.cooltool.desc=Wyświetla wiele użytecznych informacji na górnym pasku powiadomień
+archidroid.apps.rootbrowser.desc=Jeden z najlepszych menadżerów plików, wspomagany opcjonalnie dostępem root
+
+archidroid.tweaks.buildtweaks.desc=Wiele tweaków build.prop, w tym m.in. głębszy sen oraz większa wydajność
+archidroid.tweaks.nocell.desc=Generalnie uważane za bloatware. Odznacz jeśli chcesz je zachować
+
+archidroid.preset.no=Brak Presetu
+archidroid.preset.no.desc=Niezalecane z powodu utraty wszystkich optymalizacji ArchiDroid
+
+archidroid.preset.kernel.boeffla.archiperformance=ArchiDroid Performance
+archidroid.preset.kernel.boeffla.archiperformance.desc=Preset przeznaczony głównie dla graczy, zawierający overclock CPU i GPU. Spodziewaj się lepszej wydajności kosztem życia baterii
+archidroid.preset.kernel.boeffla.archipowersave=ArchiDroid PowerSave
+archidroid.preset.kernel.boeffla.archipowersave.desc=Domyślny preset proponowany dla większości użytkowników, zawierający lekki uV. Zapewnia znakomity balans pomiędzy życiem baterii, a wydajnością. Proponowany przez Archiego
+archidroid.preset.kernel.boeffla.archiultrapowersave=ArchiDroid UltraPowerSave
+archidroid.preset.kernel.boeffla.archiultrapowersave.desc=Preset przeznaczony i zoptymalizowany pod kątem maksymalnego czasu życia baterii. Spodziewaj się dłuższego życia baterii kosztem zmniejszonej wydajności
+
+
+archidroid.xposed.gravitybox.desc=Bardzo zaawansowane i obfite w funkcje narzędzie umożliwiające dostosowanie każdej części ROMu
+archidroid.xposed.xprivacy.desc=Perfekcyjne narzędzie oferujące kontrolę aplikacji i ich uprawnień oraz wiele innych funkcji związanych z bezpieczeństwem
+archidroid.xposed.wanam.desc=Arcydzieło od Wanama. Zwiększa elastyczność ArchiDroida oraz dostarcza mnóstwo opcji w zakresie ustawień ROMu
+
+archidroid.wizard.reboot=ArchiDroid został pomyślnie sflashowany na Twoje urządzenie. Czy chciałbyś teraz automatycznie zrestartować telefon?
+
+archidroid.prepinstall=Gotowe
+common.flash=Flashuj
+common.back=Wstecz
+
+archidroid.prepinstall.desc=Jesteś teraz gotowy do rozpoczęcia flashowania.\
+Wciśnij <b>Flash</b>, aby rozpocząć.\
+Jeśli chcesz przejrzeć lub zmienić jakiekolwiek ustawienia wciśnij <b>Wstecz</b>.
+
+common.finish=Zakończ
+common.flashing=Flashuję
+
+archidroid.install.desc=<b>ArchiDroid</b> właśnie jest instalowany.\
+Poczekaj proszę cierpliwie, aż instalator sflashuje Twojego <b>ArchiDroid</b>a\
+<b>UWAGA! W przypadku braku postępu przytrzymaj kombinację recovery i spróbuj jeszcze raz!</b>
+
+archidroid.install.finish=Instalator ArchiDroid pomyślnie zainstalował <b>ArchiDroid</b>a na Twoim urządzeniu\
+Naciśnij <b>Zakończ</b>, aby kontynuować.
+
+archidroid.buildtweaks.fastdormancy.desc=Odznacz, aby wyłączyć fast dormancy. Może poprawić żywotność baterii jeśli Twój provider nie wspiera tej opcji
+archidroid.buildtweaks.zerowakeup.desc=Zaznacz, aby aktywować ZeroWakeUp. Ta opcja wymusi na CPU użycie sleepa (zamiast deep/deeper sleepa), zmniejszając czas wybudzania do minimum
+archidroid.buildtweaks.navibar.desc=Zaznacz, aby aktywować Pasek Nawigacyjny, który normalnie jest ukryty na urządzeniach z przyciskami sprzętowymi

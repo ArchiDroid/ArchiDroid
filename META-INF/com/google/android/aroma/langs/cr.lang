@@ -1,0 +1,208 @@
+﻿### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+#
+#
+### ArchiDroid Language File
+#
+# How to create your own language translation
+# 1. Copy en.lang file to your own language.lang, f.e. fr.lang if you're creating French language.
+# 2. Start translating strings (everything after "=" should be translated)
+# 3. Change language and author information below when you're done
+# 4. Send pull request with your updated strings, wait for approval and adding to aroma
+# 5. Thank you for contributing to ArchiDroid project!
+#
+# Please note that you can use language-specific chars, f.e. ą ę ó ć ü ń or any non-standard letters.
+# All of them should be displayed properly in aroma
+#
+# Files should have UNIX-style endings (LF) and should be encoded in UTF-8 format.
+# Typically any file copied from en.lang should be already well formatted. Otherwise make sure that they're right.
+# In Notepad++ it's: Format -> UTF-8 and Edit -> EOL Conversion -> Convert to UNIX format
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language  : Croatian
+#   By        : gastonmazzacane
+#
+
+#
+#--- AROMA STRINGS
+#
+text_ok=U redu
+text_next=Slijedeće
+text_back=Nazad
+text_yes=Da
+text_no=Ne
+text_about=U vezi sa
+text_calibrating=Alati kalibracije
+text_quit=Prekid Instalacije
+text_quit_msg=Da li sigurno želiš prekinuti instalaciju?
+
+#
+#-- ARCHIDROID STRINGS
+#
+common.for=Za
+common.none=None
+common.reboot=Reboot
+common.replaces=Replaces
+common.inverted=Obrnut (Tamna verzija apk)
+common.experimental=EXPERIMENTALNO
+common.deprecated=NE ODOBRAVATI
+common.obsolete=ZASTARIO
+terms.check=Slažem se s uvjetima i pravilima
+terms.confirm=Molimo provjerite ugovor
+
+archidroid.tos=ArchiDroid Opći uvjeti
+archidroid.preview.desc=When checked, you'll see a sample of the selected item on the next page
+
+archidroid.detect.fail=ArchiDroid nije mogao otkriti da li je Archi ROM instaliran na vašem uređaju. Da li ste napravili potuno čišćenje sustava telefona ili dolazite s instliranim drugim ROM-om?
+archidroid.detect.fail.yes=Da, nemam instaliran ArchiDroid Rom!
+archidroid.detect.fail.no=Ne, imam instaliran ArchiDroid Rom!
+archidroid.detect.fail.alert.yes=OK, Odabrao sam ArchiDroid Instalaciju za vas.
+archidroid.detect.fail.alert.no=To nije bilo dobro. Rezultati će biti lažni, ali nemojte koristiti način ažuriranja ako nemate ArchiDroid ROM instaliran!
+archidroid.detect.pass=ArchiDroid je otkrio da imate instaliran ArchiDroid ROM. Da li želite pokušati način ažuriranja ROM-a?
+archidroid.detect.pass.yes=Da, Pokušajte način ažuriranja
+archidroid.detect.pass.no=Ne, Potpuno čišćenje sustava telefona
+archidroid.detect.pass.alert.no=U redu, Nastaviti ću s potpunim čišćenjem sustava telefona i ArchiDroid instalaciji ROM-a.
+archidroid.detect.force=Would you like to use forced update mode? This tells ArchiDroid RunOnce to perform advanced tweaks, which normally would be executed only during install mode. Select No if you're unsure
+
+archidroid.hardswap.desc=ArchiDroid Hardswap allows you to trade your flash memory speed and lifetime for more memory. This option will create special swap file on your desired location and let Android use it for extra memory. Every chunk of extra memory results in small decrease in I/O speed. <b><#f00>Please note that using hardswap may significantly decrease your flash memory lifetime</#></b>
+archidroid.hardswap.remove.desc=Removes hardswap from this partition
+archidroid.hardswap.size.default.desc=Maximum suggested size for hardswap partition
+
+archidroid.partition.wizard.desc=ArchiDroid Partition Wizard shows only partitions, which are currently supported. F2FS requires special recovery and kernel (selected on the previous page) to be available\
+\
+<b><#f00>WARNING! REPARTITIONING CAN LEAD TO SOFT AND HARD BRICKS IF SOMETHING GOES WRONG. YOU SHOULDN'T TOUCH THESE SETTINGS UNLESS YOU KNOW WHAT YOU'RE DOING</#></b>\
+\
+In addition to that, during repartitioning <b><#f00>ALL DATA WILL BE LOST</#></b>
+
+archidroid.filesystem.ext4.desc=Fourth Extended File System. Proven to be stable and reliable. Supported by all kernels
+archidroid.filesystem.f2fs.desc=Flash-Friendly File System. Optimized for NAND flash memory-based storage devices, gives significant I/O boost compared to EXT4. Supported only by a few custom kernels
+archidroid.partition.wizard.finish.desc=ArchiDroid Partition Wizard has finished repartitioning your partition. If RETURN STATUS is equal to 0, everything ended successfully
+
+archidroid.preset.recovery.desc=Will flash recovery (only) instead of a ROM. May be useful if recovery update is required prior to flashing
+archidroid.recovery.philz.desc=The most feature-rich custom recovery ever created, developed by Phil
+archidroid.recovery.devil.desc=Alternative recovery developed by Devil, which includes dual-boot support and F2FS filesystem
+
+archidroid.preset=Podešavanje ArchiDroid Instalacije
+archidroid.preset.desc=Molimo odabrati podešavanje instalacije:
+archidroid.preset.group=Podešavanje
+archidroid.preset.custom=Prilagođen
+archidroid.preset.custom.desc=Biti će te u mogućnosti prilagoditi svaki dio instalacije ROM-a na vaš uređaj
+archidroid.preset.barebones=Potpuno ogoljeni ROM
+archidroid.preset.barebones.desc=Čisti ROM ROM. Samo za testiranje, nije preporučljivo
+archidroid.preset.previous=Previous Preset
+archidroid.preset.previous.desc=Loads your previous custom installation preset (if available)
+archidroid.preset.previousexpert.desc=Same as Previous Preset, but will load raw data and allow you to customize preset before flashing
+
+archidroid.detect.previouspreset.fail=Could not load your previous preset, either it failed integrity check or doesn't exist
+
+archidroid.custom=ArchiDroid Podešavanja
+archidroid.custom.extra=ArchiDroid Extra Podešavanja
+archidroid.custom.desc=Molimo vas podesite postavke kako vama najviše odgovara
+
+archidroid.kernel.boeffla.desc=Preporučeno remek djelo savršeno za svakoga, s boeffla zvukom i mnogo više mogućnosti
+archidroid.kernel.archi.desc=Featuring perfect synergy with ArchiDroid ROM
+archidroid.kernel.yank.desc=Preporučeno kao zamjena
+archidroid.kernel.agni.desc=A very sophisticated kernel, featuring F2FS support
+archidroid.kernel.stock.desc=Dolazi kao zadani ROM kernel
+
+archidroid.dpi.240w.desc=UPOZORENJE! Imajte na umu neke manje grafičke propuste na ovom DPI-u
+archidroid.dpi.240.desc=Sve će biti manje, uključujući tipke, ikone, tekstove itd. Preporučeno za najbolje iskustvo s ArchiDroid ROM-om!
+archidroid.dpi.280.desc=Lijepa ravnoteža između izvornog i 240 dpi
+archidroid.dpi.320.desc=Izvorna vrijednost dpi-a
+
+archidroid.launcher.nova.desc=Preporučuje se za dodatnu fleksibilnost i performanse
+archidroid.launcher.google.desc=Recommended for pure google experience, also known as Google Home
+archidroid.launcher.stock.desc=Dolazi iz ROM-a
+archidroid.launcher.none.desc=No launcher. WARNING! Don't tick if you're after full wipe! You need at least one custom launcher before first boot!
+
+archidroid.keyboard=Tipkovnica
+archidroid.keyboard.google.desc=Preporučeno kao odlična i vrlo fleksibilana Swype / Curve tipkovnica
+archidroid.keyboard.hackers.desc=Odlična alternativa TouchPal tipkovnici ako ne koristitiš Swype / Curve funkciju
+archidroid.keyboard.both.desc=Ako želite koristiti obje TouchPad i hackers tipkovnice (primjerice u terminalu)
+archidroid.keyboard.stock.desc=Ako želite zadržati izvornu tipkovnicu ROM-a
+archidroid.keyboard.none.desc=No keyboard. WARNING! Don't tick if you're after full wipe! You need at least one custom keyboard before first boot!
+
+archidroid.bootanimation=Bootanimation
+archidroid.bootanimation.archi.desc=New fancy ArchiDroid bootanimation
+archidroid.bootanimation.archilegacy.desc=Old ArchiDroid 1.X bootanimation
+archidroid.bootanimation.logcat.desc=Mijenja zadani bootaimation s logcat prikazom bootanimacije - powered by logcat Lite
+archidroid.bootanimation.stock.desc=Stock bootanimation provided by ROM
+archidroid.bootanimation.none.desc=No bootanimation, for slightly faster bootup
+
+archidroid.superuser.koush.desc=Free, open-source, stable and secure
+archidroid.superuser.chainfire.desc=Free, closed-source, widely supported and modern
+archidroid.superuser.none.desc=No superuser, for extra security when you don't need a root access
+
+archidroid.other=Ostalo
+archidroid.ota.desc=Preporučeno od ArchiDroid-a. Instalirati ćemo UpdateMe Aplikaciju i omogućiti Ota ažuriranja putem build.prop-a
+archidroid.xposed.desc=Omogućuje korištenje raznih Xposed modula. Treba biti ručno omogućeno
+archidroid.crossbreeder.desc=Preporučuje se za veću učinkovitost i fleksibilnost, nije kompatibilan s seeder-om
+archidroid.updatemodem=Ažiriraj Modem
+archidroid.updatemodem.desc=Ako želite imati najnoviji modem
+archidroid.updaterecovery=Ažuriraj Recovery
+archidroid.updaterecovery.desc=Ako želite imati najnoviji recovery
+
+archidroid.apps.titaniumbackup.desc=Savršeno rješenje za čuvanje osobnih / aplikacijskih podataka između promjena ROM-a
+archidroid.apps.greenify.desc=Korisno ako želite hibernaciju bilo koje aplikacije, što štedi bateriju
+archidroid.apps.lmt.desc=Koristan alat za izvršavanje naredbe koje se odnose na određene geste na ekranu, također poznat kao PIE iz SlimBean ROM-a
+archidroid.apps.mxplayer.desc=Vjerovatno najbolji video player za Android
+archidroid.apps.spiritfm.desc=Besplatna FM radio aplikacija koja radi na CyanogenMod Romovima
+archidroid.apps.cooltool.desc=Pokazuje određene korisne statistike na gornjoj traci
+archidroid.apps.rootbrowser.desc=Odličan preglednik proširien dodatnim root pristupom
+
+archidroid.tweaks.buildtweaks.desc=Razna build.prop ugađanja, uključujući i dublji san, ugađanje performansi i više
+archidroid.tweaks.nocell.desc=Općenito se smatra bloatware. Poništite ako želite zadržati ovo
+
+archidroid.preset.no=Ne Prilagođavajte
+archidroid.preset.no.desc=Nije preporučljivo jer će te propustiti najbolje od ArchiDroid podešenja
+
+archidroid.preset.kernel.boeffla.archiperformance=ArchiDroid Performance
+archidroid.preset.kernel.boeffla.archiperformance.desc=Profil optimiziran i dizajniran prvenstveno za igrače igrica, uključujući overclock CPU-a i GPU-a. Očekujte bolje performanse na račun baterije
+archidroid.preset.kernel.boeffla.archipowersave=ArchiDroid Ušteda energije
+archidroid.preset.kernel.boeffla.archipowersave.desc=Osnovne unaprijed predložene postavke za većinu korisnika, uključujući i UV . Pruža vrlo dobru ravnotežu između baterije i performansi. Preporučuje Archi
+archidroid.preset.kernel.boeffla.archiultrapowersave=ArchiDroid Ultra Ušteda energije
+archidroid.preset.kernel.boeffla.archiultrapowersave.desc=Unaprijed osmišljen i optimiziran za maksimalno trajanje baterije, uključujući i umjeren UV. Očekujte bolji vijek baterije na račun izvedbe
+
+
+archidroid.xposed.gravitybox.desc=A complex and feature-rich customizable tweak box
+archidroid.xposed.xprivacy.desc=Izvrsni modul koji sprječava curenje privatnih podataka, ograničava pristup i više
+archidroid.xposed.wanam.desc=Masterpiece from Wanam. Enhances ArchiDroid's flexibility and provides a ton of customization options
+
+archidroid.wizard.reboot=ArchiDroid je instaliran na vaš uređaj. Želite li automatsko ponovno podizanje sustava sada?
+
+archidroid.prepinstall=Spreman za instalaciju
+common.flash=Instaliranje
+common.back=Nazad
+
+archidroid.prepinstall.desc=Spremni ste za početak instalacije.\
+Pritisnite <b>Instaliranje</b> za pokretanje.\
+Ako želite pregledati ili izmijeniti neku od instalacijskih postavki, pritisnite <b>Nazad</b>.
+
+common.finish=Završeno
+common.flashing=Instalacija
+
+archidroid.install.desc=<b>ArchiDroid</b> se sada instalira.\
+Pričekajte dok čarobnjak za instalaciju instalira vaš <b>ArchiDroid</b>\
+<b>U slučaju zamrzavanja držite kombinaciju za oporavak (Recovery) i pokušajte ponovno</b>
+
+archidroid.install.finish=ArchiDroid Čarobnjak je uspješno instalirao <b>ArchiDroid<b>\
+Pritisni <b>Završetak</b> za nastaviti.
+
+archidroid.buildtweaks.fastdormancy.desc=Untick to disable fast dormancy, may improve battery life if your provider doesn't support it
+archidroid.buildtweaks.zerowakeup.desc=Tick to enable ZeroWakeUp, it will put CPU into sleep mode (instead of deep/deeper sleep), reducing wake up delay to the minimum
+archidroid.buildtweaks.navibar.desc=Tick to enable Navigation Bar, which is normally hidden on devices with hardware keys available

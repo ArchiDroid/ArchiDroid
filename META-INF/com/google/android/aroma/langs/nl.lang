@@ -1,0 +1,208 @@
+### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+#
+#
+### ArchiDroid Language File
+#
+# How to create your own language translation
+# 1. Copy en.lang file to your own language.lang, f.e. fr.lang if you're creating French language.
+# 2. Start translating strings (everything after "=" should be translated)
+# 3. Change language and author information below when you're done
+# 4. Send pull request with your updated strings, wait for approval and adding to aroma
+# 5. Thank you for contributing to ArchiDroid project!
+#
+# Please note that you can use language-specific chars, f.e. ą ę ó ć ü ń or any non-standard letters.
+# All of them should be displayed properly in aroma
+#
+# Files should have UNIX-style endings (LF) and should be encoded in UTF-8 format.
+# Typically any file copied from en.lang should be already well formatted. Otherwise make sure that they're right.
+# In Notepad++ it's: Format -> UTF-8 and Edit -> EOL Conversion -> Convert to UNIX format
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+# Language : Dutch
+# By : MuerteDiablo
+#
+
+#
+#--- AROMA STRINGS
+#
+text_ok=OK
+text_next=Volgende
+text_back=Terug
+text_yes=Ja
+text_no=Nee
+text_about=Over
+text_calibrating=Gereedschap Kalibreren
+text_quit=Stop Installatie
+text_quit_msg=Weet je zeker dat je de installatie wilt stoppen?
+
+#
+#-- ARCHIDROID STRINGS
+#
+common.for=Voor
+common.none=Geen
+common.reboot=Herstart
+common.replaces=Vervangt
+common.inverted=Omgekeerd
+common.experimental=EXPERIMENTEEL
+common.deprecated=AFGESCHAFT
+common.obsolete=VEROUDERD
+terms.check=Ik ga akkoord met de Algemene Voorwaarden
+terms.confirm=Ga alsjeblieft akkoord!
+
+archidroid.tos=Archidroid Algemene Voorwaarden
+archidroid.preview.desc=When checked, you'll see a sample of the selected item on the next page
+
+archidroid.detect.fail=ArchiDroid wordt niet uitgevoerd op dit toestel. Heb je een full wipe gedaan of kom je van een andere ROM?
+archidroid.detect.fail.yes=Ja, Ik heb geen ArchiDroid,
+archidroid.detect.fail.no=Nee, Ik heb wel ArchiDroid draaien!
+archidroid.detect.fail.alert.yes=OK, Ik heb ArchiDroid Installatie modus voor je geselecteerd.
+archidroid.detect.fail.alert.no=Dat is niet goed. Ik zal toch de Update modus gebruiken. Gebruik deze niet als je geen ArchiDroid hebt draaien!
+archidroid.detect.pass=ArchiDroid heeft met succes gedetecteerd dat hij wordt uitgevoerd. Wil je de Update modus gebruiken?
+archidroid.detect.pass.yes=Ja, Probeer Update
+archidroid.detect.pass.no=Nee, Full Wipe
+archidroid.detect.pass.alert.no=OK, Ik ga door met full wipe en ArchiDroid Installatie modus.
+archidroid.detect.force=Wil je geforceerd updaten gebruiken? Dit vertelt ArchiDroid RunOnce om geavanceerde instellingen toe te passen welke normaal alleen bij de installatie modus worden uitgevoerd. Selecteer Nee als je het niet zeker weet.
+
+archidroid.hardswap.desc=ArchiDroid Hardswap staat je toe om je flash geheugen te gebruiken voor meer werkgeheugen. Deze optie creëert een een speciaal swap bestand op de gewenste locatie en laat android het gebruiken voor extra geheugen. Elk blok van extra geheugen zorgt voor een kleine daling in I/O snelheid. <b><#f00>Let op! Het gebruik van hardswap kan leiden tot een kortere levensduur van het flash geheugen.</#></b>
+archidroid.hardswap.remove.desc=Verwijderd hardswap van deze partitie
+archidroid.hardswap.size.default.desc=Maximaal aanbevolen grootte voor hardswap partitie.
+
+archidroid.partition.wizard.desc=ArchiDroid Partition Wizard toont alleen partities, die momenteel worden ondersteund. F2FS vereist dat er speciale recovery en kernel (geselecteerd op de vorige pagina) beschikbaar is.\
+\
+<b><#f00>WAARSCHUWING! HERPATITIONERING KAN LEIDEN TOT EEN SOFTWAREMATIGE OF HARDWAREMATIGE BRICK. VERANDER HIER NIETS TENZIJ JE WEET WAT JE DOET!</#></b>\
+\
+Naast dat, tijdens herpartitionering <b><#f00>ALLE DATA ZAL VERWIJDERD WORDEN</#></b>
+
+archidroid.filesystem.ext4.desc=Fourth Extended File System. Bewezen stabiel en betrouwbaar te zijn. Ondersteund door alle kernels
+archidroid.filesystem.f2fs.desc=Flash-Friendly File System. Geoptimaliseerd voor op NAND flash-geheugen gebaseerde opslagapparaten, geeft significante I / O boost ten opzichte van EXT4. Alleen ondersteund door een paar aangepaste kernels
+archidroid.partition.wizard.finish.desc=ArchiDroid Partition Wizard klaar is met herpatitionering. Als RETURN STATUS gelijk is aan 0, dan is alles met succes beëindigd.
+
+archidroid.preset.recovery.desc=Zal een recovery flashen i.p.v. een ROM. Kan handig zijn als een recovery update vereist is voor de ROM.
+archidroid.recovery.philz.desc=De meest feature-rijke custom recovery ooit gemaakt, ontwikkeld door Phil
+archidroid.recovery.devil.desc=Alternatieve recovery ontwikkeld door Devil, heeft dual-boot-ondersteuning en ondersteuning voor het F2FS bestandssysteem.
+
+archidroid.preset=ArchiDroid Installatie modus
+archidroid.preset.desc=Selecteer alstublieft de installatie modus:
+archidroid.preset.group=Modus
+archidroid.preset.custom=Custom
+archidroid.preset.custom.desc=Je hebt de mogelijkheid om elk aspect van de installatie aan te passen
+archidroid.preset.barebones=Bare Bones
+archidroid.preset.barebones.desc=Lege ROM. Alleen voor test doeleinden. Niet aangeraden!
+archidroid.preset.previous=Vorige keuzes
+archidroid.preset.previous.desc=Laad de installatie keuzes van de vorige installatie(indien mogelijk)
+archidroid.preset.previousexpert.desc=Zelfde als Previous Preset alleen kan je de keuzes aanpassen voor het flashen.
+
+archidroid.detect.previouspreset.fail=Kan vorige installatie keuzes niet laden, ze zijn corrupt of bestaan niet.
+
+archidroid.custom=ArchiDroid Opties
+archidroid.custom.extra=ArchiDroid Extra Opties
+archidroid.custom.desc=Pas hier de instellingen naar je eigen keuzes aan.
+
+archidroid.kernel.boeffla.desc=Sterk aanbevolen meesterwerk, perfect voor iedereen. Heeft Boeffla geluid en veel meer opties
+archidroid.kernel.archi.desc=Heeft perfecte synergie met ArchiDroid ROM
+archidroid.kernel.yank.desc=Aanbevolen als alternatief
+archidroid.kernel.agni.desc=Een zeer geavanceerder kernel, Heeft F2FS ondersteuning
+archidroid.kernel.stock.desc=Standaard ROM kernel 
+
+archidroid.dpi.240w.desc=WAARSCHUWING! Er kunnen zich wat verstoringen in het beeld voordoen op dit DPI level
+archidroid.dpi.240.desc=Alles zal kleiner zijn, knoppen, iconen, tekst etc. Aanbevolen voor beste ervaring met ArchiDroid
+archidroid.dpi.280.desc=Een mooie balans tussen standaard en 240 DPI modus
+archidroid.dpi.320.desc=Standaard instelling
+
+archidroid.launcher.nova.desc=Aanbevolen voor extra flexibiliteit en prestatie
+archidroid.launcher.google.desc=Aanbevolen voor de pure google ervaring. Ook wel bekend als Google Home
+archidroid.launcher.stock.desc=Afkomstig van ROM
+archidroid.launcher.none.desc=Geen aanraakinterface. WAARSCHUWING! Gebruik deze optie niet als je een full wipe doet! Bij de eerste keer opstarten is een aanraakinterface noodzakelijk!
+
+archidroid.keyboard=Toetsenbord
+archidroid.keyboard.google.desc=Aanbevolen als goed en flexibel toetsenbord met Swype/Curve
+archidroid.keyboard.hackers.desc=Goed alternatief voor TouchPal als je geen Swype/Curve gebruikt
+archidroid.keyboard.both.desc=Als je zowel TouchPal en Hacker's toetsenbord wilt gebruiken.
+archidroid.keyboard.stock.desc=Voor het standaard ROM toetsenbord
+archidroid.keyboard.none.desc=Geen toetsenbord. WAARSCHUWING! Gebruik deze optie niet bij een full wipe. Er is een toetsenbord nodig bij de eerste keer opstarten.
+
+archidroid.bootanimation=Opstart animatie
+archidroid.bootanimation.archi.desc=Nieuwe ArchiDroid opstart animatie
+archidroid.bootanimation.archilegacy.desc=Oude ArchiDroid 1.X opstart animatie
+archidroid.bootanimation.logcat.desc=Veranderd standaard opstart animatie naar logcat uitvoer - aangedreven door logcat lite
+archidroid.bootanimation.stock.desc=Standaard opstart animatie van ROM
+archidroid.bootanimation.none.desc=Geen opstart animatie voor iets sneller opstarten.
+
+archidroid.superuser.koush.desc=Free, open-source, stable and secure
+archidroid.superuser.chainfire.desc=Free, closed-source, widely supported and modern
+archidroid.superuser.none.desc=No superuser, for extra security when you don't need a root access
+
+archidroid.other=Overig
+archidroid.ota.desc=Aanbevolen door ArchiDroid. UpdateMe apk wordt geïnstalleerd en OTA updates worden ingeschakeld in build.prop
+archidroid.xposed.desc=Nodig voor het gebruik van Xposed modules. Moet handmatig ingeschakeld worden.
+archidroid.crossbreeder.desc=Aanbevolen voor extra snelheid en flexibliteit. Niet compatible met Seeder
+archidroid.updatemodem=Update Modem
+archidroid.updatemodem.desc=Voor als je de laatste Modem wil hebben.
+archidroid.updaterecovery=Update Recovery
+archidroid.updaterecovery.desc=Voor als je de laatste recovery wilt hebben.
+
+archidroid.apps.titaniumbackup.desc=Perfecte oplossing voor het bewaren van persoonlijke/app data tussen updates
+archidroid.apps.greenify.desc=Handig om app's in slaapstand te zetten. Bespaart batterij.
+archidroid.apps.lmt.desc=Handige software voor het uitvoeren van commandos gekoppeld aan gebaren. Ook wel bekend als pie van SlimBean
+archidroid.apps.mxplayer.desc=Waarschijnlijk de beste video speler voor Android
+archidroid.apps.spiritfm.desc=Gratis FM Radio app welke werkt met CyanogenMod
+archidroid.apps.cooltool.desc=Laat handige statistieken zien op de bovenste balk
+archidroid.apps.rootbrowser.desc=Erg handige file browser. Heeft ook mogelijkheid tot root toegang.
+
+archidroid.tweaks.buildtweaks.desc=Veel build.prop aanpassingen, waaronder diepere slaapstaand, snelheid en meer
+archidroid.tweaks.nocell.desc=Wordt meestal aangezien voor bloatware. Deselecteer als je dit wilt houden
+
+archidroid.preset.no=Geen profiel
+archidroid.preset.no.desc=Niet aanbevolen omdat je een groot aantal van Archi's optimalisaties mist.
+
+archidroid.preset.kernel.boeffla.archiperformance=ArchiDroid Performance
+archidroid.preset.kernel.boeffla.archiperformance.desc=Dit Profiel is geoptimaliseerd en ontworpen voor gamers, bevat overclock van CPU & GPU. Verwacht betere prestaties ten koste van batterij duur
+archidroid.preset.kernel.boeffla.archipowersave=ArchiDroid PowerSave
+archidroid.preset.kernel.boeffla.archipowersave.desc=Standaard profiel, geschikt voor de meeste gebruikers. Heeft een lichte uV. Bied een goede balans tussen prestaties en batterij duur. Aanbevolen door Archi
+archidroid.preset.kernel.boeffla.archiultrapowersave=ArchiDroid UltraPowerSave
+archidroid.preset.kernel.boeffla.archiultrapowersave.desc=Een profiel ontworpen om zo veel mogelijk batterij leven te hebben. Heeft een gemiddelde uV. Verwacht betere batterij duur ten koste van prestaties
+
+
+archidroid.xposed.gravitybox.desc=Een complexe en veelzijdige tweak box voor het systeem
+archidroid.xposed.xprivacy.desc=Perfecte module welke het lekken van prive data tegen gaat. Beperkt de toegang van een app en meer
+archidroid.xposed.wanam.desc=Meesterwerk van Wanam. Vergroot ArchiDroid's flexibiliteit en bied een enorme hoeveelheid aan aanpassingsmogelijkheden.
+
+archidroid.wizard.reboot=ArchiDroid Is op je toestel geïnstalleerd. Wil je nu automatisch opnieuw opstarten?
+
+archidroid.prepinstall=Klaar voor installeren
+common.flash=Installeren
+common.back=Terug
+
+archidroid.prepinstall.desc=Je bent nu klaar om de installatie te beginnen.\
+Druk op <b>Installeren</b> om te beginnen.\
+Indien je nog je instellingen wilt zien of wijzgen druk dan op <b>Terug</b>.
+
+common.finish=Klaar
+common.flashing=Installeren
+
+archidroid.install.desc=<b>ArchiDroid</b> wordt nu geïnstalleerd.\
+Wacht alstublieft terwijl de installatiewizard bezig is met de installatie van <b>ArchiDroid</b>\
+<b>Indien de installatie vastloopt hou dan de recovery knoppen combinatie vast en probeer het opnieuw</b>
+
+archidroid.install.finish=ArchiDroid wizard succesvol geïnstalleerd <b>ArchiDroid<b>\
+Druk op <b>Klaar</b> om door te gaan.
+
+archidroid.buildtweaks.fastdormancy.desc=Deselecteer deze om fast dormancy uit te schakelen, dit kan je batterij duur verbeteren als je provider het niet ondersteund
+archidroid.buildtweaks.zerowakeup.desc=Selecteer om ZeroWakeUp aan te zetten. Dit zal de telefoon in slaap stand zetten (i.p.v. diepere slaap), Zorgt ervoor dat WakeUp lag tot een minium wordt verlaagd.
+archidroid.buildtweaks.navibar.desc=Selecteer om de Navigatie balk in te schakelen, Welke normaal verborgen is op apparaten met hardware toetsen.
