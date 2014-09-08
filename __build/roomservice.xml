@@ -1,0 +1,96 @@
+<!-- Please read README.md before making modifications here! -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<!-- Toolchain -->
+		<!-- AOSP -->
+			<!-- There's no AOSP's 4.9-arm-eabi yet!!! <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.9-arm-eabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="aosp-4.9-arm-linux-androideabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.8-arm-eabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="aosp-4.8-arm-linux-androideabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.7-arm-eabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="aosp-4.7-arm-linux-androideabi" /> -->
+		<!-- /AOSP -->
+		<!-- Linaro -->
+			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="linaro-4.9-arm-eabi" />
+			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="linaro-4.9-arm-linux-androideabi" />
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="linaro-4.8-arm-eabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="linaro-4.8-arm-linux-androideabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.7-arm-eabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="aosp-4.7-arm-linux-androideabi" /> -->
+		<!-- /Linaro -->
+	<!-- /Toolchain -->
+
+	<!-- Added projects -->
+	<!-- /Added projects -->
+
+	<!-- Removed projects -->
+		<remove-project name="CyanogenMod/android_packages_apps_CMUpdater" />
+	<!-- /Removed projects -->
+
+	<!-- Replaced projects -->
+		<remove-project name="CyanogenMod/android_art" />
+		<project name="ArchiDroid/android_art" path="art" remote="github" />
+		<remove-project name="CyanogenMod/android_build" />
+		<project name="ArchiDroid/android_build" path="build" remote="github" />
+		<remove-project name="CyanogenMod/android_external_fuse" />
+		<project name="ArchiDroid/android_external_fuse" path="external/fuse" remote="github" />
+		<remove-project name="CyanogenMod/android_external_webp" />
+		<project name="ArchiDroid/android_external_webp" path="external/webp" remote="github" />
+		<remove-project name="CyanogenMod/android_hardware_qcom_display" />
+		<project name="ArchiDroid/android_hardware_qcom_display" path="hardware/qcom/display" remote="github" />
+		<remove-project name="CyanogenMod/android_hardware_qcom_display-caf" />
+		<project name="ArchiDroid/android_hardware_qcom_display-caf" path="hardware/qcom/display-caf" remote="github" />
+		<remove-project name="CyanogenMod/android_vendor_cm" />
+		<project name="ArchiDroid/android_vendor_cm" path="vendor/cm" remote="github" />
+		<remove-project name="CyanogenMod/Superuser" />
+		<project name="ArchiDroid/Superuser" path="external/koush/Superuser" remote="github" />
+	<!-- /Replaced projects -->
+
+	<!-- Devices -->
+		<!-- e610 -->
+			<!--
+			<project name="TeamHackLG/android_device_lge_e610" path="device/lge/e610" remote="github" />
+			<project name="TeamHackLG/android_device_lge_msm7x27a-common" path="device/lge/msm7x27a-common" remote="github" />
+			<project name="TeamHackLG/lge-kernel-lproj" path="kernel/lge/msm7x27a-common" remote="github" revision="android-msm-3.4-kk" />
+
+			<project name="ArchiDroid/proprietary_vendor_lge" path="vendor/lge" remote="github" />
+
+			<remove-project name="TeamHackLG/android_device_lge_e610" />
+			<project name="ArchiDroid/android_device_lge_e610" path="device/lge/e610" remote="github" />
+			-->
+		<!-- /e610 -->
+		<!-- i9300 -->
+			<!--
+			<project name="CyanogenMod/android_device_samsung_i9300" path="device/samsung/i9300" remote="github" />
+			<project name="CyanogenMod/android_device_samsung_smdk4412-common" path="device/samsung/smdk4412-common" remote="github" />
+			<project name="CyanogenMod/android_kernel_samsung_smdk4412" path="kernel/samsung/smdk4412" remote="github" />
+			<project name="CyanogenMod/android_packages_apps_SamsungServiceMode" path="packages/apps/SamsungServiceMode" remote="github" />
+			<project name="CyanogenMod/android_hardware_samsung" path="hardware/samsung" remote="github" />
+
+			<project name="ArchiDroid/proprietary_vendor_samsung" path="vendor/samsung" remote="github" />
+
+			<remove-project name="CyanogenMod/android_device_samsung_i9300" />
+			<project name="ArchiDroid/android_device_samsung_i9300" path="device/samsung/i9300" remote="github" />
+			<remove-project name="CyanogenMod/android_kernel_samsung_smdk4412" />
+			<project name="ArchiDroid/android_kernel_samsung_smdk4412" path="kernel/samsung/smdk4412" remote="github" />
+			-->
+		<!-- /i9300 -->
+		<!-- nicki -->
+			<!--
+			<project name="CyanogenMod/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
+			<project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" />
+			<project name="CyanogenMod/android_device_sony_common" path="device/sony/common" remote="github" />
+			<project name="CyanogenMod/android_device_sony_qcom-common" path="device/sony/qcom-common" remote="github" />
+			<project name="CyanogenMod/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
+			<project name="CyanogenMod/android_hardware_qcom_fm" path="hardware/qcom/fm" remote="github" />
+
+			<project name="ArchiDroid/proprietary_vendor_sony" path="vendor/sony" remote="github" />
+
+			<remove-project name="CyanogenMod/android_device_sony_nicki" />
+			<project name="ArchiDroid/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
+			<remove-project name="CyanogenMod/android_kernel_sony_msm8x27" />
+			<project name="ArchiDroid/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
+			-->
+		<!-- /nicki -->
+	<!-- /Devices -->
+</manifest>
