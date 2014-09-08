@@ -26,9 +26,9 @@
 # While using <Device> is in fact optional, admount.sh will fail if fstab doesn't provide this one
 # Therefore, providing <Device> argument is highly suggested
 
-LOG="/tmp/admount.log" # We can use /dev/null if not required
+LOG="/dev/null" # You can enable logging if required by specifying path such as /tmp/admount.log
 
-exec 1>>"$LOG"
+exec 1>>"$LOG" # Append is used for logging all mount entries in the same file
 exec 2>&1
 
 # shellcheck disable=2039
@@ -43,20 +43,29 @@ ADMOUNTED() {
 	return "$(mount | grep -qi "$1"; echo $?)"
 }
 
+echo "INFO: Mounting $2 on $1..."
+
 if ADMOUNTED "$1"; then
 	echo "SUCCESS: $1 is mounted already!"
+	mount | grep -i "$1"
 	exit 0
 fi
 
+# Make sure that mountpoint in fact exists
+# shellcheck disable=2039
+if [[ ! -d "$1" ]]; then
+	mkdir -p "$1"
+fi
+
 # Stage 1 - fstab
-echo "INFO: Trying fstab-based mount"
+echo "INFO: Trying fstab-based mount of $1"
 mount "$1" # If fstab has proper entry for our filesystem, providing path only is enough. However, this may fail if filesystem differs or fstab has no entry
 if ADMOUNTED "$1"; then
 	echo "SUCCESS: $1 has been mounted properly!"
 	mount | grep -i "$1"
 	exit 0
 else
-	echo "INFO: Failed, this indicates that there's no valid entry for $1 in the fstab!"
+	echo "INFO: Failed fstab-based mounting of $1. This indicates that there's no valid entry for that in the fstab!"
 fi
 
 # shellcheck disable=2039
@@ -68,14 +77,14 @@ if [[ -z "$2" ]]; then
 fi
 
 # Stage 2 - kernel
-echo "INFO: Trying kernel-based mount"
+echo "INFO: Trying kernel-based mount of $1"
 mount -t auto "$2" "$1" # This will handle all known by kernel filesystems, from /proc/filesystems. If we fail here, it's over
 if ADMOUNTED "$1"; then
 	echo "SUCCESS: $1 has been mounted properly!"
 	mount | grep -i "$1"
 	exit 0
 else
-	echo "INFO: Failed, this indicates that $2 device is invalid or has unknown filesystem!"
+	echo "INFO: Failed kernel-based mount of $1. This indicates that $2 device is invalid or has unknown filesystem!"
 fi
 
 echo "ERROR: All stages failed, we're not able to mount that!"
