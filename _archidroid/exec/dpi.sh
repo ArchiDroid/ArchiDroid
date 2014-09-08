@@ -23,8 +23,7 @@
 
 ORIGDPI="$(grep -i "lcd_density" "/system/build.prop" | head -n 1 | cut -d '=' -f 2)"
 
-if [ ! -z "$ORIGDPI" ]; then
-	sed -i "s/ro.sf.lcd_density=$ORIGDPI/ro.sf.lcd_density=$1/g" "/system/build.prop"
+if [[ ! -z "$ORIGDPI" ]]; then
+	sed -i "s/ro.sf.lcd_density=$ORIGDPI/ro.sf.lcd_density=$1/g" /system/build.prop
 fi
-sync
 exit 0

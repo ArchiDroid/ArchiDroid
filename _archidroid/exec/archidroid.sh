@@ -23,7 +23,7 @@
 
 AD="/data/media/0/ArchiDroid"
 
-touch "/data/ARCHIDROID_DONT_REMOVE_ME"
+touch /data/ARCHIDROID_DONT_REMOVE_ME
 mkdir -p "$AD"
 rm -f "$AD/INSTALL" "$AD/UPDATE" "$AD/FORCE"
 
@@ -31,5 +31,4 @@ for ARG in "$@"; do
 	touch "$AD/$ARG"
 done
 
-sync
 exit 0

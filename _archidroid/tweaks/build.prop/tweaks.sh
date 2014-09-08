@@ -14,5 +14,4 @@ persist.sys.purgeable_assets=1
 ############################
 " >> /system/build.prop
 
-sync
 exit 0

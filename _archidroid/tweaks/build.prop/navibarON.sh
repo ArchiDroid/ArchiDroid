@@ -24,12 +24,11 @@
 # Define keys we want to disable
 KEYS="139 158 172"
 
-sed -i 's/#qemu.hw.mainkeys=0/qemu.hw.mainkeys=0/g' "/system/build.prop"
-find "/system/usr/keylayout" -type f -name "*.kl" | while read line; do
+sed -i 's/#qemu.hw.mainkeys=0/qemu.hw.mainkeys=0/g' /system/build.prop
+find /system/usr/keylayout -type f -name "*.kl" | while read line; do
 	for KEY in $KEYS; do
 		sed -i "s/key $KEY/#key $KEY/g" "$line"
 	done
 done
 
-sync
 exit 0

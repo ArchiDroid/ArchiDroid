@@ -21,13 +21,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if [ "$1" = "lock" ]; then
+if [[ -z "$2" ]]; then
+	exit 1
+fi
+
+if [[ "$1" = "lock" ]]; then
 	chattr +i "$2"
-elif [ "$1" = "unlock" ]; then
+elif [[ "$1" = "unlock" ]]; then
 	chattr -i "$2"
 else
 	exit 1
 fi
 
-sync
 exit 0
