@@ -26,7 +26,7 @@ set -e
 VERSION=2.5.4
 
 # Device-based
-ADVARIANT="BRINGUP" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
+ADVARIANT="i9300" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
 BUILDVARIANT="user" # Change this to userdebug if for some reason you can't build with user variant
 
 # Detect HOME properly
