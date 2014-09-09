@@ -26,7 +26,7 @@ set -e
 VERSION=2.5.4
 
 # Device-based
-ADVARIANT="mydevice" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
+ADVARIANT="i9300" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
 BUILDVARIANT="user" # Change this to userdebug if for some reason you can't build with user variant
 
 # Detect HOME properly
@@ -115,6 +115,18 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 
 	ADZIP="$(basename "$REALADZIP")"
 	cp "$REALADZIP" "$ADROOT"
+else
+	while read ZIP; do
+		REALADZIP="$ZIP"
+		break
+	done < <(find "$ADROOT" -mindepth 1 -maxdepth 1 -type f -name "$ADZIP")
+
+	if [[ -z "$REALADZIP" ]]; then
+		echo "ERROR: It looks like there's no $ADZIP available in $ADROOT!"
+		exit 1
+	fi
+
+	ADZIP="$(basename "$REALADZIP")"
 fi
 
 cd "$ADROOT"
@@ -130,15 +142,6 @@ if [[ -f "__build/_updater-scripts/archidroid/updater-script" ]]; then
 	OLDMD5="$(md5sum __build/_updater-scripts/archidroid/updater-script | awk '{print $1}')"
 else
 	OLDMD5="$NEWMD5"
-	mkdir -p __build/_updater-scripts/archidroid
-	cp META-INF/com/google/android/updater-script __build/_updater-scripts/archidroid/updater-script
-	echo "WARNING: This is your FIRST build for unsupported device"
-	echo "Congratulations for going THAT far!"
-	echo "Don't forget to add permissions and symlinks to ArchiDroid's updater-script"
-	echo "Search for 'BRINGUP' word in META-INF/com/google/android/updater-script"
-	echo "Original updater-script from the ROM is located in __build/_updater-scripts/archidroid/updater-script"
-	echo "This file will be automatically used for any comparisions in future"
-	echo "This means that you don't need to keep an eye on any updater-script changes, this script will keep you informed"
 fi
 
 if [[ "$OLDMD5" != "$NEWMD5" ]]; then
@@ -158,6 +161,16 @@ if [[ "$OLDMD5" != "$NEWMD5" ]]; then
 	cp META-INF/com/google/android/updater-script __build/_updater-scripts/archidroid/updater-script
 	echo "NOTICE: New updater-script has replaced old updater-script in future comparisions!"
 	echo "You'll be informed in case of future additions to updater-script"
+elif [[ ! -f "__build/_updater-scripts/archidroid/updater-script" ]]; then
+	mkdir -p __build/_updater-scripts/archidroid
+	cp META-INF/com/google/android/updater-script __build/_updater-scripts/archidroid/updater-script
+	echo "WARNING: This is your FIRST build for unsupported device"
+	echo "Congratulations for going THAT far!"
+	echo "Don't forget to add permissions and symlinks to ArchiDroid's updater-script"
+	echo "Search for 'BRINGUP' word in META-INF/com/google/android/updater-script"
+	echo "Original updater-script from the ROM is located in __build/_updater-scripts/archidroid/updater-script"
+	echo "This file will be automatically used for any comparisions in future"
+	echo "This means that you don't need to keep an eye on any updater-script changes, this script will keep you informed"
 else
 	echo "INFO: Updater-scripts are the same! You don't need to merge any conflicts!"
 fi
@@ -279,4 +292,3 @@ rm $FILE
 #################
 
 exit 0
-
