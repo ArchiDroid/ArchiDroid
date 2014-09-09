@@ -130,17 +130,36 @@ if [[ -f "__build/_updater-scripts/archidroid/updater-script" ]]; then
 	OLDMD5="$(md5sum __build/_updater-scripts/archidroid/updater-script | awk '{print $1}')"
 else
 	OLDMD5="$NEWMD5"
-fi
-
-if [[ "$OLD" != "$NEW" ]]; then
-	echo "Warning! Updater-script got some new additions!"
-	echo "Probably just symlink or permissions stuff"
-	diff __build/_updater-scripts/archidroid/updater-script META-INF/com/google/android/updater-script || true
 	mkdir -p __build/_updater-scripts/archidroid
 	cp META-INF/com/google/android/updater-script __build/_updater-scripts/archidroid/updater-script
-	echo "Please merge changes with your original updater-script!"
+	echo "WARNING: This is your FIRST build for unsupported device"
+	echo "Congratulations for going THAT far!"
+	echo "Don't forget to add permissions and symlinks to ArchiDroid's updater-script"
+	echo "Search for 'BRINGUP' word in META-INF/com/google/android/updater-script"
+	echo "Original updater-script from the ROM is located in __build/_updater-scripts/archidroid/updater-script"
+	echo "This file will be automatically used for any comparisions in future"
+	echo "This means that you don't need to keep an eye on any updater-script changes, this script will keep you informed"
+fi
+
+if [[ "$OLDMD5" != "$NEWMD5" ]]; then
+	echo "WARNING: Updater-script got some new additions!"
+	echo "Probably just symlink or permissions stuff"
+	echo "For keeping maximum compatibility, YOU must merge these changes"
+	echo "Here are the changes:"
+	echo "---"
+	diff __build/_updater-scripts/archidroid/updater-script META-INF/com/google/android/updater-script || true
+	echo "---"
+	echo "This comparision has been made with diff tool of old and new updater-script"
+	echo "Old updater-script: __build/_updater-scripts/archidroid/updater-script"
+	echo "New updater-script: META-INF/com/google/android/updater-script"
+	echo "ArchiDroid's updater-script: META-INF/com/google/android/updater-script.old"
+	echo "Please merge changes above to ArchiDroid's updater script BEFORE you continue"
+	read -p "Press [Enter] key to continue..."
+	cp META-INF/com/google/android/updater-script __build/_updater-scripts/archidroid/updater-script
+	echo "NOTICE: New updater-script has replaced old updater-script in future comparisions!"
+	echo "You'll be informed in case of future additions to updater-script"
 else
-	echo "Updater-scripts are the same!"
+	echo "INFO: Updater-scripts are the same! You don't need to merge any conflicts!"
 fi
 
 # Fix everything
@@ -160,12 +179,14 @@ VERSION+=']'
 
 if [[ "$STOCK" -eq 1 ]]; then
 	if [[ -d framework-res ]]; then
-		cd framework-res
-		zip -0 -r ../../system/framework/framework-res.apk *
-		cd ..
-		chmod 755 utilities/zipalign
-		./utilities/zipalign -v -f 4 ../system/framework/framework-res.apk TEMP.apk
-		mv TEMP.apk ../system/framework/framework-res.apk
+		(
+			cd framework-res || exit
+			zip -0 -r ../../system/framework/framework-res.apk ./*
+			cd ..
+			chmod 755 utilities/zipalign
+			./utilities/zipalign -v -f 4 ../system/framework/framework-res.apk TEMP.apk
+			mv TEMP.apk ../system/framework/framework-res.apk
+		)
 	fi
 
 	# Handle everything what we may have already
