@@ -281,13 +281,13 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"320","320","","select",
 
 		"launcher","<#selectbg_g>Launcher</#>","","group",
-		"google","Google","<~archidroid.launcher.google.desc>","check.checked",
-		"nova","Nova","<~archidroid.launcher.nova.desc>","check",
-		"stock","Stock","<~archidroid.launcher.stock.desc>","check",
+		"lgoogle","Google","<~archidroid.launcher.google.desc>","check.checked",
+		"lnova","Nova","<~archidroid.launcher.nova.desc>","check",
+		"lstock","Stock","<~archidroid.launcher.stock.desc>","check",
 
 		"keyboard","<#selectbg_g><~archidroid.keyboard></#>","","group",
-		"google","Google","<~archidroid.keyboard.google.desc>","check.checked",
-		"stock","Stock","<~archidroid.keyboard.stock.desc>","check",
+		"kgoogle","Google","<~archidroid.keyboard.google.desc>","check.checked",
+		"kstock","Stock","<~archidroid.keyboard.stock.desc>","check",
 
 		"bootanimation","<#selectbg_g><~archidroid.bootanimation></#>","","group",
 		"archi","ArchiDroid","<~archidroid.bootanimation.archi.desc>","select.selected",
