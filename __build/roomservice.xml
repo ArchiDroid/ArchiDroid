@@ -35,7 +35,7 @@
 		<remove-project name="CyanogenMod/android_external_fuse" />
 		<project name="ArchiDroid/android_external_fuse" path="external/fuse" remote="github" />
 		<remove-project name="CyanogenMod/android_external_webp" />
-		<project name="ArchiDroid/android_external_webp" path="external/webp" remote="github" revision="tests" />
+		<project name="ArchiDroid/android_external_webp" path="external/webp" remote="github" />
 		<remove-project name="CyanogenMod/android_hardware_qcom_display" />
 		<project name="ArchiDroid/android_hardware_qcom_display" path="hardware/qcom/display" remote="github" />
 		<remove-project name="CyanogenMod/android_hardware_qcom_display-caf" />
