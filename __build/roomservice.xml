@@ -5,14 +5,14 @@
 		<!-- AOSP -->
 			<!-- There's no AOSP's 4.9-arm-eabi yet!!! <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.9-arm-eabi" /> -->
 			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="aosp-4.9-arm-linux-androideabi" /> -->
-			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.8-arm-eabi" /> -->
-			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="aosp-4.8-arm-linux-androideabi" /> -->
+			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.8-arm-eabi" />
+			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="aosp-4.8-arm-linux-androideabi" />
 			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.7-arm-eabi" /> -->
 			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="aosp-4.7-arm-linux-androideabi" /> -->
 		<!-- /AOSP -->
 		<!-- Linaro -->
-			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="linaro-4.9-arm-eabi" />
-			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="linaro-4.9-arm-linux-androideabi" />
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="linaro-4.9-arm-eabi" /> -->
+			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="linaro-4.9-arm-linux-androideabi" /> -->
 			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="linaro-4.8-arm-eabi" /> -->
 			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-ArchiDroid" remote="github" revision="linaro-4.8-arm-linux-androideabi" /> -->
 			<!-- <project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-ArchiDroid" remote="github" revision="aosp-4.7-arm-eabi" /> -->
