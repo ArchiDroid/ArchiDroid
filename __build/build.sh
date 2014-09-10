@@ -23,11 +23,15 @@
 
 set -e
 
-VERSION=2.5.4
+VERSION=3.0.0
 
 # Device-based
-ADVARIANT="i9300" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
+DEVICE="i9300" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
 BUILDVARIANT="user" # Change this to userdebug if for some reason you can't build with user variant
+
+# Rom-based
+ROM="CyanogenMod" # This is actually for information purpose only, can be anything
+ROMSHORT="cm" # This however, MUST match the repo name at ArchiDroid/ArchiDroid, e.g. if it's i9300-omnirom-experimental, we must type "omnirom" here
 
 # Detect HOME properly
 # This workaround is required because arm-eabi-nm has problems following ~. Don't change it
@@ -41,7 +45,7 @@ fi
 ADROOT="$HOME/shared/git/ArchiDroid" # This is where ArchiDroid GitHub repo is located
 ADZIP="cm-*.zip" # This is with what defined output zip. For omni it would be "omni-*.zip"
 ADCOMPILEROOT="$HOME/android/cm" # This is where AOSP sources are located
-ADOUT="$ADCOMPILEROOT/out/target/product/$ADVARIANT" # This is the location of output zip from above sources, usually it doesn't need to be changed
+ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of output zip from above sources, usually it doesn't need to be changed
 
 # Common
 PREBUILT=0
@@ -76,7 +80,6 @@ for ARG in "$@" ; do
 done
 sleep 1
 
-OTA="echo \"updateme.version=$VERSION\" >> /system/build.prop"
 if [[ "$STABLE" -eq 0 ]]; then
 	VERSION="$VERSION EXPERIMENTAL"
 else
@@ -98,7 +101,7 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	source build/envsetup.sh
-	brunch "$ADVARIANT" "$BUILDVARIANT" || true
+	brunch "$DEVICE" "$BUILDVARIANT" || true
 
 	REALADZIP=""
 	while read ZIP; do
@@ -134,7 +137,7 @@ cd "$ADROOT"
 rm -rf system recovery
 mv META-INF/com/google/android/updater-script META-INF/com/google/android/updater-script.old
 mv META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary.old
-unzip "$ADZIP"
+unzip -o "$ADZIP"
 rm -f "$ADZIP"
 
 NEWMD5="$(md5sum META-INF/com/google/android/updater-script | awk '{print $1}')"
@@ -228,67 +231,20 @@ if [[ "$STOCK" -eq 1 ]]; then
 fi
 
 
+### Handle build.prop ###
+echo "# ArchiDroid build.prop" > build.prop.TEMP
+{
+	echo "ro.archidroid=1"
+	echo "ro.archidroid.device=$DEVICE"
+	echo "ro.archidroid.rom=$ROM"
+	echo "ro.archidroid.rom.short=$ROMSHORT"
+	echo "ro.archidroid.version=$VERSION"
+	echo
+	cat ../system/build.prop
+} >> build.prop.TEMP
 
-### STUFF BELOW REALLY NEEDS REWRITE SOONER OR LATER
-
-##################
-### OTA UPDATE ###
-FILE=otaold.sh
-FILEO=ota.sh
-cp ../_archidroid/ota/ota.sh $FILE
-GDZIE=`grep -n "updateme.version=" $FILE | cut -f1 -d:`
-ILE=`cat $FILE | wc -l`
-ILE=`expr $ILE - $GDZIE`
-GDZIE=`expr $GDZIE - 1`
-cat $FILE | head -${GDZIE} > $FILEO
-echo $OTA >> $FILEO
-ILE=`expr $ILE + 1`
-cat $FILE | tail -${ILE} >> $FILEO
-cp $FILEO $FILE
-rm $FILEO
-cp $FILE ../_archidroid/ota/ota.sh
-rm $FILE
-### OTA UPDATE ###
-##################
-
-#########################
-### BUILD.PROP UPDATE ###
-FILE=buildold.prop
-FILEO=build.prop
-cp ../system/build.prop $FILE
-
-echo "# ArchiDroid build.prop" >> $FILEO
-cat $FILE >> $FILEO
-cp $FILEO $FILE
-rm $FILEO
-
-if [ $STOCK -eq 1 ]; then
-	sed -i 's/S_Over_the_horizon.ogg/09_Underwater_world.ogg/g' $FILE
-	sed -i 's/S_Whistle.ogg/S_Good_News.ogg/g' $FILE
-	sed -i 's/Walk_in_the_forest.ogg/Dawn_chorus.ogg/g' $FILE
-fi
-
-GDZIE=`grep -n "ro.build.display.id=" $FILE | cut -f1 -d:`
-ILE=`cat $FILE | wc -l`
-ILE=`expr $ILE - $GDZIE`
-GDZIE=`expr $GDZIE - 1`
-cat $FILE | head -${GDZIE} > $FILEO
-echo "ro.build.display.id=ArchiDroid $VERSION" >> $FILEO
-echo "ro.archidroid.version=$VERSION" >> $FILEO
-cat $FILE | tail -${ILE} >> $FILEO
-cp $FILEO $FILE
-rm $FILEO
-
-cp $FILE ../system/build.prop
-rm $FILE
-
-### BUILD.PROP UPDATE ###
-#########################
-
-#################
-### BLOATWARE ###
-#rm -f ../system/app/CMUpdater.apk
-### BLOATWARE ###
-#################
+# Change default version to our custom one
+sed -i "/ro.build.display.id=/c\ro.build.display.id=ArchiDroid-$VERSION-$ROM-$DEVICE" build.prop.TEMP
+mv build.prop.TEMP ../system/build.prop
 
 exit 0
