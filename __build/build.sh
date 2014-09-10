@@ -80,12 +80,6 @@ for ARG in "$@" ; do
 done
 sleep 1
 
-if [[ "$STABLE" -eq 0 ]]; then
-	VERSION="$VERSION EXPERIMENTAL"
-else
-	VERSION="$VERSION STABLE"
-fi
-
 if [[ "$PREBUILT" -eq 0 ]]; then
 	cd "$ADCOMPILEROOT"
 	if [[ "$OLD" -eq 0 ]]; then
@@ -185,13 +179,16 @@ mv META-INF/com/google/android/updater-script.old META-INF/com/google/android/up
 
 cd __build
 
-VERSION+=' ['
 if [[ "$STOCK" -eq 1 ]]; then
-	VERSION+="$(grep "ro.build.version.incremental" "../system/build.prop" | cut -d '=' -f 2)"
+	AVERSION="$(grep "ro.build.version.incremental" "../system/build.prop" | cut -d '=' -f 2)"
 else
-	VERSION+="$(grep "ro.build.id" "../system/build.prop" | cut -d '=' -f 2)"
+	AVERSION="$(grep "ro.build.id" "../system/build.prop" | cut -d '=' -f 2)"
 fi
-VERSION+=']'
+if [[ "$STABLE" -eq 1 ]]; then
+	TVERSION="STABLE"
+else
+	TVERSION="EXPERIMENTAL"
+fi
 
 if [[ "$STOCK" -eq 1 ]]; then
 	if [[ -d framework-res ]]; then
@@ -239,12 +236,14 @@ echo "# ArchiDroid build.prop" > build.prop.TEMP
 	echo "ro.archidroid.rom=$ROM"
 	echo "ro.archidroid.rom.short=$ROMSHORT"
 	echo "ro.archidroid.version=$VERSION"
+	echo "ro.archidroid.version.android=$AVERSION"
+	echo "ro.archidroid.version.type=$TVERSION"
 	echo
 	cat ../system/build.prop
 } >> build.prop.TEMP
 
 # Change default version to our custom one
-sed -i "/ro.build.display.id=/c\ro.build.display.id=ArchiDroid-$VERSION-$ROM-$DEVICE" build.prop.TEMP
+sed -i "/ro.build.display.id=/c\ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE" build.prop.TEMP
 mv build.prop.TEMP ../system/build.prop
 
 exit 0
