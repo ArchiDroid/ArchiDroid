@@ -27,7 +27,7 @@ use_color=false
 
 # set some environment variables
 HOME=/sdcard
-TERM=linux
+TERM=xterm
 
 # enable colorful terminal
 if [[ ${EUID} == 0 ]] ; then
