@@ -59,6 +59,7 @@ ADSTOP() {
 			ADSTOP "ADBLOCK"
 			ADSTOP "CRON"
 			ADSTOP "TMPFS"
+			ADSTOP "LOGCAT"
 			;;
 		"ADBLOCK")
 			ADSTOP "archidroid_dnsmasq"
@@ -75,6 +76,9 @@ ADSTOP() {
 			;;
 		"HAVEGED")
 			ADSTOP "archidroid_haveged"
+			;;
+		"LOGCAT")
+			kill "$(pidof logcat)" >/dev/null 2>&1
 			;;
 		"CRON") ADCRON "$ADCRONSTATUS" "STOPPED" ;;
 		"TMPFS")
@@ -106,6 +110,7 @@ ADSTOP() {
 ADSTART() {
 	case "$1" in
 		"ALL")
+			ADSTART "LOGCAT"
 			ADSTART "TMPFS"
 			ADSTART "CRON"
 			ADSTART "HAVEGED"
@@ -154,6 +159,11 @@ ADSTART() {
 			;;
 		"HAVEGED")
 			ADSTART "archidroid_haveged"
+			;;
+		"LOGCAT")
+			if [[ "$LOGCAT" -eq 1 ]]; then
+				logcat -f "$AD/logcat.txt" &
+			fi
 			;;
 		"CRON")
 			echo "INFO: Activating ArchiDroid Cron!"
@@ -270,6 +280,7 @@ ADRELOAD() {
 			ADRELOAD "HAVEGED"
 			ADRELOAD "FRANDOM"
 			ADRELOAD "ADBLOCK"
+			ADRELOAD "LOGCAT"
 			;;
 		*)
 			ADSTOP "$1"
@@ -330,6 +341,11 @@ if [[ -f "$ADDEV/ADBLOCK_ENABLED" ]]; then
 	fi
 else
 	ADBLOCK=0
+fi
+if [[ -f "$ADDEV/LOGCAT_ENABLED" ]]; then
+	LOGCAT=1
+else
+	LOGCAT=0
 fi
 
 if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" ]]; then
