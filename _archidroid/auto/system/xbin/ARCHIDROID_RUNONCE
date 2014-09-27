@@ -114,12 +114,12 @@ echo "INFO: ArchiDroid_RunOnce executed!"
 
 echo "INFO: Waiting for bootanimation..."
 LOOP=0
-while ! pgrep bootanimation >/dev/null 2>&1 && [[ "$LOOP" -lt 10 ]]; do
+while ! pgrep bootanimation >/dev/null 2>&1 && ! pgrep boot-dmesg >/dev/null 2>&1 && [[ "$LOOP" -lt 10 ]]; do
 	((LOOP++))
 	sleep 1
 done
 
-if ! pgrep bootanimation >/dev/null 2>&1; then
+if ! pgrep bootanimation >/dev/null 2>&1 && ! pgrep boot-dmesg >/dev/null 2>&1; then
 	echo "INFO: Bootanimation didn't spawn in given period, aborting backend!"
 	exit 0
 else
