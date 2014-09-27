@@ -37,7 +37,7 @@ writetmpfile(
 
 
 # Often edited variables
-setvar("preset_version","20");
+setvar("preset_version","21");
 ini_set("rom_version", "2.5.4"); # TODO: This one should be read from build.prop, not declared statically
 ini_set("rom_date", "September XXth, 2014");
 
@@ -303,6 +303,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"none","<~common.none>","<~archidroid.superuser.none.desc>","select",
 
 		"other","<#selectbg_g><~archidroid.other></#>","","group",
+		"gapps","Google Apps","<~archidroid.gapps.desc>","check.checked",
 		"xposed","Xposed Framework","<~archidroid.xposed.desc>","check.checked",
 
 		"archiapps","<#selectbg_g>ArchiDroid Apps</#>","","group",
