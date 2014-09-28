@@ -28,6 +28,7 @@ writetmpfile(
 	"kernel=/dev/block/platform/dw_mmc/by-name/BOOT\n"+ # CORE
 	"recovery=/dev/block/platform/dw_mmc/by-name/RECOVERY\n"+ # CORE
 	"modem=/dev/block/platform/dw_mmc/by-name/RADIO\n"+ # CORE
+	"efs=/dev/block/platform/dw_mmc/by-name/EFS\n"+
 	"system=/dev/block/platform/dw_mmc/by-name/SYSTEM\n"+
 	"data=/dev/block/platform/dw_mmc/by-name/USERDATA\n"+
 	"cache=/dev/block/platform/dw_mmc/by-name/CACHE\n"+
@@ -69,6 +70,7 @@ fontresload( "1", "ttf/DroidSans.ttf;ttf/DroidSansFallback.ttf;ttf/DroidSansArab
 theme("archidroid");
 
 # Mount required filesystems
+resexec("exec/admount.sh", "/efs", file_getprop("/tmp/aroma-data/device.prop","efs"));
 resexec("exec/admount.sh", "/system", file_getprop("/tmp/aroma-data/device.prop","system"));
 resexec("exec/admount.sh", "/data", file_getprop("/tmp/aroma-data/device.prop","data"));
 resexec("exec/admount.sh", "/cache", file_getprop("/tmp/aroma-data/device.prop","cache"));
@@ -259,14 +261,19 @@ endif;
 ###############################
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custom" then
-	pleasewait("Executing Shell...");
-	resexec("exec/archidroid_check_bcm4334.sh");
+	resexec("exec/bcm4334.sh");
 	setvar("bcm4334", getvar("exec_buffer"));
 	form(
 		"<~archidroid.custom>",
 		"<~archidroid.custom.desc>",
 		"@apps",
 		"archidroid.prop",
+
+		"bcm4334","<#selectbg_g>BCM Profiling</#>","","group",
+		"archidetect","ArchiDetect","Detected: " + getvar("bcm4334"),"select.selected",
+		"stock","Stock","","select",
+		"murata","Murata","","select",
+		"semcosh","Semcosh","","select",
 
 		"kernel","<#selectbg_g>Kernel</#>","","group",
 		"stock","Stock","<~archidroid.kernel.stock.desc>","select.selected",
@@ -484,6 +491,7 @@ install(
 	"<~archidroid.install.finish>"
 );
 
+resexec("exec/adumount.sh", "/efs");
 resexec("exec/adumount.sh", "/system");
 resexec("exec/adumount.sh", "/data");
 resexec("exec/adumount.sh", "/cache");
