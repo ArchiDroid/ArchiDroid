@@ -51,7 +51,7 @@ DETECT_BCM() {
 			"44:a7:cf"*) BCMPROBE="murata" ;;
 			"5c:da:d4"*) BCMPROBE="murata" ;;
 			"5c:f8:a1"*) BCMPROBE="murata" ;;
-			"78:4B:87"*) BCMPROBE="murata" ;;
+			"78:4b:87"*) BCMPROBE="murata" ;;
 			"60:21:c0"*) BCMPROBE="murata" ;;
 			"88:30:8a"*) BCMPROBE="murata" ;;
 			"f0:27:65"*) BCMPROBE="murata" ;;
