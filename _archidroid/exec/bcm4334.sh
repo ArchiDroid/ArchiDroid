@@ -1,4 +1,4 @@
-#!/sbin/sh
+﻿#!/sbin/sh
 
 #     _             _     _ ____            _     _
 #    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 �ukasz "JustArchi" Domeradzki
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
