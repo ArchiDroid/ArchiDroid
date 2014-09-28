@@ -88,7 +88,7 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	if [[ -d "$ADOUT" ]]; then
-		find "$ADOUT" -mindepth 1 -maxdepth 1 -name "$ADZIP" | while read ZIP; do
+		find "$ADOUT" -mindepth 1 -maxdepth 1 -name "*.zip" | while read ZIP; do
 			echo "WARNING: Removing old zip: $ZIP"
 			rm -f "$ZIP"
 		done
