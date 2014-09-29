@@ -29,32 +29,26 @@ for ARG in "$@"; do
 	esac
 done
 
-# SuperSU
-#mkdir -p "/system/bin/.ext"
-#cp "/system/xbin/su" "/system/xbin/daemonsu"
-#cp "/system/xbin/su" "/system/bin/.ext/.su"
-
 # Apply additional ArchiDroid things if we're not on barebones
-if [ "$BAREBONES" -eq 0 ]; then
+if [[ "$BAREBONES" -eq 0 ]]; then
 	# ArchiDroid Backend Fallback
-	if [ ! -f "/system/bin/debuggerd.real" ]; then
+	if [[ ! -f "/system/bin/debuggerd.real" && -f "/system/bin/addebuggerd" ]]; then
 		mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
 	fi
 	mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
 
 	# ArchiDroid Dnsmasq Fallback
-	if [ ! -f "/system/bin/dnsmasq.real" ]; then
+	if [[ ! -f "/system/bin/dnsmasq.real" && -f "/system/bin/addnsmasq" ]]; then
 		mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
 	fi
 	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
 
 	# ArchiDroid Adblock Hosts
-	if [ ! -L "/system/archidroid/etc/hosts" ]; then
-		ln -s "/system/archidroid/etc/hosts_adaway" "/system/archidroid/etc/hosts"
+	if [[ ! -L "/system/archidroid/etc/hosts" && -f "/system/archidroid/etc/_hosts/AdAway" ]]; then
+		ln -s "_hosts/AdAway" "/system/archidroid/etc/hosts"
 	fi
 else
 	touch "/system/archidroid/dev/PRESET_BAREBONES"
 fi
 
-sync
 exit 0
