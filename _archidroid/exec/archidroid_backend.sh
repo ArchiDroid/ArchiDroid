@@ -44,11 +44,11 @@ if [[ "$BAREBONES" -eq 0 ]]; then
 	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
 
 	# ArchiDroid Adblock Hosts
-	if [[ ! -L "/system/archidroid/dev/spinners/hosts" && -f "/system/archidroid/dev/spinners/_hosts/AdAway" ]]; then
-		ln -s "_hosts/AdAway" "/system/archidroid/dev/spinners/hosts"
+	if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
+		ln -s "_Hosts/AdAway" "/system/archidroid/dev/spinners/Hosts"
 	fi
-	if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners/hosts" ]]; then
-		ln -s "../dev/spinners/hosts" "/system/archidroid/etc/hosts"
+	if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners/Hosts" ]]; then
+		ln -s "../dev/spinners/Hosts" "/system/archidroid/etc/hosts"
 	fi
 else
 	touch "/system/archidroid/dev/PRESET_BAREBONES"
