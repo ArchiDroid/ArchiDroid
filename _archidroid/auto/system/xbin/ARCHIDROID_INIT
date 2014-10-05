@@ -61,6 +61,12 @@ ADSTOP() {
 			ADSTOP "TMPFS"
 			ADSTOP "LOGCAT"
 			;;
+
+		# Symlinks
+		"LOCALDNSES") ADSTOP "ADBLOCK" ;;
+		"FORCELOCALDNSES") ADSTOP "ADBLOCK" ;;
+
+		# Services
 		"ADBLOCK")
 			ADSTOP "archidroid_dnsmasq"
 			ADSTOP "archidroid_dnsproxy2"
@@ -117,6 +123,12 @@ ADSTART() {
 			ADSTART "FRANDOM"
 			ADSTART "ADBLOCK"
 			;;
+
+		# Symlinks
+		"LOCALDNSES") ADSTART "ADBLOCK" ;;
+		"FORCELOCALDNSES") ADSTART "ADBLOCK" ;;
+
+		# Services
 		"ADBLOCK")
 			ADSTART "archidroid_dnsmasq"
 			ADSTART "archidroid_dnsproxy2"
