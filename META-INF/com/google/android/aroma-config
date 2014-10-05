@@ -80,7 +80,7 @@ resexec("exec/archidroid_getprop.sh", "ro.archidroid.version=", "/tmp/aroma-data
 setvar("archidroid_version", getvar("exec_buffer"));
 ini_set("rom_version", getvar("archidroid_version"));
 
-resexec("exec/archidroid_getprop.sh", "ro.build.id=", "/tmp/aroma-data/archidroid.prop");
+resexec("exec/archidroid_getprop.sh", "ro.archidroid.version.android=", "/tmp/aroma-data/archidroid.prop");
 setvar("archidroid_version_android", getvar("exec_buffer"));
 
 resexec("exec/archidroid_getprop.sh", "ro.build.version.release=", "/tmp/aroma-data/archidroid.prop");
