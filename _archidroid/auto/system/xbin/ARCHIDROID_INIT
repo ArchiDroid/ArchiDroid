@@ -189,31 +189,6 @@ ADSTART() {
 			;;
 		"archidroid_dnsmasq")
 			if [[ "$ADBLOCK" -eq 1 ]]; then
-				sysrw
-				if [[ ! -f /system/archidroid/etc/hosts ]]; then
-					if [[ -f "$ADDEV/ADBLOCK_USE_ADAWAY_HOSTS" ]]; then
-						ln -s /system/archidroid/etc/hosts_adaway /system/archidroid/etc/hosts
-					elif [[ -f "$ADDEV/ADBLOCK_USE_MOAB_HOSTS" ]]; then
-						ln -s /system/archidroid/etc/hosts_moab /system/archidroid/etc/hosts
-					else
-						echo "WARNING: No adblock hosts mode specified!"
-					fi
-				else
-					if [[ -f "$ADDEV/ADBLOCK_USE_ADAWAY_HOSTS" ]]; then
-						if [[ "$(readlink /system/archidroid/etc/hosts)" != "/system/archidroid/etc/hosts_adaway" ]]; then
-							rm -f /system/archidroid/etc/hosts &&
-							ln -s /system/archidroid/etc/hosts_adaway /system/archidroid/etc/hosts
-						fi
-					elif [[ -f "$ADDEV/ADBLOCK_USE_MOAB_HOSTS" ]]; then
-						if [[ "$(readlink /system/archidroid/etc/hosts)" != "/system/archidroid/etc/hosts_moab" ]]; then
-							rm -f /system/archidroid/etc/hosts &&
-							ln -s /system/archidroid/etc/hosts_moab /system/archidroid/etc/hosts
-						fi
-					else
-						echo "ERROR: No adblock hosts mode specified!"
-					fi
-				fi
-				sysro
 				if [[ ! -f "$ADTMPFS/resolv.conf" ]]; then
 					cp -p /system/etc/resolv.conf "$ADTMPFS/resolv.conf"
 				fi
