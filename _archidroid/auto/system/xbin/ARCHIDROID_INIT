@@ -317,23 +317,23 @@ if [[ ! -f "/data/ARCHIDROID_DONT_REMOVE_ME" ]] ; then
 fi
 
 # Initial ArchiDroid dev status
-if [[ "$(cat "$ADDEV/Haveged")" = "Enabled" ]]; then
+if [[ "$(cat "$ADDEV/switches/Haveged")" = "Enabled" ]]; then
 	HAVEGED=1
 else
 	HAVEGED=0
 fi
 
-if [[ "$(cat "$ADDEV/Frandom")" = "Enabled" ]]; then
+if [[ "$(cat "$ADDEV/switches/Frandom")" = "Enabled" ]]; then
 	FRANDOM=1
 else
 	FRANDOM=0
 fi
 
-if [[ "$(cat "$ADDEV/Adblock")" = "Enabled" ]]; then
+if [[ "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
 	ADBLOCK=1
-	if [[ "$(cat "$ADDEV/_Adblock/LocalDNSes")" = "Enabled" ]]; then
+	if [[ "$(cat "$ADDEV/switches/_Adblock/LocalDNSes")" = "Enabled" ]]; then
 		ADBLOCKLOCALDNSES=1
-		if [[ "$(cat "$ADDEV/_Adblock/_LocalDNSes/ForceLocalDNSes")" = "Enabled" ]]; then
+		if [[ "$(cat "$ADDEV/switches/_Adblock/_LocalDNSes/ForceLocalDNSes")" = "Enabled" ]]; then
 			ADBLOCKSTRICTORDER=1
 		else
 			ADBLOCKSTRICTORDER=0
@@ -345,7 +345,7 @@ else
 	ADBLOCK=0
 fi
 
-if [[ "$(cat "$ADDEV/Logcat")" = "Enabled" ]]; then
+if [[ "$(cat "$ADDEV/switches/Logcat")" = "Enabled" ]]; then
 	LOGCAT=1
 else
 	LOGCAT=0
