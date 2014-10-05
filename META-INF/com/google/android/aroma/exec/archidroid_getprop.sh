@@ -21,4 +21,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-exit "$(echo "$@" | grep -qi "experimental"; echo $?)"
+# $1 - What
+# $2 - From where
+
+grep "$1" "$2" | cut -d'=' -f2 | tr -d '\n'
+exit 0

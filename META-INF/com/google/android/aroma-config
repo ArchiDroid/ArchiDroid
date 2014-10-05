@@ -19,6 +19,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Call animated splash ASAP to notify user that everything is alright
+ini_set("transition_frame", "30");
+anisplash(1, "preview/bootanimation/archi", 2000);
+
 # Device information
 writetmpfile(
 	"device.prop",
@@ -36,38 +40,58 @@ writetmpfile(
 	"extsd=/dev/block/platform/s3c-sdhci.2/by-num/p1\n"
 );
 
-
-# Often edited variables
+# Often edited settings
 setvar("preset_version","21");
-ini_set("rom_version", "2.5.4"); # TODO: This one should be read from build.prop, not declared statically
-ini_set("rom_date", "September XXth, 2014");
+ini_set("rom_date", "October XXth, 2014");
 
-
-# Core
-setvar("ad", "/data/media/0/ArchiDroid");
-setvar("adaroma", read(getvar("ad")+"/AromaPreset/2.X"));
-
-if file_getprop("/tmp/aroma-data/device.prop","dpi") == "320" then
-	ini_set("dp", "3");
-endif;
-if file_getprop("/tmp/aroma-data/device.prop","dpi") == "240" then
-	ini_set("dp", "2");
-endif;
-if file_getprop("/tmp/aroma-data/device.prop","dpi") == "160" then
-	ini_set("dp", "1");
-endif;
-
+# Settings
+theme("archidroid");
 ini_set("rom_name", "ArchiDroid");
 ini_set("rom_author", "JustArchi");
 ini_set("rom_device", file_getprop("/tmp/aroma-data/device.prop","name"));
 
-# Animated splash
-anisplash(1, "preview/bootanimation/archilegacy", 2000, "preview/bootanimation/archi", 2000);
-
 fontresload( "0", "ttf/DroidSans.ttf;ttf/DroidSansFallback.ttf;ttf/DroidSansArabic.ttf;", "12" ); #-- Use sets of font (Font Family)
 fontresload( "1", "ttf/DroidSans.ttf;ttf/DroidSansFallback.ttf;ttf/DroidSansArabic.ttf;", "14" ); #-- Use sets of font (Font Family)
 
-theme("archidroid");
+setvar("dpi", file_getprop("/tmp/aroma-data/device.prop","dpi"));
+if getvar("dpi") == "320" then
+	ini_set("dp", "3");
+endif;
+if getvar("dpi") == "240" then
+	ini_set("dp", "2");
+endif;
+if getvar("dpi") == "160" then
+	ini_set("dp", "1");
+endif;
+
+# Parse common variables
+ziptotmp("system/build.prop", "archidroid.prop");
+
+resexec("exec/archidroid_getprop.sh", "ro.archidroid.device=", "/tmp/aroma-data/archidroid.prop");
+setvar("archidroid_device", getvar("exec_buffer"));
+
+resexec("exec/archidroid_getprop.sh", "ro.archidroid.rom=", "/tmp/aroma-data/archidroid.prop");
+setvar("archidroid_rom", getvar("exec_buffer"));
+
+resexec("exec/archidroid_getprop.sh", "ro.archidroid.rom.short=", "/tmp/aroma-data/archidroid.prop");
+setvar("archidroid_rom_short", getvar("exec_buffer"));
+
+resexec("exec/archidroid_getprop.sh", "ro.archidroid.version=", "/tmp/aroma-data/archidroid.prop");
+setvar("archidroid_version", getvar("exec_buffer"));
+ini_set("rom_version", getvar("archidroid_version"));
+
+resexec("exec/archidroid_getprop.sh", "ro.build.id=", "/tmp/aroma-data/archidroid.prop");
+setvar("archidroid_version_android", getvar("exec_buffer"));
+
+resexec("exec/archidroid_getprop.sh", "ro.build.version.release=", "/tmp/aroma-data/archidroid.prop");
+setvar("archidroid_version_android_number", getvar("exec_buffer"));
+
+resexec("exec/archidroid_getprop.sh", "ro.archidroid.version.type=", "/tmp/aroma-data/archidroid.prop");
+setvar("archidroid_version_type", getvar("exec_buffer"));
+
+# Core
+setvar("ad", "/data/media/0/ArchiDroid");
+setvar("adaroma", getvar("ad") + "/AromaPreset/" + getvar("archidroid_rom_short"));
 
 # Mount required filesystems
 resexec("exec/admount.sh", "/efs", file_getprop("/tmp/aroma-data/device.prop","efs"));
@@ -81,18 +105,24 @@ resexec("exec/admkdir.sh", getvar("adaroma"), "/tmp/archidroid");
 # Detect if this is external zip installation
 setvar("extsdinstall", resexec("exec/archidroid_detect_zip.sh"));
 
-
 viewbox(
 	"Welcome!",
 
-	"Hello master, root@ArchiDroid here. Welcome to AROMA. You are about to install <b>"+
-	ini_get("rom_name")+ "</b> for <b>"+ini_get("rom_device")+"</b>.\n\n"+
-	"Version:\t\t\t <b><#selectbg_g>"+ini_get("rom_version")+"</#></b>\n"+
-	"Released:\t\t <b><#selectbg_g>"+ini_get("rom_date")+"</#></b>\n\n\n"+
+	"Hello master, root@ArchiDroid here. Welcome to AROMA. You are about to install <b><#selectbg_g>ArchiDroid</#></b> for your device.\n\n"+
+
+	"Device:\t\t\t<b><#selectbg_g>" + getvar("archidroid_device") + " (" + ini_get("rom_device") + ")" + "</#></b>\n"+
+	"Base:\t\t\t<b><#selectbg_g>" + getvar("archidroid_rom") + "</#></b>\n"+
+	"Version:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version") + "</#></b>\n"+
+	"Android:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version_android") + " (" + getvar("archidroid_version_android_number") + ")" + "</#></b>\n"+
+	"Type:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version_type") + "</#></b>\n"+
+	"Released:\t\t<b><#selectbg_g>" + ini_get("rom_date") + "</#></b>\n\n\n"+
+
 	"Press <b>Next</b> to continue the installation.",
 
 	"@welcome"
 );
+
+ini_set("transition_frame", "30"); # AROMA overrides this variable on first menu for some reason
 
 form(
 	"ArchiDroid Language",
@@ -157,7 +187,7 @@ agreebox(
 	"<~terms.confirm>"
 );
 
-if resexec("exec/archidroid_check_experimental.sh", ini_get("rom_date")) == "0" then
+if resexec("exec/archidroid_check_experimental.sh", getvar("archidroid_version_type")) == "0" then
 	agreebox(
 		#-- Title
 		"ArchiDroid Experimental",
