@@ -21,7 +21,7 @@
 
 # Call animated splash ASAP to notify user that everything is alright
 ini_set("transition_frame", "30");
-anisplash(1, "preview/bootanimation/archi", 2000);
+anisplash(1, "preview/bootanimation/archi3", 2000);
 
 # Device information
 writetmpfile(
