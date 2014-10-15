@@ -20,13 +20,8 @@
 # limitations under the License.
 
 ui_print(">>> ArchiDroid is now loading...");
-assert(getprop("ro.product.device") == "m0" ||
-	   getprop("ro.build.product") == "m0" || 
-	   getprop("ro.product.device") == "i9300" ||
-	   getprop("ro.build.product") == "i9300" || 
-	   getprop("ro.product.device") == "GT-I9300" ||
-	   getprop("ro.build.product") == "GT-I9300" ||
-	   abort("This package is for device: m0,i9300,GT-I9300; this device is " + getprop("ro.product.device") + "."););
+assert(getprop("ro.product.device") == "BRINGUP" ||
+	   abort("This package is for device: BRINGUP; this device is " + getprop("ro.product.device") + "."););
 
 ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Ready!");
 set_progress(0.01);
