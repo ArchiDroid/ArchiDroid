@@ -88,8 +88,13 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	if [[ -d "$ADOUT" ]]; then
-		find "$ADOUT" -mindepth 1 -maxdepth 1 -name "*.zip" | while read ZIP; do
-			echo "WARNING: Removing old zip: $ZIP"
+		echo "WARNING: Performing cleaning of old build!"
+
+		echo "INFO: Forcing refresh of build.prop, removing $ADOUT/system/build.prop"
+		rm -f "$ADOUT/system/build.prop"
+
+		find "$ADOUT" -mindepth 1 -maxdepth 1 -iname "*.zip" | while read ZIP; do
+			echo "INFO: Removing old zip file: $ZIP"
 			rm -f "$ZIP"
 		done
 	fi
