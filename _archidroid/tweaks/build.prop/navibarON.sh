@@ -21,10 +21,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Define keys we want to disable
-KEYS="139 158 172"
+# Define hardware keys we want to disable
+KEYS="139 158 172" # MENU, BACK, HOME
 
-sed -i 's/#qemu.hw.mainkeys=0/qemu.hw.mainkeys=0/g' /system/build.prop
+# Enable navigation bar
+if [[ "$(grep -q "#qemu.hw.mainkeys=0" "/system/build.prop"; echo $?)" -eq 0 ]]; then
+	sed -i 's/#qemu.hw.mainkeys=0/qemu.hw.mainkeys=0/g' /system/build.prop
+else
+	echo "qemu.hw.mainkeys=0" >> /system/build.prop
+fi
+
+# Disable defined hardware keys
 find /system/usr/keylayout -type f -name "*.kl" | while read line; do
 	for KEY in $KEYS; do
 		sed -i "s/key $KEY/#key $KEY/g" "$line"
