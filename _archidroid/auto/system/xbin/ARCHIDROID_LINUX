@@ -143,10 +143,10 @@ if [[ "$UNMOUNT" -eq 1 ]]; then
 
 			# Android filesystems
 			LINUX_UMOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
-		else
-			echo "ERROR: ArchiDroid's Linux has not been mounted yet in $ADMNT!"
-			exit 1
 		fi
+	else
+		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
+		exit 1
 	fi
 fi
 
