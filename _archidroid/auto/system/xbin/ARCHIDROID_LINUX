@@ -1,0 +1,194 @@
+#!/system/bin/sh
+
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+ADSYS="/system/archidroid"
+
+ADMNT=""
+COMMAND=""
+INSTALL=0
+UNINSTALL=0
+MOUNT=0
+UNMOUNT=0
+SHELL=0
+
+ERR=0
+
+LINUX_MOUNTFS() {
+	mkdir -p "$ADMNT$1" && busybox mount -t "$2" "$2" "$ADMNT$1"
+}
+
+LINUX_MOUNT() {
+	for ARG in "$@"; do
+		if [[ -e "$ARG" ]]; then
+			mkdir -p "$ADMNT$ARG" && busybox mount --bind "$ARG" "$ADMNT$ARG"
+		fi
+	done
+}
+
+LINUX_UMOUNT() {
+	for ARG in "$@"; do
+		if [[ -e "$ADMNT$ARG" ]]; then
+			busybox umount -f "$ADMNT$ARG" && rmdir "$ADMNT$ARG" >/dev/null 2>&1
+		fi
+	done
+}
+
+LINUX_EVERYTHING_UNMOUNTED() {
+	for ARG in "/dev" "/proc" "/sys" "/tmp" "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"; do
+		if [[ -e "$ADMNT$ARG" ]]; then
+			return 1
+		fi
+	done
+	return 0
+}
+
+LINUX_PREPARE_SHELL() {
+	export TERM=linux
+	export HOME=/root
+	if [[ "$(echo $PATH | grep -q "/usr/local/sbin"; echo $?)" -ne 0 ]]; then
+		export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+	fi
+}
+
+LINUX_SHELL() {
+	chroot "$ADMNT" /bin/bash
+}
+
+LINUX_SHELL_COMMAND() {
+	chroot "$ADMNT" /bin/bash -c "$@"
+}
+
+# Parse ARGs
+for ARG in "$@"; do
+	case "$ARG" in
+		--install|install) INSTALL=1 ;;
+		--uninstall|uninstall) UNINSTALL=1 ;;
+		--mount|mount) MOUNT=1 ;;
+		--unmount|unmount) UNMOUNT=1 ;;
+		--shell|shell) SHELL=1 ;;
+		--command=*) COMMAND="$(echo "$ARG" | cut -d '=' -f2-)" ;;
+		*) ADMNT="$ARG" ;;
+	esac
+done
+
+if [[ -z "$ADMNT" ]]; then
+	echo "ERROR: You must specify ADMNT path!"
+	exit 1
+fi
+
+if [[ "$INSTALL" -eq 1 ]]; then
+	if [[ ! -e "$ADMNT/bin/bash" ]]; then
+		mkdir -p "$ADMNT" && busybox tar -zxf "$ADSYS/system/debian.tar.gz" -C "$ADMNT"
+
+		# Fixes
+		touch "$ADMNT/.nomedia" # Tell Android media process to DON'T scan this dir
+		cp /file_contexts "$ADMNT" # We need SELinux context or various apps will go crazy
+
+		LINUX_PREPARE_SHELL
+		LINUX_SHELL_COMMAND "ln -s /proc/mounts /etc/mtab" # This is done automatically on most distros on first boot, but we won't have first boot here
+		LINUX_SHELL_COMMAND "sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config" # Newer versions of SSH deny root access by default now, and since we don't have any other user, we need it
+		LINUX_SHELL_COMMAND "echo -e 'archidroid$\narchidroid$' | passwd >/null.txt 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
+		LINUX_SHELL_COMMAND "rm -f /null.txt" # Remove our temporary /dev/null
+	else
+		echo "ERROR: ArchiDroid's Linux has been installed already in $ADMNT!"
+		exit 1
+	fi
+fi
+
+if [[ "$MOUNT" -eq 1 ]]; then
+	if [[ -e "$ADMNT/bin/bash" ]]; then
+		if [[ ! -e "$ADMNT/sys/kernel" ]]; then
+			# Core filesystems
+			LINUX_MOUNT "/dev"
+			LINUX_MOUNTFS "/dev/pts" "devpts"
+			LINUX_MOUNTFS "/dev/shm" "tmpfs"
+			LINUX_MOUNTFS "/proc" "proc"
+			LINUX_MOUNTFS "/sys" "sysfs"
+			LINUX_MOUNTFS "/tmp" "tmpfs"
+
+			# Android filesystems
+			LINUX_MOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
+		else
+			echo "ERROR: ArchiDroid's Linux has been mounted already in $ADMNT!"
+			exit 1
+		fi
+	else
+		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
+		exit 1
+	fi
+fi
+
+if [[ "$UNMOUNT" -eq 1 ]]; then
+	if [[ -e "$ADMNT/bin/bash" ]]; then
+		if [[ -e "$ADMNT/sys/kernel" ]]; then
+			# Core filesystems
+			LINUX_UMOUNT "/dev/pts" "/dev/shm" "/dev" "/proc" "/sys" "/tmp"
+
+			# Android filesystems
+			LINUX_UMOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
+		else
+			echo "ERROR: ArchiDroid's Linux has not been mounted yet in $ADMNT!"
+			exit 1
+		fi
+	else
+		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
+		exit 1
+	fi
+fi
+
+if [[ "$UNINSTALL" -eq 1 ]]; then
+	if [[ -e "$ADMNT/bin/bash" ]]; then
+		if LINUX_EVERYTHING_UNMOUNTED; then
+			rm -rf "$ADMNT"
+		else
+			echo "ERROR: ArchiDroid's Linux has not been unmounted yet in $ADMNT!"
+			exit 1
+		fi
+	else
+		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
+		exit 1
+	fi
+fi
+
+if [[ "$SHELL" -eq 1 || ! -z "$COMMAND" ]]; then
+	if [[ -e "$ADMNT/bin/bash" ]]; then
+		if [[ -e "$ADMNT/sys/kernel" ]]; then
+			LINUX_PREPARE_SHELL
+			if [[ -z "$COMMAND" ]]; then
+				cat "$ADMNT/etc/motd"
+				LINUX_SHELL
+			else
+				LINUX_SHELL_COMMAND "$COMMAND"
+			fi
+			exit 0
+		else
+			echo "ERROR: ArchiDroid's Linux has not been mounted yet in $ADMNT!"
+			exit 1
+		fi
+	else
+		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
+		exit 1
+	fi
+fi
+
+exit 0
