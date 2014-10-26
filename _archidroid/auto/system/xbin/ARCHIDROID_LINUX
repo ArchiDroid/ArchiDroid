@@ -86,12 +86,24 @@ for ARG in "$@"; do
 		--unmount|unmount) UNMOUNT=1 ;;
 		--shell|shell) SHELL=1 ;;
 		--command=*) COMMAND="$(echo "$ARG" | cut -d '=' -f2-)" ;;
-		*) ADMNT="$ARG" ;;
+		--command) COMMAND="NextString" ;;
+		*)
+			if [[ "$COMMAND" = "NextString" ]]; then
+				COMMAND="$ARG"
+			else
+				ADMNT="$ARG"
+			fi
+		;;
 	esac
 done
 
 if [[ -z "$ADMNT" ]]; then
 	echo "ERROR: You must specify ADMNT path!"
+	exit 1
+fi
+
+if [[ "$COMMAND" = "NextString" ]]; then
+	echo "ERROR: You didn't include a command. Use either --command=MyCMD or --command \"MyCMD\""
 	exit 1
 fi
 
