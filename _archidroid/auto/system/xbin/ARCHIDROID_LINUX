@@ -31,8 +31,6 @@ MOUNT=0
 UNMOUNT=0
 SHELL=0
 
-ERR=0
-
 LINUX_MOUNTFS() {
 	mkdir -p "$ADMNT$1" && busybox mount -t "$2" "$2" "$ADMNT$1"
 }
@@ -48,14 +46,15 @@ LINUX_MOUNT() {
 LINUX_UMOUNT() {
 	for ARG in "$@"; do
 		if [[ -e "$ADMNT$ARG" ]]; then
-			busybox umount -f "$ADMNT$ARG" && rmdir "$ADMNT$ARG" >/dev/null 2>&1
+			busybox umount -f "$ADMNT$ARG"
+			rmdir "$ADMNT$ARG" >/dev/null 2>&1
 		fi
 	done
 }
 
 LINUX_EVERYTHING_UNMOUNTED() {
 	for ARG in "/dev" "/proc" "/sys" "/tmp" "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"; do
-		if [[ -e "$ADMNT$ARG" ]]; then
+		if [[ -e "$ADMNT$ARG" && "$(mount | grep -q "$ADMNT$ARG"; echo $?)" -eq 0 ]]; then
 			return 1
 		fi
 	done
@@ -65,7 +64,7 @@ LINUX_EVERYTHING_UNMOUNTED() {
 LINUX_PREPARE_SHELL() {
 	export TERM=linux
 	export HOME=/root
-	if [[ "$(echo $PATH | grep -q "/usr/local/sbin"; echo $?)" -ne 0 ]]; then
+	if [[ "$(echo "$PATH" | grep -q "/usr/local/sbin"; echo $?)" -ne 0 ]]; then
 		export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 	fi
 }
@@ -117,18 +116,16 @@ fi
 
 if [[ "$MOUNT" -eq 1 ]]; then
 	if [[ -e "$ADMNT/bin/bash" ]]; then
-		if [[ ! -e "$ADMNT/sys/kernel" ]]; then
-			# Core filesystems
-			LINUX_MOUNT "/dev"
-			LINUX_MOUNTFS "/dev/pts" "devpts"
-			LINUX_MOUNTFS "/dev/shm" "tmpfs"
-			LINUX_MOUNTFS "/proc" "proc"
-			LINUX_MOUNTFS "/sys" "sysfs"
-			LINUX_MOUNTFS "/tmp" "tmpfs"
+		# Core filesystems
+		LINUX_MOUNT "/dev"
+		LINUX_MOUNTFS "/dev/pts" "devpts"
+		LINUX_MOUNTFS "/dev/shm" "tmpfs"
+		LINUX_MOUNTFS "/proc" "proc"
+		LINUX_MOUNTFS "/sys" "sysfs"
+		LINUX_MOUNTFS "/tmp" "tmpfs"
 
-			# Android filesystems
-			LINUX_MOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
-		fi
+		# Android filesystems
+		LINUX_MOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
 	else
 		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
 		exit 1
@@ -137,13 +134,11 @@ fi
 
 if [[ "$UNMOUNT" -eq 1 ]]; then
 	if [[ -e "$ADMNT/bin/bash" ]]; then
-		if [[ -e "$ADMNT/sys/kernel" ]]; then
-			# Core filesystems
-			LINUX_UMOUNT "/dev/pts" "/dev/shm" "/dev" "/proc" "/sys" "/tmp"
+		# Core filesystems
+		LINUX_UMOUNT "/dev/pts" "/dev/shm" "/dev" "/proc" "/sys" "/tmp"
 
-			# Android filesystems
-			LINUX_UMOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
-		fi
+		# Android filesystems
+		LINUX_UMOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
 	else
 		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
 		exit 1
