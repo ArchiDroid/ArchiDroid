@@ -248,7 +248,6 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "recov
 
 		"recovery","<#selectbg_g>Recovery</#>","","group",
 		"twrp","TWRP Recovery","","select.selected",
-		"philz","PhilZ Touch Recovery","","select",
 		"none","<~common.none>","","select"
 	);
 else
