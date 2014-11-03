@@ -181,7 +181,7 @@ if [[ "$SHELL" -eq 1 || ! -z "$COMMAND" ]]; then
 			else
 				LINUX_SHELL_COMMAND "$COMMAND"
 			fi
-			exit 0
+			exit $?
 		else
 			echo "ERROR: ArchiDroid's Linux has not been mounted yet in $ADMNT!"
 			exit 1
