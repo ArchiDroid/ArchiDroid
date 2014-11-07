@@ -27,6 +27,25 @@
 
 REPO="origin"
 
+CUSTOMREPOS="lge-kernel-lproj Superuser"
+REPO_DEPENDS_ON_UPSTREAM() {
+	# If it begins with android_, we definitely want this
+	if [[ "$1" = android_* ]]; then
+		return 0
+	# Same situation with proprietary
+	elif [[ "$1" = proprietary_* ]]; then
+		return 0
+	# If everything else fails, check for some predefined repos
+	else
+		for CUSTOMREPO in $CUSTOMREPOS; do
+			if [[ "$CUSTOMREPO" = "$1" ]]; then
+				return 0
+			fi
+		done
+	fi
+	return 1
+}
+
 UPDATEREPO() {
 	cd "$1" || return 1
 	CURBRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -42,9 +61,7 @@ UPDATEREPO() {
 				if [[ $? -ne 0 ]]; then
 					git reset --hard >/dev/null 2>&1
 					git clean -fd >/dev/null 2>&1
-					echo "!!!"
 					echo "ERROR: Something went wrong with: $(basename "$1")"
-					echo "!!!"
 					return 1
 				fi
 			fi
@@ -54,12 +71,18 @@ UPDATEREPO() {
 	return $?
 }
 
-
-while read folder; do
-	if [[ -d "$folder/.git" ]]; then
-		UPDATEREPO "$folder" &
+while read line; do
+	if [[ ! -d "$line" ]] && REPO_DEPENDS_ON_UPSTREAM "$line"; then
+		echo "INFO: Adding missing $line repo"
+		git clone "https://github.com/ArchiDroid/$line" &
+	elif [[ -d "$line/.git" ]]; then
+		echo "INFO: Updating $line"
+		UPDATEREPO "$line" &
+	else
+		echo "INFO: Not interested in $line"
 	fi
-done < <(find . -mindepth 1 -maxdepth 1 -type d)
+done < <(curl https://api.github.com/users/ArchiDroid/repos 2>/dev/null | grep "\"name\":" | cut -d '"' -f4)
+
 wait
 
 exit 0
