@@ -24,5 +24,9 @@
 # $1 - What
 # $2 - From where
 
-grep "$1" "$2" | cut -d'=' -f2 | tr -d '\n'
+if [[ -f "$2" ]]; then
+	grep "$1" "$2" | cut -d '=' -f 2 | tr -d '\n'
+else
+	printf "null"
+fi
 exit 0
