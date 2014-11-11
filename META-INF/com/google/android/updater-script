@@ -320,7 +320,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		##############
 
 		### ARCHI ###
-		if file_getprop("/tmp/aroma-data/archidroid.prop","kernel") == "archi" then
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "kernel") == "archi" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing ArchiKernel");
 			delete_recursive("/tmp/archikernel");
 			package_extract_dir("_archidroid/kernels/archi/core", "/tmp/archikernel");
@@ -339,9 +339,9 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		endif;
 
 		### BOEFFLA ###
-		if file_getprop("/tmp/aroma-data/archidroid.prop","kernel") == "boeffla" then
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing Boeffla Kernel");
-			package_extract_file("_archidroid/kernels/boeffla/boot.img", file_getprop("/tmp/aroma-data/device.prop","kernel"));
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "kernel") == "boeffla" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing Boeffla kernel");
+			package_extract_file("_archidroid/kernels/boeffla/boot.img", file_getprop("/tmp/aroma-data/device.prop", "kernel"));
 			delete_recursive("/system/lib/modules");
 			package_extract_dir("_archidroid/kernels/boeffla/system", "/system");
 			package_extract_dir("_archidroid/kernels/boeffla/overlay", "/");
@@ -536,17 +536,17 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			package_extract_dir("_archidroid/bootanimations/archi1", "/");
 		endif;
 
-		if file_getprop("/tmp/aroma-data/archidroid.prop","bootanimation") == "logcat" then
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying Logcat Bootanimation");
-			run_program("/sbin/busybox", "mv", "/system/bin/bootanimation", "/system/bin/bootanimation.backup");
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation") == "logcat" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying Logcat bootanimation");
+			run_program("/sbin/mv", "/system/bin/bootanimation", "/system/bin/bootanimation.backup");
 			package_extract_dir("_archidroid/bootanimations/logcat", "/");
 			set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
 			set_perm(0, 0, 06755, "/system/bin/boot-dmesg");
 			delete("/system/media/bootanimation.zip");
 		endif;
 
-		if file_getprop("/tmp/aroma-data/archidroid.prop","bootanimation") == "stock" then
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying Stock Bootanimation");
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation") == "stock" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying Stock bootanimation");
 		endif;
 
 		if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation") == "none" then
@@ -571,13 +571,13 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		run_program("/tmp/tweaks.sh");
 		delete("/tmp/tweaks.sh");
 
-		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Profiling BCM for: ", file_getprop("/tmp/aroma-data/archidroid.prop","bcm4334"));
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Profiling BCM for: ", file_getprop("/tmp/aroma-data/archidroid.prop", "bcm4334"));
 		package_extract_file("_archidroid/exec/bcm4334.sh", "/tmp/bcm4334.sh");
 		set_perm(0, 0, 0755, "/tmp/bcm4334.sh");
 		run_program("/tmp/bcm4334.sh", file_getprop("/tmp/aroma-data/archidroid.prop", "bcm4334"));
 		delete("/tmp/bcm4334.sh");
 
-		if file_getprop("/tmp/aroma-data/archidroid.prop","navibar") == "1" then
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "navibar") == "1" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Navigation Bar enabled");
 			package_extract_file("_archidroid/tweaks/build.prop/navibarON.sh", "/tmp/navibarON.sh");
 			set_perm(0, 0, 0755, "/tmp/navibarON.sh");
@@ -621,12 +621,12 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			package_extract_dir("_archidroid/apps/mxplayer", "/");
 		endif;
 
-		if file_getprop("/tmp/aroma-data/archidroid.prop","spiritfm") == "1" then
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "spiritfm") == "1" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Spirit FM");
 			package_extract_dir("_archidroid/apps/spiritfm", "/");
 		endif;
 
-		if file_getprop("/tmp/aroma-data/archidroid.prop","cooltool") == "1" then
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "cooltool") == "1" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing CoolTool");
 			package_extract_dir("_archidroid/apps/cooltool", "/");
 		endif;

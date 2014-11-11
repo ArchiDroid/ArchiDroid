@@ -301,7 +301,7 @@ endif;
 ### CUSTOM TYPE INSTALATION ###
 ###############################
 
-if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custom" then
+if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "custom" then
 	pleasewait("Executing Shell...");
 	resexec("exec/bcm4334.sh");
 	setvar("bcm4334", getvar("exec_buffer"));
@@ -311,25 +311,25 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"@apps",
 		"archidroid.prop",
 
-		"bcm4334","<#selectbg_g>BCM Profiling</#>","","group",
-		"archidetect","ArchiDetect","Detected: " + getvar("bcm4334"),"select.selected",
-		"stock","Stock","","select",
-		"murata","Murata","","select",
-		"semcosh","Semcosh","","select",
+		"bcm4334", "<#selectbg_g>BCM Profiling</#>", "", "group",
+		"archidetect", "ArchiDetect", "Detected: " + getvar("bcm4334"),"select.selected",
+		"stock", "Stock", "", "select",
+		"murata", "Murata", "", "select",
+		"semcosh", "Semcosh", "", "select",
 
-		"kernel","<#selectbg_g>Kernel</#>","","group",
-		"archi","ArchiKernel","<~archidroid.kernel.archi.desc>","select.selected",
-		"boeffla","Boeffla Kernel","","select",
-		"stock","Stock","<~archidroid.kernel.stock.desc>","select",
+		"kernel", "<#selectbg_g>Kernel</#>", "", "group",
+		"archi", "ArchiKernel", "<~archidroid.kernel.archi.desc>", "select.selected",
+		"boeffla", "Boeffla Kernel", "", "select",
+		"stock", "Stock", "<~archidroid.kernel.stock.desc>", "select",
 
-		"dpi","<#selectbg_g>DPI</#>","","group",
-		#"80","80","","select",
-		#"120","120","","select",
-		#"160","160","","select",
-		#"200","200","","select",
-		"240","240","","select.selected",
-		"280","280","","select",
-		"320","320","","select",
+		"density", "<#selectbg_g>Density</#>", "", "group",
+		#"80", "80", "", "select",
+		#"120", "120", "", "select",
+		#"160", "160", "", "select",
+		#"200", "200", "", "select",
+		"240", "240", "", "select.selected",
+		"280", "280", "", "select",
+		"320", "320", "", "select",
 
 		"launcher", "<#selectbg_g>Launcher</#>", "", "group",
 		"lgoogle", "Google", "<~archidroid.launcher.google.desc>", "check.checked",
@@ -340,14 +340,14 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"kgoogle", "Google", "<~archidroid.keyboard.google.desc>", "check.checked",
 		"kstock", "Stock", "<~archidroid.keyboard.stock.desc>", "check",
 
-		"bootanimation","<#selectbg_g><~archidroid.bootanimation></#>","","group",
-		"archi3","ArchiDroid 3.X","","select.selected",
-		"archi2","ArchiDroid 2.X","","select",
-		"archi1","ArchiDroid 1.X","","select",
-		"logcat","Logcat","<~archidroid.bootanimation.logcat.desc>","select",
-		"stock","Stock","<~archidroid.bootanimation.stock.desc>","select",
-		"none","<~common.none>","<~archidroid.bootanimation.none.desc>","select",
-		"bootanimationpreview","Preview","<~archidroid.preview.desc>","check",
+		"bootanimation", "<#selectbg_g><~archidroid.bootanimation></#>", "", "group",
+		"archi3", "ArchiDroid 3.X", "", "select.selected",
+		"archi2", "ArchiDroid 2.X", "", "select",
+		"archi1", "ArchiDroid 1.X", "", "select",
+		"logcat", "Logcat", "<~archidroid.bootanimation.logcat.desc>", "select",
+		"stock", "Stock", "<~archidroid.bootanimation.stock.desc>", "select",
+		"none", "<~common.none>", "<~archidroid.bootanimation.none.desc>", "select",
+		"bootanimationpreview", "Preview", "<~archidroid.preview.desc>", "check",
 
 		"superuser", "<#selectbg_g>Superuser</#>", "", "group",
 		"koush", "Superuser by Koush", "<~archidroid.superuser.koush.desc>", "select.selected",
@@ -358,14 +358,14 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"gapps", "Google Apps", "<~archidroid.gapps.desc>", "check.checked",
 		"xposed", "Xposed Framework", "<~archidroid.xposed.desc>", "check.checked",
 
-		"archiapps","<#selectbg_g>ArchiDroid Apps</#>","","group",
-		"titaniumbackup","Titanium Backup","<~archidroid.apps.titaniumbackup.desc>","check.checked",
-		"greenify","Greenify","<~archidroid.apps.greenify.desc>","check.checked",
-		"lmt","LMT","<~archidroid.apps.lmt.desc>","check.checked",
-		"mxplayer","MXPlayer","<~archidroid.apps.mxplayer.desc>","check.checked",
-		"spiritfm","Spirit FM","<~archidroid.apps.spiritfm.desc>","check.checked",
-		"cooltool","CoolTool","<~archidroid.apps.cooltool.desc>","check.checked",
-		"rootbrowser","Root Browser","<~archidroid.apps.rootbrowser.desc>","check.checked",
+		"archiapps", "<#selectbg_g>ArchiDroid Apps</#>", "", "group",
+		"titaniumbackup", "Titanium Backup", "<~archidroid.apps.titaniumbackup.desc>", "check.checked",
+		"greenify", "Greenify", "<~archidroid.apps.greenify.desc>", "check.checked",
+		"lmt", "LMT", "<~archidroid.apps.lmt.desc>", "check.checked",
+		"mxplayer", "MXPlayer", "<~archidroid.apps.mxplayer.desc>", "check.checked",
+		"spiritfm", "Spirit FM", "<~archidroid.apps.spiritfm.desc>", "check.checked",
+		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
+		"rootbrowser", "Root Browser", "<~archidroid.apps.rootbrowser.desc>", "check.checked",
 
 		"architweaks", "<#selectbg_g>ArchiDroid Tweaks</#>", "", "group",
 		"navibar", "Navigation Bar", "<~archidroid.tweaks.navibar.desc>", "check",
