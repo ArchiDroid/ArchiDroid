@@ -143,7 +143,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 	### BAREBONES ###
 	#################
 	if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "barebones" then
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing stock kernel");
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing Stock kernel");
 			# We have stock kernel already
 	else
 		##############
@@ -152,7 +152,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 
 		### STOCK ###
 		if file_getprop("/tmp/aroma-data/archidroid.prop", "kernel") == "stock" then
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing stock kernel");
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing Stock kernel");
 			# We have stock kernel already
 		endif;
 
