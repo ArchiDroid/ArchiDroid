@@ -331,7 +331,6 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"archi3","ArchiDroid 3.X","","select.selected",
 		"archi2","ArchiDroid 2.X","","select",
 		"archi1","ArchiDroid 1.X","","select",
-		"logcat","Logcat","<~archidroid.bootanimation.logcat.desc>","select",
 		"stock","Stock","<~archidroid.bootanimation.stock.desc>","select",
 		"none","<~common.none>","<~archidroid.bootanimation.none.desc>","select",
 		"bootanimationpreview","Preview","<~archidroid.preview.desc>","check",
@@ -350,7 +349,6 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"greenify","Greenify","<~archidroid.apps.greenify.desc>","check.checked",
 		"lmt","LMT","<~archidroid.apps.lmt.desc>","check.checked",
 		"mxplayer","MXPlayer","<~archidroid.apps.mxplayer.desc>","check.checked",
-		"spiritfm","Spirit FM","<~archidroid.apps.spiritfm.desc>","check.checked",
 		"cooltool","CoolTool","<~archidroid.apps.cooltool.desc>","check.checked",
 		"rootbrowser","Root Browser","<~archidroid.apps.rootbrowser.desc>","check.checked",
 
