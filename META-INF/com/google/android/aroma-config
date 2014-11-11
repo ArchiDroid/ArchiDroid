@@ -21,14 +21,23 @@
 
 # Call animated splash ASAP to notify user that everything is alright
 ini_set("transition_frame", "30");
-anisplash(1, "preview/bootanimation/archi3", 2000);
+anisplash(
+	#-- Number of loops
+	1,
+
+	#-- Image, duration in milliseconds
+    "preview/bootanimation/archi1", 1000,
+    "preview/bootanimation/archi2", 1000,
+    "preview/bootanimation/archi3", 1000
+);
 
 # Device information
 writetmpfile(
 	"device.prop",
 
 	"name=Samsung Galaxy S3\n"+
-	"dpi=320\n"+
+	"maintainer=JustArchi\n"+
+	"density=320\n"+
 	"kernel=/dev/block/platform/dw_mmc/by-name/BOOT\n"+ # CORE
 	"recovery=/dev/block/platform/dw_mmc/by-name/RECOVERY\n"+ # CORE
 	"modem=/dev/block/platform/dw_mmc/by-name/RADIO\n"+ # CORE
@@ -41,26 +50,26 @@ writetmpfile(
 );
 
 # Often edited settings
-setvar("preset_version","21");
-ini_set("rom_date", "October XXth, 2014");
+setvar("preset_version", "21");
+ini_set("rom_date", "November XXth, 2014");
 
 # Settings
 theme("archidroid");
 ini_set("rom_name", "ArchiDroid");
-ini_set("rom_author", "JustArchi");
-ini_set("rom_device", file_getprop("/tmp/aroma-data/device.prop","name"));
+ini_set("rom_device", file_getprop("/tmp/aroma-data/device.prop", "name"));
+ini_set("rom_author", file_getprop("/tmp/aroma-data/device.prop", "maintainer"));
 
-fontresload( "0", "ttf/DroidSans.ttf;ttf/DroidSansFallback.ttf;ttf/DroidSansArabic.ttf;", "12" ); #-- Use sets of font (Font Family)
-fontresload( "1", "ttf/DroidSans.ttf;ttf/DroidSansFallback.ttf;ttf/DroidSansArabic.ttf;", "14" ); #-- Use sets of font (Font Family)
+fontresload("0", "ttf/DroidSans.ttf;ttf/DroidSansFallback.ttf;ttf/DroidSansArabic.ttf;", "12" ); #-- Use sets of font (Font Family)
+fontresload("1", "ttf/DroidSans.ttf;ttf/DroidSansFallback.ttf;ttf/DroidSansArabic.ttf;", "14" ); #-- Use sets of font (Font Family)
 
-setvar("dpi", file_getprop("/tmp/aroma-data/device.prop","dpi"));
-if getvar("dpi") == "320" then
+setvar("density", file_getprop("/tmp/aroma-data/device.prop", "density"));
+if getvar("density") == "320" then
 	ini_set("dp", "3");
 endif;
-if getvar("dpi") == "240" then
+if getvar("density") == "240" then
 	ini_set("dp", "2");
 endif;
-if getvar("dpi") == "160" then
+if getvar("density") == "160" then
 	ini_set("dp", "1");
 endif;
 
@@ -94,31 +103,34 @@ setvar("ad", "/data/media/0/ArchiDroid");
 setvar("adaroma", getvar("ad") + "/AromaPreset/" + getvar("archidroid_rom_short"));
 
 # Mount required filesystems
-resexec("exec/admount.sh", "/efs", file_getprop("/tmp/aroma-data/device.prop","efs"));
-resexec("exec/admount.sh", "/system", file_getprop("/tmp/aroma-data/device.prop","system"));
-resexec("exec/admount.sh", "/data", file_getprop("/tmp/aroma-data/device.prop","data"));
-resexec("exec/admount.sh", "/cache", file_getprop("/tmp/aroma-data/device.prop","cache"));
-resexec("exec/admount.sh", "/preload", file_getprop("/tmp/aroma-data/device.prop","preload"));
-resexec("exec/admount.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/device.prop","extsd"));
+resexec("exec/admount.sh", "/efs", file_getprop("/tmp/aroma-data/device.prop", "efs"));
+resexec("exec/admount.sh", "/system", file_getprop("/tmp/aroma-data/device.prop", "system"));
+resexec("exec/admount.sh", "/data", file_getprop("/tmp/aroma-data/device.prop", "data"));
+resexec("exec/admount.sh", "/cache", file_getprop("/tmp/aroma-data/device.prop", "cache"));
+resexec("exec/admount.sh", "/preload", file_getprop("/tmp/aroma-data/device.prop", "preload"));
+resexec("exec/admount.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/device.prop", "extsd"));
 resexec("exec/admkdir.sh", getvar("adaroma"), "/tmp/archidroid");
 
 # Detect if this is external zip installation
 setvar("extsdinstall", resexec("exec/archidroid_detect_zip.sh"));
 
 viewbox(
+	#-- Title
 	"Welcome!",
 
-	"Hello master, root@ArchiDroid here. Welcome to AROMA. You are about to install <b><#selectbg_g>ArchiDroid</#></b> for your device.\n\n"+
+	#-- Text
+	"Hello master, root@ArchiDroid here. You are about to install <b><#selectbg_g>ArchiDroid</#></b> for your device.\n\n"+
 
 	"Device:\t\t\t<b><#selectbg_g>" + getvar("archidroid_device") + " (" + ini_get("rom_device") + ")" + "</#></b>\n"+
 	"Base:\t\t\t<b><#selectbg_g>" + getvar("archidroid_rom") + "</#></b>\n"+
 	"Version:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version") + "</#></b>\n"+
 	"Android:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version_android") + " (" + getvar("archidroid_version_android_number") + ")" + "</#></b>\n"+
 	"Type:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version_type") + "</#></b>\n"+
-	"Released:\t\t<b><#selectbg_g>" + ini_get("rom_date") + "</#></b>\n\n\n"+
+	"Released:\t\t<b><#selectbg_g>" + ini_get("rom_date") + "</#></b>\n\n"+
 
 	"Press <b>Next</b> to continue the installation.",
 
+	#-- Icon
 	"@welcome"
 );
 
@@ -130,40 +142,40 @@ form(
 	"@confirm",
 	"lang.prop",
 
-	"language","<#selectbg_g>Language</#>","","group",
-	"langs/al.lang","Albanian","Shqiptar","select",
-	"langs/zh_CN.lang","Chinese (Simplified)","简化字","select",
-	"langs/cr.lang","Croatian","Hrvatski","select",
-	"langs/da.lang","Danish","Dansk","select",
-	"langs/nl.lang","Dutch","Nederlands","select",
-	"langs/en.lang","English","","select.selected",
-	"langs/fi.lang","Finnish","Suomi","select",
-	"langs/fr.lang","French","Français","select",
-	"langs/de.lang","German","Deutsch","select",
-	"langs/el.lang","Greek","ελληνικά","select",
-	"langs/hu.lang","Hungarian","Magyar","select",
-	"langs/it.lang","Italian","Italiano","select",
-	"langs/fa.lang","Persian","فارسي","select",
-	"langs/pl.lang","Polish","Polski","select",
-	"langs/pt.lang","Portuguese","Português","select",
-	"langs/ru.lang","Russian","Pусский","select",
-	"langs/es.lang","Spanish","Español","select",
-	"langs/tr.lang","Turkish","Türkçe","select"
+	"language", "<#selectbg_g>Language</#>", "", "group",
+	"langs/al.lang", "Albanian", "Shqiptar", "select",
+	"langs/zh_CN.lang", "Chinese (Simplified)", "简化字", "select",
+	"langs/cr.lang", "Croatian", "Hrvatski", "select",
+	"langs/da.lang", "Danish", "Dansk", "select",
+	"langs/nl.lang", "Dutch", "Nederlands", "select",
+	"langs/en.lang", "English", "", "select.selected",
+	"langs/fi.lang", "Finnish", "Suomi", "select",
+	"langs/fr.lang", "French", "Français", "select",
+	"langs/de.lang", "German", "Deutsch", "select",
+	"langs/el.lang", "Greek", "ελληνικά", "select",
+	"langs/hu.lang", "Hungarian", "Magyar", "select",
+	"langs/it.lang", "Italian", "Italiano", "select",
+	"langs/fa.lang", "Persian", "فارسي", "select",
+	"langs/pl.lang", "Polish", "Polski", "select",
+	"langs/pt.lang", "Portuguese", "Português", "select",
+	"langs/ru.lang", "Russian", "Pусский", "select",
+	"langs/es.lang", "Spanish", "Español", "select",
+	"langs/tr.lang", "Turkish", "Türkçe", "select"
 );
 
-loadlang(file_getprop("/tmp/aroma-data/lang.prop","language"));
+loadlang(file_getprop("/tmp/aroma-data/lang.prop", "language"));
 
 textbox(
-	# Title
+	#-- Title
 	"Changelog",
 
-	# Subtitle
+	#-- Subtitle
 	"",
 
-	# Icon
+	#-- Icon
 	"@info",
 
-	# Text Content
+	#-- Text Content
 	resread("changelog.txt")
 );
 
@@ -229,28 +241,28 @@ form(
 	"@apps",
 	"archidroidinstallmode.prop",
 
-	"preset","<#selectbg_g><~archidroid.preset.group></#>","","group",
-	"custom","<~archidroid.preset.custom>", "<~archidroid.preset.custom.desc>","select",
-	"previous","<~archidroid.preset.previous>","<~archidroid.preset.previous.desc>","select.selected",
-	"previousexpert","<~archidroid.preset.previous> Expert","<~archidroid.preset.previousexpert.desc>","select",
-	"barebones","<~archidroid.preset.barebones>","<~archidroid.preset.barebones.desc>","select",
-	"recovery","Recovery","<~archidroid.preset.recovery.desc>","select"
+	"preset", "<#selectbg_g><~archidroid.preset.group></#>", "", "group",
+	"custom", "<~archidroid.preset.custom>", "<~archidroid.preset.custom.desc>", "select",
+	"previous", "<~archidroid.preset.previous>", "<~archidroid.preset.previous.desc>", "select.selected",
+	"previousexpert", "<~archidroid.preset.previous> Expert", "<~archidroid.preset.previousexpert.desc>", "select",
+	"barebones", "<~archidroid.preset.barebones>", "<~archidroid.preset.barebones.desc>", "select",
+	"recovery", "Recovery", "<~archidroid.preset.recovery.desc>", "select"
 );
 
 ################
 ### RECOVERY ###
 ################
 
-if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "recovery" then
+if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
 	form(
 		"<~archidroid.custom>",
 		"<~archidroid.custom.desc>",
 		"@apps",
 		"archidroidrecovery.prop",
 
-		"recovery","<#selectbg_g>Recovery</#>","","group",
-		"twrp","TWRP Recovery","","select.selected",
-		"none","<~common.none>","","select"
+		"recovery", "<#selectbg_g>Recovery</#>", "", "group",
+		"twrp", "TWRP", "", "select.selected",
+		"none", "<~common.none>", "", "select"
 	);
 else
 	writetmpfile(
@@ -263,7 +275,7 @@ endif;
 ### PREVIOUS PRESET ###
 #######################
 
-if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "previous" then
+if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "previous" then
 	setvar("preset_version_probe", read(getvar("adaroma")+"/version.txt"));
 	if getvar("preset_version_probe") != getvar("preset_version") then
 		alert("ArchiDroid Wizard", "<~archidroid.detect.previouspreset.fail>", "@alert");
@@ -275,9 +287,9 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "previ
 	endif;
 endif;
 
-if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "previousexpert" then
+if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "previousexpert" then
 	setvar("preset_version_probe",read(getvar("adaroma")+"/version.txt"));
-	writetmpfile("archidroidinstallmode.prop","preset=custom\n");
+	writetmpfile("archidroidinstallmode.prop", "preset=custom\n");
 	if getvar("preset_version_probe") != "" then
 		writetmpfile("archidroid.prop",read(getvar("adaroma")+"/archidroid.prop"));
 		writetmpfile("archidroidxposed.prop",read(getvar("adaroma")+"/archidroidxposed.prop"));
@@ -290,6 +302,7 @@ endif;
 ###############################
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custom" then
+	pleasewait("Executing Shell...");
 	resexec("exec/bcm4334.sh");
 	setvar("bcm4334", getvar("exec_buffer"));
 	form(
@@ -318,14 +331,14 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"280","280","","select",
 		"320","320","","select",
 
-		"launcher","<#selectbg_g>Launcher</#>","","group",
-		"lgoogle","Google","<~archidroid.launcher.google.desc>","check.checked",
-		"lnova","Nova","<~archidroid.launcher.nova.desc>","check",
-		"lstock","Stock","<~archidroid.launcher.stock.desc>","check",
+		"launcher", "<#selectbg_g>Launcher</#>", "", "group",
+		"lgoogle", "Google", "<~archidroid.launcher.google.desc>", "check.checked",
+		"lnova", "Nova", "<~archidroid.launcher.nova.desc>", "check",
+		"lstock", "Stock", "<~archidroid.launcher.stock.desc>", "check",
 
-		"keyboard","<#selectbg_g><~archidroid.keyboard></#>","","group",
-		"kgoogle","Google","<~archidroid.keyboard.google.desc>","check.checked",
-		"kstock","Stock","<~archidroid.keyboard.stock.desc>","check",
+		"keyboard", "<#selectbg_g><~archidroid.keyboard></#>", "", "group",
+		"kgoogle", "Google", "<~archidroid.keyboard.google.desc>", "check.checked",
+		"kstock", "Stock", "<~archidroid.keyboard.stock.desc>", "check",
 
 		"bootanimation","<#selectbg_g><~archidroid.bootanimation></#>","","group",
 		"archi3","ArchiDroid 3.X","","select.selected",
@@ -336,14 +349,14 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"none","<~common.none>","<~archidroid.bootanimation.none.desc>","select",
 		"bootanimationpreview","Preview","<~archidroid.preview.desc>","check",
 
-		"superuser","<#selectbg_g>Superuser</#>","","group",
-		"koush","Superuser by Koush","<~archidroid.superuser.koush.desc>","select.selected",
-		"chainfire","SuperSU by Chainfire","<~archidroid.superuser.chainfire.desc>","select",
-		"none","<~common.none>","<~archidroid.superuser.none.desc>","select",
+		"superuser", "<#selectbg_g>Superuser</#>", "", "group",
+		"koush", "Superuser by Koush", "<~archidroid.superuser.koush.desc>", "select.selected",
+		"chainfire", "SuperSU by Chainfire", "<~archidroid.superuser.chainfire.desc>", "select",
+		"none", "<~common.none>", "<~archidroid.superuser.none.desc>", "select",
 
-		"other","<#selectbg_g><~archidroid.other></#>","","group",
-		"gapps","Google Apps","<~archidroid.gapps.desc>","check.checked",
-		"xposed","Xposed Framework","<~archidroid.xposed.desc>","check.checked",
+		"other", "<#selectbg_g><~archidroid.other></#>", "", "group",
+		"gapps", "Google Apps", "<~archidroid.gapps.desc>", "check.checked",
+		"xposed", "Xposed Framework", "<~archidroid.xposed.desc>", "check.checked",
 
 		"archiapps","<#selectbg_g>ArchiDroid Apps</#>","","group",
 		"titaniumbackup","Titanium Backup","<~archidroid.apps.titaniumbackup.desc>","check.checked",
@@ -354,27 +367,27 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"cooltool","CoolTool","<~archidroid.apps.cooltool.desc>","check.checked",
 		"rootbrowser","Root Browser","<~archidroid.apps.rootbrowser.desc>","check.checked",
 
-		"architweaks","<#selectbg_g>ArchiDroid Tweaks</#>","","group",
-		"navibar","Navigation Bar","<~archidroid.tweaks.navibar.desc>","check",
-		"cell","Cell Broadcasts","<~archidroid.tweaks.cell.desc>","check"
+		"architweaks", "<#selectbg_g>ArchiDroid Tweaks</#>", "", "group",
+		"navibar", "Navigation Bar", "<~archidroid.tweaks.navibar.desc>", "check",
+		"cell", "Cell Broadcasts", "<~archidroid.tweaks.cell.desc>", "check"
 	);
-	if file_getprop("/tmp/aroma-data/archidroid.prop","bootanimationpreview") == "1" then
-		splash(4000,"preview/bootanimation/" + file_getprop("/tmp/aroma-data/archidroid.prop","bootanimation"));
+	if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimationpreview") == "1" then
+		splash(4000,"preview/bootanimation/" + file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation"));
 		back("1");
 	endif;
 	write(getvar("adaroma")+"/archidroid.prop",readtmpfile("archidroid.prop"));
 
 	### ArchiDroid Extra ###
-	if file_getprop("/tmp/aroma-data/archidroid.prop","xposed") == "1" then
+	if file_getprop("/tmp/aroma-data/archidroid.prop", "xposed") == "1" then
 		form(
 			"<~archidroid.custom.extra>",
 			"<~archidroid.custom.desc>",
 			"@apps",
 			"archidroidxposed.prop",
 
-			"modules","<#selectbg_g>Xposed Modules</#>","","group",
-			"gravitybox","GravityBox","<~archidroid.xposed.gravitybox.desc>","check.checked",
-			"xprivacy","XPrivacy","<~archidroid.xposed.xprivacy.desc>","check"
+			"modules", "<#selectbg_g>Xposed Modules</#>", "", "group",
+			"gravitybox", "GravityBox", "<~archidroid.xposed.gravitybox.desc>", "check.checked",
+			"xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check"
 		);
 		write(getvar("adaroma")+"/archidroidxposed.prop",readtmpfile("archidroidxposed.prop"));
 	endif;
@@ -397,80 +410,80 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "custo
 		"icons/apps",
 		"archidroidhardswap.prop",
 
-		"cache","<#selectbg_g>Cache</#>","","group",
-		"0","0 Megabytes","<~archidroid.hardswap.remove.desc>","select",
-		"64","64 Megabytes","","select",
-		"128","128 Megabytes","<~archidroid.hardswap.size.default.desc>","select",
-		"256","256 Megabytes","","select",
-		"512","512 Megabytes","","select",
-		"current","Current: "+getvar("hardswapcache"),"","select.selected",
+		"cache", "<#selectbg_g>Cache</#>", "", "group",
+		"0", "0 Megabytes", "<~archidroid.hardswap.remove.desc>", "select",
+		"64", "64 Megabytes", "", "select",
+		"128", "128 Megabytes", "<~archidroid.hardswap.size.default.desc>", "select",
+		"256", "256 Megabytes", "", "select",
+		"512", "512 Megabytes", "", "select",
+		"current", "Current: "+getvar("hardswapcache"),"", "select.selected",
 
-		"preload","<#selectbg_g>Preload</#>","","group",
-		"0","0 Megabytes","<~archidroid.hardswap.remove.desc>","select",
-		"64","64 Megabytes","","select",
-		"128","128 Megabytes","<~archidroid.hardswap.size.default.desc>","select",
-		"256","256 Megabytes","","select",
-		"512","512 Megabytes","","select",
-		"current","Current: "+getvar("hardswappreload"),"","select.selected",
+		"preload", "<#selectbg_g>Preload</#>", "", "group",
+		"0", "0 Megabytes", "<~archidroid.hardswap.remove.desc>", "select",
+		"64", "64 Megabytes", "", "select",
+		"128", "128 Megabytes", "<~archidroid.hardswap.size.default.desc>", "select",
+		"256", "256 Megabytes", "", "select",
+		"512", "512 Megabytes", "", "select",
+		"current", "Current: "+getvar("hardswappreload"),"", "select.selected",
 
-		"sdcard1","<#selectbg_g>External SD Card</#>","","group",
-		"0","0 Megabytes","<~archidroid.hardswap.remove.desc>","select",
-		"64","64 Megabytes","","select",
-		"128","128 Megabytes","<~archidroid.hardswap.size.default.desc>","select",
-		"256","256 Megabytes","","select",
-		"512","512 Megabytes","","select",
-		"current","Current: "+getvar("hardswapsdcard"),"","select.selected"
+		"sdcard1", "<#selectbg_g>External SD Card</#>", "", "group",
+		"0", "0 Megabytes", "<~archidroid.hardswap.remove.desc>", "select",
+		"64", "64 Megabytes", "", "select",
+		"128", "128 Megabytes", "<~archidroid.hardswap.size.default.desc>", "select",
+		"256", "256 Megabytes", "", "select",
+		"512", "512 Megabytes", "", "select",
+		"current", "Current: "+getvar("hardswapsdcard"),"", "select.selected"
 	);
 
-	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop","cache") != "current" then
+	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "cache") != "current" then
 		pleasewait("Applying Hardswap...");
-		resexec("exec/archidroid_hardswap.sh", "/cache", file_getprop("/tmp/aroma-data/archidroidhardswap.prop","cache"));
+		resexec("exec/archidroid_hardswap.sh", "/cache", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "cache"));
 		textbox("ArchiDroid Partition Wizard", "", "@default", getvar("exec_buffer"));
 	endif;
-	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop","preload") != "current" then
+	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "preload") != "current" then
 		pleasewait("Applying Hardswap...");
-		resexec("exec/archidroid_hardswap.sh", "/preload", file_getprop("/tmp/aroma-data/archidroidhardswap.prop","preload"));
+		resexec("exec/archidroid_hardswap.sh", "/preload", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "preload"));
 		textbox("ArchiDroid Partition Wizard", "", "@default", getvar("exec_buffer"));
 	endif;
-	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop","sdcard1") != "current" then
+	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1") != "current" then
 		pleasewait("Applying Hardswap...");
-		resexec("exec/archidroid_hardswap.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/archidroidhardswap.prop","sdcard1"));
+		resexec("exec/archidroid_hardswap.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1"));
 		textbox("ArchiDroid Partition Wizard", "", "@default", getvar("exec_buffer"));
 	endif;
 endif;
 
-if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") != "recovery" then
+if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "recovery" then
 	#########################
 	### ARCHIDROID DETECT ###
 	#########################
 	setvar("resexec_retstatus",resexec("exec/archidroid_detect.sh"));
 
-	if getvar("resexec_retstatus")=="0" || getvar("resexec_retstatus")=="1" then
+	if getvar("resexec_retstatus") == "0" || getvar("resexec_retstatus") == "1" then
 		if confirm(
 			"ArchiDroid Detect",
 			"<~archidroid.detect.fail>",
 			"@info",
 			"<~archidroid.detect.fail.yes>",
 			"<~archidroid.detect.fail.no>"
-		)=="yes" then
-			alert("ArchiDroid Detect","<~archidroid.detect.fail.alert.yes>","@info");
+		) == "yes" then
+			alert("ArchiDroid Detect", "<~archidroid.detect.fail.alert.yes>", "@info");
 			writetmpfile(
 				"archidroidwipe.prop",
 				"wipe=yes\n"
 			);
 		else
-			alert("ArchiDroid Detect","<~archidroid.detect.fail.alert.no>","@alert");
-			setvar("resexec_retstatus","2");
+			alert("ArchiDroid Detect", "<~archidroid.detect.fail.alert.no>", "@alert");
+			setvar("resexec_retstatus", "2");
 		endif;
 	endif;
-	if getvar("resexec_retstatus")=="2" then
+	if getvar("resexec_retstatus") == "2" then
 		if confirm(
 			"ArchiDroid Detect",
 			"<~archidroid.detect.pass>",
 			"@info",
 			"<~archidroid.detect.pass.yes>",
 			"<~archidroid.detect.pass.no>"
-		)=="yes" then
+		) == "yes" then
 			writetmpfile(
 				"archidroidwipe.prop",
 				"wipe=no\n"+
@@ -480,7 +493,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") != "recov
 				"ArchiDroid Detect",
 				"<~archidroid.detect.force>",
 			"@alert"
-			)=="yes" then
+			) == "yes" then
 				writetmpfile(
 					"archidroidwipe.prop",
 					"wipe=no\n"+
@@ -494,7 +507,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") != "recov
 				);
 			endif;
 		else
-			alert("ArchiDroid Detect","<~archidroid.detect.pass.alert.no>","@info");
+			alert("ArchiDroid Detect", "<~archidroid.detect.pass.alert.no>", "@info");
 			writetmpfile(
 				"archidroidwipe.prop",
 				"wipe=yes\n"
@@ -510,7 +523,7 @@ viewbox(
 	"@alert"
 );
 
-if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "recovery" then
+if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
 	ini_set("text_next", "<~common.reboot>");
 else
 	ini_set("text_next", "<~common.finish>");
@@ -530,7 +543,7 @@ resexec("exec/adumount.sh", "/cache");
 resexec("exec/adumount.sh", "/preload");
 resexec("exec/adumount.sh", "/storage/sdcard1");
 
-if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop","preset") == "recovery" then
+if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
 	resexec("exec/rebootrecovery.sh");
 else
 	if confirm(
@@ -542,4 +555,4 @@ else
 	endif;
 endif;
 
-# End of ArchiDroid's AROMA
+# End of ArchiDroid's AROMA, leave empty line!
