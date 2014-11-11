@@ -26,9 +26,9 @@ anisplash(
 	1,
 
 	#-- Image, duration in milliseconds
-    "preview/bootanimation/archi1", 1000,
-    "preview/bootanimation/archi2", 1000,
-    "preview/bootanimation/archi3", 1000
+	"preview/bootanimation/archi1", 1000,
+	"preview/bootanimation/archi2", 1000,
+	"preview/bootanimation/archi3", 1000
 );
 
 # Device information
@@ -309,7 +309,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"kernel", "<#selectbg_g>Kernel</#>", "", "group",
 		"stock", "Stock", "<~archidroid.kernel.stock.desc>", "select.selected",
 
-		"density", "<#selectbg_g>density</#>", "", "group",
+		"density", "<#selectbg_g>Density</#>", "", "group",
 		"80", "80", "", "select",
 		"120", "120", "", "select",
 		"160", "160", "", "select",
