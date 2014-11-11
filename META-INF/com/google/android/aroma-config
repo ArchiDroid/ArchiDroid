@@ -26,9 +26,9 @@ anisplash(
 	1,
 
 	#-- Image, duration in milliseconds
-    "preview/bootanimation/archi1", 1000,
-    "preview/bootanimation/archi2", 1000,
-    "preview/bootanimation/archi3", 1000
+	"preview/bootanimation/archi1", 1000,
+	"preview/bootanimation/archi2", 1000,
+	"preview/bootanimation/archi3", 1000
 );
 
 # Device information
