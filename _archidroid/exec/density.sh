@@ -21,9 +21,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ORIGDPI="$(grep -i "lcd_density" "/system/build.prop" | head -n 1 | cut -d '=' -f 2)"
+ORIGDENSITY="$(grep "ro.sf.lcd_density=" "/system/build.prop" | head -n 1 | cut -d '=' -f 2)"
 
-if [[ ! -z "$ORIGDPI" ]]; then
-	sed -i "s/ro.sf.lcd_density=$ORIGDPI/ro.sf.lcd_density=$1/g" /system/build.prop
+if [[ ! -z "$ORIGDENSITY" ]]; then
+	sed -i "s/ro.sf.lcd_density=$ORIGDENSITY/ro.sf.lcd_density=$1/g" "/system/build.prop"
 fi
+
 exit 0
