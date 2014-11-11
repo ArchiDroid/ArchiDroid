@@ -52,12 +52,17 @@ UPDATEREPO() {
 	git pull "$REPO" "$CURBRANCH" >/dev/null 2>&1
 	if [[ -f "UPSTREAMS" ]]; then
 		while read UPSTREAM; do
-			git pull "https://github.com/$UPSTREAM" "$CURBRANCH" >/dev/null 2>&1
+			UPSTREAM_REPO="$(echo "$UPSTREAM" | awk '{print $1}')"
+			UPSTREAM_BRANCH="$(echo "$UPSTREAM" | awk '{print $2}')"
+			if [[ -z "$UPSTREAM_BRANCH" ]]; then
+				UPSTREAM_BRANCH="$CURBRANCH"
+			fi
+			git pull "https://github.com/$UPSTREAM_REPO" "$UPSTREAM_BRANCH" >/dev/null 2>&1
 			if [[ $? -ne 0 ]]; then
 				# This is mandatory, we MUST stay in sync with upstream
 				git reset --hard >/dev/null 2>&1
 				git clean -fd >/dev/null 2>&1
-				git pull "https://github.com/$UPSTREAM" "$CURBRANCH" >/dev/null 2>&1
+				git pull "https://github.com/$UPSTREAM_REPO" "$UPSTREAM_BRANCH" >/dev/null 2>&1
 				if [[ $? -ne 0 ]]; then
 					git reset --hard >/dev/null 2>&1
 					git clean -fd >/dev/null 2>&1
