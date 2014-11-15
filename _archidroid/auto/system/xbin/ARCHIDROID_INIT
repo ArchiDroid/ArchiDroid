@@ -329,6 +329,20 @@ else
 	LOGCAT=0
 fi
 
+if [[ "$(cat "$ADDEV/switches/Logcat")" = "Enabled" ]]; then
+	LOGCAT=1
+else
+	LOGCAT=0
+fi
+
+# RainbowLedOnBoot
+LEDS=0
+if [[ "$(cat "$ADDEV/switches/RainbowLedOnBoot")" = "Enabled" ]]; then
+	if [[ -e "/sys/class/leds/led_r/brightness" && -e "/sys/class/leds/led_g/brightness" && -e "/sys/class/leds/led_b/brightness" ]]; then
+		LEDS=1
+	fi
+fi
+
 if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" || "$1" = "NOTIFY" ]]; then
 	# Allow that regardless of adstatus
 	LOG="/dev/null"
@@ -455,13 +469,6 @@ done
 # ArchiDroid services
 ADSTART "ALL"
 
-# Check if we have LED sysfs available
-if [[ -e "/sys/class/leds/led_r/brightness" && -e "/sys/class/leds/led_g/brightness" && -e "/sys/class/leds/led_b/brightness" ]]; then
-	LEDS=1
-else
-	LEDS=0
-fi
-
 # ArchiDroid Semaphore
 # Wait until we see some android processes to consider boot is more or less complete (initial idea thanks to AndiP71)
 # Also respect number of loops, maybe something went wrong
@@ -472,23 +479,44 @@ while ! pgrep com.android.systemu >/dev/null 2>&1 && [[ "$LOOP" -lt 600 ]]; do
 	if [[ "$LEDS" -ge 1 ]]; then
 		while :; do
 			case "$LEDS" in
-				1) RED=40; GREEN=0; BLUE=0; ;;
-				2) RED=40; GREEN=40; BLUE=0 ;;
-				3) RED=0; GREEN=40; BLUE=0 ;;
-				4) RED=0; GREEN=40; BLUE=40 ;;
-				5) RED=0; GREEN=0; BLUE=40 ;;
-				6) RED=40; GREEN=0; BLUE=40 ;;
-				7) RED=0; GREEN=0; BLUE=0 ;;
-				8) LEDS=1; break ;; # This is the last one, so we go back to the start
+				1) RED=10; GREEN=0; BLUE=0; ;;
+				2) RED=20; GREEN=0; BLUE=0; ;;
+				3) RED=30; GREEN=0; BLUE=0; ;;
+				4) RED=40; GREEN=0; BLUE=0; ;;
+				5) RED=40; GREEN=10; BLUE=0; ;;
+				6) RED=40; GREEN=20; BLUE=0; ;;
+				7) RED=40; GREEN=30; BLUE=0; ;;
+				8) RED=40; GREEN=40; BLUE=0 ;;
+				9) RED=30; GREEN=40; BLUE=0 ;;
+				10) RED=20; GREEN=40; BLUE=0 ;;
+				11) RED=10; GREEN=40; BLUE=0 ;;
+				12) RED=0; GREEN=40; BLUE=0 ;;
+				13) RED=0; GREEN=40; BLUE=10 ;;
+				14) RED=0; GREEN=40; BLUE=20 ;;
+				15) RED=0; GREEN=40; BLUE=30 ;;
+				16) RED=0; GREEN=40; BLUE=40 ;;
+				17) RED=0; GREEN=30; BLUE=40 ;;
+				18) RED=0; GREEN=20; BLUE=40 ;;
+				19) RED=0; GREEN=10; BLUE=40 ;;
+				20) RED=0; GREEN=0; BLUE=40 ;;
+				21) RED=10; GREEN=0; BLUE=40 ;;
+				22) RED=20; GREEN=0; BLUE=40 ;;
+				23) RED=30; GREEN=0; BLUE=40 ;;
+				24) RED=40; GREEN=0; BLUE=40 ;;
+				25) RED=30; GREEN=0; BLUE=30 ;;
+				26) RED=20; GREEN=0; BLUE=20 ;;
+				27) RED=10; GREEN=0; BLUE=10 ;;
+				28) RED=0; GREEN=0; BLUE=0 ;;
+				*) LEDS=1; break ;; # This is the last one, so we go back to the start
 			esac
 			echo "$RED" > "/sys/class/leds/led_r/brightness"
 			echo "$GREEN" > "/sys/class/leds/led_g/brightness"
 			echo "$BLUE" > "/sys/class/leds/led_b/brightness"
 			((LEDS++))
-			sleep 0.2
+			sleep 0.1
 		done
 	else
-		sleep 1
+		sleep 2
 	fi
 done
 
