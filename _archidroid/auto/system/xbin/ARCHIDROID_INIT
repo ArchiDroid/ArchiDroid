@@ -329,12 +329,6 @@ else
 	LOGCAT=0
 fi
 
-if [[ "$(cat "$ADDEV/switches/Logcat")" = "Enabled" ]]; then
-	LOGCAT=1
-else
-	LOGCAT=0
-fi
-
 # RainbowLedOnBoot
 LEDS=0
 if [[ "$(cat "$ADDEV/switches/RainbowLedOnBoot")" = "Enabled" ]]; then
