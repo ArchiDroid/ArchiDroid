@@ -21,17 +21,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ADSYS="/system/archidroid"
-ADPROC="$ADSYS/tmpfs"
-ADCRON="$ADPROC/cron"
-LISTENERS_DIR="$ADCRON/listeners"
+ARCHIDROID_INIT "NOTIFY" "TETHERING"
 
-INTERNAL_EVENTS_DIR="$ADCRON/events/internal"
-EXTERNAL_EVENTS_DIR="$ADCRON/events/external"
-
-if [ -d "$LISTENERS_DIR" -a -d "$EXTERNAL_EVENTS_DIR" ]; then
-	touch "$LISTENERS_DIR/TETHERING" # Set up a listener for ARCHIDROID_CRON
-	touch "$EXTERNAL_EVENTS_DIR/TETHERING" # Notify ARCHIDROID_CRON about tethering
-	inotifywait -qqe delete "$LISTENERS_DIR/TETHERING" # Wait for ARCHIDROID_CRON
-fi
-exec dnsmasq.real $@ # Exec original binary and share the environment, yes we must break on spaces in this case
+exec "/system/bin/dnsmasq.real" "$@" # Exec original binary and share the environment
