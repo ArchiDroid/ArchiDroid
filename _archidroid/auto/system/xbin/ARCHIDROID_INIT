@@ -37,27 +37,12 @@ ADTWEAK() {
 	fi
 }
 
-ADCRON() {
-	# $1 - Cron file to notify
-	# $2 - Optional content
-	if [[ -f "$1" ]]; then
-		rm -f "$1"
-	fi
-	echo "$2" > "$1"
-}
-
-ADCRONWAIT() {
-	ADCRON "$@"
-	sleep 1
-}
-
 ADSTOP() {
 	case "$1" in
 		"ALL")
 			ADSTOP "HAVEGED"
 			ADSTOP "FRANDOM"
 			ADSTOP "ADBLOCK"
-			ADSTOP "CRON"
 			ADSTOP "TMPFS"
 			ADSTOP "LOGCAT"
 			;;
@@ -74,43 +59,42 @@ ADSTOP() {
 			ADSTOP "archidroid_pixelserv"
 			ndc resolver flushdefaultif >/dev/null 2>&1 # Flush DNS Cache
 			;;
+		"DNS_MONITOR")
+			rm -f "$ADTMPFS/ARCHIDROID_MONITOR_DNS"
+		;;
 		"FRANDOM")
 			# Generic check if we're not doing something harmful
 			if [[ -c /dev/urandom.orig && -c /dev/random.orig ]]; then
 				rm -f /dev/urandom && mv /dev/urandom.orig /dev/urandom
 				rm -f /dev/random && mv /dev/random.orig /dev/random
 			fi
-			;;
+		;;
 		"HAVEGED")
 			ADSTOP "archidroid_haveged"
-			;;
+		;;
 		"LOGCAT")
 			kill "$(pidof logcat)" >/dev/null 2>&1
-			;;
-		"CRON") ADCRON "$ADCRONSTATUS" "STOPPED" ;;
+		;;
 		"TMPFS")
 			if ADMOUNTED "$ADTMPFS"; then
 				umount "$ADTMPFS"
 			fi
-			;;
+		;;
 		archidroid_haveged)
-			ADCRONWAIT "$INTERNAL_EVENTS_DIR/MONITOR_STOP_HAVEGED"
 			kill "$(pidof archidroid_haveged)" >/dev/null 2>&1
-			;;
+		;;
 		archidroid_dnsmasq)
-			ADCRON "$INTERNAL_EVENTS_DIR/MONITOR_STOP_DNSDAEMON"
-			ADCRONWAIT "$INTERNAL_EVENTS_DIR/MONITOR_STOP_DNSMASQ"
+			ADSTOP "DNS_MONITOR"
 			kill "$(pidof archidroid_dnsmasq)" >/dev/null 2>&1
-			;;
+		;;
 		archidroid_dnsproxy2)
-			ADCRONWAIT "$INTERNAL_EVENTS_DIR/MONITOR_STOP_DNSPROXY2"
 			kill "$(pidof archidroid_dnsproxy2)" >/dev/null 2>&1
-			;;
+		;;
 		archidroid_pixelserv)
-			ADCRONWAIT "$INTERNAL_EVENTS_DIR/MONITOR_STOP_PIXELSERV"
 			kill "$(pidof archidroid_pixelserv)" >/dev/null 2>&1
-			;;
-		*) kill "$(pidof "$1")" >/dev/null 2>&1
+		;;
+		*)
+			kill "$(pidof "$1")" >/dev/null 2>&1
 	esac
 }
 
@@ -119,7 +103,6 @@ ADSTART() {
 		"ALL")
 			ADSTART "LOGCAT"
 			ADSTART "TMPFS"
-			ADSTART "CRON"
 			ADSTART "HAVEGED"
 			ADSTART "FRANDOM"
 			ADSTART "ADBLOCK"
@@ -136,6 +119,9 @@ ADSTART() {
 			ADSTART "archidroid_dnsproxy2"
 			ADSTART "archidroid_pixelserv"
 			;;
+		"DNS_MONITOR")
+			ARCHIDROID_MONITOR_DNS &
+		;;
 		"FRANDOM")
 			if [[ "$FRANDOM" -eq 1 ]]; then
 				echo "INFO: Activating frandom!"
@@ -170,25 +156,21 @@ ADSTART() {
 			else
 				echo "INFO: Frandom has been disabled"
 			fi
-			;;
+		;;
 		"HAVEGED")
 			ADSTART "archidroid_haveged"
-			;;
+		;;
 		"LOGCAT")
 			if [[ "$LOGCAT" -eq 1 ]]; then
 				logcat -f "$AD/logcat.txt" &
 			fi
-			;;
-		"CRON")
-			echo "INFO: Activating ArchiDroid Cron!"
-			setsid ARCHIDROID_CRON "background" &
-			;;
+		;;
 		"TMPFS")
 			if ! ADMOUNTED "$ADTMPFS"; then
 				mkdir -p "$ADTMPFS"
 				mount -t tmpfs tmpfs "$ADTMPFS"
 			fi
-			;;
+		;;
 		"archidroid_dnsmasq")
 			if [[ "$ADBLOCK" -eq 1 ]]; then
 				if [[ ! -f "$ADTMPFS/resolv.conf" ]]; then
@@ -201,36 +183,26 @@ ADSTART() {
 						EXTRA+=" --strict-order"
 					fi
 					echo "ADBLOCK: Including local DNSes!"
-					if [[ -d "$INTERNAL_EVENTS_DIR" ]]; then
-						ADCRON "$INTERNAL_EVENTS_DIR/MONITOR_START_DNSDAEMON"
-					else
-						(sleep 10; ADCRON "$INTERNAL_EVENTS_DIR/MONITOR_START_DNSDAEMON") &
-					fi
+					ADSTART "DNS_MONITOR"
 				else
-					if [[ -d "$INTERNAL_EVENTS_DIR" ]]; then
-						ADCRON "$INTERNAL_EVENTS_DIR/MONITOR_STOP_DNSDAEMON"
-					fi
-					cp "/system/etc/resolv.conf" "$ADTMPFS/resolv.conf"
+					cp -p "/system/etc/resolv.conf" "$ADTMPFS/resolv.conf"
 				fi
 				echo "ADBLOCK: Activated archidroid_dnsmasq - local DNS server on 127.0.0.1:53, forwarding clean non-blocked traffic to specified DNS servers"
 				archidroid_dnsmasq $EXTRA -C /system/archidroid/etc/dnsmasq.conf # Yes, we must break on spaces in this case
-				ADCRON "$INTERNAL_EVENTS_DIR/MONITOR_START_DNSMASQ"
 			fi
-			;;
+		;;
 		"archidroid_dnsproxy2")
 			if [[ "$ADBLOCK" -eq 1 ]]; then
 				echo "ADBLOCK: Activated archidroid_dnsproxy2 - local proxy server, forwarding all DNS traffic to 127.0.0.1:53"
 				archidroid_dnsproxy2 -w 127.0.0.1 &
-				ADCRON "$INTERNAL_EVENTS_DIR/MONITOR_START_DNSPROXY2"
 			fi
-			;;
+		;;
 		"archidroid_pixelserv")
 			if [[ "$ADBLOCK" -eq 1 ]]; then
 				echo "ADBLOCK: Activated archidroid_pixelserv - local web server on 127.0.0.1:80, responding with NULLGIF"
 				archidroid_pixelserv 127.0.0.1 >/dev/null 2>&1 &
-				ADCRON "$INTERNAL_EVENTS_DIR/MONITOR_START_PIXELSERV"
 			fi
-			;;
+		;;
 		"archidroid_haveged")
 			if [[ "$HAVEGED" -eq 1 ]]; then
 				echo "INFO: Activating haveged!"
@@ -254,9 +226,8 @@ ADSTART() {
 				echo "HAVEGED: Entropy levels: Android default: 128, Linux: 896, Max: 4096"
 				echo "HAVEGED: ArchiDroid entropy set to: $ENTROPY. Available entropy can't get below this level"
 				echo "HAVEGED: Current available entropy: $(cat /proc/sys/kernel/random/entropy_avail)"
-				ADCRON "$INTERNAL_EVENTS_DIR/MONITOR_START_HAVEGED"
 			fi
-			;;
+		;;
 	esac
 }
 
@@ -265,7 +236,6 @@ ADRELOAD() {
 		"ALL")
 			shift 1
 			ADRELOAD "TMPFS"
-			ADRELOAD "CRON"
 			ADRELOAD "HAVEGED"
 			ADRELOAD "FRANDOM"
 			ADRELOAD "ADBLOCK"
@@ -277,17 +247,36 @@ ADRELOAD() {
 	esac
 }
 
+ADNOTIFY() {
+	case "$1" in
+		"TETHERING")
+			ADSTOP "ADBLOCK"
+			(
+				sleep 2
+				PID=""
+				for PROCESS in "dnsmasq" "dnsmasq.real"; do
+					PID="$(pidof "$PROCESS" 2>/dev/null)";
+					if [[ ! -z "$PID" ]]; then
+						break
+					fi
+				done
+				while [[ -e "/proc/$PID" ]]; do
+					sleep 1
+				done
+				ARCHIDROID_INIT "START" "ADBLOCK"
+			) &
+		;;
+	esac
+}
+
 # Initial variables, you should NOT change them unless you know what you're doing
 AD="/data/media/0/ArchiDroid"
 ADSYS="/system/archidroid"
 ADDEV="$ADSYS/dev"
 ADTMPFS="$ADSYS/tmpfs"
-ADCRON="$ADTMPFS/cron"
 LOG="$AD/Init.log" # "/dev/null" is no verbose
 #RUNONCELOG="$AD/RunOnce.log" # Unused
 ADSTATUS="$ADTMPFS/ARCHIDROID_INIT_STATUS"
-ADCRONSTATUS="$ADTMPFS/ARCHIDROID_CRON_STATUS"
-INTERNAL_EVENTS_DIR="$ADCRON/events/internal"
 
 # Exit if barebones preset was used
 if [[ -f "/system/archidroid/dev/PRESET_BAREBONES" ]]; then
@@ -340,7 +329,7 @@ else
 	LOGCAT=0
 fi
 
-if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" ]]; then
+if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" || "$1" = "NOTIFY" ]]; then
 	# Allow that regardless of adstatus
 	LOG="/dev/null"
 	exec 1>"$LOG"
@@ -349,6 +338,7 @@ if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" ]]; then
 		"RELOAD") ADRELOAD "$2" ;;
 		"START") ADSTART "$2" ;;
 		"STOP") ADSTOP "$2" ;;
+		"NOTIFY") ADNOTIFY "$2" ;;
 	esac
 	exit 0
 elif [[ ! -f "$ADSTATUS" ]]; then
