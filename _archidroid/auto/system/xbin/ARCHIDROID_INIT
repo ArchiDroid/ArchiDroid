@@ -473,13 +473,13 @@ while ! pgrep com.android.systemu >/dev/null 2>&1 && [[ "$LOOP" -lt 600 ]]; do
 	if [[ "$LEDS" -ge 1 ]]; then
 		while :; do
 			case "$LEDS" in
-				1) RED=10; GREEN=0; BLUE=0; ;;
-				2) RED=20; GREEN=0; BLUE=0; ;;
-				3) RED=30; GREEN=0; BLUE=0; ;;
-				4) RED=40; GREEN=0; BLUE=0; ;;
-				5) RED=40; GREEN=10; BLUE=0; ;;
-				6) RED=40; GREEN=20; BLUE=0; ;;
-				7) RED=40; GREEN=30; BLUE=0; ;;
+				1) RED=10; GREEN=0; BLUE=0 ;;
+				2) RED=20; GREEN=0; BLUE=0 ;;
+				3) RED=30; GREEN=0; BLUE=0 ;;
+				4) RED=40; GREEN=0; BLUE=0 ;;
+				5) RED=40; GREEN=10; BLUE=0 ;;
+				6) RED=40; GREEN=20; BLUE=0 ;;
+				7) RED=40; GREEN=30; BLUE=0 ;;
 				8) RED=40; GREEN=40; BLUE=0 ;;
 				9) RED=30; GREEN=40; BLUE=0 ;;
 				10) RED=20; GREEN=40; BLUE=0 ;;
