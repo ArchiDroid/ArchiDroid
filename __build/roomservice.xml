@@ -70,6 +70,8 @@
 
 			<remove-project name="CyanogenMod/android_device_samsung_i9300" />
 			<project name="ArchiDroid/android_device_samsung_i9300" path="device/samsung/i9300" remote="github" />
+			<remove-project name="CyanogenMod/android_device_samsung_smdk4412-common" />
+			<project name="ArchiDroid/android_device_samsung_smdk4412-common" path="device/samsung/smdk4412-common" remote="github" />
 			<remove-project name="CyanogenMod/android_kernel_samsung_smdk4412" />
 			<project name="ArchiDroid/android_kernel_samsung_smdk4412" path="kernel/samsung/smdk4412" remote="github" />
 		<!-- /i9300 -->
