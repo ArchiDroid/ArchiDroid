@@ -50,7 +50,11 @@ REPO_DEPENDS_ON_UPSTREAM() {
 UPDATEREPO() {
 	cd "$1" || return 1
 	if [[ ! -z "$BRANCH" ]]; then
-		git checkout "$BRANCH" >/dev/null 2>&1 || (echo "WARNING: Branch $BRANCH is not supported in $(basename "$1") repo, skipping..."; return 1)
+		git checkout "$BRANCH" >/dev/null 2>&1
+		if [[ $? -ne 0 ]]; then
+			echo "WARNING: Branch $BRANCH is not supported in $(basename "$1") repo, skipping..."
+			return 1
+		fi
 	fi
 	CURBRANCH="$(git rev-parse --abbrev-ref HEAD)"
 	git pull "$REPO" "$CURBRANCH" >/dev/null 2>&1 || return 1
