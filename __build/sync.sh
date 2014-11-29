@@ -26,6 +26,7 @@
 # Don't bother if you don't have your own repos with upstreams, like android_build
 
 REPO="origin"
+BRANCH="$1"
 
 CUSTOMREPOS="lge-kernel-lproj Superuser"
 REPO_DEPENDS_ON_UPSTREAM() {
@@ -48,8 +49,15 @@ REPO_DEPENDS_ON_UPSTREAM() {
 
 UPDATEREPO() {
 	cd "$1" || return 1
+	if [[ ! -z "$BRANCH" ]]; then
+		git checkout "$BRANCH" >/dev/null 2>&1
+		if [[ $? -ne 0 ]]; then
+			echo "WARNING: Branch $BRANCH is not supported in $(basename "$1") repo, skipping..."
+			return 1
+		fi
+	fi
 	CURBRANCH="$(git rev-parse --abbrev-ref HEAD)"
-	git pull "$REPO" "$CURBRANCH" >/dev/null 2>&1
+	git pull "$REPO" "$CURBRANCH" >/dev/null 2>&1 || return 1
 	if [[ -f "UPSTREAMS" ]]; then
 		while read UPSTREAM; do
 			UPSTREAM_REPO="$(echo "$UPSTREAM" | awk '{print $1}')"
@@ -62,7 +70,7 @@ UPDATEREPO() {
 				# This is mandatory, we MUST stay in sync with upstream
 				git reset --hard >/dev/null 2>&1
 				git clean -fd >/dev/null 2>&1
-				git pull "https://github.com/$UPSTREAM_REPO" "$UPSTREAM_BRANCH" >/dev/null 2>&1
+				git pull "https://github.com/$UPSTREAM_REPO" "$UPSTREAM_BRANCH"
 				if [[ $? -ne 0 ]]; then
 					git reset --hard >/dev/null 2>&1
 					git clean -fd >/dev/null 2>&1
