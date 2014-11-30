@@ -47,7 +47,7 @@ writetmpfile(
 );
 
 # Often edited settings
-setvar("preset_version", "21");
+setvar("preset_version", "22");
 ini_set("rom_date", "November XXth, 2014");
 
 # Settings
@@ -312,14 +312,14 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"280", "280", "", "select",
 		"320", "320", "<~archidroid.common.default>", "select",
 
-		"launcher", "<#selectbg_g><~archidroid.launcher></#>", "", "group",
-		"launcher-google", "Google", "<~archidroid.launcher.google.desc>", "check.checked",
-		"launcher-nova", "Nova", "<~archidroid.launcher.nova.desc>", "check",
-		"launcher-stock", "Stock", "<~archidroid.launcher.stock.desc>", "check",
-
 		"keyboard", "<#selectbg_g><~archidroid.keyboard></#>", "", "group",
-		"keyboard-google", "Google", "<~archidroid.keyboard.google.desc>", "check.checked",
-		"keyboard-stock", "Stock", "<~archidroid.keyboard.stock.desc>", "check",
+		"google", "Google", "<~archidroid.keyboard.google.desc>", "select.selected",
+		"stock", "Stock", "<~archidroid.keyboard.stock.desc>", "select",
+
+		"launcher", "<#selectbg_g><~archidroid.launcher></#>", "", "group",
+		"google", "Google", "<~archidroid.launcher.google.desc>", "select.selected",
+		"nova", "Nova", "<~archidroid.launcher.nova.desc>", "select",
+		"stock", "Stock", "<~archidroid.launcher.stock.desc>", "select",
 
 		"bootanimation", "<#selectbg_g><~archidroid.bootanimation></#>", "", "group",
 		"archi3", "ArchiDroid 3.X", "<~archidroid.bootanimation.archi3.desc>", "select.selected",
