@@ -61,21 +61,31 @@ if [[ -f "$AKDROP/boot.img-ramdisk.gz" ]]; then
 		cd "$AKDROP/ramdisk"
 
 		echo "INFO: Detecting ramdisk format..."
-		DBIN="gzip -9"
+		CBIN="gzip -9" # We use gzip as final compression in every scenario
 
 		if [[ "$(gunzip -t ../boot.img-ramdisk.gz >/dev/null 2>&1; echo $?)" -eq 0 ]]; then
-			echo "INFO: Gzip format detected"
-			CBIN="gunzip -c"
+			echo "INFO: GZIP format detected"
+			#CBIN="gzip -9"
+			DBIN="gunzip -c"
 		elif [[ "$(lzop -t ../boot.img-ramdisk.gz >/dev/null 2>&1; echo $?)" -eq 0 ]]; then
-			echo "INFO: Lzo format detected"
-			CBIN="lzop -dc"
+			echo "INFO: LZO format detected"
+			#CBIN="lzop -9"
+			DBIN="lzop -dc"
+		elif [[ "$(xz -t ../boot.img-ramdisk.gz >/dev/null 2>&1; echo $?)" -eq 0 ]]; then
+			echo "INFO: XZ format detected"
+			#CBIN="xz -9"
+			DBIN="xz -dc"
+		elif [[ "$(lzma -t ../boot.img-ramdisk.gz >/dev/null 2>&1; echo $?)" -eq 0 ]]; then
+			echo "INFO: LZMA format detected"
+			#CBIN="lzma -9"
+			DBIN="lzma -dc"
 		else
 			echo "ERROR: Couldn't detect any known ramdisk format!"
 			exit 1
 		fi
 
 		echo "INFO: Extracting ramdisk..."
-		$CBIN ../boot.img-ramdisk.gz | cpio -i
+		$DBIN ../boot.img-ramdisk.gz | cpio -i
 
 		# Detect AOSP/Samsung variant based on existing modules in ramdisk
 		if [[ -d "$AKDROP/ramdisk/lib/modules" ]]; then
@@ -129,7 +139,7 @@ if [[ -f "$AKDROP/boot.img-ramdisk.gz" ]]; then
 		fi
 
 		rm -f "$AKDROP/boot.img-ramdisk.gz"
-		find . | cpio -o -H newc | $DBIN > "$AKDROP/boot.img-ramdisk.gz"
+		find . | cpio -o -H newc | $CBIN > "$AKDROP/boot.img-ramdisk.gz"
 	fi
 else
 	echo "FATAL ERROR: No ramdisk?!"
