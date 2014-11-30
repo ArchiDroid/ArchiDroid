@@ -241,6 +241,7 @@ ADRELOAD() {
 			ADRELOAD "ADBLOCK"
 			ADRELOAD "LOGCAT"
 			;;
+		"HOSTSLOCKED") ADNOTIFY "$1" ;;
 		*)
 			ADSTOP "$1"
 			ADSTART "$1"
@@ -265,6 +266,15 @@ ADNOTIFY() {
 				done
 				ARCHIDROID_INIT "START" "ADBLOCK"
 			) &
+		;;
+		"HOSTSLOCKED")
+			sysrw || mount -o remount,rw /system
+			if [[ "$(cat "$ADDEV/switches/HostsLocked")" = "Enabled" ]]; then
+				chattr +i /system/etc/hosts
+			else
+				chattr -i /system/etc/hosts
+			fi
+			sysro || mount -o remount,ro /system
 		;;
 	esac
 }
