@@ -26,17 +26,134 @@
 #   E-mail (optional) : JustArchi@JustArchi.net
 #
 
-### AROMA strings
-text_ok=OK
-text_next=Next
-text_back=Back
-text_yes=Yes
-text_no=No
-text_about=About
-text_calibrating=Calibrating Tools
-text_quit=Quit Installation
-text_quit_msg=Are you sure to quit the installer?
 
 ### ArchiDroid strings
+archidroid.apps.cooltool.desc=Highly customizable app that shows you useful information about your device (e.g. CPU usage) on the top
+archidroid.apps.esfileexplorer.desc=Very good file manager replacement for android
+archidroid.apps.greenify.desc=Saves battery by hibernating background apps when you're not using them
+archidroid.apps.lmt.desc=Enhances your device with PIE functionality, gestures support and more
+archidroid.apps.mxplayer.desc=Hardware-accelerated video player for android
+archidroid.apps.spiritfm.desc=Real, tuned, over-the-air FM radio app. Does not require internet access
+archidroid.apps.titaniumbackup.desc=A core app for every rooted user. Let's you backup/restore apps and their data on the fly
+
+archidroid.bcm=BCM profiling
+archidroid.bcm.archidetect.desc=ArchiDetect tries to detect proper firmware for your device automatically
+
+archidroid.bootanimation=Bootanimation
+archidroid.bootanimation.archi1.desc=First ArchiDroid bootanimation, from 1.X times
+archidroid.bootanimation.archi2.desc=Second ArchiDroid bootanimation, from 2.X times
+archidroid.bootanimation.archi3.desc=Third ArchiDroid bootanimation, from 3.X times
+archidroid.bootanimation.logcat.desc=Live logcat log instead of bootanimation, powered by logcat lite app
+archidroid.bootanimation.none.desc=No bootanimation, for slightly faster boot
+archidroid.bootanimation.stock.desc=Bootanimation provided by the base system
+
+archidroid.changelog=Changelog
+archidroid.changelog.desc=What's new
+
+archidroid.common.current=Current
+archidroid.common.default=Default value
+archidroid.common.density=Density
+archidroid.common.detected=Detected
+archidroid.common.none=None
+archidroid.common.terms.check=I agree with terms and conditions
+archidroid.common.terms.unchecked=Please check the agreement!
+
+archidroid.custom=Customize
+archidroid.custom.desc=Modify settings as you please
+
+archidroid.detect.fail=ArchiDroid could not detect itself currently flashed, therefore a data wipe (factory reset) is mandatory. ArchiDroid will clean your /data partition prior to flashing. Your internal sd card content is safe!
+archidroid.detect.pass=ArchiDroid successfully detected itself being currently flashed. Would you like to wipe your data regardless?
+archidroid.detect.pass.no=No, don't wipe my old data
+archidroid.detect.pass.yes=Yes, wipe my old data
+archidroid.detect.pass.alert.no=Alright, but keep in mind that ROM may not work properly with incompatible data!
+archidroid.detect.pass.alert.yes=Good decision, ArchiDroid will make sure that /data is clean prior to flashing!
+
+archidroid.detect.previouspreset.expert.fail.incompatible=Warning! Your old preset failed integrity check. Make sure that your chosen options are valid!
+archidroid.detect.previouspreset.fail.incompatible=Sorry, your old preset failed integrity check. You can try expert mode if you know what you're doing
+archidroid.detect.previouspreset.fail.notavailable=Sorry, it seems like you don't have any old preset yet
+
+archidroid.experimental=
+archidroid.experimental.desc=
+
+archidroid.gapps.bksync.desc=
+archidroid.gapps.calendargoogle.desc=
+archidroid.gapps.calsync.desc=
+archidroid.gapps.core.desc=
+archidroid.gapps.faceunlock.desc=
+archidroid.gapps.gmail.desc=
+archidroid.gapps.googleplus.desc=
+archidroid.gapps.googletts.desc=
+archidroid.gapps.hangouts.desc=
+archidroid.gapps.maps.desc=
+archidroid.gapps.search.desc=
+archidroid.gapps.speech.desc=
+archidroid.gapps.street.desc=
+archidroid.gapps.youtube.desc=
+
+archidroid.hardswap.desc=
+archidroid.hardswap.size.0.desc=
+archidroid.hardswap.size.default.desc=
+
+archidroid.kernel=
+archidroid.kernel.archi.desc=
+archidroid.kernel.stock.desc=
+
+archidroid.keyboard=
+archidroid.keyboard.google.desc=
+archidroid.keyboard.stock.desc=
+
+archidroid.launcher=
+archidroid.launcher.google.desc=
+archidroid.launcher.nova.desc=
+archidroid.launcher.stock.desc=
+
+archidroid.preset=
+archidroid.preset.barebones=
+archidroid.preset.barebones.desc=
+archidroid.preset.custom=
+archidroid.preset.custom.desc=
+archidroid.preset.group=
+archidroid.preset.previous=
+archidroid.preset.previous.desc=
+archidroid.preset.previousexpert=
+archidroid.preset.previousexpert.desc=
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=
+
+archidroid.preview=
+archidroid.preview.desc=
+
+archidroid.recovery.twrp.desc=
+
+archidroid.superuser.chainfire.desc=
+archidroid.superuser.koush.desc=
+archidroid.superuser.none.desc=
+
+archidroid.thirdparty=
+archidroid.thirdparty.desc=
+
+archidroid.tos=
+archidroid.tos.desc=
+
+archidroid.tweaks.cellbroadcasts=
+archidroid.tweaks.cellbroadcasts.desc=
+archidroid.tweaks.navibar=
+archidroid.tweaks.navibar.desc=
+
+archidroid.xposed.desc=
+archidroid.xposed.gravitybox.desc=
+archidroid.xposed.xprivacy.desc=
+
+
+### AROMA strings
+text_about=About
+text_back=Back
+text_calibrating=Calibrating tools
+text_next=Next
+text_no=No
+text_ok=OK
+text_quit_msg=Are you sure to quit the installer?
+text_quit=Quit installation
+text_yes=Yes
 
 ### End of file

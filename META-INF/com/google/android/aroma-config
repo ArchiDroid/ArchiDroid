@@ -189,10 +189,10 @@ agreebox(
 	resread("tos.txt"),
 
 	#-- Checkbox Text
-	"<~terms.check>",
+	"<~archidroid.common.terms.check>",
 
 	#-- Unchecked Alert Message
-	"<~terms.unchecked>"
+	"<~archidroid.common.terms.unchecked>"
 );
 
 if resexec("exec/archidroid_check_experimental.sh", getvar("archidroid_version_type")) == "0" then
@@ -233,7 +233,7 @@ textbox(
 
 form(
 	"<~archidroid.preset>",
-	"<~archidroid.preset.desc>",
+	"<~archidroid.custom.desc>",
 	"@apps",
 	"archidroidinstallmode.prop",
 
@@ -251,7 +251,7 @@ form(
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
 	form(
-		"<~archidroid.custom>",
+		"<~archidroid.preset.recovery>",
 		"<~archidroid.custom.desc>",
 		"@apps",
 		"archidroidrecovery.prop",
@@ -273,19 +273,30 @@ endif;
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "previous" then
 	setvar("preset_version_probe", read(getvar("adaroma") + "/version.txt"));
-	if getvar("preset_version_probe") != getvar("preset_version") then
-		alert("ArchiDroid Wizard", "<~archidroid.detect.previouspreset.fail>", "@alert");
-		writetmpfile("archidroidinstallmode.prop", "preset=custom\n");
+	if getvar("preset_version_probe") == "" then
+		alert("ArchiDroid Wizard", "<~archidroid.detect.previouspreset.fail.notavailable>", "@alert");
+		back("1");
 	else
-		writetmpfile("archidroid.prop", read(getvar("adaroma") + "/archidroid.prop"));
+		if getvar("preset_version_probe") != getvar("preset_version") then
+			alert("ArchiDroid Wizard", "<~archidroid.detect.previouspreset.fail.incompatible>", "@alert");
+			back("1");
+		else
+			writetmpfile("archidroid.prop", read(getvar("adaroma") + "/archidroid.prop"));
+		endif;
 	endif;
 endif;
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "previousexpert" then
 	setvar("preset_version_probe", read(getvar("adaroma") + "/version.txt"));
-	writetmpfile("archidroidinstallmode.prop", "preset=custom\n");
-	if getvar("preset_version_probe") != "" then
+	if getvar("preset_version_probe") == "" then
+		alert("ArchiDroid Wizard", "<~archidroid.detect.previouspreset.fail.notavailable>", "@alert");
+		back("1");
+	else
 		writetmpfile("archidroid.prop", read(getvar("adaroma") + "/archidroid.prop"));
+		writetmpfile("archidroidinstallmode.prop", "preset=custom\n"); # Allow edition on the next page
+		if getvar("preset_version_probe") != getvar("preset_version") then
+			alert("ArchiDroid Wizard", "<~archidroid.detect.previouspreset.expert.fail.incompatible>", "@alert");
+		endif;
 	endif;
 endif;
 
@@ -346,8 +357,8 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"gapps-hangouts", "Google Hangouts", "<~archidroid.gapps.hangouts.desc>", "check.checked",
 		"gapps-maps", "Google Maps", "<~archidroid.gapps.maps.desc>", "check.checked",
 		"gapps-search", "Google Search", "<~archidroid.gapps.search.desc>", "check.checked",
-		"gapps-speech", "Google Speech", "<~archidroid.gapps.core.desc>", "check.checked",
-		"gapps-street", "Google Street", "<~archidroid.gapps.speech.desc>", "check.checked",
+		"gapps-speech", "Google Speech", "<~archidroid.gapps.speech.desc>", "check.checked",
+		"gapps-street", "Google Street", "<~archidroid.gapps.street.desc>", "check.checked",
 		"gapps-youtube", "YouTube", "<~archidroid.gapps.youtube.desc>", "check.checked",
 
 		"xposed", "<#selectbg_g>Xposed</#>", "", "group",
@@ -361,7 +372,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"lmt", "LMT", "<~archidroid.apps.lmt.desc>", "check.checked",
 		"mxplayer", "MXPlayer", "<~archidroid.apps.mxplayer.desc>", "check.checked",
 		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
-		"rootbrowser", "Root Browser", "<~archidroid.apps.rootbrowser.desc>", "check.checked",
+		"esfileexplorer", "ES File Explorer", "<~archidroid.apps.esfileexplorer.desc>", "check.checked",
 
 		"architweaks", "<#selectbg_g>ArchiDroid Tweaks</#>", "", "group",
 		"navibar", "<~archidroid.tweaks.navibar>", "<~archidroid.tweaks.navibar.desc>", "check",
@@ -435,27 +446,8 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "reco
 	#########################
 	### ARCHIDROID DETECT ###
 	#########################
-	setvar("resexec_retstatus",resexec("exec/archidroid_detect.sh"));
-
-	if getvar("resexec_retstatus") == "0" || getvar("resexec_retstatus") == "1" then
-		if confirm(
-			"ArchiDroid Detect",
-			"<~archidroid.detect.fail>",
-			"@info",
-			"<~archidroid.detect.fail.yes>",
-			"<~archidroid.detect.fail.no>"
-		) == "yes" then
-			alert("ArchiDroid Detect", "<~archidroid.detect.fail.alert.yes>", "@info");
-			writetmpfile(
-				"archidroidwipe.prop",
-				"wipe=yes\n"
-			);
-		else
-			alert("ArchiDroid Detect", "<~archidroid.detect.fail.alert.no>", "@alert");
-			setvar("resexec_retstatus", "2");
-		endif;
-	endif;
-	if getvar("resexec_retstatus") == "2" then
+	if resexec("exec/archidroid_detect.sh") == "0" then
+		# User has ArchiDroid, wipe is not mandatory
 		if confirm(
 			"ArchiDroid Detect",
 			"<~archidroid.detect.pass>",
@@ -463,35 +455,27 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "reco
 			"<~archidroid.detect.pass.yes>",
 			"<~archidroid.detect.pass.no>"
 		) == "yes" then
-			writetmpfile(
-				"archidroidwipe.prop",
-				"wipe=no\n"+
-				"force=no\n"
-			);
-			if confirm(
-				"ArchiDroid Detect",
-				"<~archidroid.detect.force>",
-			"@alert"
-			) == "yes" then
-				writetmpfile(
-					"archidroidwipe.prop",
-					"wipe=no\n"+
-					"force=yes\n"
-				);
-			else
-				writetmpfile(
-					"archidroidwipe.prop",
-					"wipe=no\n"+
-					"force=no\n"
-				);
-			endif;
-		else
-			alert("ArchiDroid Detect", "<~archidroid.detect.pass.alert.no>", "@info");
+			# User wants to wipe anyway
+			alert("ArchiDroid Detect", "<~archidroid.detect.pass.alert.yes>", "@info");
 			writetmpfile(
 				"archidroidwipe.prop",
 				"wipe=yes\n"
 			);
+		else
+			# User doesn't want to wipe
+			alert("ArchiDroid Detect", "<~archidroid.detect.pass.alert.no>", "@alert");
+			writetmpfile(
+				"archidroidwipe.prop",
+				"wipe=no\n"
+			);
 		endif;
+	else
+		# User doesn't have ArchiDroid, wipe is mandatory
+		alert("ArchiDroid Detect", "<~archidroid.detect.fail>", "@alert");
+		writetmpfile(
+			"archidroidwipe.prop",
+			"wipe=yes\n"
+		);
 	endif;
 endif;
 
