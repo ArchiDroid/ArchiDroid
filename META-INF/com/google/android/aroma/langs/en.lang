@@ -72,8 +72,9 @@ archidroid.detect.previouspreset.expert.fail.incompatible=Warning! Your old pres
 archidroid.detect.previouspreset.fail.incompatible=Sorry, your old preset failed integrity check. You can try expert mode if you know what you're doing
 archidroid.detect.previouspreset.fail.notavailable=Sorry, it seems like you don't have any old preset yet
 
-archidroid.experimental=
-archidroid.experimental.desc=
+archidroid.experimental=Experimental build
+archidroid.experimental.desc=Read this first!
+archidroid.experimental.terms.check=I understand that this build is not finished and may even brick my device
 
 archidroid.gapps.bksync.desc=
 archidroid.gapps.calendargoogle.desc=
@@ -90,9 +91,9 @@ archidroid.gapps.speech.desc=
 archidroid.gapps.street.desc=
 archidroid.gapps.youtube.desc=
 
-archidroid.hardswap.desc=
-archidroid.hardswap.size.0.desc=
-archidroid.hardswap.size.default.desc=
+archidroid.hardswap.desc=Sacrifice your I/O for more memory
+archidroid.hardswap.size.0.desc=This will remove hardswap file from the partition
+archidroid.hardswap.size.default.desc=Maximum recommended size
 
 archidroid.kernel=
 archidroid.kernel.archi.desc=

@@ -26,6 +26,10 @@
 # While using <Device> is in fact optional, admount.sh will fail if fstab doesn't provide this one
 # Therefore, providing <Device> argument is highly suggested
 
+ADMOUNTED() {
+	return "$(mount | grep -qi "$1"; echo $?)"
+}
+
 LOG="/dev/null" # You can enable logging if required by specifying path such as /tmp/admount.log
 
 exec 1>>"$LOG" # Append is used for logging all mount entries in the same file
@@ -38,10 +42,6 @@ if [[ -z "$1" ]]; then
 	echo "ERROR: Got: $*"
 	exit 1
 fi
-
-ADMOUNTED() {
-	return "$(mount | grep -qi "$1"; echo $?)"
-}
 
 echo "INFO: Mounting $2 on $1..."
 

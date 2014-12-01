@@ -24,24 +24,26 @@
 # Used by ArchiDroid for providing universal device-based paths
 # Usage: adumount.sh [Path] e.g. adumount.sh /storage/sdcard1
 
+ADMOUNTED() {
+	return "$(mount | grep -qi "$1"; echo $?)"
+}
+
 LOG="/tmp/adumount.log" # We can use /dev/null if not required
 
 exec 1>>"$LOG"
 exec 2>&1
 
-echo "INFO: $(basename "$0") called!"
-echo "INFO: Arguments: $*"
-
 # shellcheck disable=2039
 if [[ -z "$1" ]]; then
 	echo "ERROR: Wrong arguments!"
 	echo "ERROR: Expected: [Path]"
+	echo "ERROR: Got: $*"
 	exit 1
 fi
 
-ADMOUNTED() {
-	return "$(mount | grep -qi "$1"; echo $?)"
-}
+if [[ ! -d "$1" ]]; then
+	exit 0
+fi
 
 if ! ADMOUNTED "$1"; then
 	echo "SUCCESS: $1 is unmounted already!"
