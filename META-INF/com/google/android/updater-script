@@ -100,13 +100,8 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		ui_print("<b><#ff0000>RunOnce</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>$</#></b> Install mode detected");
 		run_program("/tmp/archidroid.sh", "INSTALL");
 	else
-		if file_getprop("/tmp/aroma-data/archidroidwipe.prop", "force") == "no" then
-			ui_print("<b><#ff0000>RunOnce</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>$</#></b> Update mode detected");
-			run_program("/tmp/archidroid.sh", "UPDATE");
-		else
-			ui_print("<b><#ff0000>RunOnce</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>$</#></b> Forced update mode detected");
-			run_program("/tmp/archidroid.sh", "UPDATE", "FORCE");
-		endif;
+		ui_print("<b><#ff0000>RunOnce</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>$</#></b> Update mode detected");
+		run_program("/tmp/archidroid.sh", "UPDATE");
 	endif;
 
 	delete("/tmp/archidroid.sh");
@@ -674,9 +669,9 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			package_extract_dir("_archidroid/apps/cooltool", "/");
 		endif;
 
-		if file_getprop("/tmp/aroma-data/archidroid.prop", "rootbrowser") == "1" then
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Root Browser");
-			package_extract_dir("_archidroid/apps/rootbrowser", "/");
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "esfileexplorer") == "1" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing ES File Explorer");
+			package_extract_dir("_archidroid/apps/esfileexplorer", "/");
 		endif;
 
 		set_progress(0.90);
