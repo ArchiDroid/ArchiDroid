@@ -49,7 +49,7 @@ writetmpfile(
 
 # Often edited settings
 setvar("preset_version", "22");
-ini_set("rom_date", "November XXth, 2014");
+ini_set("rom_date", "December XXth, 2014");
 
 # Settings
 theme("archidroid");
@@ -109,27 +109,24 @@ resexec("exec/admount.sh", "/preload", file_getprop("/tmp/aroma-data/device.prop
 resexec("exec/admount.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/device.prop", "extsd"));
 resexec("exec/admkdir.sh", getvar("adaroma"), "/tmp/archidroid");
 
-# Detect if this is external zip installation
-setvar("extsdinstall", resexec("exec/archidroid_detect_zip.sh"));
-
 viewbox(
 	#-- Title
 	"Welcome!",
 
 	#-- Text
-	"Hello master, root@ArchiDroid here. You are about to install <b><#selectbg_g>ArchiDroid</#></b> for your device.\n\n"+
+	"Hello master, root@ArchiDroid here. You are about to install <b>ArchiDroid</b> for your device.\n\n\n\n\n\n\n\n"+
 
-	"Device:\t\t\t<b><#selectbg_g>" + getvar("archidroid_device") + " (" + ini_get("rom_device") + ")" + "</#></b>\n"+
-	"Base:\t\t\t<b><#selectbg_g>" + getvar("archidroid_rom") + "</#></b>\n"+
-	"Version:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version") + "</#></b>\n"+
-	"Android:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version_android") + " (" + getvar("archidroid_version_android_number") + ")" + "</#></b>\n"+
-	"Type:\t\t\t<b><#selectbg_g>" + getvar("archidroid_version_type") + "</#></b>\n"+
-	"Released:\t\t<b><#selectbg_g>" + ini_get("rom_date") + "</#></b>\n\n"+
+	"<#selectbg_g>Device:\t\t\t</#><b><#3D5AFE>" + getvar("archidroid_device") + " (" + ini_get("rom_device") + ")" + "</#></b>\n"+
+	"<#selectbg_g>Base:\t\t\t</#><b><#3D5AFE>" + getvar("archidroid_rom") + "</#></b>\n"+
+	"<#selectbg_g>Version:\t\t\t</#><b><#3D5AFE>" + getvar("archidroid_version") + "</#></b>\n"+
+	"<#selectbg_g>Android:\t\t\t</#><b><#3D5AFE>" + getvar("archidroid_version_android") + " (" + getvar("archidroid_version_android_number") + ")" + "</#></b>\n"+
+	"<#selectbg_g>Type:\t\t\t</#><b><#3D5AFE>" + getvar("archidroid_version_type") + "</#></b>\n"+
+	"<#selectbg_g>Released:\t\t</#><b><#3D5AFE>" + ini_get("rom_date") + "</#></b>\n\n"+
 
-	"Press <b>Next</b> to continue the installation.",
+	"<#selectbg_g>Press <b>Next</b> to continue the installation</#>",
 
 	#-- Icon
-	"@welcome"
+	"@archidroid"
 );
 
 ini_set("transition_frame", "30"); # AROMA overrides this variable on first menu for some reason
@@ -185,7 +182,7 @@ agreebox(
 	"<~archidroid.tos.desc>",
 
 	#-- Icon
-	"@license",
+	"@agreement",
 
 	#-- Text Content
 	resread("tos.txt"),
@@ -197,7 +194,7 @@ agreebox(
 	"<~archidroid.common.terms.unchecked>"
 );
 
-if resexec("exec/archidroid_check_experimental.sh", getvar("archidroid_version_type")) == "0" then
+if resexec("exec/archidroid_check_stable.sh", getvar("archidroid_version_type")) != "0" then
 	agreebox(
 		#-- Title
 		"<~archidroid.experimental>",
@@ -206,16 +203,16 @@ if resexec("exec/archidroid_check_experimental.sh", getvar("archidroid_version_t
 		"<~archidroid.experimental.desc>",
 
 		#-- Icon
-		"@alert",
+		"@experimental",
 
 		#-- Text Content
 		resread("experimental.txt"),
 
 		#-- Checkbox Text
-		"<~terms.check>",
+		"<~archidroid.experimental.terms.check>",
 
 		#-- Unchecked Alert Message
-		"<~terms.unchecked>"
+		"<~archidroid.common.terms.unchecked>"
 	);
 endif;
 
@@ -227,7 +224,7 @@ textbox(
 	"<~archidroid.thirdparty.desc>",
 
 	#-- Icon
-	"@license",
+	"@agreement",
 
 	#-- Text Content
 	resread("thirdparty.txt")
@@ -236,7 +233,7 @@ textbox(
 form(
 	"<~archidroid.preset>",
 	"<~archidroid.custom.desc>",
-	"@apps",
+	"@customize",
 	"archidroidinstallmode.prop",
 
 	"preset", "<#selectbg_g><~archidroid.preset.group></#>", "", "group",
@@ -255,7 +252,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "reco
 	form(
 		"<~archidroid.preset.recovery>",
 		"<~archidroid.custom.desc>",
-		"@apps",
+		"@shell",
 		"archidroidrecovery.prop",
 
 		"recovery", "<#selectbg_g><~archidroid.preset.recovery></#>", "", "group",
@@ -413,7 +410,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 	form(
 		"ArchiDroid Hardswap",
 		"<~archidroid.hardswap.desc>",
-		"icons/apps",
+		"@apps",
 		"archidroidhardswap.prop",
 
 		"cache", "<#selectbg_g>Cache</#>", "", "group",
@@ -443,15 +440,15 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 
 	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "cache") != "current" then
 		resexec("exec/archidroid_hardswap.sh", "/cache", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "cache"));
-		textbox("ArchiDroid Partition Wizard", "", "@default", getvar("exec_buffer"));
+		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
 	endif;
 	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "preload") != "current" then
 		resexec("exec/archidroid_hardswap.sh", "/preload", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "preload"));
-		textbox("ArchiDroid Partition Wizard", "", "@default", getvar("exec_buffer"));
+		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
 	endif;
 	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1") != "current" then
 		resexec("exec/archidroid_hardswap.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1"));
-		textbox("ArchiDroid Partition Wizard", "", "@default", getvar("exec_buffer"));
+		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
 	endif;
 endif;
 
@@ -465,7 +462,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "reco
 		if confirm(
 			"ArchiDroid Detect",
 			"<~archidroid.detect.pass>",
-			"@info",
+			"@confirm",
 			"<~archidroid.detect.pass.yes>",
 			"<~archidroid.detect.pass.no>"
 		) == "yes" then
@@ -497,7 +494,7 @@ ini_set("text_next", "<~archidroid.common.flash>");
 viewbox(
 	"<~archidroid.prepinstall>",
 	"<~archidroid.prepinstall.desc>",
-	"@alert"
+	"@install"
 );
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
