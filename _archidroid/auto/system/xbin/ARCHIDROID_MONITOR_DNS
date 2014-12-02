@@ -27,6 +27,8 @@ ADTMPFS="$ADSYS/tmpfs"
 LOG="$AD/DNS.log"
 ADSTATUS="$ADTMPFS/ARCHIDROID_MONITOR_DNS"
 
+WAITFORNETD="3"
+
 exec 1>"$LOG"
 exec 2>&1
 
@@ -38,26 +40,47 @@ REGENERATE_RESOLV() {
 	} > "$ADTMPFS/resolv.conf"
 }
 
+RESET_DNSES() {
+	sleep "$WAITFORNETD" # Make sure that we're the last
+	local IFPROBE="$(busybox route | grep "default" | head -n 1 | awk '{print $NF}')"
+	if [[ ! -z "$IFPROBE" ]]; then
+		echo "$(date) Detected new network interface: $IFPROBE. Forwarding $IFPROBE DNS requests to 127.0.0.1!"
+		ndc resolver setifdns "$IFPROBE" "" "127.0.0.1"
+	else
+		# This should never happen
+		echo "$(date) WARNING: Could not detect default interface! Proxying all DNS requests to 127.0.0.1!"
+		for IF in $(getprop mobiledata.interfaces | tr ',' '\n'); do
+			ndc resolver setifdns "$IF" "" "127.0.0.1"
+		done
+	fi
+}
+
 MONITOR_DNS() {
 	DNS1="$(getprop net.dns1)"
 	DNS2="$(getprop net.dns2)"
-	REGENERATE_RESOLV
 	local CURDNS1="$DNS1"
 	local CURDNS2="$DNS2"
 	echo "$(date) Current DNSes: $DNS1, $DNS2"
+
+	REGENERATE_RESOLV
+	if [[ ! -z "$DNS1" ]]; then
+		RESET_DNSES
+	fi
+
 	while :; do
 		CURDNS1="$(getprop net.dns1)"
-		if [[ "$CURDNS1" != "$DNS1" ]]; then
+		if [[ "$CURDNS1" != "127.0.0.1" ]]; then
 			CURDNS2="$(getprop net.dns2)"
 			echo "$(date) Detected DNS change!"
 			echo "$(date) Previous: $DNS1, $DNS2"
 			echo "$(date) Current: $CURDNS1, $CURDNS2"
 			DNS1="$CURDNS1"
 			DNS2="$CURDNS2"
+			setprop "net.dns1" "127.0.0.1" # This is only for us to get notified from netd
 			REGENERATE_RESOLV
-			ARCHIDROID_INIT "RELOAD" "archidroid_dnsproxy2"
+			RESET_DNSES
 		fi
-		sleep 2
+		sleep 1
 	done
 }
 

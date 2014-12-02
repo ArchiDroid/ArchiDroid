@@ -55,7 +55,6 @@ ADSTOP() {
 		# Services
 		"ADBLOCK")
 			ADSTOP "archidroid_dnsmasq"
-			ADSTOP "archidroid_dnsproxy2"
 			ADSTOP "archidroid_pixelserv"
 			ndc resolver flushdefaultif >/dev/null 2>&1 # Flush DNS Cache
 			;;
@@ -87,9 +86,6 @@ ADSTOP() {
 			ADSTOP "DNS_MONITOR"
 			kill "$(pidof archidroid_dnsmasq)" >/dev/null 2>&1
 		;;
-		archidroid_dnsproxy2)
-			kill "$(pidof archidroid_dnsproxy2)" >/dev/null 2>&1
-		;;
 		archidroid_pixelserv)
 			kill "$(pidof archidroid_pixelserv)" >/dev/null 2>&1
 		;;
@@ -116,7 +112,6 @@ ADSTART() {
 		# Services
 		"ADBLOCK")
 			ADSTART "archidroid_dnsmasq"
-			ADSTART "archidroid_dnsproxy2"
 			ADSTART "archidroid_pixelserv"
 			;;
 		"DNS_MONITOR")
@@ -189,12 +184,6 @@ ADSTART() {
 				fi
 				echo "ADBLOCK: Activated archidroid_dnsmasq - local DNS server on 127.0.0.1:53, forwarding clean non-blocked traffic to specified DNS servers"
 				archidroid_dnsmasq $EXTRA -C /system/archidroid/etc/dnsmasq.conf # Yes, we must break on spaces in this case
-			fi
-		;;
-		"archidroid_dnsproxy2")
-			if [[ "$ADBLOCK" -eq 1 ]]; then
-				echo "ADBLOCK: Activated archidroid_dnsproxy2 - local proxy server, forwarding all DNS traffic to 127.0.0.1:53"
-				archidroid_dnsproxy2 -w 127.0.0.1 &
 			fi
 		;;
 		"archidroid_pixelserv")
