@@ -45,7 +45,7 @@ ADSTOP() {
 			ADSTOP "ADBLOCK"
 			ADSTOP "TMPFS"
 			ADSTOP "LOGCAT"
-			;;
+		;;
 
 		# Symlinks
 		"HOSTS") ADSTOP "ADBLOCK" ;;
@@ -54,10 +54,11 @@ ADSTOP() {
 
 		# Services
 		"ADBLOCK")
+			ADSTOP "DNS_MONITOR"
 			ADSTOP "archidroid_dnsmasq"
 			ADSTOP "archidroid_pixelserv"
 			ndc resolver flushdefaultif >/dev/null 2>&1 # Flush DNS Cache
-			;;
+		;;
 		"DNS_MONITOR")
 			rm -f "$ADTMPFS/ARCHIDROID_MONITOR_DNS"
 		;;
@@ -83,7 +84,6 @@ ADSTOP() {
 			kill "$(pidof archidroid_haveged)" >/dev/null 2>&1
 		;;
 		archidroid_dnsmasq)
-			ADSTOP "DNS_MONITOR"
 			kill "$(pidof archidroid_dnsmasq)" >/dev/null 2>&1
 		;;
 		archidroid_pixelserv)
@@ -102,7 +102,7 @@ ADSTART() {
 			ADSTART "HAVEGED"
 			ADSTART "FRANDOM"
 			ADSTART "ADBLOCK"
-			;;
+		;;
 
 		# Symlinks
 		"HOSTS") ADSTART "ADBLOCK" ;;
@@ -111,11 +111,16 @@ ADSTART() {
 
 		# Services
 		"ADBLOCK")
+			ADSTART "DNS_MONITOR"
 			ADSTART "archidroid_dnsmasq"
 			ADSTART "archidroid_pixelserv"
-			;;
+		;;
 		"DNS_MONITOR")
-			ARCHIDROID_MONITOR_DNS &
+			local EXTRA="--dnsproxy"
+			if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
+				EXTRA+=" --resolv"
+			fi
+			ARCHIDROID_MONITOR_DNS $EXTRA &
 		;;
 		"FRANDOM")
 			if [[ "$FRANDOM" -eq 1 ]]; then
@@ -173,12 +178,11 @@ ADSTART() {
 				fi
 				local EXTRA="--all-servers -x $ADTMPFS/DNSMASQ.PID"
 				if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
+					echo "ADBLOCK: Including local DNSes!"
 					if [[ "$ADBLOCKSTRICTORDER" -eq 1 ]]; then
 						echo "ADBLOCK: Strict order enabled!"
 						EXTRA+=" --strict-order"
 					fi
-					echo "ADBLOCK: Including local DNSes!"
-					ADSTART "DNS_MONITOR"
 				else
 					cp -p "/system/etc/resolv.conf" "$ADTMPFS/resolv.conf"
 				fi

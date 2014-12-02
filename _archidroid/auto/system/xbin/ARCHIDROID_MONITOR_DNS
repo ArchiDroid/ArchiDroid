@@ -27,12 +27,19 @@ ADTMPFS="$ADSYS/tmpfs"
 LOG="$AD/DNS.log"
 ADSTATUS="$ADTMPFS/ARCHIDROID_MONITOR_DNS"
 
+DNSPROXY=0
+RESOLV=0
+
 WAITFORNETD="3"
 
 exec 1>"$LOG"
 exec 2>&1
 
 REGENERATE_RESOLV() {
+	if [[ "$RESOLV" -eq 0 ]]; then
+		return 0
+	fi
+
 	{
 		echo "nameserver $DNS1"
 		echo "nameserver $DNS2"
@@ -41,6 +48,10 @@ REGENERATE_RESOLV() {
 }
 
 RESET_DNSES() {
+	if [[ "$DNSPROXY" -eq 0 ]]; then
+		return 0
+	fi
+
 	sleep "$WAITFORNETD" # Make sure that we're the last
 	local IFPROBE="$(busybox route | grep "default" | head -n 1 | awk '{print $NF}')"
 	if [[ ! -z "$IFPROBE" ]]; then
@@ -95,6 +106,14 @@ fi
 
 echo "$$" > "$ADSTATUS"
 trap 'kill $(jobs -p); rm -f "$ADSTATUS"' SIGINT SIGTERM EXIT
+
+# Parse ARGs
+for ARG in "$@"; do
+	case "$ARG" in
+		--dnsproxy|dnsproxy) DNSPROXY=1 ;;
+		--resolv|resolv) RESOLV=1 ;;
+	esac
+done
 
 MONITOR_DNS &
 
