@@ -136,24 +136,8 @@ form(
 	"lang.prop",
 
 	"language", "<#selectbg_g>Language</#>", "", "group",
-	"langs/al.lang", "Albanian", "Shqiptar", "select",
-	"langs/zh_CN.lang", "Chinese (Simplified)", "简化字", "select",
-	"langs/cr.lang", "Croatian", "Hrvatski", "select",
-	"langs/da.lang", "Danish", "Dansk", "select",
-	"langs/nl.lang", "Dutch", "Nederlands", "select",
 	"langs/en.lang", "English", "", "select.selected",
-	"langs/fi.lang", "Finnish", "Suomi", "select",
-	"langs/fr.lang", "French", "Français", "select",
-	"langs/de.lang", "German", "Deutsch", "select",
-	"langs/el.lang", "Greek", "ελληνικά", "select",
-	"langs/hu.lang", "Hungarian", "Magyar", "select",
-	"langs/it.lang", "Italian", "Italiano", "select",
-	"langs/fa.lang", "Persian", "فارسي", "select",
-	"langs/pl.lang", "Polish", "Polski", "select",
-	"langs/pt.lang", "Portuguese", "Português", "select",
-	"langs/ru.lang", "Russian", "Pусский", "select",
-	"langs/es.lang", "Spanish", "Español", "select",
-	"langs/tr.lang", "Turkish", "Türkçe", "select"
+	"langs/pl.lang", "Polish", "Polski", "select"
 );
 
 loadlang(file_getprop("/tmp/aroma-data/lang.prop", "language"));
@@ -174,16 +158,16 @@ textbox(
 
 agreebox(
 	#-- Title
-	"<~archidroid.tos>",
+	"<~archidroid.tou>",
 
 	#-- Subtitle / Description
-	"<~archidroid.tos.desc>",
+	"<~archidroid.common.terms.readme>",
 
 	#-- Icon
 	"@agreement",
 
 	#-- Text Content
-	resread("tos.txt"),
+	resread("tou.txt"),
 
 	#-- Checkbox Text
 	"<~archidroid.common.terms.check>",
@@ -198,7 +182,7 @@ if resexec("exec/archidroid_check_stable.sh", getvar("archidroid_version_type"))
 		"<~archidroid.experimental>",
 
 		#-- Subtitle / Description
-		"<~archidroid.experimental.desc>",
+		"<~archidroid.common.terms.readme>",
 
 		#-- Icon
 		"@experimental",
@@ -219,7 +203,7 @@ textbox(
 	"<~archidroid.thirdparty>",
 
 	#-- Subtitle / Description
-	"<~archidroid.thirdparty.desc>",
+	"<~archidroid.common.terms.readme>",
 
 	#-- Icon
 	"@agreement",

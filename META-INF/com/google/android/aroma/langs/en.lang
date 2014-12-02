@@ -24,7 +24,6 @@
 #   Language          : English
 #   By                : JustArchi
 #   E-mail (optional) : JustArchi@JustArchi.net
-#
 
 
 ### ArchiDroid strings
@@ -56,6 +55,7 @@ archidroid.common.density=Density
 archidroid.common.detected=Detected
 archidroid.common.none=None
 archidroid.common.terms.check=I agree with terms and conditions
+archidroid.common.terms.readme=Read this first!
 archidroid.common.terms.unchecked=Please check the agreement!
 
 archidroid.custom=Customize
@@ -73,77 +73,73 @@ archidroid.detect.previouspreset.fail.incompatible=Sorry, your old preset failed
 archidroid.detect.previouspreset.fail.notavailable=Sorry, it seems like you don't have any old preset yet
 
 archidroid.experimental=Experimental build
-archidroid.experimental.desc=Read this first!
 archidroid.experimental.terms.check=I understand that this build is not finished and may even brick my device
 
-archidroid.gapps.bksync.desc=
-archidroid.gapps.calendargoogle.desc=
-archidroid.gapps.calsync.desc=
-archidroid.gapps.core.desc=
-archidroid.gapps.faceunlock.desc=
-archidroid.gapps.gmail.desc=
-archidroid.gapps.googleplus.desc=
-archidroid.gapps.googletts.desc=
-archidroid.gapps.hangouts.desc=
-archidroid.gapps.maps.desc=
-archidroid.gapps.search.desc=
-archidroid.gapps.speech.desc=
-archidroid.gapps.street.desc=
-archidroid.gapps.youtube.desc=
+archidroid.gapps.bksync.desc=Provides bookmark sync function for Google Chrome
+archidroid.gapps.calendargoogle.desc=Replaces stock calendar. Extends standard calendar with google account integration and other features
+archidroid.gapps.calsync.desc=Provides calendar sync function for Google Calendar
+archidroid.gapps.core.desc=Provides core Google Apps functionality. Includes Google's mobile services, framework, store and other required components. Mandatory for all google apps
+archidroid.gapps.faceunlock.desc=Provides face unlock feature, which can be activated in lockscreen options after installation
+archidroid.gapps.gmail.desc=A mail client designed to work with Gmail service. Includes integration with google account, mail synchronization and more
+archidroid.gapps.googleplus.desc=A social networking client designed to work with Google Plus service. If you're using Google Plus, you may want to select this
+archidroid.gapps.googletts.desc=TTS stands for Text-To-Speech. Absolutely required if you wish to hear written text, e.g. during gps navigation
+archidroid.gapps.hangouts.desc=Hangouts client - features support for gmail "messages", also may act as optional SMS/MMS app
+archidroid.gapps.maps.desc=A maps client designed to work with Google Maps service. Features built-in navigation support and other functions
+archidroid.gapps.search.desc=A search client designed to work with Google service. This package also includes Google Voice, so it's mandatory if you want to use e.g. voice commands in Google Launcher
+archidroid.gapps.speech.desc=Provides Google Voice components. Mandatory if you want to use Google Voice
+archidroid.gapps.street.desc=A street view client designed to work with Google Street View. Select this if you want to extend Google Maps with additional functionality
+archidroid.gapps.youtube.desc=A video client designed to work with YouTube service. If you wish to watch YouTube videos on your phone without using the browser, this is mandatory
 
 archidroid.hardswap.desc=Sacrifice your I/O for more memory
 archidroid.hardswap.size.0.desc=This will remove hardswap file from the partition
 archidroid.hardswap.size.default.desc=Maximum recommended size
 
-archidroid.kernel=
-archidroid.kernel.archi.desc=
-archidroid.kernel.stock.desc=
+archidroid.kernel=Kernel
+archidroid.kernel.archi.desc=Features perfect synergy with ArchiDroid, deep optimizations, up-to-date sources and many improvements. Highly recommended
+archidroid.kernel.stock.desc=Kernel provided by the base system
 
-archidroid.keyboard=
-archidroid.keyboard.google.desc=
-archidroid.keyboard.stock.desc=
+archidroid.keyboard=Keyboard
+archidroid.keyboard.google.desc=Features gesture-typing, text expansion, optional pc layout and other improvements over standard AOSP keyboard
+archidroid.keyboard.stock.desc=Keyboard provided by the base system
 
-archidroid.launcher=
-archidroid.launcher.google.desc=
-archidroid.launcher.nova.desc=
-archidroid.launcher.stock.desc=
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Features perfect integration with other Google apps, e.g. Search, which allows you to use voice commands from the home screen
+archidroid.launcher.nova.desc=Highly customizable, performance driven, home screen replacement for Android
+archidroid.launcher.stock.desc=Launcher provided by the base system
 
-archidroid.preset=
-archidroid.preset.barebones=
-archidroid.preset.barebones.desc=
-archidroid.preset.custom=
-archidroid.preset.custom.desc=
-archidroid.preset.group=
-archidroid.preset.previous=
-archidroid.preset.previous.desc=
-archidroid.preset.previousexpert=
-archidroid.preset.previousexpert.desc=
+archidroid.preset=Preset
+archidroid.preset.barebones=Bare Bones
+archidroid.preset.barebones.desc=This option flashes the base ROM only. Suggested for debugging only, you'll miss most of the ArchiDroid goodies
+archidroid.preset.custom=Customize
+archidroid.preset.custom.desc=Select this option if you wish to customize every aspect of your ArchiDroid prior to flashing. Recommended
+archidroid.preset.previous=Previous Breset
+archidroid.preset.previous.desc=If you already customized your installation before, this option loads and uses your old preset
+archidroid.preset.previousexpert=Previous Preset Expert
+archidroid.preset.previousexpert.desc=Same as previous preset above, but expert mode doesn't force compatibility checks and allows you to make modifications to your old preset prior to flashing. Warning: be careful, incompatible preset may become unflashable
 archidroid.preset.recovery=Recovery
-archidroid.preset.recovery.desc=
+archidroid.preset.recovery.desc=Select this option if you want/need to update recovery prior to flashing ArchiDroid
 
-archidroid.preview=
-archidroid.preview.desc=
+archidroid.preview=Preview
+archidroid.preview.desc=When selected, you'll see a sample of your selection on the next screen
 
-archidroid.recovery.twrp.desc=
+archidroid.recovery.twrp.desc=Custom recovery built with ease of use and customization in mind. Widely supported, with cutting-edge development
 
-archidroid.superuser.chainfire.desc=
-archidroid.superuser.koush.desc=
-archidroid.superuser.none.desc=
+archidroid.superuser.chainfire.desc=Closed-source, modern solution for stock ROMs and users, who prefer superuser access management tool of the future
+archidroid.superuser.koush.desc=Open-source, built-in superuser access management.
+archidroid.superuser.none.desc=No superuser, this option disables root access. You can use this option for extra security
 
-archidroid.thirdparty=
-archidroid.thirdparty.desc=
+archidroid.thirdparty=Third-Party Agreement
 
-archidroid.tos=
-archidroid.tos.desc=
+archidroid.tou=Terms of Use
 
-archidroid.tweaks.cellbroadcasts=
-archidroid.tweaks.cellbroadcasts.desc=
-archidroid.tweaks.navibar=
-archidroid.tweaks.navibar.desc=
+archidroid.tweaks.cellbroadcasts=Cell broadcasts
+archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts are designed for simultaneous delivery to multiple users in a specified area. Often they're used for spam purposes. Select only if you need them
+archidroid.tweaks.navibar=Navigation bar
+archidroid.tweaks.navibar.desc=Turns on navigation bar, and disables hardware keys (back, home, menu). Select if you prefer to have on-screen navigation
 
-archidroid.xposed.desc=
-archidroid.xposed.gravitybox.desc=
-archidroid.xposed.xprivacy.desc=
+archidroid.xposed.desc=Xposed Framework allows various third-party modules to make framework changes on-the-fly, without modification of system files. Highly recommended
+archidroid.xposed.gravitybox.desc=All-In-One Xposed module that contains a hundred of framework modifications, which can be 
+archidroid.xposed.xprivacy.desc=If you like to protect your privacy, this module is for you. With this app you'll be able to precisely specify permissions for every installed app
 
 
 ### AROMA strings
