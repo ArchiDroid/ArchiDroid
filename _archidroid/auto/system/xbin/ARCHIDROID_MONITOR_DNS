@@ -62,6 +62,7 @@ MONITOR_DNS() {
 	local CURDNS2="$DNS2"
 	echo "$(date) Current DNSes: $DNS1, $DNS2"
 
+	setprop "net.dns1" "127.0.0.1" # This is only for us to get notified from netd
 	REGENERATE_RESOLV
 	if [[ ! -z "$DNS1" ]]; then
 		RESET_DNSES
