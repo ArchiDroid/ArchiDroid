@@ -136,13 +136,13 @@ form(
 	"lang.prop",
 
 	"language", "<#selectbg_g>Language</#>", "", "group",
-	"langs/en.lang", "English", "", "select.selected",
-	"langs/fr.lang", "French", "Français", "select",
-	"langs/it.lang", "Italian", "Italiano", "select",
-	"langs/pl.lang", "Polish", "Polski", "select"
+	"en.lang", "English", "", "select.selected",
+	"fr.lang", "French", "Français", "select",
+	"it.lang", "Italian", "Italiano", "select",
+	"pl.lang", "Polish", "Polski", "select"
 );
 
-loadlang(file_getprop("/tmp/aroma-data/lang.prop", "language"));
+loadlang("langs/" + file_getprop("/tmp/aroma-data/lang.prop", "language"));
 
 textbox(
 	#-- Title
