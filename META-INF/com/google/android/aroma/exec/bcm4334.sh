@@ -56,6 +56,7 @@ DETECT_BCM() {
 			"88:30:8a"*) BCMPROBE="murata" ;;
 			"f0:27:65"*) BCMPROBE="murata" ;;
 			# Semcosh
+			"38:aa:3c"*) BCMPROBE="semcosh" ;;
 			"5c:0a:5b"*) BCMPROBE="semcosh" ;;
 			"cc:3a:61"*) BCMPROBE="semcosh" ;;
 		esac
