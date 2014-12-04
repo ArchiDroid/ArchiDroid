@@ -84,7 +84,7 @@ archidroid.gapps.gmail.desc=Un client email conçu pour fonctionner avec le serv
 archidroid.gapps.googleplus.desc=Un client de réseau social conçu pour fonctionner avec le service Google Plus. Si vous utilisez Google Plus, vous voulez probablement le selectionner.
 archidroid.gapps.googletts.desc=TTS signifie Text-To-Speech ou synthèse vocale. Requis si vous voulez entendre du texte écrit, par ex. durant la navigation GPS.
 archidroid.gapps.hangouts.desc=Client Hangouts - inclut le support des "messages" Gmail, peut aussi être utilisé comme app optionnelle pour SMS/MMS
-archidroid.gapps.maps.desc=Un client de carte géographiques conçu pour fonctionner avec le service Google Maps. Inclut le support de navigation et autres fonctions.
+archidroid.gapps.maps.desc=Un client de cartes géographiques conçu pour fonctionner avec le service Google Maps. Inclut le support de navigation et autres fonctions.
 archidroid.gapps.search.desc=Un client de recherche conçu pour fonctionner avec le service Google. Ce paquet inclut aussi Google Voice, il est donc obligatoire pour l'utilisation, par ex., des commandes vocales du Google Launcher
 archidroid.gapps.speech.desc=Fournit les composants Google Voice. Obligatoire pour l'utilisation de Google Voice.
 archidroid.gapps.street.desc=Un client street view conçu pour fonctionner avec Google Street View. Sélectionnez si vous voulez ajouter des fonctionnalités à Google Maps
@@ -99,8 +99,8 @@ archidroid.kernel.archi.desc=Parfaite synergie avec ArchiDroid, optimisé en pro
 archidroid.kernel.stock.desc=Kernel (noyau) fournit par le système de base
 
 archidroid.keyboard=Clavier
-archidroid.keyboard.google.desc=Possède les fonctionnalités de saisie gestuelle, expansion de texte, disposition de clavier pc optionnelle et d'autres amélioration par rapport au clavier AOSP standard
-archidroid.keyboard.stock.desc=Clavier fournit par le système de base
+archidroid.keyboard.google.desc=Possède les fonctionnalités de saisie gestuelle, d'expansion de texte, de disposition de clavier pc optionnelle et d'autres amélioration par rapport au clavier AOSP standard
+archidroid.keyboard.stock.desc=Clavier fourni par le système de base
 
 archidroid.launcher=Launcher (Lanceur)
 archidroid.launcher.google.desc=Intégration parfaite avec les autres Google apps, par ex. Recherche, qui vous permet d'utiliser les commandes vocales depuis l'écran d'accueil
@@ -111,7 +111,7 @@ archidroid.preset=Configuration
 archidroid.preset.barebones=Strict Minimum
 archidroid.preset.barebones.desc=Cette option flash la ROM de base uniquement. Conseillé uniquement pour du debugging, vous passerez à côté de la majorité des amélioration d'ArchiDroid
 archidroid.preset.custom=Personnaliser
-archidroid.preset.custom.desc=Sélectionnez cette option si vous voulez personnaliser tous les aspect de votre ArchiDroid avant l'installation. Recommandé
+archidroid.preset.custom.desc=Sélectionnez cette option si vous voulez personnaliser tous les aspects de votre ArchiDroid avant l'installation. Recommandé
 archidroid.preset.previous=Configuration Précédente
 archidroid.preset.previous.desc=Si vous avez déjà personnalisé votre installation auparavant, cette option charge et utilise votre ancienne configuration
 archidroid.preset.previousexpert=Configuration Précédente Expert
@@ -120,9 +120,9 @@ archidroid.preset.recovery=Recovery
 archidroid.preset.recovery.desc=Sélectionnez cette option si vous devez/voulez mettre à jour votre recovery avant l'installation d'ArchiDroid
 
 archidroid.preview=Aperçu
-archidroid.preview.desc=En sélectionnant ceci, vous verrez un exemple de votre sélectionner à la page suivante
+archidroid.preview.desc=En sélectionnant ceci, vous verrez un exemple de votre sélection à la page suivante
 
-archidroid.recovery.twrp.desc=Recovery alternative conçue pour être personnalisable et une utilisation facile. Grande compatibilité, à la pointe du développement
+archidroid.recovery.twrp.desc=Recovery alternative conçue pour être personnalisable et pour une utilisation facile. Grande compatibilité, à la pointe du développement
 
 archidroid.superuser.chainfire.desc=Propriétaire, solution moderne pour les ROMs de base et leurs utilisateurs, qui préfèrent un outil de gestion des accès superutilisateur du futur
 archidroid.superuser.koush.desc=Open-source, gestion des accès superutilisateur intégrée
@@ -137,7 +137,7 @@ archidroid.tweaks.cellbroadcasts.desc=La diffusion cellulaire est faite pour un 
 archidroid.tweaks.navibar=Barre de navigation
 archidroid.tweaks.navibar.desc=Active la barre de navigation, et désactive les touches matérielles (retour, accueil, menu). Selectionnez si vous préférez avoir la navigation sur l'écran tactile
 
-archidroid.xposed.desc=Le Framework Xposed permet à divers modules tiers d'effectuer des modifications du framework à la volée, sans modifications des fichiers du système. Hautement recommendé
+archidroid.xposed.desc=Le Framework Xposed permet à divers modules tiers d'effectuer des modifications du framework à la volée, sans modifications des fichiers du système. Hautement recommandé
 archidroid.xposed.gravitybox.desc=Module Xposed tout-en-un contenant une centaine de modifications du framework
 archidroid.xposed.xprivacy.desc=Si vous désirez protéger vie privée, ce module est pour vous. Avec cette app vous serez en mesure de spécifier précisément les permissions de chaque app installée
 
