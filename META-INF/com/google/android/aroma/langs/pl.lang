@@ -21,45 +21,45 @@
 #
 ### LANGUAGE STRING RESOURCE FILE
 #
-#   Language          : English
+#   Language          : Polish
 #   By                : JustArchi
 #   E-mail (optional) : JustArchi@JustArchi.net
 
 
 ### ArchiDroid strings
-archidroid.apps.cooltool.desc=Highly customizable app that shows you useful information about your device (e.g. CPU usage) on the top
-archidroid.apps.esfileexplorer.desc=Very good file manager replacement for android
-archidroid.apps.greenify.desc=Saves battery by hibernating background apps when you're not using them
-archidroid.apps.lmt.desc=Enhances your device with PIE functionality, gestures support and more
-archidroid.apps.mxplayer.desc=Hardware-accelerated video player for android
-archidroid.apps.spiritfm.desc=Real, tuned, over-the-air FM radio app. Does not require internet access
-archidroid.apps.titaniumbackup.desc=A core app for every rooted user. Let's you backup/restore apps and their data on the fly
+archidroid.apps.cooltool.desc=Ogromnie elastyczna aplikacja pokazująca stan twojego urządzenia (np. użycie CPU) na górze ekranu
+archidroid.apps.esfileexplorer.desc=Bardzo dobry zamiennik menadżera plików dla androida
+archidroid.apps.greenify.desc=Oszczędza baterię poprzez hibernację nieużywanych aplikacji działających w tle
+archidroid.apps.lmt.desc=Ulepsza system o funkcjonalność PIE, wsparcie dla gestów oraz inne możliwości
+archidroid.apps.mxplayer.desc=Sprzętowo akcelerowany odtwarzacz wideo dla androida
+archidroid.apps.spiritfm.desc=Prawdziwe, dostrojone radio FM. Nie wymaga połączenia z internetem
+archidroid.apps.titaniumbackup.desc=Obowiązkowa aplikacja dla każdego zrootowanego użytkownika. Pozwala na kopiowanie oraz przywracanie aplikacji i ich danych w mgnieniu oka
 
-archidroid.bcm=BCM profiling
-archidroid.bcm.archidetect.desc=ArchiDetect tries to detect proper firmware for your device automatically
+archidroid.bcm=Profilowanie BCM
+archidroid.bcm.archidetect.desc=ArchiDetect stara się wykryć potrzebny firmware dla twojego urządzenia automatycznie
 
-archidroid.bootanimation=Bootanimation
-archidroid.bootanimation.archi1.desc=First ArchiDroid bootanimation, from 1.X times
-archidroid.bootanimation.archi2.desc=Second ArchiDroid bootanimation, from 2.X times
-archidroid.bootanimation.archi3.desc=Third ArchiDroid bootanimation, from 3.X times
-archidroid.bootanimation.logcat.desc=Live logcat log instead of bootanimation, powered by logcat lite app
-archidroid.bootanimation.none.desc=No bootanimation, for slightly faster boot
-archidroid.bootanimation.stock.desc=Bootanimation provided by the base system
+archidroid.bootanimation=Animacja startowa
+archidroid.bootanimation.archi1.desc=Pierwsza ArchiDroida animacja startowa, pochodzaca z czasów 1.X
+archidroid.bootanimation.archi2.desc=Druga ArchiDroida animacja startowa, pochodzaca z czasów 1.X
+archidroid.bootanimation.archi3.desc=Trzecia ArchiDroida animacja startowa, pochodzaca z czasów 1.X
+archidroid.bootanimation.logcat.desc=Zastępuje animację startową logcatem, dzięki wsparciu aplikacji logcat lite
+archidroid.bootanimation.none.desc=Brak animacji startowej, dla odrobinę szybszego czasu ładowania systemu
+archidroid.bootanimation.stock.desc=Animacja startowa dostarczona przez system bazowy
 
-archidroid.changelog=Changelog
-archidroid.changelog.desc=What's new
+archidroid.changelog=Lista zmian
+archidroid.changelog.desc=Co nowego
 
-archidroid.common.current=Current
-archidroid.common.default=Default value
-archidroid.common.density=Density
-archidroid.common.detected=Detected
-archidroid.common.none=None
-archidroid.common.terms.check=I agree with terms and conditions
-archidroid.common.terms.readme=Read this first!
-archidroid.common.terms.unchecked=Please check the agreement!
+archidroid.common.current=Aktualnie
+archidroid.common.default=Wartość domyślna
+archidroid.common.density=Głębia ekranu
+archidroid.common.detected=Wykryto
+archidroid.common.none=Brak
+archidroid.common.terms.check=Zgadzam się z tymi warunkami
+archidroid.common.terms.readme=Czytaj mnie!
+archidroid.common.terms.unchecked=Musisz potwierdzić licencję!
 
-archidroid.custom=Customize
-archidroid.custom.desc=Modify settings as you please
+archidroid.custom=Dostosowywanie
+archidroid.custom.desc=Zmodifykuj poniższe ustawienia jak sobie życzysz
 
 archidroid.detect.fail=ArchiDroid could not detect itself currently flashed, therefore a data wipe (factory reset) is mandatory. ArchiDroid will clean your /data partition prior to flashing. Your internal sd card content is safe!
 archidroid.detect.pass=ArchiDroid successfully detected itself being currently flashed. Would you like to wipe your data regardless?
@@ -128,9 +128,9 @@ archidroid.superuser.chainfire.desc=Closed-source, modern solution for stock ROM
 archidroid.superuser.koush.desc=Open-source, built-in superuser access management.
 archidroid.superuser.none.desc=No superuser, this option disables root access. You can use this option for extra security
 
-archidroid.thirdparty=Third-Party Agreement
+archidroid.thirdparty=Licencja aplikacji trzecich
 
-archidroid.tou=Terms of Use
+archidroid.tou=Warunki używania
 
 archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts are designed for simultaneous delivery to multiple users in a specified area. Often they're used for spam purposes. Select only if you need them
@@ -143,14 +143,14 @@ archidroid.xposed.xprivacy.desc=If you like to protect your privacy, this module
 
 
 ### AROMA strings
-text_about=About
-text_back=Back
-text_calibrating=Calibrating tools
-text_next=Next
-text_no=No
+text_about=O programie
+text_back=Wstecz
+text_calibrating=Narzędzia kalibracyjne
+text_next=Dalej
+text_no=Nie
 text_ok=OK
-text_quit_msg=Are you sure to quit the installer?
-text_quit=Quit installation
-text_yes=Yes
+text_quit_msg=Jesteś pewny, że chcesz przerwać instalację?
+text_quit=Przerwij instalację
+text_yes=Tak
 
 ### End of file
