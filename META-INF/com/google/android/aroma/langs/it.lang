@@ -23,7 +23,7 @@
 #
 #   Language          : Italian
 #   By                : ste22032
-#   E-mail (optional) : 
+#   E-mail (optional) : stefano22032@gmail.com
 
 
 ### ArchiDroid strings
@@ -61,8 +61,8 @@ archidroid.common.terms.unchecked=Si prega di accettare l'accordo!
 archidroid.custom=Personalizzazione
 archidroid.custom.desc=Modificare queste impostazioni a proprio piacimento
 
-archidroid.detect.fail=ArchiDroid non è in grado di rilevare se è stata flashata correttamente, quindi il wipe data (reset di fabbrica) è obbligatorio. ArchiDroid pulirà la partizione /data prima del flash. Il contenuto della memoria interna è al sicuro!
-archidroid.detect.pass=ArchiDroid ha rilevato di essere stata flashata correttamente. Si vuole eseguire il wipe data a prescindere?
+archidroid.detect.fail=ArchiDroid non è in grado di rilevare se stessa in esecuzione, quindi il wipe data (reset di fabbrica) è obbligatorio. ArchiDroid pulirà la partizione /data prima del flash. Il contenuto della memoria interna è al sicuro!
+archidroid.detect.pass=ArchiDroid ha correttamente rilevato se stessa in esecuzione. Si vuole eseguire il wipe data a prescindere?
 archidroid.detect.pass.no=No, non eseguire il wipe data
 archidroid.detect.pass.yes=Si, esegui il wipe data
 archidroid.detect.pass.alert.no=Va bene, ma si tenga presente che la ROM potrebbe non funzionare propriamente con dati incompatibili!
@@ -115,7 +115,7 @@ archidroid.preset.custom.desc=Selezionare questa opzione se si desidera personal
 archidroid.preset.previous=Vecchie Impostazioni
 archidroid.preset.previous.desc=Se l'installazione è già stata personalizzata in precedenza, questa opzione carica ed utilizza il vecchio preset
 archidroid.preset.previousexpert=Vecchie Impostazioni per Esperti
-archidroid.preset.previousexpert.desc=Funziona allo stesso modo delle vecchie impostazioni sopra, ma la modalità esperto non forza i controlli di compatibilità e permette di apportare modifiche al preset prima del flash. Avvertimento: prestare attenzione, preset di installazione incompatibili possono diventare non flashabili
+archidroid.preset.previousexpert.desc=Funziona allo stesso modo delle vecchie impostazioni sopra, ma la modalità esperto non forza i controlli di compatibilità e permette di apportare modifiche al preset prima del flash. Avvertimento: prestare attenzione, preset di installazione incompatibili possono risultare non flashabili
 archidroid.preset.recovery=Recovery
 archidroid.preset.recovery.desc=Selezionare questa opzione se si vuole o si ha la necessità di aggiornare la recovery prima del flash della ArchiDroid
 
