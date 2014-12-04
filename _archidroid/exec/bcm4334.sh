@@ -28,12 +28,19 @@ case "$BCM" in
 			if [[ -f "/tmp/archidroid/bcm4334" ]]; then
 				BCM="$(cat "/tmp/archidroid/bcm4334")"
 				rm -f "/tmp/archidroid/bcm4334"
+			else
+				exit 0
 			fi
 			;;
 esac
 
 if [[ ! -z "$BCM" && -f "/system/bin/bcm4334.hcd" && -f "/system/bin/bcm4334_$BCM.hcd" ]]; then
 	cp -p "/system/bin/bcm4334_$BCM.hcd" "/system/bin/bcm4334.hcd"
+	if [[ ! -f "/data/.cid.info" ]]; then
+		printf "$BCM" > "/data/.cid.info"
+		chmod 666 "/data/.cid.info"
+		chown 1000:1000 "/data/.cid.info"
+	fi
 else
 	exit 0
 fi
