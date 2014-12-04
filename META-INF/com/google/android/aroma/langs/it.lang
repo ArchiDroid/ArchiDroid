@@ -65,7 +65,7 @@ archidroid.detect.fail=ArchiDroid non rilevata sul device, il wipe data (reset d
 archidroid.detect.pass=ArchiDroid rilevata sul device. Eseguire il wipe data a prescindere?
 archidroid.detect.pass.no=No, non eseguire il wipe data
 archidroid.detect.pass.yes=Si, esegui il wipe data
-archidroid.detect.pass.alert.no=Va bene, ma tenere in conto che la ROM potrebbe non funzionare propriamente con dati incompatibili!
+archidroid.detect.pass.alert.no=D'accordo, ma tenere in conto che la ROM potrebbe non funzionare propriamente con dati incompatibili!
 archidroid.detect.pass.alert.yes=Buona scelta, ArchiDroid farà in modo che la partizione /data venga pulita prima del flash!
 
 archidroid.detect.previouspreset.expert.fail.incompatible=Avvertimento! Il controllo di integrità del vecchio preset è fallito. Assicurarsi che le opzioni scelte siano valide!
