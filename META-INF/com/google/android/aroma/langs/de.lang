@@ -47,7 +47,7 @@ archidroid.bootanimation.none.desc=Keine Startanimation, für etwas schnellere S
 archidroid.bootanimation.stock.desc=Standard Startanimation des Basissystems 
 
 archidroid.changelog=Changelog
-archidroid.changelog.desc=Was neu ist
+archidroid.changelog.desc=Das gibt's neues
 
 archidroid.common.current=Aktuell
 archidroid.common.default=Standardwert
@@ -56,16 +56,16 @@ archidroid.common.detected=Erkannt
 archidroid.common.none=Nichts
 archidroid.common.terms.check=Ich stimme mit den Nutzungsbedingungen überein.
 archidroid.common.terms.readme=Lies das zuerst!
-archidroid.common.terms.unchecked=Bitte überprüfen Sie die Vereinbarung!
+archidroid.common.terms.unchecked=Bitte überprüfe die Vereinbarung!
 
 archidroid.custom=Anpassen
-archidroid.custom.desc=Modifizieren Sie die Einstellungen nach Belieben
+archidroid.custom.desc=Modifiziere die Einstellungen nach deinem Belieben
 
-archidroid.detect.fail=ArchiDroid konnte sich nicht als derzeit installiert identifizieren, daher ist eine Datenlöschung (Factory Reset) zwingend erforderlich. ArchiDroid wird Ihre /data Partition vor dem Flashen löschen. Dein interner SD-Karten Inhalt ist sicher!
-archidroid.detect.pass=ArchiDroid entdeckte erfolgreich zurzeit installiert zu sein. Möchtest du deine Daten trotzdem löschen?
-archidroid.detect.pass.no=Nein, lösche meine alten Daten nicht
-archidroid.detect.pass.yes=Ja, lösche meine alten Daten
-archidroid.detect.pass.alert.no=In Ordnung, aber bedenke, dass die ROM möglicherweise nicht richtig mit inkompatiblen Daten arbeitet!
+archidroid.detect.fail=ArchiDroid hat sich nicht als derzeit installiert gefunden, daher ist eine Datenlöschung (Factory Reset) zwingend erforderlich. ArchiDroid wird Ihre /data Partition vor dem Flashen löschen. Dein interner SD-Karten Inhalt ist sicher!
+archidroid.detect.pass=ArchiDroid entdeckte, zurzeit erfolgreich installiert zu sein. Möchtest du deine alten Daten (/data Partition) trotzdem löschen?
+archidroid.detect.pass.no=Nein, alte Daten nicht löschen!
+archidroid.detect.pass.yes=Ja, alte Daten löschen!
+archidroid.detect.pass.alert.no=In Ordnung. Aber bedenke, dass die ROM möglicherweise nicht richtig mit inkompatiblen Daten arbeitet!
 archidroid.detect.pass.alert.yes=Gute Entscheidung, ArchiDroid wird sicherstellen, dass /data vor dem Flashen sauber ist!
 
 archidroid.detect.previouspreset.expert.fail.incompatible=Warnung! Deine alten Voreinstellungen sind an der Integritätsprüfung gescheitert. Stelle sicher, dass deine gewählten Optionen gültig sind!
@@ -73,7 +73,7 @@ archidroid.detect.previouspreset.fail.incompatible=Sorry, deine alten Voreinstel
 archidroid.detect.previouspreset.fail.notavailable=Sorry, es scheint, als hättest du noch keine alten Voreinstellungen
 
 archidroid.experimental=Experimentelles Build
-archidroid.experimental.terms.check=Ich verstehe, dass dieses Build noch nicht fertig ist und das Gerät sogar bricken kann
+archidroid.experimental.terms.check=Ich verstehe, dass dieses Build noch nicht fertig ist und dass es das Gerät sogar bricken kann!
 
 archidroid.gapps.bksync.desc=Stellt Lesezeichen Sync-Funktion für Google Chrome zur Verfügung
 archidroid.gapps.calendargoogle.desc=Ersetzt den Standard-Kalender. Erweitert Standard-Kalender mit Google Account Integration und anderen Funktionen
@@ -82,7 +82,7 @@ archidroid.gapps.core.desc=Stellt Kern Google Apps-Funktionalität zur Verfügun
 archidroid.gapps.faceunlock.desc=Stellt Gesichts-Unlock-Funktion zur Verfügung, die in den Lockscreen Optionen nach der Installation aktiviert werden können
 archidroid.gapps.gmail.desc=Ein Mail-Client, entwickelt, um mit Google Mail-Service zu arbeiten. Umfasst die Integration mit dem Google-Konto, E-Mail-Synchronisation und mehr
 archidroid.gapps.googleplus.desc=Ein Social-Networking-Client, entwickelt, um mit Google Plus-Service zu arbeiten. Wenn du Google Plus benutzt, solltest du diese Option wählen
-archidroid.gapps.googletts.desc=TTS steht für Text-To-Speech. Absolut erforderlich, wenn Sie z.B. während der GPS-Navigation geschriebenen Text hören wollen
+archidroid.gapps.googletts.desc=TTS steht für Text-To-Speech. Absolut erforderlich, wenn du z.B. während der GPS-Navigation geschriebenen Text hören willst
 archidroid.gapps.hangouts.desc=Hangouts Client – bietet auch Unterstützung von GMail "Nachrichten", kann auch als optionale SMS/MMS-Anwendung agieren
 archidroid.gapps.maps.desc=Ein Karten-Client, entwickelt, um mit Google Maps-Service zu arbeiten. Verfügt über integrierte Navigationsunterstützung und andere Funktionen
 archidroid.gapps.search.desc=Eine Such Client, entwickelt, um mit Google-Diensten zu arbeiten. Dieses Paket enthält auch Google Voice, also ist es zwingend erforderlich, wenn du z.B. Sprachbefehle im Google Launcher verwenden möchtest
@@ -126,7 +126,7 @@ archidroid.recovery.twrp.desc=Custom Recovery entwickelt mit einfacher Bedienung
 
 archidroid.superuser.chainfire.desc=Closed-Source, moderne Lösung für Stock-ROMs und Nutzer, welche DAS Superuser-Zugriffs-Management-Tool der Zukunft bevorzugen
 archidroid.superuser.koush.desc=Open-Source, integriertes Superuser-Zugriffs-Management.
-archidroid.superuser.none.desc=Kein Superuser, diese Option deaktiviert Root-Zugriff. Sie können diese Option für zusätzliche Sicherheit verwenden
+archidroid.superuser.none.desc=Kein Superuser, diese Option deaktiviert Root-Zugriff. Du könntest diese Option für zusätzliche Sicherheit verwenden
 
 archidroid.thirdparty=Drittanbieter-Vereinbarung
 
