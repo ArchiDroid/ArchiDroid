@@ -4,21 +4,20 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Lukasz "JustArchi" Domeradzki
-# Kontakt: JustArchi@JustArchi.net
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
 #
-# Lizenziert gemäß Apache Licence Version 2.0 (die „Lizenz“); 
-# Nutzung dieser Datei nur in Übereinstimmung mit der Lizenz erlaubt.
-# Eine Kopie der Lizenz erhalten Sie auf 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
-# Sofern nicht gemäß geltendem Recht vorgeschrieben oder schriftlich
-# vereinbart, erfolgt die Bereitstellung der im Rahmen der Lizenz 
-# verbreiteten Software OHNE GEWÄHR ODER VORBEHALTE – ganz gleich,
-# ob ausdrücklich oder stillschweigend. Informationen über die 
-# jeweiligen Bedingungen für Genehmigungen und Einschränkungen im 
-# Rahmen der Lizenz finden Sie in der Lizenz.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 ### LANGUAGE STRING RESOURCE FILE
 #
@@ -100,8 +99,9 @@ archidroid.kernel.archi.desc=Verfügt über perfekte Synergie mit ArchiDroid, ti
 archidroid.kernel.stock.desc=Standard Kernel, bereitgestellt durch das Basissystem
 
 archidroid.keyboard=Keyboard
-archidroid.keyboard.google.desc=Stellt Gesten-Schreiben zur Verfügung, Texterweiterung, optionales PC-Layout und andere Verbesserungen gegenüber der Standard AOSP Tastatur 
+archidroid.keyboard.google.desc=Stellt Gesten-Schreiben zur Verfügung, Texterweiterung, optionales PC-Layout und andere Verbesserungen gegenüber der Standard AOSP Tastatur
 archidroid.keyboard.stock.desc=Standard Tastatur, bereitgestellt durch das Basissystem
+
 archidroid.launcher=Launcher
 archidroid.launcher.google.desc=Bietet perfekte Integration mit anderen Google Apps, wie z.B. Suche, welche du verwenden kannst für Sprachbefehle direkt vom Home-Bildschirm
 archidroid.launcher.nova.desc=Wohl bester Launcher. Extrem anpassbarer, leistungsorientierter Launcher-Ersatz für Android

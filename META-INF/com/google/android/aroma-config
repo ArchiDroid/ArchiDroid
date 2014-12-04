@@ -138,6 +138,7 @@ form(
 	"language", "<#selectbg_g>Language</#>", "", "group",
 	"en.lang", "English", "", "select.selected",
 	"fr.lang", "French", "Français", "select",
+	"de.lang", "German", "Deutsch", "select",
 	"it.lang", "Italian", "Italiano", "select",
 	"pl.lang", "Polish", "Polski", "select"
 );
