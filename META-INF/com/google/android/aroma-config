@@ -142,7 +142,8 @@ form(
 	"fr.lang", "French", "Français", "select",
 	"de.lang", "German", "Deutsch", "select",
 	"it.lang", "Italian", "Italiano", "select",
-	"pl.lang", "Polish", "Polski", "select"
+	"pl.lang", "Polish", "Polski", "select",
+	"es.lang", "Spanish", "Español", "select"
 );
 
 loadlang("langs/" + file_getprop("/tmp/aroma-data/lang.prop", "language"));
