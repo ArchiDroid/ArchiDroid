@@ -1,0 +1,156 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Russian
+#   By                : Dima Chelak
+#   E-mail (optional) : 
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=Круто-настраиваемое приложение отображающее полезную информацию об устройстве
+archidroid.apps.esfileexplorer.desc=Очень хороший альтернативный файл-менеджер
+archidroid.apps.greenify.desc=Экономит батарею путем "заморозки" приложений, которые Вы в данный момент не используете
+archidroid.apps.lmt.desc=Улучшение удобства использования при помощи PIE, поддержка жестов на экране и другое
+archidroid.apps.mxplayer.desc=Высокопроизводительный видео-плеер
+archidroid.apps.spiritfm.desc=Настоящее, настраиваемое FM радио. Не требует интернет-соединения
+archidroid.apps.titaniumbackup.desc=Приложение для root-пользователей. Позволяет делать бекап/восстановление приложений и пользовательких данных
+
+archidroid.bcm=Профилирование BCM
+archidroid.bcm.archidetect.desc=ArchiDetect пытается автоматически определить правильную прошивку для Вашего устройства
+
+archidroid.bootanimation=Анимация загрузки
+archidroid.bootanimation.archi1.desc=Первая анимация ArchiDroid, из версии 1.X
+archidroid.bootanimation.archi2.desc=Вторая анимация ArchiDroid, из версии 2.X
+archidroid.bootanimation.archi3.desc=Третья анимация ArchiDroid, из версии 3.X
+archidroid.bootanimation.logcat.desc=Отображение лога загрузки вместо анимации (приложение logcat lite)
+archidroid.bootanimation.none.desc=Без анимации, немного более быстрая загрузка
+archidroid.bootanimation.stock.desc=Базовая анимация
+
+archidroid.changelog=Список изменений
+archidroid.changelog.desc=Что нового
+
+archidroid.common.current=Текущий
+archidroid.common.default=Значение по умолчанию
+archidroid.common.density=Плотность
+archidroid.common.detected=Обнаруженный
+archidroid.common.none=Нет
+archidroid.common.terms.check=Я согласен с правилами и условиями
+archidroid.common.terms.readme=Прочитайте это для начала!
+archidroid.common.terms.unchecked=Пожалуйста, подтвердите Ваше согласие!
+
+archidroid.custom=Настройка
+archidroid.custom.desc=Изменить параметры на ваше усмотрение
+
+archidroid.detect.fail=ArchiDroid не обнаружил себя, поэтому полный сброс (wipe) обязателен. ArchiDroid очистит Ваш раздел /data перед установкой. Данные на карте памяти не будут затронуты!
+archidroid.detect.pass=ArchiDroid обнаружил раннее установленную версию. Вы в любом случае хотите сделать сброс?
+archidroid.detect.pass.no=Нет, не удалять мои старые данные
+archidroid.detect.pass.yes=Да, удалять мои старые данные
+archidroid.detect.pass.alert.no=Хорошо, но имейте в виду, что прошивка может работать некорректно с несомвместимыми данными!
+archidroid.detect.pass.alert.yes=Хорошее решение, ArchiDroid позаботится об очистке раздела /data перед прошивкой
+
+archidroid.detect.previouspreset.expert.fail.incompatible=Предупреждение! Старая конфигурация не прошла проверку целостности. Проверьте правильность выбранных параметров!
+archidroid.detect.previouspreset.fail.incompatible=Извините, старая конфигурация не прошла проверку целостности. Вы можете попробовать режим "Эксперт" если Вы знаете, что Вы делаете
+archidroid.detect.previouspreset.fail.notavailable=Извините, Вы не имеете раннее сохраненных конфигураций
+
+archidroid.experimental=Экспериментальный билд
+archidroid.experimental.terms.check=Я понимаю, что данная сборка не стабильная и может вывести из стоя мой аппарат.
+
+archidroid.gapps.bksync.desc=Обеспечивает синхронизацию закладок для Google Chrome
+archidroid.gapps.calendargoogle.desc=Заменить встроенный Календарь. Улучшенный стандартный Календарь с интеграцией с аккаунтом Google и другими улучшениями
+archidroid.gapps.calsync.desc=Обеспечивает синхронизацию календаря для Google Calendar
+archidroid.gapps.core.desc=Обеспечивает базовую функциональность Google Apps. Включает мобильные сервисы, программную платформу, хранение и другие необходимые компоненты. Обязательно для все приложений Google
+archidroid.gapps.faceunlock.desc=Обеспечивает функцию разблокировки экрана по лицу, который может быть активирован после установки в настройках блокировки экрана
+archidroid.gapps.gmail.desc=Почтовый клиент, работающий с сервисом Gmail. Включает в себя интеграцию с аккаунтом Google, синхронизацию почты а другие функции
+archidroid.gapps.googleplus.desc=Клиент социальной сети работающий с сервисом Google Plus. Если Вы используете Google Plus, то возможно вы захотите установить это приложение
+archidroid.gapps.googletts.desc=Преобразование текста в речь. Обязательно к установке, если вы хотите слышать читаемый текст, например во время GPS навигации
+archidroid.gapps.hangouts.desc=Клиент Hangouts - клиент для сообщений сервиса Gmail, также опционально может работать с SMS/MMS
+archidroid.gapps.maps.desc=Клиент для работы с сервисом Google Maps. Встроенная поддержка навигации и другие функции
+archidroid.gapps.search.desc=Поисковый клиент для работы с сервисом Google. Этот пакет также включает в себя Google Voice, который обязателен к установке, если Вы хотите использовать голосовые команды в Google Launcher
+archidroid.gapps.speech.desc=Обеспечивает Google Launcher компоненты. Обязательно, если Вы хотите использовать Google Voice
+archidroid.gapps.street.desc=Клиент для работы с сервисом Google Street View. Установите, если Вы хотите расширить функциональность приложения Google Maps
+archidroid.gapps.youtube.desc=Клиент для сервиса YouTube. Если Вы хотите просматривать видео с YouTube не используя браузер, то обязательно установите это приложение
+
+archidroid.hardswap.desc=Sacrifice your I/O for more memory
+archidroid.hardswap.size.0.desc=Удаление файла подкачки 
+archidroid.hardswap.size.default.desc=Максимально-рекомендованный размер
+
+archidroid.kernel=Ядро
+archidroid.kernel.archi.desc=Идеальное взаимодействие с ArchiDroid, глубокая оптимизация, обновленные искходники и множество улучшений. Очень рекомендовано
+archidroid.kernel.stock.desc=Стандартное ядро
+
+archidroid.keyboard=Клавиатура
+archidroid.keyboard.google.desc=Печать жестами, опциональная ПК раскладка и другие улучшения по сравнению со стандартной AOSP клавиатурой
+archidroid.keyboard.stock.desc=Стандартная клавиатура
+
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Идеальная интеграция с другими приложениями Google, какими как Search, который позволяет использовать голосовые команды с домашнего экрана
+archidroid.launcher.nova.desc=Хорошо настраиваемый, производительный заменитель домашнего экрана для Android
+archidroid.launcher.stock.desc=Стандартный
+
+archidroid.preset=Вариант установки
+archidroid.preset.barebones=Базовая Установка
+archidroid.preset.barebones.desc=Устанавливается только базовая прошивка. Рекомендовано для начинающих пользователей, Вам будет не хватать большинства плюсов ArchiDroid
+archidroid.preset.custom=По Выбору
+archidroid.preset.custom.desc=Выберите этот пункт если Вы хотите настроить каждый параметр для ArchiDroid перед установкой. Рекомендовано
+archidroid.preset.previous=Предыдущие Настройки
+archidroid.preset.previous.desc=Если Вы уже настроили установку ранее, то эти настройки и будут использованы
+archidroid.preset.previousexpert=Продвинутые Предыдущие Настройки
+archidroid.preset.previousexpert.desc=Как и выбор выше, но эксперт-режим не будет проверять совместимость и позволит Вам изменить предыдущий набор параметров перед установкой. Предупреждение: будьте осторожны, выбранные несовместимые параметры могут помешать установке
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=Выберите данный пункт если Вы хотите или Вам нужно обновить recovery перед установкой ArchiDroid
+
+archidroid.preview=Предварительный просмотр
+archidroid.preview.desc=Если выбрано, то Вы сможете увидеть пример на следующем экране
+
+archidroid.recovery.twrp.desc=Recovery, идея создания которого были простота использования и разнообразие настроек. Хорошо поддерживаемый и развивающийся проект
+
+archidroid.superuser.chainfire.desc=Современное решение с закрытым кодом для базовых прошивок и пользователей, которые предпочитают современный инструмент управления доступом суперпользователя
+archidroid.superuser.koush.desc=Проект с открытым исходным кодом. Встроенный инструмент управления доступом суперпользователя
+archidroid.superuser.none.desc=Без суперпользователя. Этот режим выключает root доступ. Вы можете использовать этот режим для экстра-безопасности
+
+archidroid.thirdparty=Сторонние Соглашения
+
+archidroid.tou=Условия Использования
+
+archidroid.tweaks.cellbroadcasts=Широковещательная трансляция
+archidroid.tweaks.cellbroadcasts.desc=Широковещательная трансляция предназначена для синхронной доставки сообщений множеству пользователей в определенной местности. Часто используется для рассылки спама. Выберите, если это Вам нужно
+archidroid.tweaks.navibar=Панель навигации
+archidroid.tweaks.navibar.desc=Включает панель управления и выключает аппаратные кнопки (Надаз, Дом, Меню). Выберите, если Вы предпочитаете управление с экрана
+
+archidroid.xposed.desc=Xposed Framework позволяет различным сторонним модулям делать изменения на лету, без изменения системных файлов. Очень рекомендовано
+archidroid.xposed.gravitybox.desc=All-In-One Xposed модуль, который содержит сотни разнообразных настроек
+archidroid.xposed.xprivacy.desc=Если Вы предпочитаете конфиденциальность, этот модуль для Вас. С этой программой Вы сможете тонко настроить права доступа для всех установленных программ
+
+
+### AROMA strings
+text_about=О прошивке
+text_back=Назад
+text_calibrating=Инструменты калибровки
+text_next=Дальше
+text_no=Нет
+text_ok=OK
+text_quit_msg=Вы уверены, что хотите выйти из установки?
+text_quit=Выход из установки
+text_yes=Да
+
+### End of file
