@@ -30,9 +30,7 @@
 archidroid.apps.cooltool.desc=Vysoko prisposobiteľná aplikácia, ktorá zobrazuje užitočné informácie o Vašom zariadení (napr. zaťaženosť CPU na vrchu displeja)
 archidroid.apps.esfileexplorer.desc=Veľmi dobrá náhrada za systémového správcu súborov 
 archidroid.apps.greenify.desc=Šetrí batériu tým, že v pozadí hybernuje aplikácie, ktoré nepoužívate
-
 archidroid.apps.lmt.desc=Rozšíri ovládanie Vašeho zariadenia o PIE funkcionalitu (gestá a iné...)
-
 archidroid.apps.mxplayer.desc=Video prehrávač pre Android využívajúci hardvérovú akceleráciu
 archidroid.apps.spiritfm.desc=Skutočné FM rádio. Nevyžaduje internetový prístup
 archidroid.apps.titaniumbackup.desc=Zákládná aplikácia pre každého root užívateľa. Odzálohujte/obnovte svoje aplikácie a ich data
@@ -41,7 +39,6 @@ archidroid.bcm=BCM profily
 archidroid.bcm.archidetect.desc=ArchiDetect automaticky zistí vhodný firmware pre Vaše zariadenie
 
 archidroid.bootanimation=Štartovacia animácia
-
 archidroid.bootanimation.archi1.desc=Prvá ArchiDroid štartovacia animácia, z časov 1.x
 archidroid.bootanimation.archi2.desc=Druhá ArchiDroid štartovacia animácia, z časov 2.x
 archidroid.bootanimation.archi3.desc=Tretia ArchiDroid štartovacia animácia, z časov 3.x
@@ -62,7 +59,6 @@ archidroid.common.terms.readme=Čítaj ma!
 archidroid.common.terms.unchecked=Prosím, potvrďte licenciu.
 
 archidroid.custom=Prispôsobiť
-
 archidroid.custom.desc=Uprav si nastavenia
 
 archidroid.detect.fail=ArchiDroid nevie zistiť, či je momentálne nainštalovaný na tomto zariadení. Z toho dôvodu je potrebné úplne zmazať data (data wipe, factory reset). ArchiDroid vymaže dátové partície pred nahratím firmvéru. Dáta na SD karte ostanú v bezpečí.
@@ -96,7 +92,6 @@ archidroid.gapps.youtube.desc=Video klient navrhnutý tak, aby fungoval so služ
 
 archidroid.hardswap.desc=Obetovať I/O pre viac pamäte
 archidroid.hardswap.size.0.desc=Toto nastavenie vymaže súbor hardswap z Vašej partície
-
 archidroid.hardswap.size.default.desc=Maximálna odporúčaná veľkosť
 
 archidroid.kernel=Kernel
