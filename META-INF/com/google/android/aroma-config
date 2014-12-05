@@ -138,6 +138,7 @@ form(
 	"lang.prop",
 
 	"language", "<#selectbg_g>Language</#>", "", "group",
+	"nl.lang", "Dutch", "Nederlands", "select",
 	"en.lang", "English", "", "select.selected",
 	"fr.lang", "French", "Français", "select",
 	"de.lang", "German", "Deutsch", "select",
