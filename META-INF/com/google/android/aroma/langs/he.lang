@@ -27,7 +27,7 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.cooltool.desc= אפליקציה שניתן לבצע בה המון התאמות, ומראה מידע שימושי על המכשיר (למשל שימוש במעבד) בצד העליון של המסך
+archidroid.apps.cooltool.desc= אפליקציה שניתן לבצע בה המון התאמות, ומראה מידע שימושי על המכשיר (למשל שימוש במעבד) בצד העליון של המסך  
 archidroid.apps.esfileexplorer.desc= סייר קבצים חליפי טוב מאוד עבור אנדרואיד
 archidroid.apps.greenify.desc= חוסך בסוללה ע"י הכנסה לשינה של אפליקציות  שרצות ברקע כאשר לא עושים בהם שימוש
 archidroid.apps.lmt.desc= משפר את המכשיר שלך עם יכולות PIE, תמיכה במחוות ועוד
@@ -50,7 +50,7 @@ archidroid.changelog= יומן שינויים
 archidroid.changelog.desc= מה חדש
 
 archidroid.common.current= נוכחי
-archidroid.common.default= ערך ברירת מחדש
+archidroid.common.default= ערך ברירת מחדל
 archidroid.common.density= צפיצות
 archidroid.common.detected= מזוהה
 archidroid.common.none= אף אחד
@@ -72,15 +72,15 @@ archidroid.detect.previouspreset.expert.fail.incompatible= !הזהרה! ההגד
 archidroid.detect.previouspreset.fail.incompatible= מצטער, ההגדרות הקודמות שלך נכשלו בבדיקת התקינות. אם אתה יודע מה אתה עושה, אתה יכול לנסות הגדרות מומחה
 archidroid.detect.previouspreset.fail.notavailable= מצטער, נראה שאין לך הגדרות קודמות
 
-archidroid.experimental= build תצורה ניסיונית
+archidroid.experimental= תצורה ניסיונית
 archidroid.experimental.terms.check= אני מבין שתצורה זו לא גמורה והיא עלולה לקלקל את המכשיר שלי
 
 archidroid.gapps.bksync.desc= Google Chrome מספק שירותי סינכרון ל
 archidroid.gapps.calendargoogle.desc= מחליף את לוח השנה המקורי. מרחיב את יכולות לוח השנה המקורי עם אופציאות של חשבון גוגל ויכולות נוספות
 archidroid.gapps.calsync.desc=Google Calendar מספק שרותי סינכרון עבור
-archidroid.gapps.core.desc= מספק תכונות ליבה עבור אפליקציות  גוגל. כולל שרותי גוגל מובייל, פריימוורק, חנות האפליקציות  ועוד רכיבים חיוניים לכל אפליקציות  גוגל. 
+archidroid.gapps.core.desc= מספק תכונות ליבה עבור אפליקציות גוגל. כולל שרותי גוגל מובייל, פריימוורק, חנות האפליקציות  ועוד רכיבים חיוניים לכל אפליקציות גוגל. 
 archidroid.gapps.faceunlock.desc= מספק שרותי שיחרור נעילה ע"י זיהוי פנים. ניתן להפעיל במסך הנעילה לאחר ההתקנה
-archidroid.gapps.gmail.desc= סוכן דואר המיועדת לעבוד עם שרותי גימייל. כוללת אינטגרציה עם חשבון גוגל , סינכרון דואר ועוד
+archidroid.gapps.gmail.desc= סוכן דואר המיועד לעבוד עם שרותי גימייל. כולל אינטגרציה עם חשבון גוגל, סינכרון דואר ועוד
 archidroid.gapps.googleplus.desc= סוכן עבור רשתות חברתיות המיועד לעבוד עם שרותי גוגל פלוס. אם אתה עושה שימוש בגוגל פלוס, אתה תרצה לסמן אופציה זו
 archidroid.gapps.googletts.desc=TTS stands for Text-To-Speech הכוונה היא מטקסט למלל. ללא ספק נדרש אם אתה רוצה לשמוע טקסט כתוב, למשל בזמן ניווט
 archidroid.gapps.hangouts.desc=Hangouts סוכן - SMS/MMS מספק תמיכה בהודעות גימייל, כמו כן ניתן לעשות שימוש כאפליקציית 
@@ -94,9 +94,9 @@ archidroid.hardswap.desc= הקרבה של מהירות קלט/פלט עבור י
 archidroid.hardswap.size.0.desc=מהמחיצה hardswap  אופציה זו תסיר את קובץ ה
 archidroid.hardswap.size.default.desc= גודל מקסימלי מומלץ
 
-archidroid.kernel=Kernel
+archidroid.kernel=Kernel קרנל
 archidroid.kernel.archi.desc= תכונות שמשולבות באופן מושלם עם ארצידרוייד, אופטימיזציאות, מקורות מעודכנים ועוד. מאוד מומלץ
-archidroid.kernel.stock.desc=Kernel מסופק ע"י המערכת הבסיסית
+archidroid.kernel.stock.desc=  קרנל מסופק ע"י המערכת הבסיסית
 
 archidroid.keyboard= מקלדת
 archidroid.keyboard.google.desc= AOSP מחוות והרחבות טקסט, תצורת מחשב אופציונלית ושיפורים נוספים מעל מקלדת סטנדרטיט
@@ -146,10 +146,10 @@ archidroid.xposed.xprivacy.desc= אם אתה אוהב את הפרטיות שלך
 text_about= הודות
 text_back= חזור
 text_calibrating= כלים להגדרות
-text_next= הבאה
+text_next= הבא
 text_no=לא
 text_ok=OK
-text_quit_msg=?האם אתה בטוח שאתה רוצה לצאת צההתקנה
+text_quit_msg=?האם אתה בטוח שאתה רוצה לצאת מההתקנה
 text_quit=צא מההתקנה
 text_yes=כן
 
