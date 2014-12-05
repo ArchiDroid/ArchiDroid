@@ -1,0 +1,156 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Dutch
+#   By                : Thomas de Witt
+#   E-mail (optional) : 
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=Erg aanpasbare app die nuttige informatie over je apparaat laat zien (bijv. CPU gebruik) op de statusbar
+archidroid.apps.esfileexplorer.desc=Uitstekende bestandsbeheer vervanger voor android
+archidroid.apps.greenify.desc=Spaart batterij door apps op de achtergrond te sluimeren als je ze niet gebruikt
+archidroid.apps.lmt.desc=Voegt PIE functie toe, gebaar etc.
+archidroid.apps.mxplayer.desc=Hardware geaccelereerde videospeler voor android
+archidroid.apps.spiritfm.desc=Echte, radiogolf gedreven FM radio app. Heeft geen internet nodig
+archidroid.apps.titaniumbackup.desc=Basisapp voor elke geroote gebruiker. Backupt en zet apps terug inclusief gegevens.
+
+archidroid.bcm=BCM profiling
+archidroid.bcm.archidetect.desc=ArchiDetect probeert de juiste firmware voor je apparaat automatisch te detecteren
+
+archidroid.bootanimation=Opstartanimatie
+archidroid.bootanimation.archi1.desc=Eerste ArchiDroid opstartanimatie, van 1.X
+archidroid.bootanimation.archi2.desc=Tweede ArchiDroid bootanimation, van 2.X
+archidroid.bootanimation.archi3.desc=Derde ArchiDroid bootanimation, van 3.X
+archidroid.bootanimation.logcat.desc=Live logcat log i.p.v. opstartanimatie, aangeboden door de logcat lite app
+archidroid.bootanimation.none.desc=Geen opstartanimatie, voor een iets snellere opstarttijd
+archidroid.bootanimation.stock.desc=Opstartanimatie aangeboden door het standaard systeem
+
+archidroid.changelog=Changelog
+archidroid.changelog.desc=Wat is er nieuw
+
+archidroid.common.current=Huidige
+archidroid.common.default=Standaard waarde
+archidroid.common.density=Pixeldichtheid
+archidroid.common.detected=Gedetecteerde
+archidroid.common.none=Geen
+archidroid.common.terms.check=Ik stem in met de gebruikersovereenkomsten
+archidroid.common.terms.readme=Lees dit eerst!
+archidroid.common.terms.unchecked=Selecteer alsjeblieft de overeenkomsten!
+
+archidroid.custom=Aanpasbaar
+archidroid.custom.desc=Pas de instellingen aan zoals jij wilt
+
+archidroid.detect.fail=ArchiDroid kon niet detecteren dat hij geïnstalleerd was. Daarom is een factory reset nodig. ArchiDroid zal je /data partition schoonmaken om te kunnen flashen. Je sd gegevens zijn veilig!
+archidroid.detect.pass=ArchiDroid heeft gedetecteerd dat hij geïnstalleerd is. Wil je je gegevens toch verwijderen?
+archidroid.detect.pass.no=Nee, verwijder mijn gegevens niet.
+archidroid.detect.pass.yes=Ja, verwijder mijn gegevens.
+archidroid.detect.pass.alert.no=Oké, maar onthoud dat de ROM niet juist kan werken vanwege de incompatibele gegevens!
+archidroid.detect.pass.alert.yes=Slimme keuze, ArchiDroid zal ervoor zorgen dat /data opgeruimd wordt tijdens het installeren!
+
+archidroid.detect.previouspreset.expert.fail.incompatible=Pas op! Je oude instellingen kunnen niet worden geverifieerd. Zorg dat je gekozen optie juist is!
+archidroid.detect.previouspreset.fail.incompatible=Sorry, je oude instellingen kunnen niet worden geverifieerd. Probeer de expert mode als je weet waar je mee bezig bent
+archidroid.detect.previouspreset.fail.notavailable=Sorry, het lijkt erop dat je nog geen vorige keuzes hebt gemaakt
+
+archidroid.experimental=Experimentele versie
+archidroid.experimental.terms.check=Ik begrijp dat deze versie nog niet af is en dat hij zelfs mijn apparaat kan slopen.
+
+archidroid.gapps.bksync.desc=Biedt bladwijzer synchronisatie voor Google Chrome
+archidroid.gapps.calendargoogle.desc=Vervangt de standaard kalender. Bereidt de standaard kalender uit met de functies zoals Google integratie en andere
+archidroid.gapps.calsync.desc=Biedt kalender synchronisatie voor Google Kalender
+archidroid.gapps.core.desc=Biedt de basis Google Apps functionaleit. Bevat Googles mobiele services, framework, store en andere vereiste componenten. Nodig voor alle Google Apps
+archidroid.gapps.faceunlock.desc=Biedt face unlock functie, die geactiveerd kan worden in vergrendelscherm opties na de installatie
+archidroid.gapps.gmail.desc=Een e-mail cliënt gemaakt voor de Gmail service. Bevat integratie met je Google account, mail synchronisatie en meer
+archidroid.gapps.googleplus.desc=Een sociale netwerk cliënt gemaakt voor Google Plus. Als je Google Plus gebruikt wil je dit waarschijnlijk gebruiken.
+archidroid.gapps.googletts.desc=TTS staat voor Text-To-Speech. Vereist als je voorgelezen tekst wilt. Bijvoorbeeld tijdens gps navigatie
+archidroid.gapps.hangouts.desc=Hangouts cliënt. Biedt ondersteuning voor gmail "berichten", kan ook als optionele SMS/MMS app gebruikt worden
+archidroid.gapps.maps.desc=Een maps cliënt voor de Google Maps service. Bevat onder andere ingebouwde navigatie
+archidroid.gapps.search.desc=Een zoek cliënt gemaakt om met Google service samen te werken. Deze app bevat Google Voice, dus het is vereist als je bijvoorbeeld stemcommando's wilt gebruiken in Google Launcher
+archidroid.gapps.speech.desc=Biedt Google Voice componenten. Vereist voor Google Voice
+archidroid.gapps.street.desc=Een street view cliënt gemaakt voor Google Street View. Selecteer dit als je een extentie voor Google Maps wilt.
+archidroid.gapps.youtube.desc=Een video cliënt gemaakt voor de YouTube service. Als je zonder browser YouTube wilt kijken, is dit vereist
+
+archidroid.hardswap.desc=Lever je lees- en schrijf snelheid in voor meer geheugen
+archidroid.hardswap.size.0.desc=Dit zal je hardswap bestand van de partitie verwijderen
+archidroid.hardswap.size.default.desc=Maximaal aanbevolen grootte
+
+archidroid.kernel=Kernel
+archidroid.kernel.archi.desc=Biedt perfecte samenwerking met ArchiDroid, diepe optimalisaties, up-to-date bronnen en een hoop verbeteringen. Erg aangeraden
+archidroid.kernel.stock.desc=Kernel aangeboden door het standaard systeem
+
+archidroid.keyboard=Toetsenbord
+archidroid.keyboard.google.desc=Biedt swype, tekst voorspelling, optionele pc layout en andere verbeteringen t.o.v. het standaard AOSP toetsenbord
+archidroid.keyboard.stock.desc=Toetsenbord aangeboden door het standaard systeem
+
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Biedt perfecte integratie met andere Google apps, bijvoorbeeld Zoeken, die je de mogelijk biedt om stemcommando's te geven vanaf je startscherm
+archidroid.launcher.nova.desc=Erg aanpasbaar, prestatie gedreven startscherm voor Android
+archidroid.launcher.stock.desc=Startscherm aangeboden door het standaard systeem
+
+archidroid.preset=Voorinstellingen
+archidroid.preset.barebones=Bare Bones
+archidroid.preset.barebones.desc=Deze optie installeert alleen de basis. Alleen voor foutopsporing, je zult een hoop ArchiDroid functies missen
+archidroid.preset.custom=Pas aan
+archidroid.preset.custom.desc=Selecteer deze optie als je elk aspect van ArchiDroid wilt aanpassen. Aanbevolen
+archidroid.preset.previous=Vorige instellingen
+archidroid.preset.previous.desc=Als je al eens de opties hebt geokozen, laadt deze optie je vorige keuzes
+archidroid.preset.previousexpert=Vorige keuzes expert
+archidroid.preset.previousexpert.desc=Hetzelfde als de optie hierboven, alleen checkt deze modus geen compitabiliteit en staat veranderingen aan je vorige keuzes toe. Waarschuwing: wees voorzichtig, incompitabele voorinstelling kan oninstalleerbaar zijn
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=Selecteer deze optie als je je recovery wilt installeren/bijwerken voordat je ArchiDroid installeert
+
+archidroid.preview=Voorbeeld
+archidroid.preview.desc=Als je dit selecteert zul je een voorbeeld zien op het volgende scherm
+
+archidroid.recovery.twrp.desc=Aangepaste recovery gebouwd met gebruikersgemak en aanpasbaarheid in gedachten. Veelal ondersteund en goed ontworpen
+
+archidroid.superuser.chainfire.desc=Closed-source, moderne oplossing voor standaard ROMs en gebruikers, voor diegene die superuser beheer en toegang voor de toekomst wil
+archidroid.superuser.koush.desc=Open-source, standaar superuser beheer en toegang
+archidroid.superuser.none.desc=Geen superuser, deze optie verwijdert root toegang. Voor extra veiligheid
+
+archidroid.thirdparty=Third-Party overeenkomst
+
+archidroid.tou=Voorwaarden
+
+archidroid.tweaks.cellbroadcasts=Cell broadcasts
+archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts is gemaakt voor onder andere Amber-Alert berichten. Ook vaak voor spam doelen. Selecteer alleen als je dit nodig hebt
+archidroid.tweaks.navibar=Navigatie bar
+archidroid.tweaks.navibar.desc=Dit zet de navigatie bar aan, en schakelt de hardware knoppen uit (terug, home, menu). Selecteer als je liever software toetsen hebt
+
+archidroid.xposed.desc=Xposed Framework staat verschillende third-party modules toe om je framework te veranderen. Zonder modificatie van systeembestanden. Erg aanbevolen
+archidroid.xposed.gravitybox.desc=All-In-One Xposed module die enorm veel framwork modificaties bevat. 
+archidroid.xposed.xprivacy.desc=Als je je persoonsgegevens wilt beschermen, is deze app voor jou. Hiermee kan je precies elke permissie beheren voor elke geïnstalleerde app
+
+
+### AROMA strings
+text_about=Over
+text_back=Terug
+text_calibrating=Calibratie Tools
+text_next=Volgende
+text_no=Nee
+text_ok=Oké
+text_quit_msg=Weet je zeker dat je de installatie wilt stoppen?
+text_quit=Stop de installatie
+text_yes=Ja
+
+### End of file
