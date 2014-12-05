@@ -1,0 +1,156 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Portuguese
+#   By                : emanuelparedes
+#   E-mail (optional) : 
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=HAplicação altamente customizável, que mostra informação útil sobre o dispositivo (ex: Utilização do CPU) na parte superior do ecrã
+archidroid.apps.esfileexplorer.desc=Excelente substituto para o gestor de ficheiros do Android
+archidroid.apps.greenify.desc=Poupa bateria, hibernando aplicações quando não estão a ser usadas
+archidroid.apps.lmt.desc=Melhora o dispositivo com a funcionalidade PIE, suporte para gestos e muito mais
+archidroid.apps.mxplayer.desc=Reprodutor de vídeos, com aceleração por hardware
+archidroid.apps.spiritfm.desc=Aplicação de rádio FM real, afinada e "over-the-air". Não requer ligação à internet
+archidroid.apps.titaniumbackup.desc=Uma aplicação indispensável para todos os utilizadores com acesso root. Permite efetuar cópias de segurança/restauros das aplicações e dados na hora
+
+archidroid.bcm=Perfis BCM
+archidroid.bcm.archidetect.desc=ArchiDetect tenta detetar o firmware adequado para o seu dispositivo
+
+archidroid.bootanimation=Animação de boot
+archidroid.bootanimation.archi1.desc=Primeira animação de boot ArchiDroid, dos tempos da 1.X 
+archidroid.bootanimation.archi2.desc=Segunda animação de boot ArchiDroid, dos tempos da 2.X 
+archidroid.bootanimation.archi3.desc=Terceira animação de boot ArchiDroid, 3.X 
+archidroid.bootanimation.logcat.desc=Registo logcat ao vivo, substituindo assim a animação de boot, disponibilizado pela aplicação logcat lite
+archidroid.bootanimation.none.desc=Sem animação de boot, para um boot um pouco mais rápido
+archidroid.bootanimation.stock.desc=Animação de boot do sistema base (stock)
+
+archidroid.changelog=Registo de alterações
+archidroid.changelog.desc=O que há de novo
+
+archidroid.common.current=Atual
+archidroid.common.default=Valor por defeito
+archidroid.common.density=Densidade
+archidroid.common.detected=Detetado
+archidroid.common.none=Nenhum
+archidroid.common.terms.check=Concordo com os termos e condições
+archidroid.common.terms.readme=Leia isto em primeiro!
+archidroid.common.terms.unchecked=Por favor, verifique o acordo!
+
+archidroid.custom=Personalizar
+archidroid.custom.desc=Modifique as opções a seu gosto
+
+archidroid.detect.fail=ArchiDroid não conseguiu detetar o firmware actual, por isso é necessária uma eliminação dos dados (factory reset). Archidroid vai limpar a sua /partição de dados antes de flashar. O conteúdo do cartão SD interno não irá ser eliminado!
+archidroid.detect.pass=ArchiDroid detetou com sucesso o firmware instalado atualmente. Deseja eliminar os seus dados, mesmo assim? 
+archidroid.detect.pass.no=Não, não quero eliminar os meus dados antigos
+archidroid.detect.pass.yes=Sim, quero eliminar os meus dados antigos
+archidroid.detect.pass.alert.no=Ok, mas tenha em conta que a ROM pode não funcionar corretamente com dados incompatíveis!
+archidroid.detect.pass.alert.yes=Boa decisão, ArchiDroid vai garantir que a partição /data está limpa antes de flashar a ROM!
+
+archidroid.detect.previouspreset.expert.fail.incom patible=Aviso! As suas antigas configurações falharam no teste de integridade. Certifique-se que as suas opções escolhidas são válidas!
+archidroid.detect.previouspreset.fail.incompatible =Lamento, mas as suas antigas configurações falharam no teste de integridade. Pode testar o modo experiente, se souber o que está a fazer
+archidroid.detect.previouspreset.fail.notavailable =Lamento, não foram detetadas configurações anteriores
+
+archidroid.experimental=Versão experimental
+archidroid.experimental.terms.check=Entendo que esta versão não está finalizada, e poderá inutilizar o meu dispositivo (brick).
+
+archidroid.gapps.bksync.desc=Disponibiliza funções de sincronização de marcadores para Google Chrome
+archidroid.gapps.calendargoogle.desc=Substitui o calendário de origem. Aumenta as opções do calendário, com integração da conta Google e outras funcionalidades
+archidroid.gapps.calsync.desc=Disponibiliza serviços de sincronização para o calendário Google
+archidroid.gapps.core.desc=Disponibiliza funcionalidades básicas das Google Apps. Inclui serviços móveis da Google, o framework, loja e outros componentes necessários. Indispensável para todas as aplicações da Google
+archidroid.gapps.faceunlock.desc=Disponibiliza o desbloqueio facial, que pode ser activado nas opções do bloqueio de ecrã, depois da instalação
+archidroid.gapps.gmail.desc=Cliente e-mail, desenhado para trabalhar com o serviço Gmail. Inclui integração com a conta Google, sincronização de e-mail e muito mais
+archidroid.gapps.googleplus.desc=Rede social, desenhada para trabalhar com o Google+. Se usa o Google+, selecione esta opção
+archidroid.gapps.googletts.desc=TTS significa escrita por voz. Necessário se pretende ouvir os textos, por exemplo, durante a navegação GPS
+archidroid.gapps.hangouts.desc=Cliente Hangouts - com suporte para o chat do Gmail. Também pode ser usado como aplicação de SMS/MMS
+archidroid.gapps.maps.desc=Cliente de mapas/GPS, desenhado para trabalhar com o Google Maps. Com suporte integrado para navegação e muitas outras funções
+archidroid.gapps.search.desc=A search client designed to work with Google service. This package also includes Google Voice, so it's mandatory if you want to use e.g. voice commands in Google Launcher
+archidroid.gapps.speech.desc=Disponibiliza serviços do Google Voice. Fundamental, se pretende usar o Google Voice
+archidroid.gapps.street.desc=Cliente street view, desenhado para trabalhar com o Google Street View. Selecione esta opção se pretende aumentar as funcionalidades do Google Maps
+archidroid.gapps.youtube.desc=Cliente de vídeos, desenhado para trabalhar com o serviço YouTube. Se pretende ver vídeos do YouTube no seu dispositivo sem utilizar o browser, selecione esta opção
+
+archidroid.hardswap.desc=Sacrifica o seu I/O, para ter mais memória
+archidroid.hardswap.size.0.desc=Isto irá remover o ficheiro hardswap da partição
+archidroid.hardswap.size.default.desc=Tamanho máximo recomendado
+
+archidroid.kernel=Kernel
+archidroid.kernel.archi.desc=Disponibiliza uma sinergia perfeita com Archidroid, optimizações profundas, fontes atualizadas e muitas melhorias. Altamente recomendado
+archidroid.kernel.stock.desc=Kernel disponibilizado pelo sistema base
+
+archidroid.keyboard=Teclado
+archidroid.keyboard.google.desc=Com funcionalidades como escrita por gestos, expansão de texto, layout opcional de teclado como computador, e muitas outras melhorias, em comparação ao teclado AOSP.
+archidroid.keyboard.stock.desc=Teclado disponibilizado pelo sistema base
+
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Perfeita integração com as aplicações da Google, por exemplo: pesquisa Google, que permite usar comandos de voz a partir do ecrã inicial (Ok Google)
+archidroid.launcher.nova.desc=Highly customizable, performance driven, home screen replacement for Android
+archidroid.launcher.stock.desc=Launcher provided by the base system
+
+archidroid.preset=Predefinido
+archidroid.preset.barebones=Nu
+archidroid.preset.barebones.desc=Esta opção flasha apenas a ROM base. Recomendado apenas para depuração, visto que perde quase todos os extras Archidroid
+archidroid.preset.custom=Personalizar
+archidroid.preset.custom.desc=Selecione esta opçãop se pretende personalizar todos os aspectos da sua ROM Archidroid. Recomendado
+archidroid.preset.previous=Configuração anterior
+archidroid.preset.previous.desc=Se já personalizou a sua instalação anteriormente, esta opção carrega essa configuração
+archidroid.preset.previousexpert=Configuração anterior, em modo experiente
+archidroid.preset.previousexpert.desc=Igual à configuração supramencionada, mas o modo experiente não força a verificação de compatibilidades e permite-lhe efetuar alterações à sua antiga configuração antes de flashar. Aviso: tenha cuidado,configurações incompatíveis podem não ser flashadas
+archidroid.preset.recovery=Recuperação
+archidroid.preset.recovery.desc=Selecione esta opção se quer/precisa de atualizar a sua recuperação antes de flashar a ROM Archidroid
+
+archidroid.preview=Pré-visualizar
+archidroid.preview.desc=Quando selecionado, irá permitir ver um exemplo da sua seleção no próximo ecrã
+
+archidroid.recovery.twrp.desc=Recuperação personalizada, focada na personalização e na facilidade de uso. Vastamente suportada, com desenvolvimentos diários
+
+archidroid.superuser.chainfire.desc=Solução moderna, com código fechado, para ROMs stock, para utilizadores que preferem uma ferramenta com futuro
+archidroid.superuser.koush.desc=Gestão de superutilizador integrado, código aberto
+archidroid.superuser.none.desc=Sem superutilizador, esta opção desativa o acesso root. Pode usar esta opção se pretender segurança extra
+
+archidroid.thirdparty=Acordo de terceiros
+
+archidroid.tou=Termos de Utilização
+
+archidroid.tweaks.cellbroadcasts=Difusão celular
+archidroid.tweaks.cellbroadcasts.desc=Difusão celular foi concebida para entregas múltiplas a vários utilizadores numa área específica. Usado frequentemente para spam. Selecione apenas se precisar
+archidroid.tweaks.navibar=Barra de navegação
+archidroid.tweaks.navibar.desc=Ativa a barra de navegação (inferior), e desativa as teclas de hardware (retroceder, home, menu). Selecione esta opção se prefere teclas no ecrã
+
+archidroid.xposed.desc=O Xposed Framework permite que vários módulos de terceiros façam alterações framework na hora, sem modificar os ficheiros do sistema. Altamente recomendado
+archidroid.xposed.gravitybox.desc=Módulo Xposed tudo-em-um, que contém mais de uma centena de alterações framework, que podem ser efetuadas de forma fácil
+archidroid.xposed.xprivacy.desc=Se pretende proteger a sua privacidade, este módulo é para si. Com esta aplicação, poderá especificar com precisão as permissões que pretende dar a cada uma das aplicações instaladas no seu dispositivo installed app
+
+
+### AROMA strings
+text_about=Sobre
+text_back=Atrás
+text_calibrating=Ferramentas de calibração
+text_next=Seguinte
+text_no=Não
+text_ok=OK
+text_quit_msg=Tem a certeza que pretende sair do instalador?
+text_quit=Sair da instalação
+text_yes=Sim
+
+### End of file
