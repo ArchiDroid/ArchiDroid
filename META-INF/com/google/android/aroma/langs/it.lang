@@ -28,12 +28,12 @@
 
 ### ArchiDroid strings
 archidroid.apps.cooltool.desc=App altamente personalizzabile che mostra informazioni utili sul device (ad esempio l'utilizzo della CPU) nella parte superiore del display
-archidroid.apps.esfileexplorer.desc=Ottimo file manager sostitutivo per Android
+archidroid.apps.esfileexplorer.desc=Valido file manager sostitutivo per Android
 archidroid.apps.greenify.desc=Risparmia batteria ibernando le applicazioni in background quando non le si sta utilizzando 
-archidroid.apps.lmt.desc=Migliora il device aggiungendo la funzionalità PIE, il supporto alle gestures e altro ancora
+archidroid.apps.lmt.desc=Arricchisce il device con la funzionalità PIE, il supporto alle gestures e altro ancora
 archidroid.apps.mxplayer.desc=Riproduttore video con accelerazione hardware per Android
 archidroid.apps.spiritfm.desc=App radio FM over-the-air. Non richiede l'accesso ad Internet
-archidroid.apps.titaniumbackup.desc=App notevole per tutti gli utenti rooted. Consente di effettuare il backup/ripristino delle applicazioni e dei loro dati al volo
+archidroid.apps.titaniumbackup.desc=App essenziale per tutti gli utenti root. Consente di effettuare il backup/ripristino delle applicazioni e dei loro dati al volo
 
 archidroid.bcm=BCM profiling
 archidroid.bcm.archidetect.desc=ArchiDetect cerca di rilevare il firmware corretto per il proprio device automaticamente
@@ -61,33 +61,33 @@ archidroid.common.terms.unchecked=Si prega di accettare l'accordo!
 archidroid.custom=Personalizzazione
 archidroid.custom.desc=Modificare queste impostazioni a proprio piacimento
 
-archidroid.detect.fail=ArchiDroid non è in grado di rilevare se stessa in esecuzione, quindi il wipe data (reset di fabbrica) è obbligatorio. ArchiDroid pulirà la partizione /data prima del flash. Il contenuto della memoria interna è al sicuro!
-archidroid.detect.pass=ArchiDroid ha correttamente rilevato se stessa in esecuzione. Si vuole eseguire il wipe data a prescindere?
+archidroid.detect.fail=ArchiDroid non rilevata sul device, il wipe data (reset di fabbrica) è obbligatorio. ArchiDroid pulirà la partizione /data prima del flash. Il contenuto della memoria interna è al sicuro!
+archidroid.detect.pass=ArchiDroid rilevata sul device. Eseguire il wipe data a prescindere?
 archidroid.detect.pass.no=No, non eseguire il wipe data
 archidroid.detect.pass.yes=Si, esegui il wipe data
-archidroid.detect.pass.alert.no=Va bene, ma si tenga presente che la ROM potrebbe non funzionare propriamente con dati incompatibili!
+archidroid.detect.pass.alert.no=D'accordo, ma tenere in conto che la ROM potrebbe non funzionare propriamente con dati incompatibili!
 archidroid.detect.pass.alert.yes=Buona scelta, ArchiDroid farà in modo che la partizione /data venga pulita prima del flash!
 
-archidroid.detect.previouspreset.expert.fail.incompatible=Avvertimento! Il vecchio preset ha fallito il controllo di integrità. Assicurarsi che le opzioni scelte siano valide!
-archidroid.detect.previouspreset.fail.incompatible=Mi spiace, il vecchio preset ha fallito il controllo di integrità. Si può provare la modalità esperto se si sa cosa si stia facendo
+archidroid.detect.previouspreset.expert.fail.incompatible=Avvertimento! Il controllo di integrità del vecchio preset è fallito. Assicurarsi che le opzioni scelte siano valide!
+archidroid.detect.previouspreset.fail.incompatible=Mi spiace, il controllo di integrità del vecchio preset è fallito. E' possibile provare la modalità esperto se si sa cosa si stia facendo
 archidroid.detect.previouspreset.fail.notavailable=Mi spiace, sembra che non si disponga ancora di un vecchio preset
 
 archidroid.experimental=Build sperimentale
-archidroid.experimental.terms.check=Ho capito che questa build non è finita e potrebbe anche brickare il device
+archidroid.experimental.terms.check=Ho capito che questa build è incompleta e potrebbe anche brickare il device
 
 archidroid.gapps.bksync.desc=Fornisce la funzione di sincronizzazione dei segnalibri per Google Chrome
-archidroid.gapps.calendargoogle.desc=Sostituisce il calendario stock. Aggiunge al calendario standard l'integrazione con l'account Google a altre caratteristiche
+archidroid.gapps.calendargoogle.desc=Sostituisce il calendario stock. Estende al calendario standard l'integrazione con l'account Google a altre caratteristiche
 archidroid.gapps.calsync.desc=Fornisce la funzione di sincronizzazione del calendario per Google Calendar
 archidroid.gapps.core.desc=Fornisce il nocciolo delle funzionalità per le Google Apps. Include i servizi Google, il framework, il Play Store e altri componenti richiesti. Obbligatorio per tutte le Google Apps
 archidroid.gapps.faceunlock.desc=Fornisce la funzione di sblocco con riconoscimento del volto, che può essere attivata nelle opzioni della lockscreen dopo l'installazione
 archidroid.gapps.gmail.desc=Un client mail progettato per funzionare con il servizio Gmail. Include l'integrazione con l'account Google, la sincronizzazione della mail e altro ancora
-archidroid.gapps.googleplus.desc=Un client social progettato per funzionare con il servizio Google Plus. Se si utilizza Google Plus, si può selezionare questo
-archidroid.gapps.googletts.desc=TTS sta per Text-To-Speech. Assolutamente richiesto se si desidera ascoltare il testo scritto, ad esempio durante la navigazione gps
-archidroid.gapps.hangouts.desc=Hangouts client - offre il supporto ai "messaggi" di Gmail, può anche essere utilizzato come app opzionale per SMS/MMS
+archidroid.gapps.googleplus.desc=Un client di rete sociale progettato per funzionare con il servizio Google Plus. Se si utilizza Google Plus, può essere conveniente selezionare questo
+archidroid.gapps.googletts.desc=TTS significa Text-To-Speech. Assolutamente richiesto se si desidera ascoltare il testo scritto, ad esempio durante la navigazione gps
+archidroid.gapps.hangouts.desc=Client Hangouts - offre il supporto ai "messaggi" di Gmail, può anche essere utilizzato come app opzionale per SMS/MMS
 archidroid.gapps.maps.desc=Un client mappe progettato per funzionare con il servizio Google Maps. Offre il supporto alla navigazione e ad altre funzioni
-archidroid.gapps.search.desc=Un client di ricerca progettato per funzionare con il servizio Google. Questo pacchetto include anche Google Voice, quindi è obbligatorio se si vuole utilizzare ad esempio i comandi vocali nel launcher Google
-archidroid.gapps.speech.desc=Fornisce i componenti di Google Voice. Obbligatorio se si vuole utilizzare Google Voice
-archidroid.gapps.street.desc=Un client di visualizzazione strade progettato per funzionare con il servizio Google Street View. Selezionare questo se si vuole ampliare Google Maps con funzionalità supplementari
+archidroid.gapps.search.desc=Un client di ricerca progettato per funzionare con il servizio Google. Questo pacchetto include anche Google Voice, è obbligatorio per utilizzare ad esempio i comandi vocali del Launcher Google
+archidroid.gapps.speech.desc=Fornisce i componenti di Google Voice. Obbligatorio per l'utilizzo di Google Voice
+archidroid.gapps.street.desc=Un client di visione stradale progettato per funzionare con il servizio Google Street View. Selezionare questo per ampliare Google Maps con funzionalità supplementari
 archidroid.gapps.youtube.desc=Un client video progettato per funzionare con il servizio YouTube. Se si desidera guardare i video di YouTube sul telefono senza utilizzare il browser, questo è obbligatorio
 
 archidroid.hardswap.desc=Sacrifica I/O a favore di più memoria
@@ -112,20 +112,20 @@ archidroid.preset.barebones=Ridotta all'Osso
 archidroid.preset.barebones.desc=Questa opzione flasha solamente la base della ROM. Suggerita solo a scopo di debug, si perderanno molte chicche della ArchiDroid
 archidroid.preset.custom=Personalizzata
 archidroid.preset.custom.desc=Selezionare questa opzione se si desidera personalizzare ogni aspetto della ArchiDroid prima del flash. Raccomandata
-archidroid.preset.previous=Vecchie Impostazioni
-archidroid.preset.previous.desc=Se l'installazione è già stata personalizzata in precedenza, questa opzione carica ed utilizza il vecchio preset
-archidroid.preset.previousexpert=Vecchie Impostazioni per Esperti
-archidroid.preset.previousexpert.desc=Funziona allo stesso modo delle vecchie impostazioni sopra, ma la modalità esperto non forza i controlli di compatibilità e permette di apportare modifiche al preset prima del flash. Avvertimento: prestare attenzione, preset di installazione incompatibili possono risultare non flashabili
+archidroid.preset.previous=Configurazione Precedente
+archidroid.preset.previous.desc=Se l'installazione è già stata personalizzata in passato, questa opzione carica ed utilizza il vecchio preset
+archidroid.preset.previousexpert=Configurazione Precedente per Esperti
+archidroid.preset.previousexpert.desc=Simile alla configurazione precedente, ma la modalità esperto non forza i controlli di compatibilità e permette di apportare modifiche al preset prima del flash. Avvertimento: prestare attenzione, preset di installazione incompatibili possono risultare non flashabili
 archidroid.preset.recovery=Recovery
-archidroid.preset.recovery.desc=Selezionare questa opzione se si vuole o si ha la necessità di aggiornare la recovery prima del flash della ArchiDroid
+archidroid.preset.recovery.desc=Selezionare questa opzione se si ha il bisogno o la necessità di aggiornare la recovery prima del flash della ArchiDroid
 
 archidroid.preview=Anteprima
-archidroid.preview.desc=Quando selezionata, si vedrà un esempio della selezione nella schermata successiva
+archidroid.preview.desc=Quando selezionata, visualizzerà un esempio della selezione nella schermata successiva
 
-archidroid.recovery.twrp.desc=Custom recovery con l'obbiettivo di garantire facilità di utilizzo e personalizzazione. Ampiamente supportata, con uno sviluppo all'avanguardia
+archidroid.recovery.twrp.desc=Recovery alternativa progettata per garantire facilità di utilizzo e personalizzazione. Altamente compatibile, con uno sviluppo all'avanguardia
 
 archidroid.superuser.chainfire.desc=Closed-source, soluzione moderna per ROM stock e utenti che preferiscono un tool di gestione dell'accesso superuser del futuro
-archidroid.superuser.koush.desc=Open-source, tool integrato di gestione dell'accesso superuser 
+archidroid.superuser.koush.desc=Open-source, tool di gestione integrata dell'accesso superuser 
 archidroid.superuser.none.desc=No superuser, questa opzione disabilita l'accesso root. Usare questa opzione per una sicurezza extra
 
 archidroid.thirdparty=Accordo di Terze Parti
@@ -133,20 +133,20 @@ archidroid.thirdparty=Accordo di Terze Parti
 archidroid.tou=Condizioni di Utilizzo
 
 archidroid.tweaks.cellbroadcasts=Cell broadcasts
-archidroid.tweaks.cellbroadcasts.desc=I cell broadcasts sono progettati per consegne simultanee a più utenti in un'area specifica. Spesso sono utilizzati a scopi di spam. Selezionare solo in caso di bisogno
+archidroid.tweaks.cellbroadcasts.desc=I cell broadcasts sono progettati per consegne simultanee a più utenti in un'area specifica. Spesso sono utilizzati a scopi di spam. Selezionare solo in caso di necessità
 archidroid.tweaks.navibar=Barra di navigazione
 archidroid.tweaks.navibar.desc=Abilita la barra di navigazione, e disabilita i tasti hardware (back, home, menu). Selezionare se si preferisce avere una navigazione a schermo
 
 archidroid.xposed.desc=Xposed Framework consente di modificare il framework al volo tramite vari moduli di terze parti, senza modificare file di sistema. Altamente raccomandato
 archidroid.xposed.gravitybox.desc=Modulo Xposed All-In-One che contiene centinaia di modifiche per il framework
-archidroid.xposed.xprivacy.desc=Se si vuole proteggere la propria privacy, questo modulo è l'ideale. Con questa app si potrà specificare precisamente i permessi per ogni app installata
+archidroid.xposed.xprivacy.desc=Se si desidera proteggere la propria privacy, questo modulo è l'ideale. Con questa app si potrà specificare precisamente i permessi per ogni app installata
 
 
 ### AROMA strings
 text_about=Info
 text_back=Indietro
 text_calibrating=Tools di calibrazione
-text_next=Avanti
+text_next=Seguente
 text_no=No
 text_ok=OK
 text_quit_msg=Sei sicuro di voler uscire dall'installer?
