@@ -358,12 +358,14 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"xposed-xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check",
 
 		"archiapps", "<#selectbg_g>ArchiDroid Apps</#>", "", "group",
-		"titaniumbackup", "Titanium Backup", "<~archidroid.apps.titaniumbackup.desc>", "check.checked",
+		"adaway", "AdAway", "<~archidroid.apps.adaway.desc>", "check.checked",
+		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
+		"esfileexplorer", "ES File Explorer", "<~archidroid.apps.esfileexplorer.desc>", "check.checked",
 		"greenify", "Greenify", "<~archidroid.apps.greenify.desc>", "check.checked",
 		"lmt", "LMT", "<~archidroid.apps.lmt.desc>", "check.checked",
 		"mxplayer", "MXPlayer", "<~archidroid.apps.mxplayer.desc>", "check.checked",
-		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
-		"esfileexplorer", "ES File Explorer", "<~archidroid.apps.esfileexplorer.desc>", "check.checked",
+#		"spiritfm", "Spirit FM", "<~archidroid.apps.spiritfm.desc>", "check.checked",
+		"titaniumbackup", "Titanium Backup", "<~archidroid.apps.titaniumbackup.desc>", "check.checked",
 
 		"architweaks", "<#selectbg_g>ArchiDroid Tweaks</#>", "", "group",
 		"navibar", "<~archidroid.tweaks.navibar>", "<~archidroid.tweaks.navibar.desc>", "check",
