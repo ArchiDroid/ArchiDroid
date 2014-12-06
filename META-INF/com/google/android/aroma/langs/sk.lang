@@ -27,10 +27,10 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Open source ad blocker for Android. Comes preconfigured to update hosts in ArchiDroid's Adblock periodically
+archidroid.apps.adaway.desc=Open source, blokovanie reklám. Je nastavený tak, aby aktualizoval subor hosts v ArchiDroid pravidelne
 archidroid.apps.cooltool.desc=Vysoko prisposobiteľná aplikácia, ktorá zobrazuje užitočné informácie o Vašom zariadení (napr. zaťaženosť CPU na vrchu displeja)
 archidroid.apps.esfileexplorer.desc=Veľmi dobrá náhrada za systémového správcu súborov 
-archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary google store
+archidroid.apps.fdroid.desc=Inštalovateľný katalóg voľných a open source aplikácií pre Android. Skvelý doplnok k obchodu Google Play
 archidroid.apps.greenify.desc=Šetrí batériu tým, že v pozadí hybernuje aplikácie, ktoré nepoužívate
 archidroid.apps.lmt.desc=Rozšíri ovládanie Vašeho zariadenia o PIE funkcionalitu (gestá a iné...)
 archidroid.apps.mxplayer.desc=Video prehrávač pre Android využívajúci hardvérovú akceleráciu
@@ -55,12 +55,12 @@ archidroid.common.current=Aktuálne
 archidroid.common.default=Pôvodná hodnota
 archidroid.common.density=Hustota obrazovky
 archidroid.common.detected=Zistený
-archidroid.common.finish=Finish
-archidroid.common.install=Install
-archidroid.common.installation=Installation
+archidroid.common.finish=Koniec
+archidroid.common.install=Inštalovať
+archidroid.common.installation=Inštalácia
 archidroid.common.none=Žiadny
-archidroid.common.reboot=Reboot
-archidroid.common.reboot.question=Would you like to reboot your device now?
+archidroid.common.reboot=Reštart
+archidroid.common.reboot.question=Chcete reštartovat Vaše zariadenie?
 archidroid.common.terms.check=Súhlasím s podmienkami
 archidroid.common.terms.readme=Čítaj ma!
 archidroid.common.terms.unchecked=Prosím, potvrďte licenciu.
@@ -101,8 +101,8 @@ archidroid.hardswap.desc=Obetovať I/O pre viac pamäte
 archidroid.hardswap.size.0.desc=Toto nastavenie vymaže súbor hardswap z Vašej partície
 archidroid.hardswap.size.default.desc=Maximálna odporúčaná veľkosť
 
-archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
-archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+archidroid.install.desc=<b>ArchiDroid</b> sa bude inštalovať. Prosím čakajte, pokiaľ inštalačný sprievodca nainštaluje <b>ArchiDroid</b> do Vašeho zariadenia
+archidroid.install.finish=Inštalácia <b>ArchiDroid</b> bola dokončená. Pokiaľ chcete pokračovať, stlačte <b>Koniec</b>
 
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=ArchiDroid je optimalizovaný pre tento kernel. Obsahuje najnovší softvér a mnoho vylepšení. Odporúčané nastavenie
@@ -117,8 +117,8 @@ archidroid.launcher.google.desc=Perfektne integrovaná s ostatnými Google apps,
 archidroid.launcher.nova.desc=Domovská stránka, ktorá umožňuje veľké množstvo nastavení. Optimalizovaná na rýchlosť a použiteľnosť
 archidroid.launcher.stock.desc=Domovská stránka poskytovaná pôvodným (základným) systémom
 
-archidroid.prepinstall=Ready for flashing
-archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
+archidroid.prepinstall=Pripravené na inštaláciu
+archidroid.prepinstall.desc=Teraz ste pripravený začať inštaláciu. Pokiaľ chcete začať inštaláciu, stlačte <b>Inštalovať</b>. V prípade, keď si chcete skontrolovať, alebo zmeniť Vaše inštalačné nastavenia, stlačte <b>Späť</b>
 
 archidroid.preset=Nastavenia
 archidroid.preset.barebones=Bare Bones
