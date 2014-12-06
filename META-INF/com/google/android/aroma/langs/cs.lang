@@ -27,26 +27,26 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Open source ad blocker for Android. Comes preconfigured to update hosts in ArchiDroid's Adblock periodically
-archidroid.apps.cooltool.desc=Přizpůsobitelná aplikace, která ukazuje uitečné informace o vaem zařízení (např. CPU) na litě
+archidroid.apps.adaway.desc=Open source. Blokování reklam. Ve výchozím stavu se aktualizuje soubor hosts v ArchiDroid periodicky
+archidroid.apps.cooltool.desc=Přizpůsobitelná aplikace, která ukazuje užitečné informace o vašem zařízení (např. CPU) na liště
 archidroid.apps.esfileexplorer.desc=Velmi dobrý správce souborů - náhrada pro Android
-archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary Google Play Store
-archidroid.apps.greenify.desc=etří baterii hybernováním aplikací na pozadí, kdy zrovna nejsou pouívané
-archidroid.apps.lmt.desc=Vylepuje zařízení funkcí PIE - podpora gest a dalí
+archidroid.apps.fdroid.desc=Instalovatelný katalog open source a zdarma aplikací pro Android. Skvělý doplněk k vlastnímu obchodu Play
+archidroid.apps.greenify.desc=Šetří baterii hybernováním aplikací na pozadí, když zrovna nejsou používané
+archidroid.apps.lmt.desc=Vylepšuje zařízení funkcí PIE - podpora gest a další
 archidroid.apps.mxplayer.desc=HW zrychlený videopřehrávač pro Android
-archidroid.apps.spiritfm.desc=Skutečné FM radio. Nevyaduje připojení k internetu
-archidroid.apps.titaniumbackup.desc=Základní aplikace pro uivatele rootu. Umonuje zálohovat/obnovit aplikace a jejich data za chodu
+archidroid.apps.spiritfm.desc=Skutečné FM radio. Nevyžaduje připojení k internetu
+archidroid.apps.titaniumbackup.desc=Základní aplikace pro uživatele rootu. Umožnuje zálohovat/obnovit aplikace a jejich data za chodu
 
 archidroid.bcm=BCM profily
-archidroid.bcm.archidetect.desc=ArchiDetect se pokusí automaticky detekovat správný firmware pro vae zařízení
+archidroid.bcm.archidetect.desc=ArchiDetect se pokusí automaticky detekovat správný firmware pro vaše zařízení
 
-archidroid.bootanimation=Spoutěcí animace 
-archidroid.bootanimation.archi1.desc=První ArchiDroid spoutěcí animace, od dob 1.X
-archidroid.bootanimation.archi2.desc=Druhá ArchiDroid spoutěcí animace, od dob 2.X
-archidroid.bootanimation.archi3.desc=Třetí ArchiDroid spoutěcí animace, od dob 3.X 
-archidroid.bootanimation.logcat.desc=ivý logcat záznam místo spoutěcí animace, pomocí logcat lite aplikace
-archidroid.bootanimation.none.desc=ádná spoutěcí animace, pro mírně rychlejí sputění
-archidroid.bootanimation.stock.desc=Spoutěcí animace poskytovaná základním systémem
+archidroid.bootanimation=Spouštěcí animace 
+archidroid.bootanimation.archi1.desc=První ArchiDroid spouštěcí animace, od dob 1.X
+archidroid.bootanimation.archi2.desc=Druhá ArchiDroid spouštěcí animace, od dob 2.X
+archidroid.bootanimation.archi3.desc=Třetí ArchiDroid spouštěcí animace, od dob 3.X 
+archidroid.bootanimation.logcat.desc=Živý logcat záznam místo spouštěcí animace, pomocí logcat lite aplikace
+archidroid.bootanimation.none.desc=Žádná spouštěcí animace, pro mírně rychlejší spuštění
+archidroid.bootanimation.stock.desc=Spouštěcí animace poskytovaná základním systémem
 
 archidroid.changelog=Změny
 archidroid.changelog.desc=Co je nového
@@ -55,12 +55,12 @@ archidroid.common.current=Současné
 archidroid.common.default=původní hodnota
 archidroid.common.density=Hustota
 archidroid.common.detected=Nalezené
-archidroid.common.finish=Finish
-archidroid.common.install=Install
-archidroid.common.installation=Installation
-archidroid.common.none=ádné
+archidroid.common.finish=Dokončení
+archidroid.common.install=Instalovat
+archidroid.common.installation=Instalace
+archidroid.common.none=Žádné
 archidroid.common.reboot=Reboot
-archidroid.common.reboot.question=Would you like to reboot your device now?
+archidroid.common.reboot.question=Přejete si restartovat zařízení teď?
 archidroid.common.terms.check=Souhlasím s podmínkami
 archidroid.common.terms.readme=Čti mě!
 archidroid.common.terms.unchecked=Zkontrolujte souhlas!
@@ -68,101 +68,102 @@ archidroid.common.terms.unchecked=Zkontrolujte souhlas!
 archidroid.custom=Přizpůsobit
 archidroid.custom.desc=Uprav si nastavení
 
-archidroid.detect.fail=ArchiDroid neumí zjistit,jestli je momentálně nainstalovaný na tomto zařízení. Z toho důvodu je potřeba úplně smazat data (data wipe, factory reset). ArchiDroid vymae datové oddíly pred nahráním firmwaru. Data na SD kartě zůstanou v bezpečí.
-archidroid.detect.pass=ArchiDroid zjistil,e je momentálně nainstalovaný na tomto zařízení. Přejete si i přes to vymazat vae data?
+archidroid.detect.fail=ArchiDroid neumí zjistit,jestli je momentálně nainstalovaný na tomto zařízení. Z toho důvodu je potřeba úplně smazat data (data wipe, factory reset). ArchiDroid vymaže datové oddíly před nahráním firmwaru. Data na SD kartě zůstanou v bezpečí.
+archidroid.detect.pass=ArchiDroid zjistil, že je momentálně nainstalovaný na tomto zařízení. Přejete si i přes to vymazat vaše data?
 archidroid.detect.pass.no=Ne, nechci vymazat moje staré data
 archidroid.detect.pass.yes=Ano, chci vymazat moje staré data
-archidroid.detect.pass.alert.no=V pořádku,ale mějte na paměti, e ROM nemusí fungovat správně nekompatibilními daty!
-archidroid.detect.pass.alert.yes=Dobré rozhodnutí, ArchiDroid se ujistí, e /data jsou čisté před nainstalováním!
+archidroid.detect.pass.alert.no=V pořádku,ale mějte na paměti, že ROM nemusí fungovat správně nekompatibilními daty!
+archidroid.detect.pass.alert.yes=Dobré rozhodnutí, ArchiDroid se ujistí, že /data jsou čisté před nainstalováním!
 
-archidroid.detect.previouspreset.expert.fail.incompatible=Pozor! Vae stará předvolba nebyla nalezena. Ujistěte se, e vae vybrané monosti jsou platné!
-archidroid.detect.previouspreset.fail.incompatible=Omlouváme se, ale vae stará předvolba selhala na kontrole integrity. Můe zkusit reim experta, pokud ví co dělá
-archidroid.detect.previouspreset.fail.notavailable=Omlouváme se, vypadá to, e nemáte jetě ádnou starí předvolbu
+archidroid.detect.previouspreset.expert.fail.incompatible=Pozor! Vaše stará předvolba nebyla nalezena. Ujistěte se, že vaše vybrané možnosti jsou platné!
+archidroid.detect.previouspreset.fail.incompatible=Omlouváme se, ale vaše stará předvolba selhala na kontrole integrity. Můžete zkusit režim experta, pokud víte co děláte
+archidroid.detect.previouspreset.fail.notavailable=Omlouváme se, vypadá to, že nemáte ještě žádnou starší předvolbu
 
 archidroid.experimental=Experimentální verze
-archidroid.experimental.terms.check=Chápu, e verze zatím není dokončená a dokonce můe pokodit mé zařízení
+archidroid.experimental.terms.check=Chápu, že verze zatím není dokončená a dokonce může poškodit mé zařízení
 
-archidroid.gapps.bksync.desc=Zajiuje synchronizaci záloek pro Google Chrome
-archidroid.gapps.calendargoogle.desc=Nahradí původní kalendář. Roziřuje standartní kalendář s google účtem a dalími funkcemi
-archidroid.gapps.calsync.desc=Zajiuje synchronizaci kalendáře pro Google kalendář
-archidroid.gapps.core.desc=Poskytuje základní jádro pro funkci Google aplikací. Zahrnuje sluby společnosti Google, obchod Play a dalí potřebné části. Povinné pro vechny google aplikace
-archidroid.gapps.faceunlock.desc=Poskytuje odemknutí obličejem, které můe být aktivováno v nastavení po instalaci
-archidroid.gapps.gmail.desc=Mailový klient určení pro práci se slubou Gmail. Zahrnuje integraci s google účtem, mailovou synchronizaci a dalí
-archidroid.gapps.googleplus.desc=Klient sociální sítě Google+. Jestli pouíváte G+, zakrněte 
-archidroid.gapps.googletts.desc=TTS (Text-to-Speech) - Nezbytně nutné, jestli si přejete slyet psaný text, např. během GPS navigace
-archidroid.gapps.hangouts.desc=Hangouts klient - nabízí podporu pro Gmail "zprávy", dále můe být pouívaný jako SMS/MMS aplikace
-archidroid.gapps.maps.desc=Mapová klient určený pro práci se slubou Google Mapy. Podporuje vestavěnou navigaci a dalí funce
-archidroid.gapps.search.desc=Vyhledávací klient určený pro práci se slubami Google. Balíček zahrnuje Google Voice, který je potřebný, pokud chcete pouívat např. hlasovné příkazy v Google Launcheru
-archidroid.gapps.speech.desc=Poskytuje Google Voice. Potřebné pokud chcete pouívat slubu Google Voice
-archidroid.gapps.street.desc=Street view klient určený pro práci se slubou Google Street View. Vyberte, pokud chcete rozírit Google Mapy dalí funkcí
-archidroid.gapps.youtube.desc=Video klient určený pro práci se slubou Youtube. Pokud si přejete dívat se na Youtube videa na vaem mobilu bez pouití internetového prohlíeče, je toto povinné
+archidroid.gapps.bksync.desc=Zajišťuje synchronizaci záložek pro Google Chrome
+archidroid.gapps.calendargoogle.desc=Nahradí původní kalendář. Rozšiřuje standartní kalendář s Google účtem a dalšími funkcemi
+archidroid.gapps.calsync.desc=Zajišťuje synchronizaci kalendáře pro Google kalendář
+archidroid.gapps.core.desc=Poskytuje základní jádro pro funkci Google aplikací. Zahrnuje služby společnosti Google, obchod Play a další potřebné části. Povinné pro všechny Google aplikace
+archidroid.gapps.faceunlock.desc=Poskytuje odemknutí obličejem, které může být aktivováno v nastavení po instalaci
+archidroid.gapps.gmail.desc=Mailový klient určení pro práci se službou Gmail. Zahrnuje integraci s Google účtem, mailovou synchronizaci a další
+archidroid.gapps.googleplus.desc=Klient sociální sítě Google+. Jestli používáte G+, zaškrněte 
+archidroid.gapps.googletts.desc=TTS (Text-to-Speech) - Nezbytně nutné, jestli si přejete slyšet psaný text, např. během GPS navigace
+archidroid.gapps.hangouts.desc=Hangouts klient - nabízí podporu pro Gmail "zprávy", dále může být používaný jako SMS/MMS aplikace
+archidroid.gapps.maps.desc=Mapový klient určený pro práci se službou Google Mapy. Podporuje vestavěnou navigaci a další funkce
+archidroid.gapps.search.desc=Vyhledávací klient určený pro práci se službami Google. Balíček zahrnuje Google Voice, který je potřebný, pokud chcete používat např. hlasové příkazy v Google Launcheru
+archidroid.gapps.speech.desc=Poskytuje Google Voice. Potřebné pokud chcete používat službu Google Voice
+archidroid.gapps.street.desc=Street view klient určený pro práci se slubou Google Street View. Vyberte, pokud chcete rozšířit Google Mapy další funkcí
+archidroid.gapps.youtube.desc=Video klient určený pro práci se službou Youtube. Pokud si přejete dívat se na Youtube videa na vašem mobilu bez použití internetového prohlížeče, je toto povinné
 
 archidroid.hardswap.desc=Obětovat I/O pro více paměti
-archidroid.hardswap.size.0.desc=Tahle monost odstraní hardswap soubor z oddílu
+archidroid.hardswap.size.0.desc=Tahle možnost odstraní hardswap soubor z oddílu
 archidroid.hardswap.size.default.desc=Maximální doporučená velikost
 
-archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
-archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+archidroid.install.desc=<b>ArchiDroid</b> bude instalován. Čekejte prosím trpělivě zatímco průvodce instalací nainstaluje <b>ArchiDroid</b> do vašeho zařízení
+archidroid.install.finish=Instalace <b>ArchiDroid</b> byla dokončena. Stiskněte tlačítko <b>Finish</b> pro pokračování
 
 archidroid.kernel=Kernel
-archidroid.kernel.archi.desc=ArchiDroid je perfektně optimalizovaný pro tento kernel. Optimalizace, aktualizované zdroje a dalí vylepení. Vysoce doporučené
+archidroid.kernel.archi.desc=ArchiDroid je perfektně optimalizovaný pro tento kernel. Optimalizace, aktualizované zdroje a další vylepšení. Vysoce doporučené
 archidroid.kernel.stock.desc=Kernel, který poskytuje původní systém
 
 archidroid.keyboard=Klávesnice
-archidroid.keyboard.google.desc=Monost psaní gesty, návrhy při psaní, volitelné rozloení a dalí vylepení oproti standartní AOSP klávesnici
+archidroid.keyboard.google.desc=Možnost psaní gesty, návrhy při psaní, volitelné rozložení a další vylepšení oproti nativní AOSP klávesnici
 archidroid.keyboard.stock.desc=Klávesnice, kterou poskytuje původní systém
 
 archidroid.launcher=Launcher
-archidroid.launcher.google.desc=Představuje perfektní integraci s ostatními Google aplikacemi, např. Vyhledávání, které umoní hlasové vyhledávání z domovské stránky
+archidroid.launcher.google.desc=Představuje perfektní integraci s ostatními Google aplikacemi, např. Vyhledávání, které umožní hlasové vyhledávání z domovské stránky
 archidroid.launcher.nova.desc=Vysoce přizpůsobitelný, výkonný launcher pro Android
 archidroid.launcher.stock.desc=Launcher, který poskytuje původní systém
 
-archidroid.prepinstall=Ready for flashing
-archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
+archidroid.prepinstall=Připraveno pro instalaci
+archidroid.prepinstall.desc=Nyní jste připraveni začít instalaci. Stisknutím tlačítka <b>Install</b> začít. Jestli chcete zkontrolovat nebo změnit něco z nastavení instalace, zmáčkněte tlačítko <b>Back</b>
+
 
 archidroid.preset=Předvolba
 archidroid.preset.barebones=Bare Bones
-archidroid.preset.barebones.desc=Tato volba instaluje pouze základní ROM. Doporučeno pouze pro ladění, bude chybět větina z ArchiDroid vylepení
+archidroid.preset.barebones.desc=Tato volba instaluje pouze základní ROM. Doporučeno pouze pro ladění, bude chybět většina z ArchiDroid vylepšení
 archidroid.preset.custom=Vlastní
-archidroid.preset.custom.desc=Vyberte tuto monost jestli si chcete upravit kadý aspekt ArchiDroid jetě před instalováním. Doporučené
+archidroid.preset.custom.desc=Vyberte tuto možnost jestli si chcete upravit každý aspekt ArchiDroid ještě před instalováním. Doporučené
 archidroid.preset.previous=Minulá předvolba
-archidroid.preset.previous.desc=Jestli u jste si přizpůsobili instalaci dříve, tato monost načte a pouije starou předvolbu
+archidroid.preset.previous.desc=Jestliže jste si přizpůsobili instalaci dříve, tato možnost načte a použije starou předvolbu
 archidroid.preset.previousexpert=Minulá předvolba - Expert
-archidroid.preset.previousexpert.desc=Stejné jako volba výe, ale expert mód nedělá kontrolu kompatibility a povolí modifikaci vaich dřívějích předvoleb před instalací. Varování: Buďte opatrní, nekompatibilní nastavení můe způsobit problémy běhěm instalace
+archidroid.preset.previousexpert.desc=Stejné jako volba výše, ale expert mód nedělá kontrolu kompatibility a povolí modifikaci vašich dřívějších předvoleb před instalací. Varování: Buďte opatrní, nekompatibilní nastavení může způsobit problémy během instalace
 archidroid.preset.recovery=Recovery
-archidroid.preset.recovery.desc=Zvolte tuto monost, jestli chcete/potřebujete aktualizovat recovery jetě před instalací ArchiDroid
+archidroid.preset.recovery.desc=Zvolte tuto možnost, jestli chcete/potřebujete aktualizovat recovery ještě před instalací ArchiDroid
 
 archidroid.preview=Náhled
-archidroid.preview.desc=Uvidíte ukázku výběru na dalí straně
+archidroid.preview.desc=Uvidíte ukázku výběru na další straně
 
-archidroid.recovery.twrp.desc=Vlastní recovery postavená na snadném pouívání a přizpůsobení. iroce podporovaná, nejlepí development
+archidroid.recovery.twrp.desc=Vlastní recovery postavená na snadném používání a přizpůsobení. široce podporovaná, nejlepší development
 
-archidroid.superuser.chainfire.desc=Closed-source, modení řeení pro původní ROMs a uivatele, kteří preferují superuser nástroj budocnousti
+archidroid.superuser.chainfire.desc=Closed-source, modení řešení pro původní ROMs a uživatele, kteří preferují superuser nástroj budocnousti
 archidroid.superuser.koush.desc=Open-source, zabudovaný superuser přístup
-archidroid.superuser.none.desc=ádný superuser, tahle monost zakáe root přístup. Tuhle monost můete pouít pro extra bezpečnost
+archidroid.superuser.none.desc=žádný superuser, tahle možnost zakáže root přístup. Tuhle monost můžete použít pro extra bezpečnost
 
 archidroid.thirdparty=Dohoda třetích stran
 
-archidroid.tou=Podmínky pouívání
+archidroid.tou=Podmínky používání
 
 archidroid.tweaks.cellbroadcasts=Cell broadcasts
-archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts je určený pro současné dodání zprávy více uivatelům ve specifické oblasti. Často se pouívá pro posílání spamu. Vyberte pouze v případě, e to slubu potřebujete
-archidroid.tweaks.navibar=Navigační lita
-archidroid.tweaks.navibar.desc=Zapne navigační litu a vypne HW tlačítka (menu,domů,zpět). Vyber, jestli preferuje navigační litu před HW tlačítkama 
+archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts je určený pro současné dodání zprávy více uživatelům ve specifické oblasti. Často se používá pro posílání spamu. Vyberte pouze v případě, že to službu potřebujete
+archidroid.tweaks.navibar=Navigační lišta
+archidroid.tweaks.navibar.desc=Zapne navigační lištu a vypne HW tlačítka (menu,domů,zpět). Vyber, jestli preferuješ navigační litu před HW tlačítkama 
 
-archidroid.xposed.desc=Xposed Framework umoňuje modulům třetích stran, aby modifikovali vá systém, bez nutnosti modifikace systémových souborů. Vysoce doporučované
+archidroid.xposed.desc=Xposed Framework umožňuje modulům třetích stran, aby modifikovali váš systém, bez nutnosti modifikace systémových souborů. Vysoce doporučované
 archidroid.xposed.gravitybox.desc=Xposed modul, který obsahuje přes stovky nastavení
-archidroid.xposed.xprivacy.desc=Jestli rádi chráníte své soukromí, tento modul je pro vás. S touto aplikací budete moci přesně určit oprávnění pro kadou nainstalovanou aplikaci
+archidroid.xposed.xprivacy.desc=Jestli rádi chráníte své soukromí, tento modul je pro vás. S touto aplikací budete moci přesně určit oprávnění pro každou nainstalovanou aplikaci
 
 
 ### AROMA strings
 text_about=Informace o...
 text_back=Zpátky
 text_calibrating=Kalibrační nastavení
-text_next=Dalí
+text_next=Další
 text_no=Ne
 text_ok=OK
-text_quit_msg=Jste si jistý, e chcete ukončit instalaci?
+text_quit_msg=Jste si jistý, že chcete ukončit instalaci?
 text_quit=Ukončit instalaci
 text_yes=Ano
 
