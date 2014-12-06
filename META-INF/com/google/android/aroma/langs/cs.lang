@@ -102,7 +102,7 @@ archidroid.hardswap.size.0.desc=Tahle možnost odstraní hardswap soubor z oddí
 archidroid.hardswap.size.default.desc=Maximální doporučená velikost
 
 archidroid.install.desc=<b>ArchiDroid</b> bude instalován. Čekejte prosím trpělivě zatímco průvodce instalací nainstaluje <b>ArchiDroid</b> do vašeho zařízení
-archidroid.install.finish=Instalace <b>ArchiDroid</b> byla dokončena. Stiskněte tlačítko <b>Finish</b> pro pokračování
+archidroid.install.finish=Instalace <b>ArchiDroid</b> byla dokončena. Stiskněte tlačítko <b>Dokončení</b> pro pokračování
 
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=ArchiDroid je perfektně optimalizovaný pro tento kernel. Optimalizace, aktualizované zdroje a další vylepšení. Vysoce doporučené
@@ -118,8 +118,7 @@ archidroid.launcher.nova.desc=Vysoce přizpůsobitelný, výkonný launcher pro 
 archidroid.launcher.stock.desc=Launcher, který poskytuje původní systém
 
 archidroid.prepinstall=Připraveno pro instalaci
-archidroid.prepinstall.desc=Nyní jste připraveni začít instalaci. Stisknutím tlačítka <b>Install</b> začít. Jestli chcete zkontrolovat nebo změnit něco z nastavení instalace, zmáčkněte tlačítko <b>Back</b>
-
+archidroid.prepinstall.desc=Nyní jste připraveni začít instalaci. Stisknutím tlačítka <b>Instalovat</b> začít. Jestli chcete zkontrolovat nebo změnit něco z nastavení instalace, zmáčkněte tlačítko <b>Zpátky</b>
 
 archidroid.preset=Předvolba
 archidroid.preset.barebones=Bare Bones
