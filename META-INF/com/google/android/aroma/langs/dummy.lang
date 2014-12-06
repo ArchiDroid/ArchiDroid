@@ -82,7 +82,7 @@ archidroid.gapps.core.desc=Provides core Google Apps functionality. Includes Goo
 archidroid.gapps.faceunlock.desc=Provides face unlock feature, which can be activated in lockscreen options after installation
 archidroid.gapps.gmail.desc=A mail client designed to work with Gmail service. Includes integration with google account, mail synchronization and more
 archidroid.gapps.googleplus.desc=A social networking client designed to work with Google Plus service. If you're using Google Plus, you may want to select this
-archidroid.gapps.googletts.desc=TTS stands for Text-To-Speech. Absolutely required if you wish to hear written text, e.g. during gps navigation
+archidroid.gapps.googletts.desc=TTS stands for Text-To-Speech. Absolutely required if you wish to hear written text, e.g. during GPS navigation
 archidroid.gapps.hangouts.desc=Hangouts client - features support for gmail "messages", also may act as optional SMS/MMS app
 archidroid.gapps.maps.desc=A maps client designed to work with Google Maps service. Features built-in navigation support and other functions
 archidroid.gapps.search.desc=A search client designed to work with Google service. This package also includes Google Voice, so it's mandatory if you want to use e.g. voice commands in Google Launcher
@@ -138,7 +138,7 @@ archidroid.tweaks.navibar=Navigation bar
 archidroid.tweaks.navibar.desc=Turns on navigation bar, and disables hardware keys (back, home, menu). Select if you prefer to have on-screen navigation
 
 archidroid.xposed.desc=Xposed Framework allows various third-party modules to make framework changes on-the-fly, without modification of system files. Highly recommended
-archidroid.xposed.gravitybox.desc=All-In-One Xposed module that contains a hundred of framework modifications, which can be 
+archidroid.xposed.gravitybox.desc=All-In-One Xposed module that contains a hundred of framework modifications, which may be activated/deactivated later according to your preferences
 archidroid.xposed.xprivacy.desc=If you like to protect your privacy, this module is for you. With this app you'll be able to precisely specify permissions for every installed app
 
 
