@@ -27,10 +27,10 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Belirli aralıklarla sunucuyu güncelleyen, ArchiDroid'in Android için Açık kaynaklı olan reklam engelleyicisidir
+archidroid.apps.adaway.desc=Open source ad blocker for Android. Comes preconfigured to update hosts in ArchiDroid's Adblock periodically
 archidroid.apps.cooltool.desc=Cihazın üstünde faydalı bilgileri (örn CPU kullanımı) gösteren isteğe göre değiştirilebilir uygulama
 archidroid.apps.esfileexplorer.desc=Android için çok iyi bir yedek dosya yöneticisi
-archidroid.apps.fdroid.desc=Özel Google Play Store eklentileriyle Android platformu için ücretsiz ve açık kaynak kodlu uygulamaların Kurulabilir kataloğu
+archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary google store
 archidroid.apps.greenify.desc=Arka Plandaki uygulamaları kullanmadığınız zaman uyutarak size enerji tasarrufu sağlar
 archidroid.apps.lmt.desc=PIE işlevselliği ile cihazınızı geliştirir, jestleri ve daha fazlasını destekler
 archidroid.apps.mxplayer.desc=Android için Donanım hızlandırmalı video oynatıcı
@@ -60,27 +60,27 @@ archidroid.common.terms.check=Ben hüküm ve koşulları kabul ediyorum
 archidroid.common.terms.readme=Önce bunu okuyun!
 archidroid.common.terms.unchecked=Anlaşmayı kontrol edin!
 
-archidroid.custom=Özelleştirmek
+archidroid.custom=Özelleştirme
 archidroid.custom.desc=İstediğiniz gibi ayarlarda değişiklik yapın
 
-archidroid.detect.fail=ArchiDroid daha önce flaşlanmış mevcut sürümünü algılayamadı,Bu nedenle veri silme (fabrika sıfırlama) zorunludur. ArchiDroid flaşlama öncesi veri bölümünü temizleyecektir. Sizin dahili sd kart içeriği güvendedir!
+archidroid.detect.fail=ArchiDroid daha önce flaşlanmış mevcut sürümünü algılayamadı,Bu nedenle veri silme (fabrika sıfırlama) zorunludur. ArchiDroid'i flaşlamadan önce veri bölümü temizlenecektir. Sizin dahili sd kart içeriği güvendedir!
 archidroid.detect.pass=ArchiDroid başarılı şekilde daha önce flaşlanmış mevcut sürümünü algıladı. Ne olursa olsun verileri silmek ister misiniz?
 archidroid.detect.pass.no=Hayır, benim eski verileri silmeyin
 archidroid.detect.pass.yes=Evet, benim eski verileri silin
 archidroid.detect.pass.alert.no=Tamam, ama ROM uyumsuz verilerle düzgün çalışmayabilir unutmayın!
 archidroid.detect.pass.alert.yes=İyi karar, ArchiDroid flaşlamadan önce önceki verilerin temiz olduğuna emin olun!
 
-archidroid.detect.previouspreset.expert.fail.incompatible=Uyarı! Ön ayar doğruluk denetimi başarısız oldu. Seçtiğiniz seçeneklerin geçerli olduğundan emin olun!
-archidroid.detect.previouspreset.fail.incompatible=Üzgünüm, Ön ayar doğruluk denetimi başarısız oldu. Eğer ne yaptığınızı biliyorsanız uzman modunu deneyebilirsiniz
+archidroid.detect.previouspreset.expert.fail.incompatible=Uyarı! Ön ayarın doğruluk denetimi başarısız oldu. Seçtiğiniz seçeneklerin geçerli olduğundan emin olun!
+archidroid.detect.previouspreset.fail.incompatible=Üzgünüm, Ön ayarın doğruluk denetimi başarısız oldu. Eğer ne yaptığınızı biliyorsanız uzman modunu deneyebilirsiniz
 archidroid.detect.previouspreset.fail.notavailable=Üzgünüm, henüz herhangi bir eski ön ayar yok gibi görünüyor
 
 archidroid.experimental=Deneysel yapı
-archidroid.experimental.terms.check=Ben bu deneysel yapının bitmediğini ve cihazımın brick olabileceğini anlıyorum
+archidroid.experimental.terms.check=Ben bu deneysel yapının bitmediğini ve cihazımı brick yapabileceğini anlıyorum
 
 archidroid.gapps.bksync.desc=Google Chrome için yer imi senkronizasyon fonksiyonunu sağlar
 archidroid.gapps.calendargoogle.desc=Stok Takvim yerine. Google hesabı entegrasyonu ve diğer özellikleri ile genişletilmiş standart takvim
 archidroid.gapps.calsync.desc=Google Takvim için takvim senkronizasyonu fonksiyonu sağlar
-archidroid.gapps.core.desc=Ana Google Apps işlevselliği sağlar. Google'ın mobil hizmetler, uygulama iskeleti, mağaza ve diğer gerekli bileşenleri içerir. Tüm google apps için zorunlu
+archidroid.gapps.core.desc=Ana Google Apps işlevselliği sağlar. Google'ın mobil hizmetler, uygulama iskeleti, mağaza ve diğer gerekli bileşenleri içerir. Tüm google apps için zorunludur
 archidroid.gapps.faceunlock.desc=Kurulumdan sonra kilit ekranı seçenekleri ile devreye alınabilir yüz kilidi özelliği sağlar
 archidroid.gapps.gmail.desc=Gmail hizmeti ile çalışmak için Tasarlanmış bir posta istemcisi, Google hesabına posta senkronizasyonu ve daha fazla entegrasyon içerir
 archidroid.gapps.googleplus.desc=Google Plus hizmeti ile çalışmak için Tasarlanmış bir sosyal ağ istemcisi, Google Plus'ı kullanıyorsanız, bunu seçmek isteyebilirsiniz
@@ -119,7 +119,7 @@ archidroid.preset.previous.desc=Zaten öceden kurulumu özelleştirdiyseniz, bu 
 archidroid.preset.previousexpert=Önceki Hazır Ayar Uzmanı
 archidroid.preset.previousexpert.desc=Yukarıdakı önceki hazır ayarla aynı ancak uzman modu uyumluluk kontrollerini zorlamaz ve flaşlama öncesi hazır ayarınızda değişiklik yapma olanağı sağlar. Uyarı: dikkatli ol, uyumsuz ön ayar flaşlanmaya bilir
 archidroid.preset.recovery=Recovery
-archidroid.preset.recovery.desc=ArchiDroid'i flaşlamadan önce recovery'ni güncellemek istyorsanız bu özelliyi seçiniz
+archidroid.preset.recovery.desc=ArchiDroid'i flashlamadan önce recovery'ni güncellemek istyorsanız bu özelliyi seçiniz
 
 archidroid.preview=Öngörünüm
 archidroid.preview.desc=Seçildiğinde, bir sonraki ekranda seçimi bir örnek olarak göreceksiniz
