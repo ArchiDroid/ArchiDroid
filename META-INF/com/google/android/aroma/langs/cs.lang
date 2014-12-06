@@ -40,7 +40,7 @@ archidroid.apps.titaniumbackup.desc=Základní aplikace pro uživatele rootu. Um
 archidroid.bcm=BCM profily
 archidroid.bcm.archidetect.desc=ArchiDetect se pokusí automaticky detekovat správný firmware pro vaše zařízení
 
-archidroid.bootanimation=Spouštěcí animace 
+archidroid.bootanimation=Spouštěcí animace 
 archidroid.bootanimation.archi1.desc=První ArchiDroid spouštěcí animace, od dob 1.X
 archidroid.bootanimation.archi2.desc=Druhá ArchiDroid spouštěcí animace, od dob 2.X
 archidroid.bootanimation.archi3.desc=Třetí ArchiDroid spouštěcí animace, od dob 3.X 
@@ -109,7 +109,7 @@ archidroid.kernel.archi.desc=ArchiDroid je perfektně optimalizovaný pro tento 
 archidroid.kernel.stock.desc=Kernel, který poskytuje původní systém
 
 archidroid.keyboard=Klávesnice
-archidroid.keyboard.google.desc=Možnost psaní gesty, návrhy při psaní, volitelné rozložení a další vylepšení oproti nativní AOSP klávesnici
+archidroid.keyboard.google.desc=Možnost psaní gesty, návrhy při psaní, volitelné rozložení a další vylepšení oproti nativní AOSP klávesnici
 archidroid.keyboard.stock.desc=Klávesnice, kterou poskytuje původní systém
 
 archidroid.launcher=Launcher
@@ -148,9 +148,9 @@ archidroid.tou=Podmínky používání
 archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts je určený pro současné dodání zprávy více uživatelům ve specifické oblasti. Často se používá pro posílání spamu. Vyberte pouze v případě, že to službu potřebujete
 archidroid.tweaks.navibar=Navigační lišta
-archidroid.tweaks.navibar.desc=Zapne navigační lištu a vypne HW tlačítka (menu,domů,zpět). Vyber, jestli preferuješ navigační litu před HW tlačítkama 
+archidroid.tweaks.navibar.desc=Zapne navigační lištu a vypne HW tlačítka (menu,domů,zpět). Vyber, jestli preferuješ navigační litu před HW tlačítkama 
 
-archidroid.xposed.desc=Xposed Framework umožňuje modulům třetích stran, aby modifikovali váš systém, bez nutnosti modifikace systémových souborů. Vysoce doporučované
+archidroid.xposed.desc=Xposed Framework umožňuje modulům třetích stran, aby modifikovali váš systém, bez nutnosti modifikace systémových souborů. Vysoce doporučované
 archidroid.xposed.gravitybox.desc=Xposed modul, který obsahuje přes stovky nastavení
 archidroid.xposed.xprivacy.desc=Jestli rádi chráníte své soukromí, tento modul je pro vás. S touto aplikací budete moci přesně určit oprávnění pro každou nainstalovanou aplikaci
 
