@@ -55,7 +55,12 @@ archidroid.common.current=Mevcut
 archidroid.common.default=Varsayılan değer
 archidroid.common.density=Yoğunluk
 archidroid.common.detected=Algılandı
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
 archidroid.common.none=Hiçbiri
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
 archidroid.common.terms.check=Ben hüküm ve koşulları kabul ediyorum
 archidroid.common.terms.readme=Önce bunu okuyun!
 archidroid.common.terms.unchecked=Anlaşmayı kontrol edin!
@@ -96,6 +101,9 @@ archidroid.hardswap.desc=Daha fazla bellek için sizin I / O kurban eder
 archidroid.hardswap.size.0.desc=Bu bölümdeki hardswap dosyası kaldıracaktır
 archidroid.hardswap.size.default.desc= Önerilen maksimum boyut
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=ArchiDroid ile sinerjide olan mükemmel özellikler, engin optimizasyonlar, güncel kaynaklar ve birçok yenilik. Şiddetle tavsiye edilir
 archidroid.kernel.stock.desc= Sistem tabanı tarafından sağlanan Kernel
@@ -108,6 +116,9 @@ archidroid.launcher= Başlatıcı
 archidroid.launcher.google.desc=Diğer Google apps entegrasyonuyla mükemmel özellikler, örneğin ana ekrandan sesli komutla arama
 archidroid.launcher.nova.desc= Android için son derece özelleştirilebilir, performans odaklı başlatıcı
 archidroid.launcher.stock.desc=Sistem tabanlı başlatıcı
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
 
 archidroid.preset=Hazır Ayar
 archidroid.preset.barebones=Temel unsurlar

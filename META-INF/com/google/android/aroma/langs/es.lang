@@ -55,7 +55,12 @@ archidroid.common.current=Actual
 archidroid.common.default=Valor por defecto
 archidroid.common.density=Densidad
 archidroid.common.detected=Detectado
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
 archidroid.common.none=Ninguno
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
 archidroid.common.terms.check=Estoy de acuerdo con los términos y condiciones
 archidroid.common.terms.readme=Lea esto primero!
 archidroid.common.terms.unchecked=Por favor revise el acuerdo!
@@ -96,6 +101,9 @@ archidroid.hardswap.desc=Sacrificá tu I/O por mas memoria
 archidroid.hardswap.size.0.desc=Esta opción remueve tu archivo hardswap de la partición
 archidroid.hardswap.size.default.desc=Tamaño máximo recomendado
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=Cualidades en perfecta sinergia con ArchiDroid, optimizaciones profundas, fuentes al día y muchas mejoras. Muy recomendado
 archidroid.kernel.stock.desc=Kernel proveído por el sistema base
@@ -108,6 +116,9 @@ archidroid.launcher=Arrancador
 archidroid.launcher.google.desc=Se caracteriza por integrase perfectamente con las aplicaciones Google, p.e. la búsqueda, que permite hacer búsquedas via voz desde la pantalla de inicio
 archidroid.launcher.nova.desc=Reemplazo de la pantalla de inicio altamente personalizable y rápida
 archidroid.launcher.stock.desc=Arrancador que viene con el sistema de base
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
 
 archidroid.preset=Preajuste
 archidroid.preset.barebones=Desnudo

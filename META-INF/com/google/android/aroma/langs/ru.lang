@@ -55,7 +55,12 @@ archidroid.common.current=Текущий
 archidroid.common.default=Значение по умолчанию
 archidroid.common.density=Плотность
 archidroid.common.detected=Обнаруженный
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
 archidroid.common.none=Нет
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
 archidroid.common.terms.check=Я согласен с правилами и условиями
 archidroid.common.terms.readme=Прочитайте это для начала!
 archidroid.common.terms.unchecked=Пожалуйста, подтвердите Ваше согласие!
@@ -96,6 +101,9 @@ archidroid.hardswap.desc=Пожертвуйте I/O для больше памя
 archidroid.hardswap.size.0.desc=Удаление файла подкачки 
 archidroid.hardswap.size.default.desc=Максимально-рекомендуемый размер
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
 archidroid.kernel=Ядро
 archidroid.kernel.archi.desc=Идеальное взаимодействие с ArchiDroid, глубокая оптимизация, обновленные исходники и множество улучшений. Крайне рекомендуется
 archidroid.kernel.stock.desc=Стандартное ядро
@@ -108,6 +116,9 @@ archidroid.launcher=Launcher
 archidroid.launcher.google.desc=Идеальная интеграция с другими приложениями Google, какими как Search, который позволяет использовать голосовые команды с домашнего экрана
 archidroid.launcher.nova.desc=Хорошо настраиваемый, производительный заменитель домашнего экрана для Android
 archidroid.launcher.stock.desc=Стандартный
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
 
 archidroid.preset=Вариант установки
 archidroid.preset.barebones=Базовая Установка
