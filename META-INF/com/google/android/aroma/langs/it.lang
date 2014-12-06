@@ -27,15 +27,15 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Open source ad blocker for Android. Comes preconfigured to update hosts in ArchiDroid's Adblock periodically
+archidroid.apps.adaway.desc=Blocco annunci open-source per Android. È preconfigurato per aggiornare gli host Adblock della ArchiDroid periodicamente
 archidroid.apps.cooltool.desc=App altamente personalizzabile che mostra informazioni utili sul device (ad esempio l'utilizzo della CPU) nella parte superiore del display
 archidroid.apps.esfileexplorer.desc=Valido file manager sostitutivo per Android
-archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary google store
+archidroid.apps.fdroid.desc=Catalogo installabile di applicazioni gratuite e open-source per la piattaforma Android. Ottima aggiunta al Google Store proprietario
 archidroid.apps.greenify.desc=Risparmia batteria ibernando le applicazioni in background quando non le si sta utilizzando 
 archidroid.apps.lmt.desc=Arricchisce il device con la funzionalità PIE, il supporto alle gestures e altro ancora
 archidroid.apps.mxplayer.desc=Riproduttore video con accelerazione hardware per Android
 archidroid.apps.spiritfm.desc=App radio FM over-the-air. Non richiede l'accesso ad Internet
-archidroid.apps.titaniumbackup.desc=App essenziale per tutti gli utenti root. Consente di effettuare il backup/ripristino delle applicazioni e dei loro dati al volo
+archidroid.apps.titaniumbackup.desc=App di base per tutti gli utenti root. Consente di effettuare il backup/ripristino delle applicazioni e dei loro dati al volo
 
 archidroid.bcm=BCM profiling
 archidroid.bcm.archidetect.desc=ArchiDetect cerca di rilevare il firmware corretto per il proprio device automaticamente
@@ -55,12 +55,12 @@ archidroid.common.current=Corrente
 archidroid.common.default=Valore predefinito
 archidroid.common.density=Densità
 archidroid.common.detected=Rilevato
-archidroid.common.finish=Finish
-archidroid.common.install=Install
-archidroid.common.installation=Installation
+archidroid.common.finish=Finito
+archidroid.common.install=Installa
+archidroid.common.installation=Installazione
 archidroid.common.none=Nessuno
-archidroid.common.reboot=Reboot
-archidroid.common.reboot.question=Would you like to reboot your device now?
+archidroid.common.reboot=Riavvia
+archidroid.common.reboot.question=Riavviare il device ora?
 archidroid.common.terms.check=Sono d'accordo con termini e condizioni
 archidroid.common.terms.readme=Leggere prima questo!
 archidroid.common.terms.unchecked=Si prega di accettare l'accordo!
@@ -94,15 +94,15 @@ archidroid.gapps.hangouts.desc=Client Hangouts - offre il supporto ai "messaggi"
 archidroid.gapps.maps.desc=Un client mappe progettato per funzionare con il servizio Google Maps. Offre il supporto alla navigazione e ad altre funzioni
 archidroid.gapps.search.desc=Un client di ricerca progettato per funzionare con il servizio Google. Questo pacchetto include anche Google Voice, è obbligatorio per utilizzare ad esempio i comandi vocali del Launcher Google
 archidroid.gapps.speech.desc=Fornisce i componenti di Google Voice. Obbligatorio per l'utilizzo di Google Voice
-archidroid.gapps.street.desc=Un client di visione stradale progettato per funzionare con il servizio Google Street View. Selezionare questo per ampliare Google Maps con funzionalità supplementari
+archidroid.gapps.street.desc=Un client di visualizzazione stradale progettato per funzionare con il servizio Google Street View. Selezionare questo per ampliare Google Maps con funzionalità supplementari
 archidroid.gapps.youtube.desc=Un client video progettato per funzionare con il servizio YouTube. Se si desidera guardare i video di YouTube sul telefono senza utilizzare il browser, questo è obbligatorio
 
 archidroid.hardswap.desc=Sacrifica I/O a favore di più memoria
 archidroid.hardswap.size.0.desc=Questa opzione rimuoverà il file hardswap dalla partizione
 archidroid.hardswap.size.default.desc=Dimensione massima raccomandata
 
-archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
-archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+archidroid.install.desc=<b>ArchiDroid</b> è ora in fase di installazione. Attendere con pazienza mentre l'installazione guidata installa <b>ArchiDroid</b> sul device
+archidroid.install.finish=L'installazione della <b>ArchiDroid</b> è stata terminata. Premere <b>Finito</b> per continuare
 
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=Offre una perfetta sinergia con la ArchiDroid, profonde ottimizzazioni, sorgenti up-to-date e molti miglioramenti. Altamente raccomandato
@@ -117,8 +117,8 @@ archidroid.launcher.google.desc=Offre una perfetta integrazione con le altre Goo
 archidroid.launcher.nova.desc=Altamente personalizzabile, focalizzato sulle prestazioni, homescreen sostitutiva per Android
 archidroid.launcher.stock.desc=Launcher fornito dal sistema di base
 
-archidroid.prepinstall=Ready for flashing
-archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
+archidroid.prepinstall=Pronto per il flash
+archidroid.prepinstall.desc=Pronto per iniziare l'installazione. Premere <b>Installa</b> per avviare. Se si desidera rivedere o modificare le impostazioni di installazione, premere <b>Indietro</b>
 
 archidroid.preset=Modalità di Installazione
 archidroid.preset.barebones=Ridotta all'Osso
@@ -151,7 +151,7 @@ archidroid.tweaks.navibar=Barra di navigazione
 archidroid.tweaks.navibar.desc=Abilita la barra di navigazione, e disabilita i tasti hardware (back, home, menu). Selezionare se si preferisce avere una navigazione a schermo
 
 archidroid.xposed.desc=Xposed Framework consente di modificare il framework al volo tramite vari moduli di terze parti, senza modificare file di sistema. Altamente raccomandato
-archidroid.xposed.gravitybox.desc=Modulo Xposed All-In-One che contiene centinaia di modifiche per il framework, che possono essere attivate/disattivate in qualunque momento in base alle proprie preferenze
+archidroid.xposed.gravitybox.desc=Modulo Xposed All-In-One che contiene centinaia di modifiche per il framework, che possono essere attivate/disattivate in seguito in base alle proprie preferenze
 archidroid.xposed.xprivacy.desc=Se si desidera proteggere la propria privacy, questo modulo è l'ideale. Con questa app si potrà specificare precisamente i permessi per ogni app installata
 
 
