@@ -65,27 +65,27 @@ archidroid.common.terms.check=Ben hüküm ve koşulları kabul ediyorum
 archidroid.common.terms.readme=Önce bunu okuyun!
 archidroid.common.terms.unchecked=Anlaşmayı kontrol edin!
 
-archidroid.custom=Özelleştirmek
+archidroid.custom=Özelleştirme
 archidroid.custom.desc=İstediğiniz gibi ayarlarda değişiklik yapın
 
-archidroid.detect.fail=ArchiDroid daha önce flaşlanmış mevcut sürümünü algılayamadı,Bu nedenle veri silme (fabrika sıfırlama) zorunludur. ArchiDroid flaşlama öncesi veri bölümünü temizleyecektir. Sizin dahili sd kart içeriği güvendedir!
+archidroid.detect.fail=ArchiDroid daha önce flaşlanmış mevcut sürümünü algılayamadı,Bu nedenle veri silme (fabrika sıfırlama) zorunludur. ArchiDroid'i flaşlamadan önce veri bölümü temizlenecektir. Sizin dahili sd kart içeriği güvendedir!
 archidroid.detect.pass=ArchiDroid başarılı şekilde daha önce flaşlanmış mevcut sürümünü algıladı. Ne olursa olsun verileri silmek ister misiniz?
 archidroid.detect.pass.no=Hayır, benim eski verileri silmeyin
 archidroid.detect.pass.yes=Evet, benim eski verileri silin
 archidroid.detect.pass.alert.no=Tamam, ama ROM uyumsuz verilerle düzgün çalışmayabilir unutmayın!
 archidroid.detect.pass.alert.yes=İyi karar, ArchiDroid flaşlamadan önce önceki verilerin temiz olduğuna emin olun!
 
-archidroid.detect.previouspreset.expert.fail.incompatible=Uyarı! Ön ayar doğruluk denetimi başarısız oldu. Seçtiğiniz seçeneklerin geçerli olduğundan emin olun!
-archidroid.detect.previouspreset.fail.incompatible=Üzgünüm, Ön ayar doğruluk denetimi başarısız oldu. Eğer ne yaptığınızı biliyorsanız uzman modunu deneyebilirsiniz
+archidroid.detect.previouspreset.expert.fail.incompatible=Uyarı! Ön ayarın doğruluk denetimi başarısız oldu. Seçtiğiniz seçeneklerin geçerli olduğundan emin olun!
+archidroid.detect.previouspreset.fail.incompatible=Üzgünüm, Ön ayarın doğruluk denetimi başarısız oldu. Eğer ne yaptığınızı biliyorsanız uzman modunu deneyebilirsiniz
 archidroid.detect.previouspreset.fail.notavailable=Üzgünüm, henüz herhangi bir eski ön ayar yok gibi görünüyor
 
 archidroid.experimental=Deneysel yapı
-archidroid.experimental.terms.check=Ben bu deneysel yapının bitmediğini ve cihazımın brick olabileceğini anlıyorum
+archidroid.experimental.terms.check=Ben bu deneysel yapının bitmediğini ve cihazımı brick yapabileceğini anlıyorum
 
 archidroid.gapps.bksync.desc=Google Chrome için yer imi senkronizasyon fonksiyonunu sağlar
 archidroid.gapps.calendargoogle.desc=Stok Takvim yerine. Google hesabı entegrasyonu ve diğer özellikleri ile genişletilmiş standart takvim
 archidroid.gapps.calsync.desc=Google Takvim için takvim senkronizasyonu fonksiyonu sağlar
-archidroid.gapps.core.desc=Ana Google Apps işlevselliği sağlar. Google'ın mobil hizmetler, uygulama iskeleti, mağaza ve diğer gerekli bileşenleri içerir. Tüm google apps için zorunlu
+archidroid.gapps.core.desc=Ana Google Apps işlevselliği sağlar. Google'ın mobil hizmetler, uygulama iskeleti, mağaza ve diğer gerekli bileşenleri içerir. Tüm google apps için zorunludur
 archidroid.gapps.faceunlock.desc=Kurulumdan sonra kilit ekranı seçenekleri ile devreye alınabilir yüz kilidi özelliği sağlar
 archidroid.gapps.gmail.desc=Gmail hizmeti ile çalışmak için Tasarlanmış bir posta istemcisi, Google hesabına posta senkronizasyonu ve daha fazla entegrasyon içerir
 archidroid.gapps.googleplus.desc=Google Plus hizmeti ile çalışmak için Tasarlanmış bir sosyal ağ istemcisi, Google Plus'ı kullanıyorsanız, bunu seçmek isteyebilirsiniz
