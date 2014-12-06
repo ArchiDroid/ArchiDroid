@@ -55,7 +55,12 @@ archidroid.common.current=Actuel
 archidroid.common.default=Valeur par défaut
 archidroid.common.density=Densité
 archidroid.common.detected=Detecté
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
 archidroid.common.none=Aucun
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
 archidroid.common.terms.check=J'accepte les conditions générales
 archidroid.common.terms.readme=Veuillez lire ceci!
 archidroid.common.terms.unchecked=Veuillez accepter les conditions générales!
@@ -96,6 +101,9 @@ archidroid.hardswap.desc=Sacrifiez votre I/O (E/S) pour plus de mémoire
 archidroid.hardswap.size.0.desc=Ceci va supprimer le fichier hardswap de votre partition
 archidroid.hardswap.size.default.desc=Taille maximum recommendée
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
 archidroid.kernel=Kernel (Noyau)
 archidroid.kernel.archi.desc=Parfaite synergie avec ArchiDroid, optimisé en profondeur, sources mises à jour et beaucoup d'autres optimisations. Hautement recommandé
 archidroid.kernel.stock.desc=Kernel (noyau) fournit par le système de base
@@ -108,6 +116,9 @@ archidroid.launcher=Launcher (Lanceur)
 archidroid.launcher.google.desc=Intégration parfaite avec les autres Google apps, par ex. Recherche, qui vous permet d'utiliser les commandes vocales depuis l'écran d'accueil
 archidroid.launcher.nova.desc=Hautement personnalisable, orienté sur la performance, remplacement pour l'écran d'accueil pour Android
 archidroid.launcher.stock.desc=Launcher (lanceur) fournit par le système de base
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
 
 archidroid.preset=Configuration
 archidroid.preset.barebones=Strict Minimum

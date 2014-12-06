@@ -55,7 +55,12 @@ archidroid.common.current=Aktualnie
 archidroid.common.default=Wartość domyślna
 archidroid.common.density=Głębia ekranu
 archidroid.common.detected=Wykryto
+archidroid.common.finish=Zakończ
+archidroid.common.install=Zainstaluj
+archidroid.common.installation=Instalacja
 archidroid.common.none=Brak
+archidroid.common.reboot=Zrestartuj
+archidroid.common.reboot.question=Czy chciałbyś teraz zrestartować swoje urządzenie?
 archidroid.common.terms.check=Zgadzam się z tymi warunkami
 archidroid.common.terms.readme=Czytaj mnie!
 archidroid.common.terms.unchecked=Musisz potwierdzić licencję!
@@ -96,6 +101,9 @@ archidroid.hardswap.desc=Poświęć swoją szybkość I/O dla większej ilości 
 archidroid.hardswap.size.0.desc=Ta opcja całkowicie usunie plik hardswap z tej partycji
 archidroid.hardswap.size.default.desc=Maksymalny zalecany rozmiar
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=Instalacja <b>ArchiDroida</b> została zakończona. Wciśnij <b>Zakończ</b> aby kontynuować
+
 archidroid.kernel=Jądro systemowe
 archidroid.kernel.archi.desc=Wyróżnia się perfekcyjną synergią z ArchiDroidem. Zawiera zaawansowane optymalizacje, najnowsze źródła i wiele usprawnień. Wysoce zalecane
 archidroid.kernel.stock.desc=Jądro systemowe dostarczone przez system bazowy
@@ -108,6 +116,9 @@ archidroid.launcher=Launcher
 archidroid.launcher.google.desc=Wyróżnia się perfekcyjną integracją z innymi aplikacjami google, np. wyszukiwarką, dzięki której możesz używać komend głosowych na głównym ekranie
 archidroid.launcher.nova.desc=Wysoce konfigurowalny, kładący nacisk na wydajność, zamiennik ekranu głównego dla Androida
 archidroid.launcher.stock.desc=Launcher dostarczony przez system bazowy
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=Jesteś teraz gotowy aby rozpocząć instalację. Wciśnij <b>Instaluj</b> aby rozpocząć. Jeśli potrzebujesz przejrzeć swoją konfigurację lub dokonać jakichkolwiek modyfikacji, wciśnij <b>Wstecz</b>
 
 archidroid.preset=Profil
 archidroid.preset.barebones=Sam Szkielet

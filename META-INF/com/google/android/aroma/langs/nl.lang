@@ -55,7 +55,12 @@ archidroid.common.current=Huidige
 archidroid.common.default=Standaard waarde
 archidroid.common.density=Pixeldichtheid
 archidroid.common.detected=Gedetecteerde
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
 archidroid.common.none=Geen
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
 archidroid.common.terms.check=Ik stem in met de gebruikersovereenkomsten
 archidroid.common.terms.readme=Lees dit eerst!
 archidroid.common.terms.unchecked=Selecteer alsjeblieft de overeenkomsten!
@@ -96,6 +101,9 @@ archidroid.hardswap.desc=Lever je lees- en schrijf snelheid in voor meer geheuge
 archidroid.hardswap.size.0.desc=Dit zal je hardswap bestand van de partitie verwijderen
 archidroid.hardswap.size.default.desc=Maximaal aanbevolen grootte
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=Biedt perfecte samenwerking met ArchiDroid, diepe optimalisaties, up-to-date bronnen en een hoop verbeteringen. Erg aangeraden
 archidroid.kernel.stock.desc=Kernel aangeboden door het standaard systeem
@@ -108,6 +116,9 @@ archidroid.launcher=Launcher
 archidroid.launcher.google.desc=Biedt perfecte integratie met andere Google apps, bijvoorbeeld Zoeken, die je de mogelijk biedt om stemcommando's te geven vanaf je startscherm
 archidroid.launcher.nova.desc=Erg aanpasbaar, prestatie gedreven startscherm voor Android
 archidroid.launcher.stock.desc=Startscherm aangeboden door het standaard systeem
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
 
 archidroid.preset=Voorinstellingen
 archidroid.preset.barebones=Bare Bones

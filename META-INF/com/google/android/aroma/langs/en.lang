@@ -30,7 +30,7 @@
 archidroid.apps.adaway.desc=Open source ad blocker for Android. Comes preconfigured to update hosts in ArchiDroid's Adblock periodically
 archidroid.apps.cooltool.desc=Highly customizable app that shows you useful information about your device (e.g. CPU usage) on the top
 archidroid.apps.esfileexplorer.desc=Very good file manager replacement for android
-archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary google store
+archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary Google Play Store
 archidroid.apps.greenify.desc=Saves battery by hibernating background apps when you're not using them
 archidroid.apps.lmt.desc=Enhances your device with PIE functionality, gestures support and more
 archidroid.apps.mxplayer.desc=Hardware-accelerated video player for android
@@ -55,7 +55,12 @@ archidroid.common.current=Current
 archidroid.common.default=Default value
 archidroid.common.density=Density
 archidroid.common.detected=Detected
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
 archidroid.common.none=None
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
 archidroid.common.terms.check=I agree with terms and conditions
 archidroid.common.terms.readme=Read this first!
 archidroid.common.terms.unchecked=Please check the agreement!
@@ -96,6 +101,9 @@ archidroid.hardswap.desc=Sacrifice your I/O for more memory
 archidroid.hardswap.size.0.desc=This will remove hardswap file from the partition
 archidroid.hardswap.size.default.desc=Maximum recommended size
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=Features perfect synergy with ArchiDroid, deep optimizations, up-to-date sources and many improvements. Highly recommended
 archidroid.kernel.stock.desc=Kernel provided by the base system
@@ -108,6 +116,9 @@ archidroid.launcher=Launcher
 archidroid.launcher.google.desc=Features perfect integration with other Google apps, e.g. Search, which allows you to use voice commands from the home screen
 archidroid.launcher.nova.desc=Highly customizable, performance driven, home screen replacement for Android
 archidroid.launcher.stock.desc=Launcher provided by the base system
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
 
 archidroid.preset=Preset
 archidroid.preset.barebones=Bare Bones

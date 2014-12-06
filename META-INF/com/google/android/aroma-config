@@ -386,10 +386,21 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 
 	resexec("exec/archidroid_hardswap_check.sh", "/cache");
 	setvar("hardswapcache", getvar("exec_buffer"));
+	if getvar("hardswapcache") == "None" then
+		setvar("hardswapcache", "<~archidroid.common.none>");
+	endif;
+
 	resexec("exec/archidroid_hardswap_check.sh", "/preload");
 	setvar("hardswappreload", getvar("exec_buffer"));
+	if getvar("hardswappreload") == "None" then
+		setvar("hardswappreload", "<~archidroid.common.none>");
+	endif;
+
 	resexec("exec/archidroid_hardswap_check.sh", "/storage/sdcard1");
 	setvar("hardswapsdcard", getvar("exec_buffer"));
+	if getvar("hardswapsdcard") == "None" then
+		setvar("hardswapsdcard", "<~archidroid.common.none>");
+	endif;
 
 	form(
 		"ArchiDroid Hardswap",
@@ -474,7 +485,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "reco
 	endif;
 endif;
 
-ini_set("text_next", "<~archidroid.common.flash>");
+ini_set("text_next", "<~archidroid.common.install>");
 viewbox(
 	"<~archidroid.prepinstall>",
 	"<~archidroid.prepinstall.desc>",
@@ -488,7 +499,7 @@ else
 endif;
 
 install(
-	"<~archidroid.common.flashing>",
+	"<~archidroid.common.installation>",
 	"<~archidroid.install.desc>",
 	"@install",
 	"<~archidroid.install.finish>"
@@ -505,7 +516,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "reco
 else
 	if confirm(
 		"ArchiDroid Wizard",
-		"<~archidroid.wizard.reboot>",
+		"<~archidroid.common.reboot.question>",
 		"@confirm"
 	) == "yes" then
 		reboot("onfinish");

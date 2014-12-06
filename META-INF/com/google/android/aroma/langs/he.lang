@@ -55,7 +55,12 @@ archidroid.common.current= נוכחי
 archidroid.common.default= ערך ברירת מחדל
 archidroid.common.density= צפיצות
 archidroid.common.detected= מזוהה
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
 archidroid.common.none= אף אחד
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
 archidroid.common.terms.check= אני מסכים לתנאים 
 archidroid.common.terms.readme= !קראה זאות תחילה
 archidroid.common.terms.unchecked= !בבקשה אשר את ההסכם
@@ -96,6 +101,9 @@ archidroid.hardswap.desc= הקרבה של מהירות קלט/פלט עבור י
 archidroid.hardswap.size.0.desc=מהמחיצה hardswap  אופציה זו תסיר את קובץ ה
 archidroid.hardswap.size.default.desc= גודל מקסימלי מומלץ
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
 archidroid.kernel=Kernel קרנל
 archidroid.kernel.archi.desc= תכונות שמשולבות באופן מושלם עם ארצידרוייד, אופטימיזציאות, מקורות מעודכנים ועוד. מאוד מומלץ
 archidroid.kernel.stock.desc=  קרנל מסופק ע"י המערכת הבסיסית
@@ -108,6 +116,9 @@ archidroid.launcher=Launcher לנצ'ר
 archidroid.launcher.google.desc= מאופיין באינטגרציה מעולה עם יתר אפליקציות גוגל, לדוגמא חיפוש, אשר יאפשר לך לעשות שימוש בפקודות קוליות במסך הבית
 archidroid.launcher.nova.desc= לנצ'ר זה מחליף את מסך הבית, ניתן לקינפוג מלא, מאוד מהיר 
 archidroid.launcher.stock.desc= לנצ'ר של המערכת הבסיסית
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
 
 archidroid.preset= הגדרות קבועות מראוש
 archidroid.preset.barebones= "ערום"

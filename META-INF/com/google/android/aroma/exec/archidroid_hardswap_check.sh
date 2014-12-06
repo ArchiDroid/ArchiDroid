@@ -21,7 +21,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# shellcheck disable=2039
 if [[ -z "$1" ]]; then
 	echo "ERROR: Wrong arguments!"
 	echo "ERROR: Expected: [Path]"
@@ -36,10 +35,10 @@ ADMOUNTED() {
 if ! ADMOUNTED "$1"; then
 	echo "Not Available" # This will be useful i.e. for devices without external sd card
 else
-	if [ ! -f "$1/ArchiDroid.swp" ]; then
-		echo "No"
+	if [[ ! -f "$1/ArchiDroid.swp" ]]; then
+		echo "None"
 	else
-		echo "Yes, $(du -mh "$1/ArchiDroid.swp" | awk '{print $1}')"
+		echo "Available, $(du -mh "$1/ArchiDroid.swp" | awk '{print $1}')"
 	fi
 fi
 
