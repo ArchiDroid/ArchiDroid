@@ -70,8 +70,8 @@ archidroid.custom.desc=Zmodifykuj poniższe ustawienia jak sobie życzysz
 
 archidroid.detect.fail=ArchiDroid nie był w stanie wykryć swojej poprzedniej instalacji, dlatego też wipe /data (fabryczny reset) jest wymagany. ArchiDroid wyczyści twój obszar /data przed flashowaniem. Twoje dane na pamięci wewnętrznej są bezpieczne!
 archidroid.detect.pass=ArchiDroid prawidłowo wykrył swoją poprzednią instalację. Czy chciałbyś wyczyścić swój obszar /data pomimo tego?
-archidroid.detect.pass.no=Nie, nie usuwaj moich starych danych
-archidroid.detect.pass.yes=Tak, usuń moje stare dane
+archidroid.detect.pass.no=Nie usuwaj moich starych danych
+archidroid.detect.pass.yes=Usuń moje stare dane
 archidroid.detect.pass.alert.no=OK, ale pamiętaj, że system może nie działać poprawnie z niekompatybilnymi danymi!
 archidroid.detect.pass.alert.yes=Dobra decyzja, ArchiDroid upewni się, że twój obszar /data jest czysty przed flashowaniem!
 
@@ -101,7 +101,7 @@ archidroid.hardswap.desc=Poświęć swoją szybkość I/O dla większej ilości 
 archidroid.hardswap.size.0.desc=Ta opcja całkowicie usunie plik hardswap z tej partycji
 archidroid.hardswap.size.default.desc=Maksymalny zalecany rozmiar
 
-archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.desc=<b>ArchiDroid</b> jest teraz instalowany. Poczekaj cierpliwie podczas gdy instalator flashuje <b>ArchiDroida</b> na twoje urządzenie
 archidroid.install.finish=Instalacja <b>ArchiDroida</b> została zakończona. Wciśnij <b>Zakończ</b> aby kontynuować
 
 archidroid.kernel=Jądro systemowe
@@ -118,7 +118,7 @@ archidroid.launcher.nova.desc=Wysoce konfigurowalny, kładący nacisk na wydajno
 archidroid.launcher.stock.desc=Launcher dostarczony przez system bazowy
 
 archidroid.prepinstall=Ready for flashing
-archidroid.prepinstall.desc=Jesteś teraz gotowy aby rozpocząć instalację. Wciśnij <b>Instaluj</b> aby rozpocząć. Jeśli potrzebujesz przejrzeć swoją konfigurację lub dokonać jakichkolwiek modyfikacji, wciśnij <b>Wstecz</b>
+archidroid.prepinstall.desc=Jesteś teraz gotowy aby rozpocząć instalację. Wciśnij <b>Zainstaluj</b> aby rozpocząć. Jeśli potrzebujesz przejrzeć swoją konfigurację lub dokonać jakichkolwiek modyfikacji, wciśnij <b>Wstecz</b>
 
 archidroid.preset=Profil
 archidroid.preset.barebones=Sam Szkielet
