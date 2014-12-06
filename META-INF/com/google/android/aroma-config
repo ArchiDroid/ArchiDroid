@@ -400,21 +400,12 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 
 	resexec("exec/archidroid_hardswap_check.sh", "/cache");
 	setvar("hardswapcache", getvar("exec_buffer"));
-	if getvar("hardswapcache") == "None" then
-		setvar("hardswapcache", "<~archidroid.common.none>");
-	endif;
 
 	resexec("exec/archidroid_hardswap_check.sh", "/preload");
 	setvar("hardswappreload", getvar("exec_buffer"));
-	if getvar("hardswappreload") == "None" then
-		setvar("hardswappreload", "<~archidroid.common.none>");
-	endif;
 
 	resexec("exec/archidroid_hardswap_check.sh", "/storage/sdcard1");
 	setvar("hardswapsdcard", getvar("exec_buffer"));
-	if getvar("hardswapsdcard") == "None" then
-		setvar("hardswapsdcard", "<~archidroid.common.none>");
-	endif;
 
 	form(
 		"ArchiDroid Hardswap",
