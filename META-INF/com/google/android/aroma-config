@@ -49,7 +49,7 @@ writetmpfile(
 
 # Often edited settings
 setvar("preset_version", "23");
-ini_set("rom_date", "December XXth, 2014");
+ini_set("rom_date", "December 6th, 2014");
 
 # Settings
 theme("archidroid");
