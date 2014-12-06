@@ -27,8 +27,10 @@
 
 
 ### ArchiDroid strings
+archidroid.apps.adaway.desc=Open source ad blocker for Android. Comes preconfigured to update hosts in ArchiDroid's Adblock periodically
 archidroid.apps.cooltool.desc=Přizpůsobitelná aplikace, která ukazuje uitečné informace o vaem zařízení (např. CPU) na litě
 archidroid.apps.esfileexplorer.desc=Velmi dobrý správce souborů - náhrada pro Android
+archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary Google Play Store
 archidroid.apps.greenify.desc=etří baterii hybernováním aplikací na pozadí, kdy zrovna nejsou pouívané
 archidroid.apps.lmt.desc=Vylepuje zařízení funkcí PIE - podpora gest a dalí
 archidroid.apps.mxplayer.desc=HW zrychlený videopřehrávač pro Android
@@ -53,7 +55,12 @@ archidroid.common.current=Současné
 archidroid.common.default=původní hodnota
 archidroid.common.density=Hustota
 archidroid.common.detected=Nalezené
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
 archidroid.common.none=ádné
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
 archidroid.common.terms.check=Souhlasím s podmínkami
 archidroid.common.terms.readme=Čti mě!
 archidroid.common.terms.unchecked=Zkontrolujte souhlas!
@@ -94,6 +101,9 @@ archidroid.hardswap.desc=Obětovat I/O pro více paměti
 archidroid.hardswap.size.0.desc=Tahle monost odstraní hardswap soubor z oddílu
 archidroid.hardswap.size.default.desc=Maximální doporučená velikost
 
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=ArchiDroid je perfektně optimalizovaný pro tento kernel. Optimalizace, aktualizované zdroje a dalí vylepení. Vysoce doporučené
 archidroid.kernel.stock.desc=Kernel, který poskytuje původní systém
@@ -106,6 +116,9 @@ archidroid.launcher=Launcher
 archidroid.launcher.google.desc=Představuje perfektní integraci s ostatními Google aplikacemi, např. Vyhledávání, které umoní hlasové vyhledávání z domovské stránky
 archidroid.launcher.nova.desc=Vysoce přizpůsobitelný, výkonný launcher pro Android
 archidroid.launcher.stock.desc=Launcher, který poskytuje původní systém
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
 
 archidroid.preset=Předvolba
 archidroid.preset.barebones=Bare Bones
