@@ -55,12 +55,12 @@ archidroid.common.current=Mevcut
 archidroid.common.default=Varsayılan değer
 archidroid.common.density=Yoğunluk
 archidroid.common.detected=Algılandı
-archidroid.common.finish=Finish
-archidroid.common.install=Install
-archidroid.common.installation=Installation
+archidroid.common.finish=Bitir
+archidroid.common.install=Kur
+archidroid.common.installation=Kurulum
 archidroid.common.none=Hiçbiri
-archidroid.common.reboot=Reboot
-archidroid.common.reboot.question=Would you like to reboot your device now?
+archidroid.common.reboot=Yeniden başlat
+archidroid.common.reboot.question=Şimdi cihazınızı yeniden başlatmak ister misiniz?
 archidroid.common.terms.check=Ben hüküm ve koşulları kabul ediyorum
 archidroid.common.terms.readme=Önce bunu okuyun!
 archidroid.common.terms.unchecked=Anlaşmayı kontrol edin!
@@ -101,8 +101,8 @@ archidroid.hardswap.desc=Daha fazla bellek için sizin I / O kurban eder
 archidroid.hardswap.size.0.desc=Bu bölümdeki hardswap dosyası kaldıracaktır
 archidroid.hardswap.size.default.desc= Önerilen maksimum boyut
 
-archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
-archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+archidroid.install.desc=<b>ArchiDroid</b>'in kurulumu devam ediyor.Lütfen sabırla kurulum sihirbazının cihazınıza <b>ArchiDroid</b>'i kurmasını bekleyin
+archidroid.install.finish=<b>ArchiDroid</b>'in kurulumu tamamlandı. Devam etmek için <b>Bitir</b>'e basınız
 
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=ArchiDroid ile sinerjide olan mükemmel özellikler, engin optimizasyonlar, güncel kaynaklar ve birçok yenilik. Şiddetle tavsiye edilir
@@ -117,8 +117,8 @@ archidroid.launcher.google.desc=Diğer Google apps entegrasyonuyla mükemmel öz
 archidroid.launcher.nova.desc= Android için son derece özelleştirilebilir, performans odaklı başlatıcı
 archidroid.launcher.stock.desc=Sistem tabanlı başlatıcı
 
-archidroid.prepinstall=Ready for flashing
-archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
+archidroid.prepinstall=Flaşlamak için hazır
+archidroid.prepinstall.desc=Şimdi kuruluma başlamak için hazırız. Başlatmak için <b> Yükle </ b>'ye basınız. Eğer gözden geçirmek veya yükleme ayarlarından herhangi birini değiştirmek isterseniz <b> Geri </ b>'ye basınız
 
 archidroid.preset=Hazır Ayar
 archidroid.preset.barebones=Temel unsurlar
@@ -163,7 +163,7 @@ text_next=Sonraki
 text_no=Hayır
 text_ok=Tamam
 text_quit_msg=Kurulumdan çıkmak için emin misiniz?
-text_quit=Kurulumdan çıkın
+text_quit=Kurulumdan çık
 text_yes=Evet
 
 ### End of file
