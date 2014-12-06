@@ -23,9 +23,14 @@
 
 cp -p "/system/xbin/su" "/system/xbin/daemonsu"
 cp -p "/system/xbin/su" "/system/xbin/sugote"
-cp -p "/system/bin/mksh" "/system/xbin/sugote-mksh"
+
+if [[ -f "/system/bin/mksh" ]]; then
+	cp -p "/system/bin/mksh" "/system/xbin/sugote-mksh"
+else
+	cp -p "/system/bin/sh" "/system/xbin/sugote-mksh"
+fi
+
 mkdir -p "/system/bin/.ext"
 cp -p "/system/xbin/su" "/system/bin/.ext/.su"
 sed -i "s/persist.sys.root_access=1/persist.sys.root_access=0/g" "/system/build.prop" # This is to silent built-in Superuser on AOSP
-sync
 exit 0
