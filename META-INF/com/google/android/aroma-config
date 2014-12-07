@@ -25,7 +25,7 @@ writetmpfile(
 
 	"name=Xperia M\n"+
 	"maintainer=JustArchi\n"+
-	"colorspace=auto\n"+ # Possible values: "auto", "rgba", "abgr", "argb", "bgra". Use "rgba" if AROMA swaps red and blue colors on your device
+	"colorspace=rgba\n"+ # Possible values: "auto", "rgba", "abgr", "argb", "bgra". Use "rgba" if AROMA swaps red and blue colors on your device
 	"density=320\n"+
 	"kernel=BRINGUP\n"+ # CORE
 	"recovery=BRINGUP\n"+ # CORE, "NULL" indicates kernel + recovery combo
