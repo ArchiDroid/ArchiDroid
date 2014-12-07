@@ -33,17 +33,17 @@ anisplash(
 writetmpfile(
 	"device.prop",
 
-	"name=BRINGUP\n"+
+	"name=Xperia M\n"+
 	"maintainer=JustArchi\n"+
-	"density=320\n"+
-	"kernel=BRINGUP\n"+ # CORE
-	"recovery=BRINGUP\n"+ # CORE
-	"modem=BRINGUP\n"+ # CORE
-	"system=BRINGUP\n"+
-	"data=BRINGUP\n"+
-	"cache=BRINGUP\n"+
-	"preload=BRINGUP\n"+
-	"extsd=BRINGUP\n"
+	"density=240\n"+
+	"kernel=/dev/block/platform/msm_sdcc.1/by-name/boot\n"+ # CORE
+#	"recovery=NULL\n"+ # CORE
+	"modem=/dev/block/platform/msm_sdcc.1/by-name/modem\n"+ # CORE
+	"system=/dev/block/platform/msm_sdcc.1/by-name/system\n"+
+	"data=/dev/block/platform/msm_sdcc.1/by-name/userdata\n"+
+	"cache=/dev/block/platform/msm_sdcc.1/by-name/cache\n"+
+#	"preload=NULL\n"+
+	"extsd=/dev/block/platform/msm_sdcc.3/by-num/p1\n"
 );
 
 # Often edited settings
@@ -103,7 +103,7 @@ setvar("adaroma", getvar("ad") + "/AromaPreset/" + getvar("archidroid_rom_short"
 resexec("exec/admount.sh", "/system", file_getprop("/tmp/aroma-data/device.prop", "system"));
 resexec("exec/admount.sh", "/data", file_getprop("/tmp/aroma-data/device.prop", "data"));
 resexec("exec/admount.sh", "/cache", file_getprop("/tmp/aroma-data/device.prop", "cache"));
-resexec("exec/admount.sh", "/preload", file_getprop("/tmp/aroma-data/device.prop", "preload"));
+#resexec("exec/admount.sh", "/preload", file_getprop("/tmp/aroma-data/device.prop", "preload"));
 resexec("exec/admount.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/device.prop", "extsd"));
 resexec("exec/admkdir.sh", getvar("adaroma"), "/tmp/archidroid");
 
@@ -390,8 +390,8 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 	resexec("exec/archidroid_hardswap_check.sh", "/cache");
 	setvar("hardswapcache", getvar("exec_buffer"));
 
-	resexec("exec/archidroid_hardswap_check.sh", "/preload");
-	setvar("hardswappreload", getvar("exec_buffer"));
+#	resexec("exec/archidroid_hardswap_check.sh", "/preload");
+#	setvar("hardswappreload", getvar("exec_buffer"));
 
 	resexec("exec/archidroid_hardswap_check.sh", "/storage/sdcard1");
 	setvar("hardswapsdcard", getvar("exec_buffer"));
@@ -410,13 +410,13 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"512", "512 Megabytes", "", "select",
 		"current", "<~archidroid.common.current>: "+ getvar("hardswapcache"), "", "select.selected",
 
-		"preload", "<#selectbg_g>Preload</#>", "", "group",
-		"0", "0 Megabytes", "<~archidroid.hardswap.size.0.desc>", "select",
-		"64", "64 Megabytes", "", "select",
-		"128", "128 Megabytes", "<~archidroid.hardswap.size.default.desc>", "select",
-		"256", "256 Megabytes", "", "select",
-		"512", "512 Megabytes", "", "select",
-		"current", "<~archidroid.common.current>: "+ getvar("hardswappreload"), "", "select.selected",
+#		"preload", "<#selectbg_g>Preload</#>", "", "group",
+#		"0", "0 Megabytes", "<~archidroid.hardswap.size.0.desc>", "select",
+#		"64", "64 Megabytes", "", "select",
+#		"128", "128 Megabytes", "<~archidroid.hardswap.size.default.desc>", "select",
+#		"256", "256 Megabytes", "", "select",
+#		"512", "512 Megabytes", "", "select",
+#		"current", "<~archidroid.common.current>: "+ getvar("hardswappreload"), "", "select.selected",
 
 		"sdcard1", "<#selectbg_g>External SD Card</#>", "", "group",
 		"0", "0 Megabytes", "<~archidroid.hardswap.size.0.desc>", "select",
@@ -431,10 +431,10 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		resexec("exec/archidroid_hardswap.sh", "/cache", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "cache"));
 		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
 	endif;
-	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "preload") != "current" then
-		resexec("exec/archidroid_hardswap.sh", "/preload", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "preload"));
-		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
-	endif;
+#	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "preload") != "current" then
+#		resexec("exec/archidroid_hardswap.sh", "/preload", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "preload"));
+#		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
+#	endif;
 	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1") != "current" then
 		resexec("exec/archidroid_hardswap.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1"));
 		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
@@ -502,7 +502,7 @@ install(
 resexec("exec/adumount.sh", "/system");
 resexec("exec/adumount.sh", "/data");
 resexec("exec/adumount.sh", "/cache");
-resexec("exec/adumount.sh", "/preload");
+#resexec("exec/adumount.sh", "/preload");
 resexec("exec/adumount.sh", "/storage/sdcard1");
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then

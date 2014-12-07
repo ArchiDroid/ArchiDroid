@@ -78,7 +78,6 @@
 			-->
 		<!-- /i9300 -->
 		<!-- nicki -->
-			<!--
 			<project name="CyanogenMod/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
 			<project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" />
 			<project name="CyanogenMod/android_device_sony_common" path="device/sony/common" remote="github" />
@@ -95,7 +94,6 @@
 			<project name="ArchiDroid/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
 			<remove-project name="CyanogenMod/android_kernel_sony_msm8x27" />
 			<project name="ArchiDroid/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
-			-->
 		<!-- /nicki -->
 	<!-- /Devices -->
 </manifest>
