@@ -27,40 +27,40 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Open source ad blocker for Android. Comes preconfigured to update hosts in ArchiDroid's Adblock periodically
+archidroid.apps.adaway.desc=Εφαρμογή ανοικτού κώδικα για μπλοκάρισμα διαφημίσεων
 archidroid.apps.cooltool.desc=Εξαιρετικά προσαρμόσιμη εφαρμογή που σας δείχνει χρήσιμες πληροφορίες σχετικά με τη συσκευή σας στο Statusbar (π.χ. βαθμός χρήσης επεξεργαστή) 
 archidroid.apps.esfileexplorer.desc=Πολύ καλός, εναλλακτικός διαχειριστής αρχείων για το Android
-archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary google store
-archidroid.apps.greenify.desc=Εξοικονομεί ενέργεια μεταφέροντας εγαρμογές που δεν χρησιμοποιείτε σε κατάσταση «χειμερίας νάρκης»
+archidroid.apps.fdroid.desc=Κατάλογος δωρεάν εφαρμογών ανοικτού κώδικα για το Android
+archidroid.apps.greenify.desc=Εξοικονομεί ενέργεια μεταφέροντας εφαρμογές που δεν χρησιμοποιείτε σε κατάσταση «χειμερίας νάρκης»
 archidroid.apps.lmt.desc=Ενισχύει τη συσκευή σας με τη λειτουργικότητα του PIE, υποστήριξη για χειρονομίες και περισσότερα
-archidroid.apps.mxplayer.desc=Εξαιρετική εγαρμογή αναπαραγωγής βίντεο για το Android με χρήση επιτάχυνσης υλικού
-archidroid.apps.spiritfm.desc=Εγαρμογή ραδιοφώνου με συχνότητες, δεν ειναι απαραίτητη η πρόσβαση στο διαδίκτυο.
-archidroid.apps.titaniumbackup.desc=A core app for every rooted user. Let's you backup/restore apps and their data on the flyΜια κεντρική εφαρμογή για κάθε root-χρήστη. Δημιουργία αντιγράφων ασφαλείας / επαναφορά των εφαρμογών και των δεδομένων τους
+archidroid.apps.mxplayer.desc=Εξαιρετική εφαρμογή αναπαραγωγής βίντεο για το Android με χρήση επιτάχυνσης υλικού
+archidroid.apps.spiritfm.desc=Εφαρμογή ραδιοφώνου με συχνότητες, δεν είναι απαραίτητη η πρόσβαση στο διαδίκτυο.
+archidroid.apps.titaniumbackup.desc=Μια κεντρική εφαρμογή για κάθε root-χρήστη. Δημιουργία αντιγράφων ασφαλείας / επαναφορά των εφαρμογών και των δεδομένων τους
 
 archidroid.bcm=BCM προφίλ
-archidroid.bcm.archidetect.desc=ArchiDetect προσπαθεί να ανιχνεύσει τo σωστöo firmware για τη συσκευή σας αυτόματα
+archidroid.bcm.archidetect.desc=ArchiDetect προσπαθεί να ανιχνεύσει τo σωστό firmware για τη συσκευή σας αυτόματα
 
 archidroid.bootanimation=Κινούμενη εικόνα έναρξης λογισμικού
-archidroid.bootanimation.archi1.desc=Πρώτη κινούμενη εικόνα, απο καιρούς 1.Χ
-archidroid.bootanimation.archi2.desc=Δεύτερη κινούμενη εικόνα, απο καιρούς 2.Χ
-archidroid.bootanimation.archi3.desc=Τρίτη κινούμενη εικόνα, απο καιρούς 3.Χ
-archidroid.bootanimation.logcat.desc=Πρωτόκολλο logcat ίδιας στιγμής, τροφοδοτειμένο απο την εφαρμογή logcat lite
+archidroid.bootanimation.archi1.desc=Πρώτη κινούμενη εικόνα, από καιρούς 1.Χ
+archidroid.bootanimation.archi2.desc=Δεύτερη κινούμενη εικόνα, από καιρούς 2.Χ
+archidroid.bootanimation.archi3.desc=Τρίτη κινούμενη εικόνα, από καιρούς 3.Χ
+archidroid.bootanimation.logcat.desc=Πρωτόκολλο logcat ίδιας στιγμής, τροφοδοτημένο από την εφαρμογή logcat lite
 archidroid.bootanimation.none.desc=Καμία κινούμενη εικόνα, για ταχύτερη έναρξη λογισμικού
-archidroid.bootanimation.stock.desc=Κανονική κινούμενη εικόνα, απο το βασικό σύστημα
+archidroid.bootanimation.stock.desc=Κανονική κινούμενη εικόνα, από το βασικό σύστημα
 
 archidroid.changelog=Πρωτόκολλο αλλαγών
 archidroid.changelog.desc=Τι καινούργιο υπάρχει
 
-archidroid.common.current=τρέχων
+archidroid.common.current=Tρέχων
 archidroid.common.default=Προεπιλεγμένη επιλογή
 archidroid.common.density=Πυκνότητα
 archidroid.common.detected=Αναγνορισμένο
-archidroid.common.finish=Finish
-archidroid.common.install=Install
-archidroid.common.installation=Installation
+archidroid.common.finish=Τέλος
+archidroid.common.install=Εγκατάσταση
+archidroid.common.installation=Εγκατάσταση
 archidroid.common.none=Καμία
-archidroid.common.reboot=Reboot
-archidroid.common.reboot.question=Would you like to reboot your device now?
+archidroid.common.reboot=Επανεκκίνηση
+archidroid.common.reboot.question=Θα θέλατε να επανεκκινίσετε τωρα;
 archidroid.common.terms.check=Συμφωνώ με τους όρους και τις προϋποθέσεις
 archidroid.common.terms.readme=Παρακαλώ διαβάστε προσεκτικά!
 archidroid.common.terms.unchecked=Παρακαλώ ελέγξτε τις προϋποθέσεις!
@@ -68,31 +68,31 @@ archidroid.common.terms.unchecked=Παρακαλώ ελέγξτε τις προ�
 archidroid.custom=Προσαρμόσετε
 archidroid.custom.desc=Προσαρμόσετε τις επιλογές όπως θέλετε
 
-archidroid.detect.fail=Το ArchiDroid δεν μπόρεσε να ανιχνευσεί προϊγούμενη εγκατάσταση, ως εκ τούτου μια διαγραφή δεδομένων (επαναφορά εργοστασιακών ρυθμίσεων) είναι υποχρεωτική. Το ArchiDroid θα καθαρίσει τα δεδομένα σας πριν εγκατασταθεί. Τα δεδομένα της εσωτερικής sd card είναι ασφαλές κατα την διαδικασία αυτη!
-archidroid.detect.pass=Το ArchiDroid μπόρεσε να ανιχνεύσει προϊγούμενη εγκατάσταση. Επιθυμείτε να διαγράψετε τα δεδομένα σας;
+archidroid.detect.fail=Το ArchiDroid δεν μπόρεσε να ανιχνεύσει προηγούμενη εγκατάσταση, ως εκ τούτου μια διαγραφή δεδομένων (επαναφορά εργοστασιακών ρυθμίσεων) είναι υποχρεωτική. Το ArchiDroid θα καθαρίσει τα δεδομένα σας πριν εγκατασταθεί. Τα δεδομένα της εσωτερικής sd card είναι ασφαλές κατα την διαδικασία αυτη!
+archidroid.detect.pass=Το ArchiDroid μπόρεσε να ανιχνεύσει προηγούμενη εγκατάσταση. Επιθυμείτε να διαγράψετε τα δεδομένα σας;
 archidroid.detect.pass.no=Όχι, μην διαγράψεις τα παλιά μου δεδομένα
-archidroid.detect.pass.yes=Ναί, παρακαλώ διάγραψε τα παλιά μου δεδομένα
-archidroid.detect.pass.alert.no=Εντάξει, ομώς το λογισμικό μπορεί να μην λειτουργίσει ομαλά με ασυμβίβαστα δεδομένα!
+archidroid.detect.pass.yes=Ναι, παρακαλώ διάγραψε τα παλιά μου δεδομένα
+archidroid.detect.pass.alert.no=Εντάξει, όμως το λογισμικό μπορεί να μην λειτουργήσει ομαλά με ασυμβίβαστα δεδομένα!
 archidroid.detect.pass.alert.yes=Εξαιρετική επιλογή, το ArchiDroid θα καθαρίσει τα δεδομένα σας πριν εγκατασταθεί!
 
-archidroid.detect.previouspreset.expert.fail.incompatible=Προσοχή! Οι παλίες σας προκαθορισμένες επιλογές δεν πέρασαν τον έλεγχο ακεραιότητας.Your old preset failed integrity checkΒεβαιωθείτε ότι οι επιλογές που έχετε επιλέξει είναι έγκυρες!
-archidroid.detect.previouspreset.fail.incompatible=Λυπούμαστε, οι παλαιές προκαθορισμένς επιλογές δεν πέρασαν τον έλεγχο ακεραιότητας. Μπορείτε να δοκιμάσετε τον τρόπο εμπειρογνωμόνων, αν ξέρετε τι κάνετε
+archidroid.detect.previouspreset.expert.fail.incompatible=Προσοχή! Οι παλιές σας προκαθορισμένες επιλογές δεν πέρασαν τον έλεγχο ακεραιότητας.Your old preset failed integrity checkΒεβαιωθείτε ότι οι επιλογές που έχετε επιλέξει είναι έγκυρες!
+archidroid.detect.previouspreset.fail.incompatible=Λυπούμαστε, οι παλαιές προκαθορισμένες επιλογές δεν πέρασαν τον έλεγχο ακεραιότητας. Μπορείτε να δοκιμάσετε τον τρόπο εμπειρογνωμόνων, αν ξέρετε τι κάνετε
 archidroid.detect.previouspreset.fail.notavailable=Λυπούμαστε, φένετε πως δεν έχετε προκαθορισμένες επιλογές
 
 archidroid.experimental=Πειραματική κατασκευή
 archidroid.experimental.terms.check=Έχω κατανοήσει πως αυτή η κατασκευή είναι πειραματική και μπορεί να καταστρέψει την συσκευή μου
 
-archidroid.gapps.bksync.desc=Παρέχει υπηρεσία συχρονισμού σελιδοδεικτών στην εφαρμογή Google Chrome
-archidroid.gapps.calendargoogle.desc=Αντικαθηστά την κανονική εφαρμογη ημερολογίου. Ενισχύει την εφαρμογή ημερολόγιου με ενσωμάτωση google account και άλλων  χαρακτιριστικών
-archidroid.gapps.calsync.desc=Ενσωματώνει λειτουργία συχρονισμού στην εφαρμογή Google Calendar
-archidroid.gapps.core.desc=Παρέχει την βασική λειτουργία εφαρμογών Google Apps. Περιλαμβάνει κινητές υπηρεσιες της Google, το πλαίσιο, κατάστημα και άλλα απαραίτιτα εξαρτήματα. Υποχρεωτικό για ολες τις εφαρμογές google apps
-archidroid.gapps.faceunlock.desc=Παρέχει λειτουργία ξεκλείδωσης χρησιμοποιώντας αναγνόριση προσώπου για το lockscreen.
-archidroid.gapps.gmail.desc=Πρόγραμμα  ηλεκτρονικού ταχυδρομίου σχεδιασμένο για χρήση με υπηρεσίες της Gmail
+archidroid.gapps.bksync.desc=Παρέχει υπηρεσία συγχρονισμού σελιδοδεικτών στην εφαρμογή Google Chrome
+archidroid.gapps.calendargoogle.desc=Αντικαθιστά την κανονική εφαρμογή ημερολογίου. Ενισχύει την εφαρμογή ημερολογίου με ενσωμάτωση google account και άλλων  χαρακτιριστικών
+archidroid.gapps.calsync.desc=Ενσωματώνει λειτουργία συγχρονισμού στην εφαρμογή Google Calendar
+archidroid.gapps.core.desc=Παρέχει την βασική λειτουργία εφαρμογών Google Apps. Περιλαμβάνει κινητές υπηρεσίες της Google, το πλαίσιο, κατάστημα και άλλα απαραίτητα εξαρτήματα. Υποχρεωτικό για ολες τις εφαρμογές google apps
+archidroid.gapps.faceunlock.desc=Παρέχει λειτουργία ξεκλείδωσης χρησιμοποιώντας αναγνώριση προσώπου για το lockscreen.
+archidroid.gapps.gmail.desc=Πρόγραμμα  ηλεκτρονικού ταχυδρομείου σχεδιασμένο για χρήση με υπηρεσίες της Gmail
 archidroid.gapps.googleplus.desc=Κοινωνικό δίκτυο σχεδιασμένο για τ χρήση υπηρεσιών του Google Plus
-archidroid.gapps.googletts.desc=TTS συμένει κείμενο για ακρόαση. Απαραίτητο για ελεύθερη ακρόαση κειμένου
+archidroid.gapps.googletts.desc=TTS σημαίνει κείμενο για ακρόαση. Απαραίτητο για ελεύθερη ακρόαση κειμένου
 archidroid.gapps.hangouts.desc=Εφαρμογή Hangouts. Χρησημοποιήται για SMS και ομιλίες εντός του Gmail
-archidroid.gapps.maps.desc=Εφαρμογή χάρτη σχεδιασμενο για λειτουργία με τις υπηρεσίες Google Maps. Παρέχει υπηρεσίες στήριξης πλοήγησης
-archidroid.gapps.search.desc=Εφαρμογή αναζήτησης, περιλαμβάνει εγαρμογη Google Voice
+archidroid.gapps.maps.desc=Εφαρμογή χάρτη σχεδιασμένο για λειτουργία με τις υπηρεσίες Google Maps. Παρέχει υπηρεσίες στήριξης πλοήγησης
+archidroid.gapps.search.desc=Εφαρμογή αναζήτησης, περιλαμβάνει εφαρμογή Google Voice
 archidroid.gapps.speech.desc=Περιλαμβάνει εξαρτήματα του Google Voice. Απαραίτητο για χρήση του Google Voice
 archidroid.gapps.street.desc=Εφαρμογή όρασης δρόμου. Ενισχύει την εφαρμογή Google Maps με επιπλέον λειτουργίες
 archidroid.gapps.youtube.desc=Εφαρμογή αναπαράστασης video σχεδιασμένο για λειτουργία με υπηρεσίες YouTube
@@ -101,44 +101,44 @@ archidroid.hardswap.desc=Θυσία I/O για περισσότερη μνήμη
 archidroid.hardswap.size.0.desc=Αυτό θα διαγράψει το αρχείο hardswap
 archidroid.hardswap.size.default.desc=Μέγιστο συνιστώμενο μέγεθος
 
-archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
-archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+archidroid.install.desc=<b>ArchiDroid</b>  βρίσκεται στο στάδιο της εγκατάστασης. Παρακαλώ περιμένετε<b>ArchiDroid</b> 
+archidroid.install.finish=Εγκατάσταση <b>ArchiDroid</b> έχει τελειώσει. Πατήστε <b>Τέλος</b> για να συνεχίσετε
 
 archidroid.kernel=Kernel
-archidroid.kernel.archi.desc=Features perfect synergy with ArchiDroid, deep optimizations, up-to-date sources and many improvements. Highly recommended Τέλεια συνέργεια με ArchiDroid, βαθιές βελτιστοποιήσεις, ενημερομένες πηγές και πολλές βελτιώσεις. Το συνιστώ
-archidroid.kernel.stock.desc=Κανονικό Kernel παρεχόμενο απο το βασικό σύστημα
+archidroid.kernel.archi.desc=Τέλεια συνέργεια με ArchiDroid, βαθιές βελτιστοποιήσεις, ενημερωμένες πηγές και πολλές βελτιώσεις. Το συνιστώ
+archidroid.kernel.stock.desc=Κανονικό Kernel παρεχόμενο από το βασικό σύστημα
 
 archidroid.keyboard=Πληκτρολόγιο
-archidroid.keyboard.google.desc=Παρέχει πληκτρολόγηση χειρονομίας, επέκταση κειμένου, προαιρετική διάταξη κανονικόυ υπολογιστή και άλλες βελτιώσεις σε σχέση με πρότυπο πληκτρολόγιου AOSP
-archidroid.keyboard.stock.desc=Πληκτρολόγιο παρεχόμενο απο το βασικό σύστημα
+archidroid.keyboard.google.desc=Παρέχει πληκτρολόγηση χειρονομίας, επέκταση κειμένου, προαιρετική διάταξη κανονικού υπολογιστή και άλλες βελτιώσεις σε σχέση με πρότυπο πληκτρολόγιου AOSP
+archidroid.keyboard.stock.desc=Πληκτρολόγιο παρεχόμενο από το βασικό σύστημα
 
 archidroid.launcher=Launcher
-archidroid.launcher.google.desc=Παρέχει εξερετική ενσωμάτωση με αλλες εφαρμογές Google apps
+archidroid.launcher.google.desc=Παρέχει εξαιρετική ενσωμάτωση με άλλες εφαρμογές Google apps
 archidroid.launcher.nova.desc=Εξαιρετικά προσαρμόσιμο, με κίνητρο την απόδοση, αντικατάσταση αρχικής οθόνης για το Android
-archidroid.launcher.stock.desc=Launcher παρεχόμενο απο το βασικό σύστημα
+archidroid.launcher.stock.desc=Launcher παρεχόμενο από το βασικό σύστημα
 
-archidroid.prepinstall=Ready for flashing
-archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
+archidroid.prepinstall=Έτοιμο για εγκατάσταση
+archidroid.prepinstall.desc=Τώρα είστε έτοιμοι για εγκατάσταση. Πατήστε <b>Εγκατάσταση</b> για να ξεκινήσετε. Αν θέλετε να ανασκοπίσετε τις ρυθμίσεις σας πατήστε <b>Πίσω</b>
 
 archidroid.preset=Προκαθορισμένες επιλογές
 archidroid.preset.barebones=Bare Bones
-archidroid.preset.barebones.desc=Αυτή η επιλογή εγκαθιστά μόνο το βασικό λειτουργικό σύστημα. Συνηστάται μόνο για debugging
+archidroid.preset.barebones.desc=Αυτή η επιλογή εγκαθιστά μόνο το βασικό λειτουργικό σύστημα. Συνιστάται μόνο για debugging
 archidroid.preset.custom=Προσαρμόστε
 archidroid.preset.custom.desc=Επιλέξτε αυτήν την επιλογή αν θέλετε να προσαρμόσετε κάθε πτυχή του ArchiDroid σας πριν εγκατασταθεί. Συνιστάται
-archidroid.preset.previous=Προϊγούμενες επιλογές
+archidroid.preset.previous=Προηγούμενες επιλογές
 archidroid.preset.previous.desc=Εάν έχετε ήδη προσαρμόσει την εγκατάσταση πριν, αυτή η επιλογή φορτώνει και χρησιμοποιεί τις παλαιές σας επιλογές
-archidroid.preset.previousexpert=Προϊγούμενες επιλογές, εμπειρογνωμονικα
-archidroid.preset.previousexpert.desc=Ίδιο με προηγούμενες προκαθορισμένες επιλογές παραπάνω, αλλά η εγκατάσταση εμπειρογνώμονα δεν επιβάλλει ελέγχους συμβατότητας και σας επιτρέπει να κάνετε τροποποιήσεις στις παλαιές σας επιλογές πριν να εγκατασταθεί. Προειδοποίηση: Προσέξτε, ασυμβίβαστες επιλογές μπορεί να μήν επιτρέψουν την εγκατάσταση
+archidroid.preset.previousexpert=Προηγούμενες επιλογές, εμπειρογνωμονικά
+archidroid.preset.previousexpert.desc=Ίδιο με προηγούμενες προκαθορισμένες επιλογές παραπάνω, αλλά η εγκατάσταση εμπειρογνώμονα δεν επιβάλλει ελέγχους συμβατότητας και σας επιτρέπει να κάνετε τροποποιήσεις στις παλαιές σας επιλογές πριν να εγκατασταθεί. Προειδοποίηση: Προσέξτε, ασυμβίβαστες επιλογές μπορεί να μην επιτρέψουν την εγκατάσταση
 archidroid.preset.recovery=Recovery
-archidroid.preset.recovery.desc=Επιλέγξτε αυτη την επιλογή αν επιθιμίτε την ενημέρωση εγαρμογής recovery πριν την εγκατάσταση του ArchiDroid
+archidroid.preset.recovery.desc=Επιλέξτε αυτή την επιλογή αν επιθυμίτε την ενημέρωση εφαρμογής recovery πριν την εγκατάσταση του ArchiDroid
 
 archidroid.preview=Προεπισκόπηση
 archidroid.preview.desc=Όταν επιλεγεί, θα δείτε ένα δείγμα της επιλογής σας στην επόμενη οθόνη
 
-archidroid.recovery.twrp.desc=Προσαρμοσμένη εγαρμογή recovery  χτισμένη με την ευκολία χρήσης
+archidroid.recovery.twrp.desc=Προσαρμοσμένη εφαρμογή recovery  χτισμένη με την ευκολία χρήσης
 
-archidroid.superuser.chainfire.desc=Εφαρμογή κλειστού κώδικα, για αυτούς που προτιμουν το  εργαλείο διαχείρισης πρόσβασης του μέλλοντος
-archidroid.superuser.koush.desc=Εφαρμογή ανοικτού κώδικα, ενσωματομένη διαχείριση πρόσβασης
+archidroid.superuser.chainfire.desc=Εφαρμογή κλειστού κώδικα, για αυτούς που προτιμούν το  εργαλείο διαχείρισης πρόσβασης του μέλλοντος
+archidroid.superuser.koush.desc=Εφαρμογή ανοικτού κώδικα, ενσωματωμένη διαχείριση πρόσβασης
 archidroid.superuser.none.desc=Καμία διαχείριση πρόσβασης. Απενεργοποιεί την πρόσβαση root
 
 archidroid.thirdparty=Συμφωνία Τρίτων
@@ -146,13 +146,13 @@ archidroid.thirdparty=Συμφωνία Τρίτων
 archidroid.tou=Όροι Χρήσης
 
 archidroid.tweaks.cellbroadcasts=Εκπομπή τηλεφωνικής κυψέλης
-archidroid.tweaks.cellbroadcasts.desc=Οι εκπομπές τηλέφωνικών κυψελων έχουν σχεδιαστεί για την ταυτόχρονη παράδοση μηνυμάτων σε πολλαπλούς χρήστες σε μια συγκεκριμένη περιοχή. Συχνά χρησιμοποιούνται για τους σκοπούς της ανεπιθύμητης αλληλογραφίας. Επιλέξτε μόνο αν τα χρειάζεστε
+archidroid.tweaks.cellbroadcasts.desc=Οι εκπομπές τηλεφωνικών κυψελών έχουν σχεδιαστεί για την ταυτόχρονη παράδοση μηνυμάτων σε πολλαπλούς χρήστες σε μια συγκεκριμένη περιοχή. Συχνά χρησιμοποιούνται για τους σκοπούς της ανεπιθύμητης αλληλογραφίας. Επιλέξτε μόνο αν τα χρειάζεστε
 archidroid.tweaks.navibar=Ράβδος πλοήγησης
 archidroid.tweaks.navibar.desc=Ενεργοποιεί τη μπάρα πλοήγησης, και απενεργοποιεί τα πλήκτρα υλικού (back, home, menu). Επιλέξτε αν προτιμάτε να έχετε στην οθόνη την ράβδο πλοήγησης
 
 archidroid.xposed.desc=To Πλαίσιο Xposed επιτρέπει ενότητες με τρίτες κατασκευής, χωρίς τροποποίηση των αρχείων του συστήματος. Το συνιστώ ανεπιφύλακτα
 archidroid.xposed.gravitybox.desc=Όλα-σε-μία κατασκευή Xposed που περιέχει πολλές τροποποιήσεις πλαισίου 
-archidroid.xposed.xprivacy.desc=Αν θέλετε να προστατέψετε το απόρρητό σας, αυτή η κατασκευή Xposed είναι για σας. Με αυτό το app θα είστε σε θέση να προσδιορίσετε επακριβώς τα δικαιώματα για κάθε εγκατεστημένη εφαρμογή
+archidroid.xposed.xprivacy.desc=Αν θέλετε να προστατέψετε το απόρρητο σας, αυτή η κατασκευή Xposed είναι για σας. Με αυτό το app θα είστε σε θέση να προσδιορίσετε επακριβώς τα δικαιώματα για κάθε εγκατεστημένη εφαρμογή
 
 
 ### AROMA strings
@@ -164,6 +164,6 @@ text_no=Όχι
 text_ok=Εντάξει
 text_quit_msg=Επιθυμείτε να εγκαταλείψετε την εγκατάσταση;
 text_quit=Εγκατάληψη
-text_yes=Ναί
+text_yes=Ναι
 
 ### End of file
