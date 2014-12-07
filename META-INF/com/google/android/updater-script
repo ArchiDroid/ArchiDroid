@@ -36,6 +36,12 @@ set_progress(0.01);
 ### RECOVERY ###
 ################
 
+### BOOT ###
+if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "boot" then
+	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing new kernel + recovery combo");
+	package_extract_file("boot.img", file_getprop("/tmp/aroma-data/device.prop", "kernel"));
+endif;
+
 ### TWRP ###
 if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "twrp" then
 	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing TWRP recovery");

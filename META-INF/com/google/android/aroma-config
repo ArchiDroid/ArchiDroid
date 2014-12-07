@@ -37,7 +37,7 @@ writetmpfile(
 	"maintainer=JustArchi\n"+
 	"density=320\n"+
 	"kernel=/dev/block/platform/dw_mmc/by-name/BOOT\n"+ # CORE
-	"recovery=/dev/block/platform/dw_mmc/by-name/RECOVERY\n"+ # CORE
+	"recovery=/dev/block/platform/dw_mmc/by-name/RECOVERY\n"+ # CORE, "NULL" indicates kernel + recovery combo
 	"modem=/dev/block/platform/dw_mmc/by-name/RADIO\n"+ # CORE
 	"efs=/dev/block/platform/dw_mmc/by-name/EFS\n"+
 	"system=/dev/block/platform/dw_mmc/by-name/SYSTEM\n"+
@@ -247,16 +247,23 @@ form(
 ################
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
-	form(
-		"<~archidroid.preset.recovery>",
-		"<~archidroid.custom.desc>",
-		"@shell",
-		"archidroidrecovery.prop",
+	if file_getprop("/tmp/aroma-data/device.prop", "recovery") != "NULL" then
+		form(
+			"<~archidroid.preset.recovery>",
+			"<~archidroid.custom.desc>",
+			"@shell",
+			"archidroidrecovery.prop",
 
-		"recovery", "<#selectbg_g><~archidroid.preset.recovery></#>", "", "group",
-		"twrp", "Team Win Recovery Project", "<~archidroid.recovery.twrp.desc>", "select.selected",
-		"none", "<~archidroid.common.none>", "", "select"
-	);
+			"recovery", "<#selectbg_g><~archidroid.preset.recovery></#>", "", "group",
+			"twrp", "Team Win Recovery Project", "<~archidroid.recovery.twrp.desc>", "select.selected",
+			"none", "<~archidroid.common.none>", "", "select"
+		);
+	else
+		writetmpfile(
+			"archidroidrecovery.prop",
+			"recovery=boot\n"
+		);
+	endif;
 else
 	writetmpfile(
 		"archidroidrecovery.prop",
