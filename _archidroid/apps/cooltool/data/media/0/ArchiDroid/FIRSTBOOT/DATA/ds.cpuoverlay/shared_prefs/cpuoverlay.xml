@@ -11,9 +11,10 @@
     <int name="textAlpha" value="0" />
     <boolean name="forceEstimated" value="false" />
     <boolean name="fullScreenHide" value="true" />
-    <int name="widthSeek" value="8" />
+    <boolean name="simpleNetType" value="false" />
+    <int name="widthSeek" value="0" />
     <boolean name="gpsPlate" value="false" />
-    <int name="xCoord" value="258" />
+    <int name="xCoord" value="141" />
     <boolean name="showTime" value="false" />
     <boolean name="debug" value="false" />
     <int name="heavyProcessThreshold" value="80" />
