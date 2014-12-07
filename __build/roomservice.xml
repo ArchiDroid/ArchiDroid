@@ -50,6 +50,7 @@
 		<!-- e610 -->
 			<!--
 			<project name="TeamHackLG/android_device_lge_e610" path="device/lge/e610" remote="github" />
+
 			<project name="TeamHackLG/android_device_lge_msm7x27a-common" path="device/lge/msm7x27a-common" remote="github" />
 			<project name="TeamHackLG/lge-kernel-lproj" path="kernel/lge/msm7x27a-common" remote="github" revision="android-msm-3.4-kk" />
 
@@ -62,10 +63,11 @@
 		<!-- i9300 -->
 			<!--
 			<project name="CyanogenMod/android_device_samsung_i9300" path="device/samsung/i9300" remote="github" />
+
 			<project name="CyanogenMod/android_device_samsung_smdk4412-common" path="device/samsung/smdk4412-common" remote="github" />
+			<project name="CyanogenMod/android_hardware_samsung" path="hardware/samsung" remote="github" />
 			<project name="CyanogenMod/android_kernel_samsung_smdk4412" path="kernel/samsung/smdk4412" remote="github" />
 			<project name="CyanogenMod/android_packages_apps_SamsungServiceMode" path="packages/apps/SamsungServiceMode" remote="github" />
-			<project name="CyanogenMod/android_hardware_samsung" path="hardware/samsung" remote="github" />
 
 			<project name="ArchiDroid/proprietary_vendor_samsung" path="vendor/samsung" remote="github" />
 
@@ -79,11 +81,13 @@
 		<!-- /i9300 -->
 		<!-- nicki -->
 			<project name="CyanogenMod/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
+
 			<project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" />
 			<project name="CyanogenMod/android_device_sony_common" path="device/sony/common" remote="github" />
+			<project name="CyanogenMod/android_device_sony_msm8960-common" path="device/sony/msm8960-common" remote="github" />
 			<project name="CyanogenMod/android_device_sony_qcom-common" path="device/sony/qcom-common" remote="github" />
-			<project name="CyanogenMod/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
 			<project name="CyanogenMod/android_hardware_qcom_fm" path="hardware/qcom/fm" remote="github" />
+			<project name="CyanogenMod/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
 
 			<project name="ArchiDroid/proprietary_vendor_sony" path="vendor/sony" remote="github" />
 
