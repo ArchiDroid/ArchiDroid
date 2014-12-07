@@ -19,22 +19,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Call animated splash ASAP to notify user that everything is alright
-ini_set("transition_frame", "30");
-anisplash(
-	#-- Number of loops
-	1,
-
-	#-- Image, duration in milliseconds
-	"preview/bootanimation/archi3", 2000
-);
-
 # Device information
 writetmpfile(
 	"device.prop",
 
 	"name=Samsung Galaxy S3\n"+
 	"maintainer=JustArchi\n"+
+	"colorspace=auto\n"+ # Possible values: "auto", "rgba", "abgr", "argb", "bgra". Use "rgba" if AROMA swaps red and blue colors on your device
 	"density=320\n"+
 	"kernel=/dev/block/platform/dw_mmc/by-name/BOOT\n"+ # CORE
 	"recovery=/dev/block/platform/dw_mmc/by-name/RECOVERY\n"+ # CORE, "NULL" indicates kernel + recovery combo
@@ -45,6 +36,21 @@ writetmpfile(
 	"cache=/dev/block/platform/dw_mmc/by-name/CACHE\n"+
 	"preload=/dev/block/platform/dw_mmc/by-name/HIDDEN\n"+
 	"extsd=/dev/block/platform/s3c-sdhci.2/by-num/p1\n"
+);
+
+setvar("colorspace", file_getprop("/tmp/aroma-data/device.prop", "colorspace"));
+if getvar("colorspace") != "auto" then
+	ini_set("force_colorspace", getvar("colorspace"));
+endif;
+
+# Call animated splash ASAP to notify user that everything is alright
+ini_set("transition_frame", "30");
+anisplash(
+	#-- Number of loops
+	1,
+
+	#-- Image, duration in milliseconds
+	"preview/bootanimation/archi3", 2000
 );
 
 # Often edited settings
