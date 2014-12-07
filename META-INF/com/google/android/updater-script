@@ -374,6 +374,25 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		### KERNEL ###
 		##############
 
+		### ARCHI ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "kernel") == "archi" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing ArchiKernel");
+			delete_recursive("/tmp/archikernel");
+			package_extract_dir("_archidroid/kernels/archi/core", "/tmp/archikernel");
+			set_perm(0, 0, 0755, "/tmp/archikernel/init.sh");
+			package_extract_file("_archidroid/kernels/archi/prebuilt/zImage", "/tmp/archikernel/zImage");
+			delete_recursive("/system/lib/modules");
+			package_extract_dir("_archidroid/kernels/archi/prebuilt/system", "/system");
+			#package_extract_dir("_archidroid/kernels/archi/overlay", "/");
+			if run_program("/tmp/archikernel/init.sh") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiKernel</#><#ecec36>:~</#><#c00cdf>#</#></b> Status: SUCCESS");
+			else
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiKernel</#><#ecec36>:~</#><#c00cdf>#</#></b> Status: FAILED");
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiKernel</#><#ecec36>:~</#><#c00cdf>#</#></b> ErrorLog: /data/media/0/ArchiKernelError.log");
+				run_program("/sbin/cp", "/tmp/archikernel/ArchiKernel.log", "/data/media/0/ArchiKernelError.log");
+			endif;
+		endif;
+
 		### STOCK ###
 		if file_getprop("/tmp/aroma-data/archidroid.prop", "kernel") == "stock" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing Stock kernel");
