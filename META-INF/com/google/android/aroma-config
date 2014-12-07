@@ -19,6 +19,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Device information
+writetmpfile(
+	"device.prop",
+
+	"name=Xperia M\n"+
+	"maintainer=JustArchi\n"+
+	"colorspace=auto\n"+ # Possible values: "auto", "rgba", "abgr", "argb", "bgra". Use "rgba" if AROMA swaps red and blue colors on your device
+	"density=320\n"+
+	"kernel=BRINGUP\n"+ # CORE
+	"recovery=BRINGUP\n"+ # CORE, "NULL" indicates kernel + recovery combo
+	"modem=BRINGUP\n"+ # CORE
+	"system=BRINGUP\n"+
+	"data=BRINGUP\n"+
+	"cache=BRINGUP\n"+
+	"preload=BRINGUP\n"+
+	"extsd=BRINGUP\n"
+);
+
+setvar("colorspace", file_getprop("/tmp/aroma-data/device.prop", "colorspace"));
+if getvar("colorspace") != "auto" then
+	ini_set("force_colorspace", getvar("colorspace"));
+endif;
+
 # Call animated splash ASAP to notify user that everything is alright
 ini_set("transition_frame", "30");
 anisplash(
@@ -27,23 +50,6 @@ anisplash(
 
 	#-- Image, duration in milliseconds
 	"preview/bootanimation/archi3", 2000
-);
-
-# Device information
-writetmpfile(
-	"device.prop",
-
-	"name=Xperia M\n"+
-	"maintainer=JustArchi\n"+
-	"density=240\n"+
-	"kernel=/dev/block/platform/msm_sdcc.1/by-name/boot\n"+ # CORE
-	"recovery=NULL\n"+ # CORE, "NULL" indicates kernel + recovery combo
-	"modem=/dev/block/platform/msm_sdcc.1/by-name/modem\n"+ # CORE
-	"system=/dev/block/platform/msm_sdcc.1/by-name/system\n"+
-	"data=/dev/block/platform/msm_sdcc.1/by-name/userdata\n"+
-	"cache=/dev/block/platform/msm_sdcc.1/by-name/cache\n"+
-#	"preload=NULL\n"+
-	"extsd=/dev/block/platform/msm_sdcc.3/by-num/p1\n"
 );
 
 # Often edited settings
