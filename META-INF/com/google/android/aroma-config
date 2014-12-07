@@ -26,15 +26,15 @@ writetmpfile(
 	"name=Xperia M\n"+
 	"maintainer=JustArchi\n"+
 	"colorspace=rgba\n"+ # Possible values: "auto", "rgba", "abgr", "argb", "bgra". Use "rgba" if AROMA swaps red and blue colors on your device
-	"density=320\n"+
-	"kernel=BRINGUP\n"+ # CORE
-	"recovery=BRINGUP\n"+ # CORE, "NULL" indicates kernel + recovery combo
-	"modem=BRINGUP\n"+ # CORE
-	"system=BRINGUP\n"+
-	"data=BRINGUP\n"+
-	"cache=BRINGUP\n"+
-	"preload=BRINGUP\n"+
-	"extsd=BRINGUP\n"
+	"density=240\n"+
+	"kernel=/dev/block/platform/msm_sdcc.1/by-name/boot\n"+ # CORE
+	"recovery=NULL\n"+ # CORE, "NULL" indicates kernel + recovery combo
+	"modem=/dev/block/platform/msm_sdcc.1/by-name/modem\n"+ # CORE
+	"system=/dev/block/platform/msm_sdcc.1/by-name/system\n"+
+	"data=/dev/block/platform/msm_sdcc.1/by-name/userdata\n"+
+	"cache=/dev/block/platform/msm_sdcc.1/by-name/cache\n"+
+#	"preload=NULL\n"+
+	"extsd=/dev/block/platform/msm_sdcc.3/by-num/p1\n"
 );
 
 setvar("colorspace", file_getprop("/tmp/aroma-data/device.prop", "colorspace"));
