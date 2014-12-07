@@ -37,7 +37,7 @@ writetmpfile(
 	"maintainer=JustArchi\n"+
 	"density=320\n"+
 	"kernel=BRINGUP\n"+ # CORE
-	"recovery=BRINGUP\n"+ # CORE
+	"recovery=BRINGUP\n"+ # CORE, "NULL" indicates kernel + recovery combo
 	"modem=BRINGUP\n"+ # CORE
 	"system=BRINGUP\n"+
 	"data=BRINGUP\n"+
@@ -245,16 +245,23 @@ form(
 ################
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
-	form(
-		"<~archidroid.preset.recovery>",
-		"<~archidroid.custom.desc>",
-		"@shell",
-		"archidroidrecovery.prop",
+	if file_getprop("/tmp/aroma-data/device.prop", "recovery") != "NULL" then
+		form(
+			"<~archidroid.preset.recovery>",
+			"<~archidroid.custom.desc>",
+			"@shell",
+			"archidroidrecovery.prop",
 
-		"recovery", "<#selectbg_g><~archidroid.preset.recovery></#>", "", "group",
-		"twrp", "Team Win Recovery Project", "<~archidroid.recovery.twrp.desc>", "select.selected",
-		"none", "<~archidroid.common.none>", "", "select"
-	);
+			"recovery", "<#selectbg_g><~archidroid.preset.recovery></#>", "", "group",
+			"twrp", "Team Win Recovery Project", "<~archidroid.recovery.twrp.desc>", "select.selected",
+			"none", "<~archidroid.common.none>", "", "select"
+		);
+	else
+		writetmpfile(
+			"archidroidrecovery.prop",
+			"recovery=boot\n"
+		);
+	endif;
 else
 	writetmpfile(
 		"archidroidrecovery.prop",
