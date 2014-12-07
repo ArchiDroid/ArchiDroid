@@ -94,7 +94,7 @@ while read line; do
 	else
 		echo "INFO: Not interested in $line"
 	fi
-done < <(curl https://api.github.com/users/ArchiDroid/repos 2>/dev/null | grep "\"name\":" | cut -d '"' -f4)
+done < <(curl https://api.github.com/users/ArchiDroid/repos?per_page=100 2>/dev/null | grep "\"name\":" | cut -d '"' -f4)
 
 wait
 
