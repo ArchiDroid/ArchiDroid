@@ -469,10 +469,13 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		###############
 
 		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying ", file_getprop("/tmp/aroma-data/archidroid.prop", "density"), " density");
-		package_extract_file("_archidroid/exec/density.sh", "/tmp/density.sh");
-		set_perm(0, 0, 0755, "/tmp/density.sh");
-		run_program("/tmp/density.sh", file_getprop("/tmp/aroma-data/archidroid.prop", "density"));
-		delete("/tmp/density.sh");
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "density") != "default" then
+			package_extract_file("_archidroid/exec/density.sh", "/tmp/density.sh");
+			set_perm(0, 0, 0755, "/tmp/density.sh");
+			run_program("/tmp/density.sh", file_getprop("/tmp/aroma-data/archidroid.prop", "density"));
+			delete("/tmp/density.sh");
+		endif;
 
 		set_progress(0.64);
 
