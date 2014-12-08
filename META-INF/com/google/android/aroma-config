@@ -108,12 +108,12 @@ viewbox(
 	#-- Text
 	"Hello master, root@ArchiDroid here. You are about to install <b>ArchiDroid</b> for your device.\n\n\n\n\n\n\n\n"+
 
-	"<#selectbg_g>Device:          </#><b><#3D5AFE>" + getvar("archidroid_device") + " (" + ini_get("rom_device") + ")" + "</#></b>\n"+
-	"<#selectbg_g>Base:            </#><b><#3D5AFE>" + getvar("archidroid_rom") + "</#></b>\n"+
-	"<#selectbg_g>Version:         </#><b><#3D5AFE>" + getvar("archidroid_version") + "</#></b>\n"+
-	"<#selectbg_g>Android:         </#><b><#3D5AFE>" + getvar("archidroid_version_android") + " (" + getvar("archidroid_version_android_number") + ")" + "</#></b>\n"+
-	"<#selectbg_g>Type:            </#><b><#3D5AFE>" + getvar("archidroid_version_type") + "</#></b>\n"+
-	"<#selectbg_g>Released:        </#><b><#3D5AFE>" + ini_get("rom_date") + "</#></b>\n\n"+
+	"<#selectbg_g>Device:\t\t</#><b><#3D5AFE>" + getvar("archidroid_device") + " (" + ini_get("rom_device") + ")" + "</#></b>\n"+
+	"<#selectbg_g>Base:\t\t</#><b><#3D5AFE>" + getvar("archidroid_rom") + "</#></b>\n"+
+	"<#selectbg_g>Version:\t\t</#><b><#3D5AFE>" + getvar("archidroid_version") + "</#></b>\n"+
+	"<#selectbg_g>Android:\t\t</#><b><#3D5AFE>" + getvar("archidroid_version_android") + " (" + getvar("archidroid_version_android_number") + ")" + "</#></b>\n"+
+	"<#selectbg_g>Type:\t\t</#><b><#3D5AFE>" + getvar("archidroid_version_type") + "</#></b>\n"+
+	"<#selectbg_g>Released:\t</#><b><#3D5AFE>" + ini_get("rom_date") + "</#></b>\n\n"+
 
 	"<#selectbg_g>Press <b>Next</b> to continue the installation</#>",
 
