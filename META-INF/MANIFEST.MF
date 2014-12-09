@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Created-By: 1.0 (Android SignApk)
 
 Name: system/app/WhisperPush.apk
-SHA1-Digest: XZ1NJaQ9VT/UQE2HaGdPbrSeNwg=
+SHA1-Digest: ZpSQeU2lQFAjYqEdGt0D9prItbM=
 
 Name: system/framework/webview/paks/nl.pak
 SHA1-Digest: ccOCMyUUshcdw8w1zklqA4OwlSk=
@@ -353,7 +353,7 @@ Name: system/lib/liblog.so
 SHA1-Digest: GfV2UFBg/ql27TjL8CCDeEC3UC0=
 
 Name: system/app/Nfc.apk
-SHA1-Digest: oSBxJA31vu85NAhcliXxJqto/es=
+SHA1-Digest: mJkhJdOa4Gj/gTkX/xJ19L+419k=
 
 Name: system/usr/share/bmd/RFFspeed_501.bmd
 SHA1-Digest: U8VAt4ToJM9cf23UWSW02bJYN+M=
@@ -527,7 +527,7 @@ Name: system/lib/libicuuc.so
 SHA1-Digest: FmLOUXOTY372FWNZU8Zz+4sIpuc=
 
 Name: system/etc/apns-conf.xml
-SHA1-Digest: 0CnvFnf5eswYc2xeGfg0MD/MxE8=
+SHA1-Digest: axORgefgUSYU27ZtAfFvjBNnROc=
 
 Name: system/usr/keylayout/qwerty.kl
 SHA1-Digest: uVJBFR9M2iCzhnp+A4rvNqkHFMY=
@@ -1421,7 +1421,7 @@ Name: system/lib/soundfx/libbundlewrapper.so
 SHA1-Digest: zOATIPg2g9Z2kEtbjzjntkGcTZQ=
 
 Name: system/app/FM2.apk
-SHA1-Digest: ubYH+oGY5QtmIGXSfVgIlFKT0oM=
+SHA1-Digest: 6VIHMRVSRlEhxLIa1kjnBmmfCrk=
 
 Name: system/etc/terminfo/l/linux
 SHA1-Digest: HLYDTRLceIrQopr1DbXilboCX8E=
@@ -1478,7 +1478,7 @@ Name: system/etc/security/cacerts/3c58f906.0
 SHA1-Digest: dzVCcW3Ex2MumPnFxpI8GPLM8ks=
 
 Name: system/etc/recovery-resource.dat
-SHA1-Digest: GY+8I1cYMhmrbkM5ctO+DjVNKUQ=
+SHA1-Digest: tvaJ6fREwr5SyTk8p3+3aSKx65c=
 
 Name: system/usr/share/vim/syntax/manual.vim
 SHA1-Digest: M3liRc3f7vBF5B4o5dPrE6HJFpk=
@@ -1619,7 +1619,7 @@ Name: system/etc/permissions/platform.xml
 SHA1-Digest: YrrFoeCr1ORuW2HDOC/uVX5gTqc=
 
 Name: system/framework/qcom.fmradio.jar
-SHA1-Digest: SiCNzs+3039PB3BDO6N6yMCnf0c=
+SHA1-Digest: Zfou+QdlX413q9dXGwIHt5swQdQ=
 
 Name: system/media/audio/notifications/Hojus.ogg
 SHA1-Digest: DdghfVEZa2+VlEWDwEC2/j7Kydc=
@@ -3072,7 +3072,7 @@ Name: system/etc/init.qcom.baseband.sh
 SHA1-Digest: wzI59+R/bex46KIq1XeraU6JELk=
 
 Name: META-INF/com/android/metadata
-SHA1-Digest: YBw75mSvpSeRR2BTsY3yoLAtwRE=
+SHA1-Digest: e3TAcsyCL+6wGNjloyF3i6KCEYg=
 
 Name: system/lib/libui.so
 SHA1-Digest: VVivrouls0+7tOQ/bIJMu8/ivoI=
@@ -3651,7 +3651,7 @@ Name: system/lib/libmmmpod.so
 SHA1-Digest: hPJDrFt+9sWAPn4sfSwekH7s8Nc=
 
 Name: boot.img
-SHA1-Digest: h6SkladhxDTbZKj5wcRSObP3p7E=
+SHA1-Digest: yknbADUMW38ElYfVRgO2HG8ATGA=
 
 Name: system/lib/libsqlite.so
 SHA1-Digest: jeJWpGm/XKAZiXPLvCjbrqFvZak=
@@ -4203,7 +4203,7 @@ Name: system/media/audio/ringtones/Growl.ogg
 SHA1-Digest: Sw2PM10h0ouQLIH8v21n7myXN7I=
 
 Name: system/build.prop
-SHA1-Digest: CmlC2QLFoyuVs3HTWUtjZgq7mek=
+SHA1-Digest: 9sBOTpVEBjdNKci9VvELCQQT4g4=
 
 Name: system/bin/ds_fmc_appd
 SHA1-Digest: BB+JsmASSh9uu7FWZwixPIf8xPY=
