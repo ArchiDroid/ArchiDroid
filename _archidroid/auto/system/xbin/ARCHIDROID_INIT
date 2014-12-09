@@ -60,7 +60,7 @@ ADSTOP() {
 			ndc resolver flushdefaultif >/dev/null 2>&1 # Flush DNS Cache
 		;;
 		"DNS_MONITOR")
-			rm -f "$ADTMPFS/ARCHIDROID_MONITOR_DNS"
+			kill "$(pidof ARCHIDROID_MONITOR_DNS)" >/dev/null 2>&1
 		;;
 		"FRANDOM")
 			# Generic check if we're not doing something harmful
@@ -116,11 +116,13 @@ ADSTART() {
 			ADSTART "archidroid_pixelserv"
 		;;
 		"DNS_MONITOR")
-			local EXTRA="--dnsproxy"
-			if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
-				EXTRA+=" --resolv"
+			if [[ "$ADBLOCK" -eq 1 ]]; then
+				local EXTRA="--dnsproxy"
+				if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
+					EXTRA+=" --resolv"
+				fi
+				ARCHIDROID_MONITOR_DNS $EXTRA &
 			fi
-			ARCHIDROID_MONITOR_DNS $EXTRA &
 		;;
 		"FRANDOM")
 			if [[ "$FRANDOM" -eq 1 ]]; then
