@@ -1,0 +1,169 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Simplified Chinese
+#   By                : Syrone Wong
+#   E-mail (optional) : wong.syrone@gmail.com
+
+
+### ArchiDroid strings
+archidroid.apps.adaway.desc=Android 平台下的开源广告屏蔽应用. 已经预设好通过 ArchiDroid's Adblock 定期更新 hosts 文件
+archidroid.apps.cooltool.desc=一个能在屏幕顶端显示设备信息（比如 CPU 使用情况）的高度可定制应用
+archidroid.apps.esfileexplorer.desc=Android 平台下优秀的文件管理应用
+archidroid.apps.fdroid.desc=可以为 Android 平台安装大量免费开源的应用. 能几乎替代 Google Play 商店
+archidroid.apps.greenify.desc=当不使用时，自动休眠后台程序来节约电能的一款应用
+archidroid.apps.lmt.desc=通过 PIE 功能、手势操作以及其他更多功能来增强设备体验的一款应用
+archidroid.apps.mxplayer.desc=Android 平台下硬件解码加速播放的一款视频播放器
+archidroid.apps.spiritfm.desc=不使用网络连接的一款真正可调谐的 FM 收音机应用
+archidroid.apps.titaniumbackup.desc=每个 Root 过的用户必备的一款应用. 能够随时备份和恢复 App 和数据
+
+archidroid.bcm=BCM 探测
+archidroid.bcm.archidetect.desc=ArchiDetect 尝试自动探测适合您的设备的固件
+
+archidroid.bootanimation=开机动画
+archidroid.bootanimation.archi1.desc=ArchiDroid 的第一代开机动画, 存在于 1.X 时代
+archidroid.bootanimation.archi2.desc=ArchiDroid 的第二代开机动画, 存在于 2.X 时代
+archidroid.bootanimation.archi3.desc=ArchiDroid 的第三代开机动画, 存在于 3.X 时代
+archidroid.bootanimation.logcat.desc=采用实时的 logcat 日志，而不是开机动画, 由 logcat lite 应用强力驱动
+archidroid.bootanimation.none.desc=无开机动画, 可以使得开机时间轻微缩短
+archidroid.bootanimation.stock.desc=原生的开机动画
+
+archidroid.changelog=更新日志
+archidroid.changelog.desc=新的特性
+
+archidroid.common.current=当前
+archidroid.common.default=默认值
+archidroid.common.density=分辨率
+archidroid.common.detected=已发现
+archidroid.common.finish=完成
+archidroid.common.install=安装
+archidroid.common.installation=安装
+archidroid.common.none=没有
+archidroid.common.reboot=重启
+archidroid.common.reboot.question=想要现在重启手机么？
+archidroid.common.terms.check=我接受许可条款
+archidroid.common.terms.readme=请先阅读！
+archidroid.common.terms.unchecked=请查看许可条款！
+
+archidroid.custom=自定义
+archidroid.custom.desc=修改设置，如您所愿
+
+archidroid.detect.fail=您使用的系统好像不是 ArchiDroid, 所以必须进行数据擦除 (工厂重置). ArchiDroid 将在刷机之前清除您的 /data 分区. 您的手机内置卡文件不会受到影响!
+archidroid.detect.pass=您正在使用系统是 ArchiDroid. 您仍然要擦除您的数据吗?
+archidroid.detect.pass.no=否, 不要擦除我的旧数据
+archidroid.detect.pass.yes=是, 擦除我的旧数据
+archidroid.detect.pass.alert.no=好吧, 但请注意不兼容的数据可能导致 ROM 工作不正常!
+archidroid.detect.pass.alert.yes=明智之选, ArchiDroid 将在刷机之前清除您的 /data 分区!
+
+archidroid.detect.previouspreset.expert.fail.incompatible=警告! 您的旧预设值完整性检测失败. 请确保您的选项是有效的!
+archidroid.detect.previouspreset.fail.incompatible=对不起, 您的旧预设值完整性检测失败. 如果您知道怎么做可以尝试一下专家模式
+archidroid.detect.previouspreset.fail.notavailable=对不起, 看起来您并没有任何的旧预设值
+
+archidroid.experimental=测试版本
+archidroid.experimental.terms.check=我知道这个版本没有彻底完成并且可能存在令我的手机变砖的风险
+
+archidroid.gapps.bksync.desc=为 Google Chrome 提供书签同步功能
+archidroid.gapps.calendargoogle.desc=替换原生日历应用.通过 Google 账号整合以及更多功能扩展标准日历
+archidroid.gapps.calsync.desc=为 Google Calendar 提供日历同步功能
+archidroid.gapps.core.desc=提供 Google Apps 的核心功能. 包含 Google 的移动服务、框架、商店和其他必须组件. 对所有 Google 应用来说是必备的
+archidroid.gapps.faceunlock.desc=提供脸部解锁功能, 可以在安装之后在锁屏选项中激活该功能
+archidroid.gapps.gmail.desc=与 Gmail 服务协同工作的一款邮件客户端. 包含 Google 账号整合, 邮件同步以及更多功能
+archidroid.gapps.googleplus.desc=与 Google Plus 服务协同工作的一款社交网络客户端. 如果您正在使用 Google Plus, 您会选择该项的
+archidroid.gapps.googletts.desc=TTS 是文本转语音的缩写. 如果您希望听到文本信息当然需要选择该项, 比如用作 GPS 导航
+archidroid.gapps.hangouts.desc=环聊客户端 - 支持 gmail 信息, 也可以作为可选的 SMS/MMS 应用
+archidroid.gapps.maps.desc=与 Google Maps 服务协同工作的一款地图客户端. 包含内置导航功能以及其他功能
+archidroid.gapps.search.desc=与 Google 服务协同工作的一款搜索客户端. 也包含了 Google Voice, 如果您想要使用 Google 启动器的语音指令则该选项也是必选的
+archidroid.gapps.speech.desc=提供 Google Voice 组件. 如果您想要使用 Google Voice 则是必选的
+archidroid.gapps.street.desc=与 Google Street View 协同工作的一款街景客户端. 如果您想要为 Google Maps 扩展更多功能则选中该项
+archidroid.gapps.youtube.desc=与 YouTube 服务协同工作的一款视频客户端. 如果您希望在您手机上不通过浏览器观看 YouTube 视频, 该选项也是必选的
+
+archidroid.hardswap.desc=牺牲您的 I/O 性能交换更多的运存
+archidroid.hardswap.size.0.desc=该选项从分区中移除 hardswap 文件
+archidroid.hardswap.size.default.desc=最大推荐大小
+
+archidroid.install.desc=<b>ArchiDroid</b> 正在安装. 请耐心等待安装向导将 <b>ArchiDroid</b> 安装到您的设备
+archidroid.install.finish=<b>ArchiDroid</b> 安装过程成功结束. 按 <b>完成</b> 继续
+
+archidroid.kernel=内核
+archidroid.kernel.archi.desc=与 ArchiDroid 完美协同工作, 深度优化, 最新源代码以及更多性能提升. 高度推荐
+archidroid.kernel.stock.desc=原生内核
+
+archidroid.keyboard=输入法
+archidroid.keyboard.google.desc=Google 输入法与标准 AOSP 输入法相比增加了手势输入, 文本扩充, 可选 PC 布局以及其他增强功能
+archidroid.keyboard.stock.desc=原生输入法
+
+archidroid.launcher=启动器
+archidroid.launcher.google.desc=与其他 Google 应用完美无缝整合的一款启动器, 比如 Google 搜索, 它允许您在主屏通过语音指令来进行控制
+archidroid.launcher.nova.desc=Android 平台下高度可定制, 高性能的一款启动器
+archidroid.launcher.stock.desc=原生启动器
+
+archidroid.prepinstall=已经准备好了
+archidroid.prepinstall.desc=现在已经准备好刷机所需的信息. 按 <b>安装</b> 开始. 如果您想要回顾或修改之前的安装设置, 按 <b>返回</b>
+
+archidroid.preset=预设值
+archidroid.preset.barebones=纯净 ROM
+archidroid.preset.barebones.desc=该选项只刷入纯净 ROM. 只适合于除错用途, 你会错过很多 ArchiDroid 的优良特性
+archidroid.preset.custom=自定义
+archidroid.preset.custom.desc=如果您想要在刷入之前自定义您 ArchiDroid 的所有细节则选中该项. 推荐
+archidroid.preset.previous=之前的预设值
+archidroid.preset.previous.desc=如果您之前已经自定义过安装过程, 该选项会载入并使用您之前的预设值
+archidroid.preset.previousexpert=之前的专家预设值
+archidroid.preset.previousexpert.desc=和上面的 之前的预设值 相同, 但是专家模式不进行强制兼容性检查并且允许您在刷入之前对您之前的预设值进行任意修改. 警告: 请仔细, 不兼容的预设值可能导致不可刷入
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=如果您需要在刷入 ArchiDroid 之前更新 Recovery 则选中该项
+
+archidroid.preview=预览
+archidroid.preview.desc=选中该项时, 您可以在下一屏幕看到所选项的预览
+
+archidroid.recovery.twrp.desc=简单易用、可定制、广泛支持并且前沿的第三方 Recovery.
+
+archidroid.superuser.chainfire.desc=闭源, 原生 ROM 的现代解决方案, 适合倾向使用现代超级用户管理工具的用户
+archidroid.superuser.koush.desc=开源, 内置超级用户访问管理.
+archidroid.superuser.none.desc=不安装超级用户, 该选项关闭 Root 访问. 您可以使用该选项获得更好的安全体验
+
+archidroid.thirdparty=第三方协议
+
+archidroid.tou=使用条款
+
+archidroid.tweaks.cellbroadcasts=小区广播
+archidroid.tweaks.cellbroadcasts.desc=小区广播被设计用来在一个特定区域为多用户同时推送信息. 大部分情况下被用来发送垃圾信息. 只有您确认需要时再选择该项
+archidroid.tweaks.navibar=导航栏
+archidroid.tweaks.navibar.desc=开启导航栏, 同时关闭三大天王键. 如果您更乐意使用虚拟导航键则选中该项
+
+archidroid.xposed.desc=Xposed Framework 允许您通过各种第三方模块随时调整框架, 而不用进行系统文件的修改. 强烈推荐！
+archidroid.xposed.gravitybox.desc=包含海量框架修改功能的多合一的 Xposed 模块, 以后您可以根据您的需要随时激活或取消
+archidroid.xposed.xprivacy.desc=保护您个人隐私的最佳应用，属于 Xposed 模块. 通过该应用，您可以逐一调整每一个已安装应用的特定权限
+
+
+### AROMA strings
+text_about=关于
+text_back=返回
+text_calibrating=校正工具
+text_next=下一步
+text_no=否
+text_ok=是
+text_quit_msg=您确认要退出安装吗？
+text_quit=退出安装过程
+text_yes=确认
+
+### End of file
