@@ -130,6 +130,7 @@ form(
 	"lang.prop",
 
 	"language", "<#selectbg_g>Language</#>", "", "group",
+	"zh_CN.lang", "Chinese (simplified)", "简化字", "select",
 	"cs.lang", "Czech", "Čeština", "select",
 	"nl.lang", "Dutch", "Nederlands", "select",
 	"en.lang", "English", "", "select.selected",
