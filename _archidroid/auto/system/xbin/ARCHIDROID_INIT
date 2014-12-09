@@ -57,7 +57,21 @@ ADSTOP() {
 			ADSTOP "DNS_MONITOR"
 			ADSTOP "archidroid_dnsmasq"
 			ADSTOP "archidroid_pixelserv"
-			ndc resolver flushdefaultif >/dev/null 2>&1 # Flush DNS Cache
+
+			# If adblock is currently active, reset default DNS
+			if [[ "$(getprop net.dns1)" = "127.0.0.1" ]]; then
+				local IFPROBE="$(busybox route | grep "default" | head -n 1 | awk '{print $NF}')"
+				local DNS1="$(getprop archidroid.adblock.dns1)"
+				if [[ ! -z "$IFPROBE" ]]; then
+					ndc resolver setifdns "$IFPROBE" "" "$DNS1"
+				else
+					# This should never happen
+					for IF in $(getprop mobiledata.interfaces | tr ',' '\n'); do
+						ndc resolver setifdns "$IF" "" "$DNS1"
+					done
+				fi
+				ndc resolver flushdefaultif >/dev/null 2>&1 # Flush DNS Cache
+			fi
 		;;
 		"DNS_MONITOR")
 			kill "$(pidof ARCHIDROID_MONITOR_DNS)" >/dev/null 2>&1
