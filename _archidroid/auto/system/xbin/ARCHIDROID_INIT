@@ -51,6 +51,7 @@ ADSTOP() {
 		"HOSTS") ADSTOP "ADBLOCK" ;;
 		"LOCALDNSES") ADSTOP "ADBLOCK" ;;
 		"FORCELOCALDNSES") ADSTOP "ADBLOCK" ;;
+		"USEDNSES") ADSTOP "ADBLOCK" ;;
 
 		# Services
 		"ADBLOCK")
@@ -122,15 +123,51 @@ ADSTART() {
 		"HOSTS") ADSTART "ADBLOCK" ;;
 		"LOCALDNSES") ADSTART "ADBLOCK" ;;
 		"FORCELOCALDNSES") ADSTART "ADBLOCK" ;;
+		"USEDNSES") ADSTART "ADBLOCK" ;;
 
 		# Services
 		"ADBLOCK")
-			ADSTART "DNS_MONITOR"
-			ADSTART "archidroid_dnsmasq"
-			ADSTART "archidroid_pixelserv"
+			if [[ "$ADBLOCK" -eq 1 ]]; then
+				if [[ "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
+					if [[ "$(cmp /system/archidroid/dev/spinners/_Hosts/Default /system/etc/hosts >/dev/null 2>&1; echo $?)" -ne 0 ]]; then
+						mount -o remount,rw /system
+
+						if [[ "$HOSTSLOCKED" -eq 1 ]]; then
+							chattr -i /system/etc/hosts
+						fi
+
+						cp -p /system/archidroid/dev/spinners/_Hosts/Default /system/etc/hosts
+
+						if [[ "$HOSTSLOCKED" -eq 1 ]]; then
+							chattr +i /system/etc/hosts
+						fi
+
+						mount -o remount,ro /system
+					fi
+					ADSTART "DNS_MONITOR"
+					ADSTART "archidroid_dnsmasq"
+				else
+					if [[ "$(cmp /system/archidroid/etc/hosts /system/etc/hosts >/dev/null 2>&1; echo $?)" -ne 0  ]]; then
+						mount -o remount,rw /system
+
+						if [[ "$HOSTSLOCKED" -eq 1 ]]; then
+							chattr -i /system/etc/hosts
+						fi
+
+						cp -p /system/archidroid/etc/hosts /system/etc/hosts
+
+						if [[ "$HOSTSLOCKED" -eq 1 ]]; then
+							chattr +i /system/etc/hosts
+						fi
+
+						mount -o remount,ro /system
+					fi
+				fi
+				ADSTART "archidroid_pixelserv"
+			fi
 		;;
 		"DNS_MONITOR")
-			if [[ "$ADBLOCK" -eq 1 ]]; then
+			if [[ "$ADBLOCK" -eq 1 && "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
 				local EXTRA="--dnsproxy"
 				if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
 					EXTRA+=" --resolv"
@@ -188,7 +225,7 @@ ADSTART() {
 			fi
 		;;
 		"archidroid_dnsmasq")
-			if [[ "$ADBLOCK" -eq 1 ]]; then
+			if [[ "$ADBLOCK" -eq 1 && "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
 				if [[ ! -f "$ADTMPFS/resolv.conf" ]]; then
 					cp -p /system/etc/resolv.conf "$ADTMPFS/resolv.conf"
 				fi
@@ -277,13 +314,13 @@ ADNOTIFY() {
 			) &
 		;;
 		"HOSTSLOCKED")
-			sysrw || mount -o remount,rw /system
-			if [[ "$(cat "$ADDEV/switches/HostsLocked")" = "Enabled" ]]; then
+			mount -o remount,rw /system
+			if [[ "$HOSTSLOCKED" -eq 1 ]]; then
 				chattr +i /system/etc/hosts
 			else
 				chattr -i /system/etc/hosts
 			fi
-			sysro || mount -o remount,ro /system
+			mount -o remount,ro /system
 		;;
 	esac
 }
@@ -328,18 +365,29 @@ fi
 
 if [[ "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
 	ADBLOCK=1
-	if [[ "$(cat "$ADDEV/switches/_Adblock/LocalDNSes")" = "Enabled" ]]; then
-		ADBLOCKLOCALDNSES=1
-		if [[ "$(cat "$ADDEV/switches/_Adblock/_LocalDNSes/ForceLocalDNSes")" = "Enabled" ]]; then
-			ADBLOCKSTRICTORDER=1
+	if [[ "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" ]]; then
+		ADBLOCK_PROXYDNS=1
+		if [[ "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes")" = "Enabled" ]]; then
+			ADBLOCKLOCALDNSES=1
+			if [[ "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/_LocalDNSes/ForceLocalDNSes")" = "Enabled" ]]; then
+				ADBLOCKSTRICTORDER=1
+			else
+				ADBLOCKSTRICTORDER=0
+			fi
 		else
-			ADBLOCKSTRICTORDER=0
+			ADBLOCKLOCALDNSES=0
 		fi
 	else
-		ADBLOCKLOCALDNSES=0
+		ADBLOCK_PROXYDNS=0
 	fi
 else
 	ADBLOCK=0
+fi
+
+if [[ "$(cat "$ADDEV/switches/HostsLocked")" = "Enabled" ]]; then
+	HOSTSLOCKED=1
+else
+	HOSTSLOCKED=0
 fi
 
 if [[ "$(cat "$ADDEV/switches/Logcat")" = "Enabled" ]]; then
@@ -570,11 +618,11 @@ sleep 30
 # Delete RunOnce if needed
 if [[ ! -z "$(which ARCHIDROID_RUNONCE)" ]]; then
 	echo "WARNING: RunOnce found, trying to remove it!"
-	sysrw || mount -o remount,rw /system
+	mount -o remount,rw /system
 	rm -f "$(which ARCHIDROID_RUNONCE)" "$AD/ARCHIDROID_RUNONCE_STATUS"
 	if [[ -z "$(which ARCHIDROID_RUNONCE)" ]]; then
 		echo "INFO: Success!"
-		sysro || mount -o remount,ro /system
+		mount -o remount,ro /system
 	else
 		echo "ERROR: Failed!"
 	fi
