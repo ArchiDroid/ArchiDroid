@@ -44,7 +44,6 @@ archidroid.bootanimation=Bootanimation
 archidroid.bootanimation.archi1.desc=First ArchiDroid bootanimation, from 1.X times
 archidroid.bootanimation.archi2.desc=Second ArchiDroid bootanimation, from 2.X times
 archidroid.bootanimation.archi3.desc=Third ArchiDroid bootanimation, from 3.X times
-archidroid.bootanimation.logcat.desc=Live logcat log instead of bootanimation, powered by logcat lite app
 archidroid.bootanimation.none.desc=No bootanimation, for slightly faster boot
 archidroid.bootanimation.stock.desc=Bootanimation provided by the base system
 
