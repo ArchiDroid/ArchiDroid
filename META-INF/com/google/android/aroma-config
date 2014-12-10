@@ -229,7 +229,7 @@ form(
 	"@customize",
 	"archidroidinstallmode.prop",
 
-	"preset", "<#selectbg_g><~archidroid.preset.group></#>", "", "group",
+	"preset", "<#selectbg_g><~archidroid.preset></#>", "", "group",
 	"custom", "<~archidroid.preset.custom>", "<~archidroid.preset.custom.desc>", "select",
 	"previous", "<~archidroid.preset.previous>", "<~archidroid.preset.previous.desc>", "select.selected",
 	"previousexpert", "<~archidroid.preset.previousexpert>", "<~archidroid.preset.previousexpert.desc>", "select",

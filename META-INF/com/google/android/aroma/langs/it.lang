@@ -68,12 +68,12 @@ archidroid.common.terms.unchecked=Si prega di accettare l'accordo!
 archidroid.custom=Personalizzazione
 archidroid.custom.desc=Modificare queste impostazioni a proprio piacimento
 
-archidroid.detect.fail=ArchiDroid non rilevata sul device, il wipe data (reset di fabbrica) è obbligatorio. ArchiDroid pulirà la partizione /data prima del flash. Il contenuto della memoria interna è al sicuro!
+archidroid.detect.fail=ArchiDroid non rilevata sul device, il wipe data (reset di fabbrica) è obbligatorio. ArchiDroid pulirà la partizione /data prima dell'installazione. Il contenuto della memoria interna è al sicuro!
 archidroid.detect.pass=ArchiDroid rilevata sul device. Eseguire il wipe data a prescindere?
 archidroid.detect.pass.no=No, non eseguire il wipe data
 archidroid.detect.pass.yes=Si, esegui il wipe data
-archidroid.detect.pass.alert.no=D'accordo, ma tenere in conto che la ROM potrebbe non funzionare propriamente con dati incompatibili!
-archidroid.detect.pass.alert.yes=Buona scelta, ArchiDroid farà in modo che la partizione /data venga pulita prima del flash!
+archidroid.detect.pass.alert.no=D'accordo, ma tenere a mente che la ROM potrebbe non funzionare propriamente con dati incompatibili!
+archidroid.detect.pass.alert.yes=Buona scelta, ArchiDroid farà in modo che la partizione /data venga pulita prima dell'installazione!
 
 archidroid.detect.previouspreset.expert.fail.incompatible=Avvertimento! Il controllo di integrità del vecchio preset è fallito. Assicurarsi che le opzioni scelte siano valide!
 archidroid.detect.previouspreset.fail.incompatible=Mi spiace, il controllo di integrità del vecchio preset è fallito. E' possibile provare la modalità esperto se si sa cosa si stia facendo
@@ -102,7 +102,7 @@ archidroid.hardswap.size.0.desc=Questa opzione rimuoverà il file hardswap dalla
 archidroid.hardswap.size.default.desc=Dimensione massima raccomandata
 
 archidroid.install.desc=<b>ArchiDroid</b> è ora in fase di installazione. Attendere con pazienza mentre l'installazione guidata installa <b>ArchiDroid</b> sul device
-archidroid.install.finish=L'installazione della <b>ArchiDroid</b> è stata terminata. Premere <b>Finito</b> per continuare
+archidroid.install.finish=L'installazione della <b>ArchiDroid</b> è terminata. Premere <b>Finito</b> per continuare
 
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=Offre una perfetta sinergia con la ArchiDroid, profonde ottimizzazioni, sorgenti up-to-date e molti miglioramenti. Altamente raccomandato
@@ -117,20 +117,20 @@ archidroid.launcher.google.desc=Offre una perfetta integrazione con le altre Goo
 archidroid.launcher.nova.desc=Altamente personalizzabile, focalizzato sulle prestazioni, homescreen sostitutiva per Android
 archidroid.launcher.stock.desc=Launcher fornito dal sistema di base
 
-archidroid.prepinstall=Pronto per il flash
+archidroid.prepinstall=Pronto per l'installazione
 archidroid.prepinstall.desc=Pronto per iniziare l'installazione. Premere <b>Installa</b> per avviare. Se si desidera rivedere o modificare le impostazioni di installazione, premere <b>Indietro</b>
 
 archidroid.preset=Modalità di Installazione
 archidroid.preset.barebones=Ridotta all'Osso
-archidroid.preset.barebones.desc=Questa opzione flasha solamente la base della ROM. Suggerita solo a scopo di debug, si perderanno molte chicche della ArchiDroid
+archidroid.preset.barebones.desc=Questa opzione installa solamente la base della ROM. Suggerita solo a scopo di debug, si perderanno molte chicche della ArchiDroid
 archidroid.preset.custom=Personalizzata
-archidroid.preset.custom.desc=Selezionare questa opzione se si desidera personalizzare ogni aspetto della ArchiDroid prima del flash. Raccomandata
+archidroid.preset.custom.desc=Selezionare questa opzione se si desidera personalizzare ogni aspetto della ArchiDroid prima dell'installazione. Raccomandata
 archidroid.preset.previous=Configurazione Precedente
 archidroid.preset.previous.desc=Se l'installazione è già stata personalizzata in passato, questa opzione carica ed utilizza il vecchio preset
 archidroid.preset.previousexpert=Configurazione Precedente per Esperti
-archidroid.preset.previousexpert.desc=Simile alla configurazione precedente, ma la modalità esperto non forza i controlli di compatibilità e permette di apportare modifiche al preset prima del flash. Avvertimento: prestare attenzione, preset di installazione incompatibili possono risultare non flashabili
+archidroid.preset.previousexpert.desc=Simile alla configurazione precedente, ma la modalità esperto non forza i controlli di compatibilità e permette di apportare modifiche al preset prima dell'installazione. Avvertimento: prestare attenzione, preset incompatibili possono risultare non installabili
 archidroid.preset.recovery=Recovery
-archidroid.preset.recovery.desc=Selezionare questa opzione se si ha il bisogno o la necessità di aggiornare la recovery prima del flash della ArchiDroid
+archidroid.preset.recovery.desc=Selezionare questa opzione se si ha il bisogno o la necessità di aggiornare la recovery prima dell'installazione della ArchiDroid
 
 archidroid.preview=Anteprima
 archidroid.preview.desc=Quando selezionata, visualizzerà un esempio della selezione nella schermata successiva
