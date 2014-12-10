@@ -22,7 +22,7 @@
 ### LANGUAGE STRING RESOURCE FILE
 #
 #   Language          : Romanian
-#   By                : synkus
+#   By                : synkus (aka oXydus)
 #   E-mail (optional) : 
 
 
@@ -38,7 +38,7 @@ archidroid.apps.spiritfm.desc=Aplicatie FM radio reala, tunata si over-the-air. 
 archidroid.apps.titaniumbackup.desc=Aplicatie de baza pentru orice root-utilizator. Permite crearea copiilor de rezerva / restabilirea aplicatiilor si a datelor
 
 archidroid.bcm=Profiluri BCM
-archidroid.bcm.archidetect.desc=ArchiDetect va incerca sa identifice automat firmware-ul corespunzator dispozitivului dvs.
+archidroid.bcm.archidetect.desc=ArchiDetect va incerca sa identifice automat firmware-ul corespunzator dispozitivului dvs
 
 archidroid.bootanimation=Boot-animatie
 archidroid.bootanimation.archi1.desc=Prima boot-animatie ArchiDroid, din versiunile 1.X
@@ -87,10 +87,10 @@ archidroid.gapps.calendargoogle.desc=inlocuieste calendarul standard. Extinde ca
 archidroid.gapps.calsync.desc=Asigura sincronizarea calendarului pentru Google Calendar
 archidroid.gapps.core.desc=Asigura functionalitatea de baza Google Apps. Include servicii mobile, framework, store si alte componente necesare Google. Este obligatoriu pentru alte aplicatii Google
 archidroid.gapps.faceunlock.desc=Asigura deblocarea dispozitivului prin detectarea fetei, optiune ce poate fi activata in setari Blocare ecran dupa instalare
-archidroid.gapps.gmail.desc=lient e-mail proiectat pentru a lucra cu serviciul Gmail. Include integrare cu un cont Google, sincronizare e-mail si altele
+archidroid.gapps.gmail.desc=Client e-mail proiectat pentru a lucra cu serviciul Gmail. Include integrare cu un cont Google, sincronizare e-mail si altele
 archidroid.gapps.googleplus.desc=Client pentru retea de socializare proiectat pentru a lucra cu serviciul Google Plus. Daca folositi Google Plus, ati putea sa-l instalati
 archidroid.gapps.googletts.desc=TTS inseamna transformarea textului in vorbire. Este absolut necesar daca doriti sa ascultati un text, spre exemplu cand folositi navigare GPS
-archidroid.gapps.hangouts.desc=Client Hangouts – asigura suport pentru &quot;mesaje&quot; gmail, se poate utiliza si pentru SMS/MMS
+archidroid.gapps.hangouts.desc=Client Hangouts – asigura suport pentru "mesaje" gmail, se poate utiliza si pentru SMS/MMS
 archidroid.gapps.maps.desc=Aplicatie proiectata pentru a lucra cu serviciul Google Maps. Asigura suport pentru navigare integrata si alte functii
 archidroid.gapps.search.desc=Client de cautare proiectat a lucra cu serviciul Google. Acest pachet include, de asemenea, Google Voice, deci este obligatoriu daca doriti sa utilizati, spre exemplu, comenzi vocale in Google Launcher
 archidroid.gapps.speech.desc=Asigura componente Google Voice. Este obligatoriu daca doriti sa utilizati Google Voice
