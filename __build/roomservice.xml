@@ -28,10 +28,10 @@
 	<!-- /Removed projects -->
 
 	<!-- Replaced projects -->
-		<!-- <remove-project name="CyanogenMod/android_build" />
+		<remove-project name="CyanogenMod/android_build" />
 		<project name="ArchiDroid/android_build" path="build" remote="github" />
 
-		<remove-project name="CyanogenMod/android_external_fuse" />
+		<!-- <remove-project name="CyanogenMod/android_external_fuse" />
 		<project name="ArchiDroid/android_external_fuse" path="external/fuse" remote="github" />
 
 		<remove-project name="CyanogenMod/android_hardware_qcom_display" />
