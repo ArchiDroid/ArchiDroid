@@ -23,7 +23,7 @@
 
 set -e
 
-VERSION=3.0.0
+VERSION=3.0.1
 
 # Device-based
 DEVICE="BRINGUP" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
