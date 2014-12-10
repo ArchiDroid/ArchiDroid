@@ -74,9 +74,9 @@ archidroid.detect.pass.yes=Si, esegui il wipe data
 archidroid.detect.pass.alert.no=D'accordo, ma tenere a mente che la ROM potrebbe non funzionare propriamente con dati incompatibili!
 archidroid.detect.pass.alert.yes=Buona scelta, ArchiDroid farà in modo che la partizione /data venga pulita prima dell'installazione!
 
-archidroid.detect.previouspreset.expert.fail.incompatible=Avvertimento! Il controllo di integrità del vecchio preset è fallito. Assicurarsi che le opzioni scelte siano valide!
-archidroid.detect.previouspreset.fail.incompatible=Mi spiace, il controllo di integrità del vecchio preset è fallito. E' possibile provare la modalità esperto se si sa cosa si stia facendo
-archidroid.detect.previouspreset.fail.notavailable=Mi spiace, sembra che non si disponga ancora di un vecchio preset
+archidroid.detect.previouspreset.expert.fail.incompatible=Avvertimento! Il controllo di integrità del vecchio profilo è fallito. Assicurarsi che le opzioni scelte siano valide!
+archidroid.detect.previouspreset.fail.incompatible=Mi spiace, il controllo di integrità del vecchio profilo è fallito. E' possibile provare la modalità esperto se si sa cosa si stia facendo
+archidroid.detect.previouspreset.fail.notavailable=Mi spiace, sembra che non si disponga ancora di un vecchio profilo
 
 archidroid.experimental=Build sperimentale
 archidroid.experimental.terms.check=Ho capito che questa build è incompleta e potrebbe anche brickare il device
@@ -125,9 +125,9 @@ archidroid.preset.barebones.desc=Questa opzione installa solamente la base della
 archidroid.preset.custom=Personalizzata
 archidroid.preset.custom.desc=Selezionare questa opzione se si desidera personalizzare ogni aspetto della ArchiDroid prima dell'installazione. Raccomandata
 archidroid.preset.previous=Configurazione Precedente
-archidroid.preset.previous.desc=Se l'installazione è già stata personalizzata in passato, questa opzione carica ed utilizza il vecchio preset
+archidroid.preset.previous.desc=Se l'installazione è già stata personalizzata in passato, questa opzione carica ed utilizza il vecchio profilo
 archidroid.preset.previousexpert=Configurazione Precedente per Esperti
-archidroid.preset.previousexpert.desc=Simile alla configurazione precedente, ma la modalità esperto non forza i controlli di compatibilità e permette di apportare modifiche al preset prima dell'installazione. Avvertimento: prestare attenzione, preset incompatibili possono risultare non installabili
+archidroid.preset.previousexpert.desc=Simile alla configurazione precedente, ma la modalità esperto non forza i controlli di compatibilità e permette di apportare modifiche al profilo prima dell'installazione. Avvertimento: prestare attenzione, profili incompatibili possono risultare non installabili
 archidroid.preset.recovery=Recovery
 archidroid.preset.recovery.desc=Selezionare questa opzione se si ha il bisogno o la necessità di aggiornare la recovery prima dell'installazione della ArchiDroid
 
