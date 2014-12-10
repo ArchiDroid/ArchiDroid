@@ -75,7 +75,7 @@ ADSTOP() {
 			fi
 		;;
 		"DNS_MONITOR")
-			kill "$(pidof ARCHIDROID_MONITOR_DNS)" >/dev/null 2>&1
+			rm -f "$ADTMPFS/ARCHIDROID_MONITOR_DNS"
 		;;
 		"FRANDOM")
 			# Generic check if we're not doing something harmful
@@ -88,7 +88,7 @@ ADSTOP() {
 			ADSTOP "archidroid_haveged"
 		;;
 		"LOGCAT")
-			kill "$(pidof logcat)" >/dev/null 2>&1
+			kill $(pidof logcat) >/dev/null 2>&1
 		;;
 		"TMPFS")
 			if ADMOUNTED "$ADTMPFS"; then
@@ -96,16 +96,16 @@ ADSTOP() {
 			fi
 		;;
 		archidroid_haveged)
-			kill "$(pidof archidroid_haveged)" >/dev/null 2>&1
+			kill $(pidof archidroid_haveged) >/dev/null 2>&1
 		;;
 		archidroid_dnsmasq)
-			kill "$(pidof archidroid_dnsmasq)" >/dev/null 2>&1
+			kill $(pidof archidroid_dnsmasq) >/dev/null 2>&1
 		;;
 		archidroid_pixelserv)
-			kill "$(pidof archidroid_pixelserv)" >/dev/null 2>&1
+			kill $(pidof archidroid_pixelserv) >/dev/null 2>&1
 		;;
 		*)
-			kill "$(pidof "$1")" >/dev/null 2>&1
+			kill $(pidof "$1") >/dev/null 2>&1
 	esac
 }
 
