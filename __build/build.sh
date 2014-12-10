@@ -44,7 +44,7 @@ fi
 # Try to not change these if you can
 ADROOT="$HOME/shared/git/ArchiDroid" # This is where ArchiDroid GitHub repo is located
 ADZIP="$ROMSHORT-*.zip" # This is with what defined output zip. For omni it would be "omni-*.zip"
-ADCOMPILEROOT="$HOME/android/cm11" # This is where AOSP sources are located
+ADCOMPILEROOT="$HOME/android/cm12" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of output zip from above sources, usually it doesn't need to be changed
 
 # Common
