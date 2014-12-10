@@ -44,7 +44,6 @@ archidroid.bootanimation=开机动画
 archidroid.bootanimation.archi1.desc=ArchiDroid 的第一代开机动画, 存在于 1.X 时代
 archidroid.bootanimation.archi2.desc=ArchiDroid 的第二代开机动画, 存在于 2.X 时代
 archidroid.bootanimation.archi3.desc=ArchiDroid 的第三代开机动画, 存在于 3.X 时代
-archidroid.bootanimation.logcat.desc=采用实时的 logcat 日志，而不是开机动画, 由 logcat lite 应用强力驱动
 archidroid.bootanimation.none.desc=无开机动画, 可以使得开机时间轻微缩短
 archidroid.bootanimation.stock.desc=原生的开机动画
 
