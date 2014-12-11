@@ -63,6 +63,7 @@ ADSTOP() {
 			if [[ "$(getprop net.dns1)" = "127.0.0.1" ]]; then
 				local IFPROBE="$(busybox route | grep "default" | head -n 1 | awk '{print $NF}')"
 				local DNS1="$(getprop archidroid.adblock.dns1)"
+				setprop net.dns1 "$DNS1"
 				if [[ ! -z "$IFPROBE" ]]; then
 					ndc resolver setifdns "$IFPROBE" "" "$DNS1"
 				else
