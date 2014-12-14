@@ -62,8 +62,8 @@ ini_set("rom_name", "ArchiDroid");
 ini_set("rom_device", file_getprop("/tmp/aroma-data/device.prop", "name"));
 ini_set("rom_author", file_getprop("/tmp/aroma-data/device.prop", "maintainer"));
 
-fontresload("0", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf", "12" ); #-- Use sets of font (Font Family)
-fontresload("1", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf", "14" ); #-- Use sets of font (Font Family)
+fontresload("0", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf;ttf/NotoSansHans-Regular.otf", "12" ); #-- Use sets of font (Font Family)
+fontresload("1", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf;ttf/NotoSansHans-Regular.otf", "14" ); #-- Use sets of font (Font Family)
 
 # Parse common variables
 ziptotmp("system/build.prop", "archidroid.prop");
