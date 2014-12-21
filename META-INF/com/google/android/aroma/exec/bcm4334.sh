@@ -34,7 +34,7 @@ DETECT_BCM() {
 	fi
 	if [[ -f "/efs/wifi/.mac.info" ]]; then
 		BCM="$(tr '[:upper:]' '[:lower:]' < "/efs/wifi/.mac.info")"
-		case "$BCM" in # Ref: https://github.com/CyanogenMod/android_hardware_samsung/blob/cm-12.0/macloader/macloader.cpp
+		case "$BCM" in # Ref: android_hardware_samsung -> macloader/macloader.cpp
 			# murata
 			"00:0e:6d"*) BCM="murata" ;;
 			"00:13:e0"*) BCM="murata" ;;
@@ -61,8 +61,11 @@ DETECT_BCM() {
 			"f4:09:d8"*) BCM="semco3rd" ;;
 
 			# semcosh
+			"34:23:ba"*) BCM="semcosh" ;;
 			"38:aa:3c"*) BCM="semcosh" ;;
 			"5c:0a:5b"*) BCM="semcosh" ;;
+			"88:32:9b"*) BCM="semcosh" ;;
+			"90:18:7c"*) BCM="semcosh" ;;
 			"cc:3a:61"*) BCM="semcosh" ;;
 
 			# wisol
