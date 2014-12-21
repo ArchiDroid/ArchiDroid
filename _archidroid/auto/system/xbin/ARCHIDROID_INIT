@@ -428,7 +428,7 @@ elif [[ ! -f "$ADSTATUS" ]]; then
 	ADSTART "TMPFS"
 	echo "$$" > "$ADSTATUS"
 else
-	ADSIGNAL="$(cat $ADSTATUS)"
+	ADSIGNAL="$(cat "$ADSTATUS")"
 	if [[ "$ADSIGNAL" = "FINISHED" ]]; then
 		# Something tried to execute already finished init, halt
 		echo "This script has been executed already"
@@ -436,7 +436,7 @@ else
 	elif [[ "$ADSIGNAL" = "RESTART" ]]; then
 		# Backend restarts itself, good to know, allow that
 		echo "$$" > "$ADSTATUS"
-	elif [[ -d "/proc/$ADSIGNAL" ]]; then
+	elif [[ -e "/proc/$ADSIGNAL" ]]; then
 		# Something tried to execute already running init, double-execution?
 		exit 3
 	else
@@ -474,18 +474,18 @@ echo "ArchiDroid $(getprop ro.archidroid.version)"
 uname -a
 echo "INFO: ArchiDroid_Init executed!"
 
-echo "INFO: Waiting for bootanimation..."
+echo "INFO: Waiting for Zygote..."
 LOOP=0
-while ! pgrep bootanimation >/dev/null 2>&1 && ! pgrep boot-dmesg >/dev/null 2>&1 && [[ "$LOOP" -lt 10 ]]; do
+while [[ "$LOOP" -lt 10 && "$(pgrep zygote >/dev/null 2>&1; echo $?)" -ne 0 ]]; do
 	((LOOP++))
 	sleep 1
 done
 
-if ! pgrep bootanimation >/dev/null 2>&1 && ! pgrep boot-dmesg >/dev/null 2>&1; then
-	echo "INFO: Bootanimation didn't spawn in given period, aborting backend!"
-	exit 0
+if [[ "$(pgrep zygote >/dev/null 2>&1; echo $?)" -ne 0 ]]; then
+	echo "INFO: Zygote didn't spawn in given period, aborting backend!"
+	exit 1
 else
-	echo "INFO: Bootanimation spawned!"
+	echo "INFO: Zygote spawned!"
 fi
 
 
