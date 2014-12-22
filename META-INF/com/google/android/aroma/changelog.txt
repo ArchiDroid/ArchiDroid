@@ -5,6 +5,8 @@ ArchiDroid 3.0.1
 * Added foreground service to update function in order to prevent Android from closing APK unless it will be absolutely necessary
 * Added background service, which checks for new versions for both experimental and stable branches periodically
 # Check is done once per 24 hours to minimize battery consumption, there are no hidden wakelocks. In future, this option may be customizable
+# Only currently installed branch will be checked, which means that stable users will get stable updates and expermental users will get experimental updates
+# Of course you can change the branch anytime you want by downloading & flashing particular one through the APK
 # The amount of network data required for making one check is equal to the size of remote build.prop, around 4 kilobytes
 # Check includes comparision of two variables - version, and build date (the latter one is mostly for experimental users, as it's rolling branch)
 # If there's no network during the check time, it's not being called at all (skipped until next one)
