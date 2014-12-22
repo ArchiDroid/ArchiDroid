@@ -3,6 +3,7 @@ ArchiDroid 3.0.1
 - Adblock: Fixes DNSMonitor being active when adblock was disabled
 - Adblock: Fixed broken DNS route after disabling adblock
 - Adblock: Dnsmasq and DNSMonitor are optional now, you can fallback to old-fashioned HOSTS method by disabling "ProxyDNSes" in the backend
+- Apps: Updated F-Droid to 0.77-test
 - Updated sources
 
 
