@@ -35,7 +35,7 @@
 		<project name="ArchiDroid/android_build" path="build" remote="github" />
 
 		<remove-project name="CyanogenMod/android_frameworks_native" />
-		<project name="ArchiDroid/android_frameworks_native" path="build" remote="github" />
+		<project name="ArchiDroid/android_frameworks_native" path="frameworks/native" remote="github" />
 
 		<remove-project name="CyanogenMod/android_external_fuse" />
 		<project name="ArchiDroid/android_external_fuse" path="external/fuse" remote="github" />
