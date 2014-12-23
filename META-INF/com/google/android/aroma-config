@@ -393,6 +393,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 
 		"architweaks", "<#selectbg_g>ArchiDroid Tweaks</#>", "", "group",
 		"navibar", "<~archidroid.tweaks.navibar>", "<~archidroid.tweaks.navibar.desc>", "check",
+		"navibar-hwenabled", "<~archidroid.tweaks.navibar.hwenabled>", "<~archidroid.tweaks.navibar.hwenabled.desc>", "check",
 		"cell", "<~archidroid.tweaks.cellbroadcasts>", "<~archidroid.tweaks.cellbroadcasts.desc>", "check"
 	);
 	if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation-preview") == "1" then
