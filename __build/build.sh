@@ -89,7 +89,7 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	cd "$ADCOMPILEROOT"
 	if [[ "$OLD" -eq 0 ]]; then
 		repo selfupdate
-		repo sync -j32
+		repo sync -f -j32
 	fi
 
 	if [[ -d "$ADOUT" ]]; then
