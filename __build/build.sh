@@ -48,6 +48,7 @@ ADCOMPILEROOT="$HOME/android/cm11" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of output zip from above sources, usually it doesn't need to be changed
 
 # Common
+BARE=0
 PREBUILT=0
 STABLE=0
 STOCK=0
@@ -59,6 +60,10 @@ cd "$(dirname "$0")"
 
 for ARG in "$@" ; do
 	case "$ARG" in
+		--bare|bare)
+			BARE=1
+			echo "WARNING: Building barebones!"
+			;;
 		--prebuilt|prebuilt)
 			PREBUILT=1
 			echo "WARNING: Assuming that build is already complete!"
@@ -129,6 +134,10 @@ else
 	fi
 
 	ADZIP="$(basename "$REALADZIP")"
+fi
+
+if [[ "$BARE" -eq 1 ]]; then
+	exit 0
 fi
 
 cd "$ADROOT"
