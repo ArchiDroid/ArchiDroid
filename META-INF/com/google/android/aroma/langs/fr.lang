@@ -148,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Diffusion cellulaire
 archidroid.tweaks.cellbroadcasts.desc=La diffusion cellulaire est faite pour un envoi simultané à de multiples utilisateurs dans une zone spécifique. Souvent utilisé à des fins de spam. Sélectionnez seulement si vous en avez besoin
 archidroid.tweaks.navibar=Barre de navigation
 archidroid.tweaks.navibar.desc=Active la barre de navigation, et désactive les touches matérielles (retour, accueil, menu). Selectionnez si vous préférez avoir la navigation sur l'écran tactile
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Le Framework Xposed permet à divers modules tiers d'effectuer des modifications du framework à la volée, sans modifications des fichiers du système. Hautement recommandé
 archidroid.xposed.gravitybox.desc=Module Xposed tout-en-un contenant une centaine de modifications du framework
