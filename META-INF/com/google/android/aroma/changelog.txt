@@ -27,6 +27,33 @@ ArchiDroid 3.0.1
 - Updated Nova Launcher to 3.3
 - Updated sources
 
+* i9300-specific:
+- Stock crappy smdk4x12 kernel has been dropped completely
+# ArchiDroid now uses ArchiKernel sources for stock kernel
+# This change was required for HWC and other fixes below
+# Stock kernel DOES NOT have AK goodies in order to provide stable experience
+# It doesn't include optimizations, OC, STweaks, Boeffla sound or any other special feature found in AK
+# However, it DOES include everything required for stock and stable experience, such as i9300 Update14 Sammy sources
+# Full ArchiKernel is still available and recommended for full synergy with ArchiDroid, stock kernel "just works"
+
+- Disorted audio during video recording should be fixed
+- Tweaked other audio-related variables for better quality and less stuttering, especially A2DP
+- Misc RIL fixes
+
+[!] The original author for all below changes is Dhiru from Nameless ROM. I backported these fixes/improvements from NamelessROM Lollipop back to ArchiDroid KitKat
+- HWComposer is now fully fixed and working
+# You can check that it's not placebo in developers options, under "Show GPU view updates" option -> Flash views inside windows when drawn with the GPU
+# In pre-3.0.1, nothing is flashing when you're navigating through windows, in 3.0.1, the whole screen should start blinking red, this indicates that windows are rendered by GPU
+# HWComposer should minimize battery usage spent on drawing, improve 2D graphics, and make UI smooth as silk
+# NOTICE: ArchiDroid still uses R3P2, R4P0 was unstable, slow and buggy, even NamelessROM dropped that, also R4P0 wasn't compatible with new HWC
+- Camera is now fully fixed and working
+# ArchiDroid now uses open-source camera (like OMNI) instead of camera blob wrapper found in CM
+- Gralloc fixes and improvements
+# Decoding/Encoding video should be much more stable now, this includes e.g. camera and youtube
+# Additionally, ArchiDroid now uses open-source libUMP (Universal Memory Provider)
+- Other misc NamelessROM improvements and fixes for i9300 from Lollipop
+
+
 
 ArchiDroid 3.0.0
 
