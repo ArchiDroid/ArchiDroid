@@ -148,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Szélessávú cellakapcsolat
 archidroid.tweaks.cellbroadcasts.desc=A szélessávú cellakapcsolat az egyidejű kézbesítésre lett kitalálva több felhasználó számára egy meghatározott területen. Gyakran használják SPAM célokra. Csak akkor használd, ha szükséged van rá
 archidroid.tweaks.navibar=Navigációs sáv
 archidroid.tweaks.navibar.desc=Bekapcsolja a navigációs sávot, és kikapcsolja a hardware gombokat (vissza, home, menü). Csak akkor válaszd ki, ha jobban preferálod a kijelzőn látható gombokat
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Az Xposed Framework segítségével különböző külső programokkal módosíthatod a rendszer müködését, kinézetét, a rendszerfájlok érintése nélkül. Erősen ajánlott
 archidroid.xposed.gravitybox.desc=Sokoldalú Xposed modul, mely magában foglal több száz rendszer módosítást, melyek később ki-be kapcsolhatók a felhasználó által

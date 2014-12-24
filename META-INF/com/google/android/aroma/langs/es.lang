@@ -148,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Emisiones de celdas
 archidroid.tweaks.cellbroadcasts.desc=Las emisiones de celda están diseñadas para entregas simultáneas a múltiples usuarios en un área determinada. A menudo son usadas con fines de spam. Selecciona sólo si lo deseas
 archidroid.tweaks.navibar=Barra de navegación
 archidroid.tweaks.navibar.desc=Enciende la barra de navegación y desactiva las teclas de hardware (atrás, inicio, menú). Selecciona si quieres navegación en la pantalla
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=El Xposed Framework permite a mádulos de terceros hacer cambios en el framework en tiempo de ejecución, sin modificar el sistema base. Muy recomendable
 archidroid.xposed.gravitybox.desc=El módulo Xposed Todo-en-uno que contiene cientos de modificaciones al framework, que puede ser activadas o desactivadas posteriormente según tu preferencias

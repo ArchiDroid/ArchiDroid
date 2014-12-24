@@ -148,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts is gemaakt voor onder andere Amber-Alert berichten. Ook vaak voor spam doelen. Selecteer alleen als je dit nodig hebt
 archidroid.tweaks.navibar=Navigatie bar
 archidroid.tweaks.navibar.desc=Dit zet de navigatie bar aan, en schakelt de hardware knoppen uit (terug, thuis, menu). Selecteer als je liever software toetsen hebt
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework staat verschillende third-party modules toe om je framework te veranderen. Zonder modificatie van systeembestanden. Erg aanbevolen
 archidroid.xposed.gravitybox.desc=All-In-One Xposed module die enorm veel framwork modificaties bevat. 

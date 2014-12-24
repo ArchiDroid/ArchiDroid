@@ -148,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Transmisje komórkowe
 archidroid.tweaks.cellbroadcasts.desc=Transmisje komórkowe zostały zaprojektowane w celu przesyłania regionalnych komunikatów. Często są używane w celu wysyłania niechcianej treści. Wybierz tę opcję wyłącznie, jeśli wiesz że ich potrzebujesz
 archidroid.tweaks.navibar=Pasek nawigacyjny
 archidroid.tweaks.navibar.desc=Włącza pasek nawigacyjny na dole ekranu, oraz wyłącza wbudowane przyciski (wstecz, home, menu). Wybierz tę opcję jeśli preferujesz nawigację umieszczoną na ekranie
+archidroid.tweaks.navibar.hwenabled=Włącz przyciski fizyczne
+archidroid.tweaks.navibar.hwenabled.desc=Domyślnie włączenie paska nawigacyjnego wyłącza przyciski fizyczne. Zaznacz tę opcję, jeśli chciałbyś mieć dostępne obydwie metody nawigacji
 
 archidroid.xposed.desc=Xposed Framework pozwala różnym modułom trzecim na dokonywanie zmian we frameworku w mgnieniu oka, bez potrzeby modyfikacji plików systemowych. Wysoce zalecane
 archidroid.xposed.gravitybox.desc=Moduł Xposed typu "Wszystko w jednym", który zawiera setki przydatnych modyfikacji, które to mogą być później włączane i wyłączane w zależności od twoich potrzeb

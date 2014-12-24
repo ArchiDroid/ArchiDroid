@@ -148,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Широковещательная трансл
 archidroid.tweaks.cellbroadcasts.desc=Широковещательная трансляция предназначена для синхронной доставки сообщений множеству пользователей в определенной местности. Часто используется для рассылки спама. Выберите, если это Вам нужно
 archidroid.tweaks.navibar=Панель навигации
 archidroid.tweaks.navibar.desc=Включает панель управления и выключает аппаратные кнопки (Назад, Дом, Меню). Выберите, если Вы предпочитаете управление с экрана
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework позволяет различным сторонним модулям делать изменения на лету, без изменения системных файлов. Крайне рекомендуется
 archidroid.xposed.gravitybox.desc=All-In-One Xposed модуль, который содержит сотни разнообразных настроек

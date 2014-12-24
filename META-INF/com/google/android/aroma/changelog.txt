@@ -19,12 +19,15 @@ ArchiDroid 3.0.1
 - Adblock: Dnsmasq and DNSMonitor are optional now, you can fallback to old-fashioned HOSTS method by disabling "ProxyDNSes" in the backend
 - Adblock: Fixed other misc issues related to new DNSMonitor replacement
 - AROMA: Various language updates, thanks to appropriate translators
+- AROMA: Disabling hardware keys with enabled navigation bar is now optional
 - Backend: Fixed Init and RunOnce not being called without bootanimation # Thanks to @DaisyF
 - Gapps: Updated to 14 December
 - Apps: Updated F-Droid to 0.77-test
 - Apps: Updated Titanium Backup to 6.2.0.3
 - Apps: Updated Greenify to 5.0.1
-- Updated Nova Launcher to 3.3
+- Apps: Updated Nova Launcher to 3.3
+- Xposed: Updated GravityBox to 3.5.1
+- Xposed: Updated XPrivacy to 3.5.8
 - Updated sources
 
 * i9300-specific:

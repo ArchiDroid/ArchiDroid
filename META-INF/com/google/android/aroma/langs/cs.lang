@@ -148,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts je určený pro současné dodání zprávy více uživatelům ve specifické oblasti. Často se používá pro posílání spamu. Vyberte pouze v případě, že to službu potřebujete
 archidroid.tweaks.navibar=Navigační lišta
 archidroid.tweaks.navibar.desc=Zapne navigační lištu a vypne HW tlačítka (menu,domů,zpět). Vyber, jestli preferuješ navigační litu před HW tlačítkama 
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework umožňuje modulům třetích stran, aby modifikovali váš systém, bez nutnosti modifikace systémových souborů. Vysoce doporučované
 archidroid.xposed.gravitybox.desc=Xposed modul, který obsahuje přes stovky nastavení
