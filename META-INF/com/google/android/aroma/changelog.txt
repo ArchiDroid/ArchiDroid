@@ -18,6 +18,7 @@ ArchiDroid 3.0.1
 - Adblock: Fixed broken DNS route after disabling adblock
 - Adblock: Dnsmasq and DNSMonitor are optional now, you can fallback to old-fashioned HOSTS method by disabling "ProxyDNSes" in the backend
 - Adblock: Fixed other misc issues related to new DNSMonitor replacement
+- Adblock: Updated AdAway and MoAB hosts
 - AROMA: Various language updates, thanks to appropriate translators
 - AROMA: Disabling hardware keys with enabled navigation bar is now optional
 - Backend: Fixed Init and RunOnce not being called without bootanimation # Thanks to @DaisyF
