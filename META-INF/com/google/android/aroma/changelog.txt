@@ -28,6 +28,8 @@ ArchiDroid 3.0.1
 - Updated sources
 
 * i9300-specific:
+- Updated ArchiKernel to V1.7
+- Updated Boeffla Kernel to 2.4 (NG)
 - Stock crappy smdk4x12 kernel has been dropped completely
 # ArchiDroid now uses ArchiKernel sources for stock kernel
 # This change was required for HWC and other fixes below
