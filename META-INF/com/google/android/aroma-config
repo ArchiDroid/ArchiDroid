@@ -41,6 +41,10 @@ if getvar("colorspace") != "auto" then
 	ini_set("force_colorspace", getvar("colorspace"));
 endif;
 
+if cmp(ini_get("dp"), ">", "3") then
+	ini_set("dp","3");
+endif;
+
 # Call animated splash ASAP to notify user that everything is alright
 ini_set("transition_frame", "30");
 anisplash(
