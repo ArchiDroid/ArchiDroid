@@ -1,4 +1,4 @@
-﻿#     _             _     _ ____            _     _
+#     _             _     _ ____            _     _
 #    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
 #   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
@@ -52,14 +52,14 @@ archidroid.changelog.desc=Das gibt's neues
 
 archidroid.common.current=Aktuell
 archidroid.common.default=Standardwert
-archidroid.common.density=Dichte
+archidroid.common.density=Dichte (DPI)
 archidroid.common.detected=Erkannt
-archidroid.common.finish=Finish
-archidroid.common.install=Install
+archidroid.common.finish=Beenden
+archidroid.common.install=Installieren
 archidroid.common.installation=Installation
 archidroid.common.none=Nichts
-archidroid.common.reboot=Reboot
-archidroid.common.reboot.question=Would you like to reboot your device now?
+archidroid.common.reboot=Neustart
+archidroid.common.reboot.question=Möchtest du das Gerät jetzt neu starten?
 archidroid.common.terms.check=Ich stimme mit den Nutzungsbedingungen überein.
 archidroid.common.terms.readme=Lies das zuerst!
 archidroid.common.terms.unchecked=Bitte überprüfe die Vereinbarung!
@@ -69,8 +69,8 @@ archidroid.custom.desc=Modifiziere die Einstellungen nach deinem Belieben
 
 archidroid.detect.fail=ArchiDroid hat sich nicht als derzeit installiert gefunden, daher ist eine Datenlöschung (Factory Reset) zwingend erforderlich. ArchiDroid wird Ihre /data Partition vor dem Flashen löschen. Dein interner SD-Karten Inhalt ist sicher!
 archidroid.detect.pass=ArchiDroid entdeckte, zurzeit erfolgreich installiert zu sein. Möchtest du deine alten Daten (/data Partition) trotzdem löschen?
-archidroid.detect.pass.no=Nein, alte Daten nicht löschen!
-archidroid.detect.pass.yes=Ja, alte Daten löschen!
+archidroid.detect.pass.no=Nein, Daten nicht löschen!
+archidroid.detect.pass.yes=Ja, Daten löschen!
 archidroid.detect.pass.alert.no=In Ordnung. Aber bedenke, dass die ROM möglicherweise nicht richtig mit inkompatiblen Daten arbeitet!
 archidroid.detect.pass.alert.yes=Gute Entscheidung, ArchiDroid wird sicherstellen, dass /data vor dem Flashen sauber ist!
 
@@ -100,9 +100,8 @@ archidroid.hardswap.desc=Opfere dein I/O für mehr Speicher
 archidroid.hardswap.size.0.desc=Dies wird die hardswap Datei von der Partition entfernen
 archidroid.hardswap.size.default.desc=Maximal empfohlene Größe
 
-archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
-archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
-
+archidroid.install.desc=<b>ArchiDroid</b> wird jetzt installiert. Bitte warte geduldig während der Installationsassistent <b>ArchiDroid</b> auf deinem Gerät installiert
+archidroid.install.finish=<b>ArchiDroid</b> Installation ist abgeschlossen. Drücke <b>Beenden</b>, um fortzufahren
 archidroid.kernel=Kernel
 archidroid.kernel.archi.desc=Verfügt über perfekte Synergie mit ArchiDroid, tiefe Optimierungen, up-to-date sources und viele Verbesserungen. Sehr zu empfehlen
 archidroid.kernel.stock.desc=Standard Kernel, bereitgestellt durch das Basissystem
@@ -116,8 +115,8 @@ archidroid.launcher.google.desc=Bietet perfekte Integration mit anderen Google A
 archidroid.launcher.nova.desc=Wohl bester Launcher. Extrem anpassbarer, leistungsorientierter Launcher-Ersatz für Android
 archidroid.launcher.stock.desc=Standard Launcher, bereitgestellt durch das Basissystem
 
-archidroid.prepinstall=Ready for flashing
-archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
+archidroid.prepinstall=Bereit zum Flashen
+archidroid.prepinstall.desc=Du bist jetzt bereit, um die Installation zu starten. Drücke <b>Installieren</b>, um zu starten. Wenn du noch irgendwelche Installationseinstellungen überprüfen oder ändern möchtest, drücke die Taste <b>Zurück</b>
 
 archidroid.preset=Voreinstellungen
 archidroid.preset.barebones=Bare Bones
@@ -148,8 +147,8 @@ archidroid.tweaks.cellbroadcasts=Cell-Broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell-Broadcasts sind für die gleichzeitige Zustellung an mehrere Benutzer in einem bestimmten Bereich konzipiert. Oft werden sie für Spam-Zwecke missbraucht. Wähle das nur, wenn du sie brauchst
 archidroid.tweaks.navibar=Navigationsleiste
 archidroid.tweaks.navibar.desc=Aktiviert die Navigationsleiste und deaktiviert die Hardwaretasten (Zurück, Home, Menü). Wähle dies, wenn du es vorziehst, über den Bildschirm zu navigieren
-archidroid.tweaks.navibar.hwenabled=Enable hardware keys
-archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
+archidroid.tweaks.navibar.hwenabled=Aktiviere Hardwaretasten
+archidroid.tweaks.navibar.hwenabled.desc=Navigationsleiste deaktiviert standardmäßig die Hardwaretasten. Wähle diese Option, wenn du beide Navigationsmethoden verfügbar machen möchtest
 
 archidroid.xposed.desc=Das Xposed Framework ermöglicht es verschiedenen Modulen von Drittanbietern, Framework-Änderungen im laufenden Betrieb zu machen, ohne dabei Systemdateien zu verändern. Absolut Empfohlen
 archidroid.xposed.gravitybox.desc=All-In-One Xposed Modul, das hunderte nützliche Framework-Änderungen enthält
@@ -163,7 +162,7 @@ text_calibrating=Kalibrierwerkzeuge
 text_next=Weiter
 text_no=Nein
 text_ok=OK
-text_quit_msg=Bist du sicher, dass du den Installer verlassen willst?
+text_quit_msg=Bist du sicher, dass du den Installer beenden willst?
 text_quit=Beende Installation
 text_yes=Ja
 
