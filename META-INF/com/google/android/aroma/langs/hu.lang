@@ -44,7 +44,6 @@ archidroid.bootanimation=Bootanimáció
 archidroid.bootanimation.archi1.desc=Első ArchiDroid bootanimáció, a 1.X idejéből
 archidroid.bootanimation.archi2.desc=Második ArchiDroid bootanimáció, a 2.X idejéből
 archidroid.bootanimation.archi3.desc=Harmadik ArchiDroid bootanimáció, a 3.X idejéből
-archidroid.bootanimation.logcat.desc=Élő logcat használata bootanimáció helyett, a logcat lite app által
 archidroid.bootanimation.none.desc=Bootanimáció törlése, a csekély bootolási idő csökkentésért
 archidroid.bootanimation.stock.desc=Gyári Samsung bootanimáció használata
 
@@ -149,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Szélessávú cellakapcsolat
 archidroid.tweaks.cellbroadcasts.desc=A szélessávú cellakapcsolat az egyidejű kézbesítésre lett kitalálva több felhasználó számára egy meghatározott területen. Gyakran használják SPAM célokra. Csak akkor használd, ha szükséged van rá
 archidroid.tweaks.navibar=Navigációs sáv
 archidroid.tweaks.navibar.desc=Bekapcsolja a navigációs sávot, és kikapcsolja a hardware gombokat (vissza, home, menü). Csak akkor válaszd ki, ha jobban preferálod a kijelzőn látható gombokat
+archidroid.tweaks.navibar.hwenabled=Hardware-s gombok aktiválása
+archidroid.tweaks.navibar.hwenabled.desc=Alapból a navigációs sáv kikapcsolja a hardweres gombokat. Válaszd ezt, ha mindkét navigációs módot használni szeretnéd
 
 archidroid.xposed.desc=Az Xposed Framework segítségével különböző külső programokkal módosíthatod a rendszer müködését, kinézetét, a rendszerfájlok érintése nélkül. Erősen ajánlott
 archidroid.xposed.gravitybox.desc=Sokoldalú Xposed modul, mely magában foglal több száz rendszer módosítást, melyek később ki-be kapcsolhatók a felhasználó által

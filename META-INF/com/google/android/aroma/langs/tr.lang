@@ -44,7 +44,6 @@ archidroid.bootanimation=Önyükleme Animasyonu
 archidroid.bootanimation.archi1.desc=1.X zamanlardan ilk ArchiDroid önyükleme animasyonu
 archidroid.bootanimation.archi2.desc=2.X zamanlardan ikinci ArchiDroid önyükleme animasyonu
 archidroid.bootanimation.archi3.desc=3.X zamanlardan üçüncü ArchiDroid önyükleme animasyonu
-archidroid.bootanimation.logcat.desc=Önyükleme animasyon yerine canlı logcat günlüğü,logcat lite uygulaması tarafından desteklenmektedir
 archidroid.bootanimation.none.desc=Biraz daha hızlı önyükleme için önyükleme animasyonu yok
 archidroid.bootanimation.stock.desc=Sistem tarafından sağlanan önyükleme animasyonu
 
@@ -149,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Hücre yayınları
 archidroid.tweaks.cellbroadcasts.desc=Hücre yayınları belirli bir alanda birden fazla kullanıcıya aynı anda teslimat için tasarlanmıştır. Genellikle spam amaçlı kullanılır. Sadece ihtiyacınız varsa seçin
 archidroid.tweaks.navibar=Navigasyon çubuğu
 archidroid.tweaks.navibar.desc=Gezinme çubuğunu açar ve donanım tuşları (geri, ev, menü) devre dışı bırakır. Eğer ekranda navigasyon olması tercih ederseniz seçin
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Çeşitli üçüncü parti modülleri ile sistem dosyalarını değiştirmeden uygulama iskeletinde değişiklikler yapmanıza izin verir.Şiddetle önerilir
 archidroid.xposed.gravitybox.desc=Yüzlerce Uygulama skeleti Modülü modifikasyonu içeren Tümü bir arada Xposed modülü 

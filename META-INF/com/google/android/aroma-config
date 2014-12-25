@@ -41,6 +41,10 @@ if getvar("colorspace") != "auto" then
 	ini_set("force_colorspace", getvar("colorspace"));
 endif;
 
+if cmp(ini_get("dp"), ">", "3") then
+	ini_set("dp","3");
+endif;
+
 # Call animated splash ASAP to notify user that everything is alright
 ini_set("transition_frame", "30");
 anisplash(
@@ -61,8 +65,8 @@ ini_set("rom_name", "ArchiDroid");
 ini_set("rom_device", file_getprop("/tmp/aroma-data/device.prop", "name"));
 ini_set("rom_author", file_getprop("/tmp/aroma-data/device.prop", "maintainer"));
 
-fontresload("0", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf", "12" ); #-- Use sets of font (Font Family)
-fontresload("1", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf", "14" ); #-- Use sets of font (Font Family)
+fontresload("0", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf;ttf/NotoSansHans-Regular.otf", "12" ); #-- Use sets of font (Font Family)
+fontresload("1", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf;ttf/NotoSansHans-Regular.otf", "14" ); #-- Use sets of font (Font Family)
 
 # Parse common variables
 ziptotmp("system/build.prop", "archidroid.prop");
@@ -130,6 +134,7 @@ form(
 	"lang.prop",
 
 	"language", "<#selectbg_g>Language</#>", "", "group",
+	"zh_CN.lang", "Chinese (simplified)", "简化字", "select",
 	"cs.lang", "Czech", "Čeština", "select",
 	"nl.lang", "Dutch", "Nederlands", "select",
 	"en.lang", "English", "", "select.selected",
@@ -226,7 +231,7 @@ form(
 	"@customize",
 	"archidroidinstallmode.prop",
 
-	"preset", "<#selectbg_g><~archidroid.preset.group></#>", "", "group",
+	"preset", "<#selectbg_g><~archidroid.preset></#>", "", "group",
 	"custom", "<~archidroid.preset.custom>", "<~archidroid.preset.custom.desc>", "select",
 	"previous", "<~archidroid.preset.previous>", "<~archidroid.preset.previous.desc>", "select.selected",
 	"previousexpert", "<~archidroid.preset.previousexpert>", "<~archidroid.preset.previousexpert.desc>", "select",
@@ -369,7 +374,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"xposed-xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check",
 
 		"archiapps", "<#selectbg_g>ArchiDroid Apps</#>", "", "group",
-		"adaway", "AdAway", "<~archidroid.apps.adaway.desc>", "check.checked",
+		"adaway", "AdAway", "<~archidroid.apps.adaway.desc>", "check",
 		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
 		"esfileexplorer", "ES File Explorer", "<~archidroid.apps.esfileexplorer.desc>", "check.checked",
 		"fdroid", "F-Droid", "<~archidroid.apps.fdroid.desc>", "check.checked",
@@ -381,6 +386,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 
 		"architweaks", "<#selectbg_g>ArchiDroid Tweaks</#>", "", "group",
 #		"navibar", "<~archidroid.tweaks.navibar>", "<~archidroid.tweaks.navibar.desc>", "check",
+#		"navibar-hwenabled", "<~archidroid.tweaks.navibar.hwenabled>", "<~archidroid.tweaks.navibar.hwenabled.desc>", "check",
 		"cell", "<~archidroid.tweaks.cellbroadcasts>", "<~archidroid.tweaks.cellbroadcasts.desc>", "check"
 	);
 	if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation-preview") == "1" then

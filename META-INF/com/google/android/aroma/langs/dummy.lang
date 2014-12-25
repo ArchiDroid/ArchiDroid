@@ -44,7 +44,6 @@ archidroid.bootanimation=Bootanimation
 archidroid.bootanimation.archi1.desc=First ArchiDroid bootanimation, from 1.X times
 archidroid.bootanimation.archi2.desc=Second ArchiDroid bootanimation, from 2.X times
 archidroid.bootanimation.archi3.desc=Third ArchiDroid bootanimation, from 3.X times
-archidroid.bootanimation.logcat.desc=Live logcat log instead of bootanimation, powered by logcat lite app
 archidroid.bootanimation.none.desc=No bootanimation, for slightly faster boot
 archidroid.bootanimation.stock.desc=Bootanimation provided by the base system
 
@@ -149,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts are designed for simultaneous delivery to multiple users in a specified area. Often they're used for spam purposes. Select only if you need them
 archidroid.tweaks.navibar=Navigation bar
 archidroid.tweaks.navibar.desc=Turns on navigation bar, and disables hardware keys (back, home, menu). Select if you prefer to have on-screen navigation
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework allows various third-party modules to make framework changes on-the-fly, without modification of system files. Highly recommended
 archidroid.xposed.gravitybox.desc=All-In-One Xposed module that contains a hundred of framework modifications, which may be activated/deactivated later according to your preferences

@@ -44,7 +44,6 @@ archidroid.bootanimation=Štartovacia animácia
 archidroid.bootanimation.archi1.desc=Prvá ArchiDroid štartovacia animácia, z časov 1.x
 archidroid.bootanimation.archi2.desc=Druhá ArchiDroid štartovacia animácia, z časov 2.x
 archidroid.bootanimation.archi3.desc=Tretia ArchiDroid štartovacia animácia, z časov 3.x
-archidroid.bootanimation.logcat.desc=Živý logcat log namiesto štartovacej animácie (logcat lite aplikácia)
 archidroid.bootanimation.none.desc=Žiadna štartovacia animácia. Trochu rýchlejšie štartovanie zariadenia
 archidroid.bootanimation.stock.desc=Pôvodná štartovacia animácia
 
@@ -149,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts je navrhnutý tak, aby doručoval správu viacerým užívateľom v špecifickej oblasti. Často sa používa na posielanie spam-u. Označte iba v prípade, keď službu potrebujete
 archidroid.tweaks.navibar=Navigačná lišta
 archidroid.tweaks.navibar.desc=Zapne navigačnú lištu a  vypne hardvérové tlačítka (Späť, Domov, Menu). Označte v prípade, keď chcete používať navigačné tlačítka na Vašom displeji.
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework umožňuje rôznym modulom, aby modifikovali Váš systém, bez nutnosti zmeny systémových súborov. Vysoko odporúčaný framework
 archidroid.xposed.gravitybox.desc=Xposed modul, ktorý obsahuje stovky nastavení

@@ -23,7 +23,7 @@
 
 set -e
 
-VERSION=3.0.0
+VERSION=3.0.1.1
 
 # Device-based
 DEVICE="nicki" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
@@ -48,6 +48,7 @@ ADCOMPILEROOT="$HOME/android/cm11" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of output zip from above sources, usually it doesn't need to be changed
 
 # Common
+BARE=0
 PREBUILT=0
 STABLE=0
 STOCK=0
@@ -59,6 +60,10 @@ cd "$(dirname "$0")"
 
 for ARG in "$@" ; do
 	case "$ARG" in
+		--bare|bare)
+			BARE=1
+			echo "WARNING: Building barebones!"
+			;;
 		--prebuilt|prebuilt)
 			PREBUILT=1
 			echo "WARNING: Assuming that build is already complete!"
@@ -84,7 +89,7 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	cd "$ADCOMPILEROOT"
 	if [[ "$OLD" -eq 0 ]]; then
 		repo selfupdate
-		repo sync -j32
+		repo sync -f -j32
 	fi
 
 	if [[ -d "$ADOUT" ]]; then
@@ -129,6 +134,10 @@ else
 	fi
 
 	ADZIP="$(basename "$REALADZIP")"
+fi
+
+if [[ "$BARE" -eq 1 ]]; then
+	exit 0
 fi
 
 cd "$ADROOT"

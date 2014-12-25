@@ -44,7 +44,6 @@ archidroid.bootanimation=Κινούμενη εικόνα έναρξης λογι
 archidroid.bootanimation.archi1.desc=Πρώτη κινούμενη εικόνα, από καιρούς 1.Χ
 archidroid.bootanimation.archi2.desc=Δεύτερη κινούμενη εικόνα, από καιρούς 2.Χ
 archidroid.bootanimation.archi3.desc=Τρίτη κινούμενη εικόνα, από καιρούς 3.Χ
-archidroid.bootanimation.logcat.desc=Πρωτόκολλο logcat ίδιας στιγμής, τροφοδοτημένο από την εφαρμογή logcat lite
 archidroid.bootanimation.none.desc=Καμία κινούμενη εικόνα, για ταχύτερη έναρξη λογισμικού
 archidroid.bootanimation.stock.desc=Κανονική κινούμενη εικόνα, από το βασικό σύστημα
 
@@ -149,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Εκπομπή τηλεφωνικής κυψέ�
 archidroid.tweaks.cellbroadcasts.desc=Οι εκπομπές τηλεφωνικών κυψελών έχουν σχεδιαστεί για την ταυτόχρονη παράδοση μηνυμάτων σε πολλαπλούς χρήστες σε μια συγκεκριμένη περιοχή. Συχνά χρησιμοποιούνται για τους σκοπούς της ανεπιθύμητης αλληλογραφίας. Επιλέξτε μόνο αν τα χρειάζεστε
 archidroid.tweaks.navibar=Ράβδος πλοήγησης
 archidroid.tweaks.navibar.desc=Ενεργοποιεί τη μπάρα πλοήγησης, και απενεργοποιεί τα πλήκτρα υλικού (back, home, menu). Επιλέξτε αν προτιμάτε να έχετε στην οθόνη την ράβδο πλοήγησης
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=To Πλαίσιο Xposed επιτρέπει ενότητες με τρίτες κατασκευής, χωρίς τροποποίηση των αρχείων του συστήματος. Το συνιστώ ανεπιφύλακτα
 archidroid.xposed.gravitybox.desc=Όλα-σε-μία κατασκευή Xposed που περιέχει πολλές τροποποιήσεις πλαισίου 

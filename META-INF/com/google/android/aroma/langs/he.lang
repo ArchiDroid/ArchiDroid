@@ -44,7 +44,6 @@ archidroid.bootanimation= אנימציית איתחול
 archidroid.bootanimation.archi1.desc= 1.X אנימציית ארצידרוייד איתחול ראשונה, מתקופת 
 archidroid.bootanimation.archi2.desc= 2.X אנימציית ארצידרוייד איתחול שניה, מתקופת 
 archidroid.bootanimation.archi3.desc= 3.X אנימציית ארצידרוייד איתחול שלישית, מתקופת 
-archidroid.bootanimation.logcat.desc= לוג חי של לוגקט במקום אנימציית איתחול, מופעל ע"י אפליקציית לוגקט לייט
 archidroid.bootanimation.none.desc= ללא אנימציית איתחול, לאיתחול מהיר יותר
 archidroid.bootanimation.stock.desc= אנימציית איתחול של המערכת הבסיסית
 
@@ -149,6 +148,8 @@ archidroid.tweaks.cellbroadcasts=Cell broadcasts שידורי תא
 archidroid.tweaks.cellbroadcasts.desc= שידורי תא נועדו לשדר בו זמנית למספר משתמשים באיזור מסויים. לרוב ספאמרים עושים שימוש באופציה זו. תסמן רק אם באמת אתה צריך את זה. 
 archidroid.tweaks.navibar=Navigation bar סרגל ניווט
 archidroid.tweaks.navibar.desc= מפעיל את סרגל הניווט, ומנטרל את לחצני החומרה(אחורה, בית, תפריט). בחר אם אתה מעדיף לחצנים על המסך
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework מאפשר למודולים צד ג' לבצע שינויים לפריימוורק תוך כדי עבודה, ללא צורך בשינוי קבצי סיסטם. מאוד ממומלץ 
 archidroid.xposed.gravitybox.desc=All-In-One Xposed  מודול זה מכיל מאות שינויים בפריימוורק, שניתן לעשות בהם שימוש

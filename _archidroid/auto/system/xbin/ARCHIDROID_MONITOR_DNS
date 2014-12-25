@@ -75,7 +75,8 @@ MONITOR_DNS() {
 
 	setprop "net.dns1" "127.0.0.1" # This is only for us to get notified from netd
 	REGENERATE_RESOLV
-	if [[ ! -z "$DNS1" ]]; then
+	if [[ ! -z "$DNS1" && "$DNS1" != "127.0.0.1" ]]; then
+		setprop "archidroid.adblock.dns1" "$DNS1" # Store the original DNS, so we can restore it later
 		RESET_DNSES
 	fi
 
@@ -89,6 +90,7 @@ MONITOR_DNS() {
 			DNS1="$CURDNS1"
 			DNS2="$CURDNS2"
 			setprop "net.dns1" "127.0.0.1" # This is only for us to get notified from netd
+			setprop "archidroid.adblock.dns1" "$DNS1" # Store the original DNS, so we can restore it later
 			REGENERATE_RESOLV
 			RESET_DNSES
 		fi
