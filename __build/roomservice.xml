@@ -107,7 +107,7 @@
 
 
 			<remove-project name="CyanogenMod/android_bootable_recovery" />
-			<project name="omnirom/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-4.4" />
+			<project name="omnirom/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-5.0" />
 
 			<remove-project name="CyanogenMod/android_device_sony_nicki" />
 			<project name="ArchiDroid/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
