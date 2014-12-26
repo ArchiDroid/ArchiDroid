@@ -49,6 +49,7 @@ ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of outp
 
 # Common
 BARE=0
+CLEAN=0
 PREBUILT=0
 STABLE=0
 STOCK=0
@@ -63,6 +64,10 @@ for ARG in "$@" ; do
 		--bare|bare)
 			BARE=1
 			echo "WARNING: Building barebones!"
+			;;
+		--clean|clean)
+			CLEAN=1
+			echo "WARNING: Building clean release!"
 			;;
 		--prebuilt|prebuilt)
 			PREBUILT=1
@@ -105,6 +110,11 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	source build/envsetup.sh
+
+	if [[ "$CLEAN" -eq 1 ]]; then
+		make clean
+	fi
+
 	brunch "$DEVICE" "$BUILDVARIANT" || true
 
 	REALADZIP=""
