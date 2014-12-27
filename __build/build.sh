@@ -49,13 +49,12 @@ ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of outp
 
 # Common
 BARE=0
+CACHE=0
 CLEAN=0
 PREBUILT=0
 STABLE=0
 STOCK=0
 OLD=0
-
-export USE_CCACHE=1
 
 cd "$(dirname "$0")"
 
@@ -63,28 +62,32 @@ for ARG in "$@" ; do
 	case "$ARG" in
 		--bare|bare)
 			BARE=1
-			echo "WARNING: Building barebones!"
+			echo "NOTICE: Building barebones!"
+			;;
+		--cache|cache)
+			CACHE=1
+			echo "NOTICE: Using ccache!"
 			;;
 		--clean|clean)
 			CLEAN=1
-			echo "WARNING: Building clean release!"
+			echo "NOTICE: Building clean release!"
 			;;
 		--prebuilt|prebuilt)
 			PREBUILT=1
-			echo "WARNING: Assuming that build is already complete!"
+			echo "NOTICE: Assuming that build is already complete!"
 			;;
 		--stable|stable)
 			STABLE=1
-			echo "WARNING: Building stable release!"
+			echo "NOTICE: Building stable release!"
 			;;
 		--stock|stock)
 			STOCK=1
 			PREBUILT=1
-			echo "WARNING: Assuming that this is stock firmware!"
+			echo "NOTICE: Assuming that this is stock firmware!"
 			;;
 		--old|old)
 			OLD=1
-			echo "WARNING: Not doing repo sync!"
+			echo "NOTICE: Not doing repo sync!"
 			;;
 	esac
 done
@@ -98,7 +101,7 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	if [[ -d "$ADOUT" ]]; then
-		echo "WARNING: Performing cleaning of old build!"
+		echo "NOTICE: Performing cleaning of old build!"
 
 		echo "INFO: Forcing refresh of build.prop, removing $ADOUT/system/build.prop"
 		rm -f "$ADOUT/system/build.prop"
@@ -113,6 +116,10 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 
 	if [[ "$CLEAN" -eq 1 ]]; then
 		make clean
+	fi
+
+	if [[ "$CACHE" -eq 1 ]]; then
+		export USE_CCACHE=1
 	fi
 
 	brunch "$DEVICE" "$BUILDVARIANT" || true
