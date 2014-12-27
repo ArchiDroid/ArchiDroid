@@ -36,6 +36,11 @@ ArchiDroid 3.0.1
 - Xposed: Updated XPrivacy to 3.5.8
 - Updated sources
 
+[!] nicki-specific:
+- L1/L2 cache optimizations for Xperia M
+- ArchiKernel now includes CPU OC enabled by default
+- Updated device-specific sources, e.g. added dualsim support
+
 
 ArchiDroid 3.0.0
 
