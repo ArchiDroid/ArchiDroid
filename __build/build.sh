@@ -100,7 +100,9 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 		repo sync -f -j32
 	fi
 
-	if [[ -d "$ADOUT" ]]; then
+	if [[ "$CLEAN" -eq 1 ]]; then
+		make clean
+	elif [[ -d "$ADOUT" ]]; then
 		echo "NOTICE: Performing cleaning of old build!"
 
 		echo "INFO: Forcing refresh of build.prop, removing $ADOUT/system/build.prop"
@@ -113,10 +115,6 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	source build/envsetup.sh
-
-	if [[ "$CLEAN" -eq 1 ]]; then
-		make clean
-	fi
 
 	if [[ "$CACHE" -eq 1 ]]; then
 		export USE_CCACHE=1
