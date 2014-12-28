@@ -14,103 +14,103 @@
 #
 
 # Function keys
-key 59    MENU                  WAKE
-key 60    HOME                  WAKE
-key 61    CALL                  WAKE_DROPPED
-key 62    BACK                  WAKE_DROPPED
-key 63    ENDCALL               WAKE_DROPPED
-key 64    MEDIA_NEXT            WAKE
-key 65    MEDIA_PLAY_PAUSE      WAKE
-key 66    MEDIA_PREVIOUS        WAKE
-key 67    MEDIA_STOP            WAKE
+key 59    MENU
+key 60    HOME
+key 61    CALL
+key 62    BACK
+key 63    ENDCALL
+key 64    MEDIA_NEXT
+key 65    MEDIA_PLAY_PAUSE
+key 66    MEDIA_PREVIOUS
+key 67    MEDIA_STOP
 key 68    CAMERA
-key 87    POWER                 WAKE
-key 217   SEARCH                WAKE_DROPPED
+key 87    POWER
+key 217   SEARCH
 
 # Row 2
-key 2     1                 WAKE_DROPPED
-key 3     2                 WAKE_DROPPED
-key 4     3                 WAKE_DROPPED
-key 5     4                 WAKE_DROPPED
-key 6     5                 WAKE_DROPPED
-key 7     6                 WAKE_DROPPED
-key 8     7                 WAKE_DROPPED
-key 9     8                 WAKE_DROPPED
-key 10    9                 WAKE_DROPPED
-key 11    0                 WAKE_DROPPED
-key 110   MENU              WAKE
-key 102   HOME              WAKE
+key 2     1
+key 3     2
+key 4     3
+key 5     4
+key 6     5
+key 7     6
+key 8     7
+key 9     8
+key 10    9
+key 11    0
+key 110   MENU
+key 102   HOME
 
 # Row 3
-key 16    Q                 WAKE_DROPPED
-key 17    W                 WAKE_DROPPED
-key 18    E                 WAKE_DROPPED
-key 19    R                 WAKE_DROPPED
-key 20    T                 WAKE_DROPPED
-key 21    Y                 WAKE_DROPPED
-key 22    U                 WAKE_DROPPED
-key 23    I                 WAKE_DROPPED
-key 24    O                 WAKE_DROPPED
-key 25    P                 WAKE_DROPPED
-key 158   BACK              WAKE_DROPPED
-key 104   DPAD_UP           WAKE_DROPPED
+key 16    Q
+key 17    W
+key 18    E
+key 19    R
+key 20    T
+key 21    Y
+key 22    U
+key 23    I
+key 24    O
+key 25    P
+key 158   BACK
+key 104   DPAD_UP
 
 # Row 4
-key 58    SHIFT_LEFT        WAKE
-key 30    A                 WAKE_DROPPED
-key 31    S                 WAKE_DROPPED
-key 32    D                 WAKE_DROPPED
-key 33    F                 WAKE_DROPPED
-key 34    G                 WAKE_DROPPED
-key 35    H                 WAKE_DROPPED
-key 36    J                 WAKE_DROPPED
-key 37    K                 WAKE_DROPPED
-key 38    L                 WAKE_DROPPED
-key 28    DPAD_CENTER       WAKE_DROPPED
-key 109   DPAD_DOWN         WAKE_DROPPED
+key 58    SHIFT_LEFT
+key 30    A
+key 31    S
+key 32    D
+key 33    F
+key 34    G
+key 35    H
+key 36    J
+key 37    K
+key 38    L
+key 28    DPAD_CENTER
+key 109   DPAD_DOWN
 
 # Row 5
-key 183   SYM               WAKE_DROPPED
-key 44    Z                 WAKE_DROPPED
-key 45    X                 WAKE_DROPPED
-key 46    C                 WAKE_DROPPED
-key 47    V                 WAKE_DROPPED
-key 48    B                 WAKE_DROPPED
-key 49    N                 WAKE_DROPPED
-key 50    M                 WAKE_DROPPED
-key 51    COMMA             WAKE_DROPPED
-key 52    PERIOD            WAKE_DROPPED
-key 103   DPAD_UP           WAKE_DROPPED
-key 107   ENDCALL           WAKE_DROPPED
-key 152   ENDCALL           WAKE_DROPPED
+key 183   SYM
+key 44    Z
+key 45    X
+key 46    C
+key 47    V
+key 48    B
+key 49    N
+key 50    M
+key 51    COMMA
+key 52    PERIOD
+key 103   DPAD_UP
+key 107   ENDCALL
+key 152   ENDCALL
 
 # Row 6
-key 42    SHIFT_LEFT        WAKE_DROPPED
-key 464   MENU              WAKE_DROPPED
-key 29    MENU              WAKE_DROPPED
-key 56    MENU              WAKE_DROPPED
-key 151   MENU              WAKE_DROPPED
-key 57    SPACE             WAKE_DROPPED
-key 111   DEL               WAKE_DROPPED
-key 54    SHIFT_RIGHT       WAKE_DROPPED
-key 105   DPAD_LEFT         WAKE_DROPPED
-key 108   DPAD_DOWN         WAKE_DROPPED
-key 106   DPAD_RIGHT        WAKE_DROPPED
+key 42    SHIFT_LEFT
+key 464   MENU
+key 29    MENU
+key 56    MENU
+key 151   MENU
+key 57    SPACE
+key 111   DEL
+key 54    SHIFT_RIGHT
+key 105   DPAD_LEFT
+key 108   DPAD_DOWN
+key 106   DPAD_RIGHT
 
 # Volume keys
-key 115   VOLUME_UP         WAKE_DROPPED
-key 114   VOLUME_DOWN       WAKE_DROPPED
+key 115   VOLUME_UP
+key 114   VOLUME_DOWN
 
 # Numeric keypad
-key 522   STAR              WAKE_DROPPED
-key 523   POUND             WAKE_DROPPED
-key 355   DEL               WAKE_DROPPED
+key 522   STAR
+key 523   POUND
+key 355   DEL
 #L- Mapping
-key 139   MENU              WAKE
+key 139   MENU
 #SEND Key Mapping
-key 231   CALL              WAKE_DROPPED
+key 231   CALL
 # R+ Mapping
-key 142   HOME              WAKE_DROPPED
+key 142   HOME
 # Camera Keys
 key 766   FOCUS
 key 528   CAMERA
