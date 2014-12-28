@@ -23,7 +23,7 @@
 
 set -e
 
-VERSION=3.0.1.1
+VERSION=3.1
 
 # Device-based
 DEVICE="BRINGUP" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
@@ -44,7 +44,7 @@ fi
 # Try to not change these if you can
 ADROOT="$HOME/shared/git/ArchiDroid" # This is where ArchiDroid GitHub repo is located
 ADZIP="$ROMSHORT-*.zip" # This is with what defined output zip. For omni it would be "omni-*.zip"
-ADCOMPILEROOT="$HOME/android/cm11" # This is where AOSP sources are located
+ADCOMPILEROOT="$HOME/android/cm12" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of output zip from above sources, usually it doesn't need to be changed
 
 # Common
