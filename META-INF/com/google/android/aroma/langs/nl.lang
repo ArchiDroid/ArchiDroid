@@ -32,7 +32,7 @@ archidroid.apps.cooltool.desc=Erg aanpasbare app die nuttige informatie over je 
 archidroid.apps.esfileexplorer.desc=Uitstekende bestandsbeheer vervanger voor android
 archidroid.apps.fdroid.desc=Installeerbare catalogus van gratis en open-source applicaties voor Android. Fantastische toevoeging op de Google Play Store
 archidroid.apps.greenify.desc=Spaart batterij door apps op de achtergrond te sluimeren als je ze niet gebruikt
-archidroid.apps.lmt.desc=Voegt PIE functie toe, gebaar etc.
+archidroid.apps.lmt.desc=Voegt PIE functie toe, gebaren etc.
 archidroid.apps.mxplayer.desc=Hardware geaccelereerde videospeler voor android
 archidroid.apps.spiritfm.desc=Echte, radiogolf gedreven FM radio app. Heeft geen internet nodig
 archidroid.apps.titaniumbackup.desc=Basisapp voor elke geroote gebruiker. Backupt en zet apps terug inclusief gegevens.
@@ -69,8 +69,8 @@ archidroid.custom.desc=Pas de instellingen aan zoals jij wilt
 
 archidroid.detect.fail=ArchiDroid kon niet detecteren dat hij geïnstalleerd was. Daarom is een factory reset nodig. ArchiDroid zal je /data partition schoonmaken om te kunnen flashen. Je sd gegevens zijn veilig!
 archidroid.detect.pass=ArchiDroid heeft gedetecteerd dat hij geïnstalleerd is. Wil je je gegevens toch verwijderen?
-archidroid.detect.pass.no=Nee, verwijder mijn gegevens niet.
-archidroid.detect.pass.yes=Ja, verwijder mijn gegevens.
+archidroid.detect.pass.no=Nee, verwijder mijn gegevens niet
+archidroid.detect.pass.yes=Ja, verwijder mijn gegevens
 archidroid.detect.pass.alert.no=Oké, maar onthoud dat de ROM niet juist kan werken vanwege de incompatibele gegevens!
 archidroid.detect.pass.alert.yes=Slimme keuze, ArchiDroid zal ervoor zorgen dat /data opgeruimd wordt tijdens het installeren!
 
@@ -125,7 +125,7 @@ archidroid.preset.barebones.desc=Deze optie installeert alleen de basis. Alleen 
 archidroid.preset.custom=Pas aan
 archidroid.preset.custom.desc=Selecteer deze optie als je elk aspect van ArchiDroid wilt aanpassen. Aanbevolen
 archidroid.preset.previous=Vorige instellingen
-archidroid.preset.previous.desc=Als je al eens de opties hebt geokozen, laadt deze optie je vorige keuzes
+archidroid.preset.previous.desc=Als je al eens de opties hebt gekozen, laadt deze optie je vorige keuzes
 archidroid.preset.previousexpert=Vorige keuzes expert
 archidroid.preset.previousexpert.desc=Hetzelfde als de optie hierboven, alleen checkt deze modus geen compitabiliteit en staat veranderingen aan je vorige keuzes toe. Waarschuwing: wees voorzichtig, incompitabele voorinstelling kan oninstalleerbaar zijn
 archidroid.preset.recovery=Recovery
@@ -148,18 +148,18 @@ archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts is gemaakt voor onder andere Amber-Alert berichten. Ook vaak voor spam doelen. Selecteer alleen als je dit nodig hebt
 archidroid.tweaks.navibar=Navigatie bar
 archidroid.tweaks.navibar.desc=Dit zet de navigatie bar aan, en schakelt de hardware knoppen uit (terug, thuis, menu). Selecteer als je liever software toetsen hebt
-archidroid.tweaks.navibar.hwenabled=Enable hardware keys
-archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
+archidroid.tweaks.navibar.hwenabled=Zet de hardware toetsen aan
+archidroid.tweaks.navibar.hwenabled.desc=Normaal gesproken schakelt de navigatiebalk de hardware toetsen uit. Selecteer deze optie als je beide navigatieopties beschikbaar wilt hebben
 
-archidroid.xposed.desc=Xposed Framework staat verschillende third-party modules toe om je framework te veranderen. Zonder modificatie van systeembestanden. Erg aanbevolen
-archidroid.xposed.gravitybox.desc=All-In-One Xposed module die enorm veel framwork modificaties bevat. 
+archidroid.xposed.desc=Xposed Framework staat verschillende third-party modules toe om je framework te veranderen, zonder modificatie van systeembestanden. Erg aanbevolen
+archidroid.xposed.gravitybox.desc=Allesomvattende Xposed module die enorm veel framwork modificaties bevat
 archidroid.xposed.xprivacy.desc=Als je je persoonsgegevens wilt beschermen, is deze app voor jou. Hiermee kan je precies elke permissie beheren voor elke geïnstalleerde app
 
 
 ### AROMA strings
 text_about=Over
 text_back=Terug
-text_calibrating=Calibratie Tools
+text_calibrating=Calibratie
 text_next=Volgende
 text_no=Nee
 text_ok=Oké

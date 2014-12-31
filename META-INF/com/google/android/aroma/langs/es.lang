@@ -30,7 +30,7 @@
 archidroid.apps.adaway.desc=Bloqueador de publicidad de fuente abierta para Android. Viene preconfigurado para actualizar periodicamente la tabla hosts en Adblock de ArchiDroid
 archidroid.apps.cooltool.desc=Aplicación altamente customizable que te muestra información muy útil sobre tu equipo (p.e. uso del CPU) en la parte superior de la pantalla
 archidroid.apps.esfileexplorer.desc=Muy buen reemplazo del explorador de archivos de Android
-archidroid.apps.fdroid.desc=Catalogo de aplicaciones gratuitas y de fuente abierta para Android. Gran adición al Store propietario de Google
+archidroid.apps.fdroid.desc=Catálogo de aplicaciones gratuitas y de fuente abierta para Android. Gran adición al Store propietario de Google
 archidroid.apps.greenify.desc=Ahorra batería poniendo en hibernación las aplicaciones en segundo plano cuando no las usas
 archidroid.apps.lmt.desc=Mejora tu equipo con la funcionalidad PIE, soporte de gestos y más
 archidroid.apps.mxplayer.desc=Reproductor de videos acelerado por hardware
@@ -132,7 +132,7 @@ archidroid.preset.recovery=Recuperación
 archidroid.preset.recovery.desc=Selecciona esta opción si deseas o necesitas actualizar el programa de recuperación (recovery) antes de instalar ArchiDroid
 
 archidroid.preview=Previsualización
-archidroid.preview.desc=Cuando seleccione, verás un ejemplo de tu configuración
+archidroid.preview.desc=Cuando seleccione, verás un ejemplo de tu elección en la siguiente pantalla
 
 archidroid.recovery.twrp.desc=Moderna recuperación pensada para uso fácil y personalización. Ampliamente suportado, con desarrollo al día
 
@@ -145,13 +145,13 @@ archidroid.thirdparty=Acuerdo de terceros
 archidroid.tou=Términos de uso
 
 archidroid.tweaks.cellbroadcasts=Emisiones de celdas
-archidroid.tweaks.cellbroadcasts.desc=Las emisiones de celda están diseñadas para entregas simultáneas a múltiples usuarios en un área determinada. A menudo son usadas con fines de spam. Selecciona sólo si lo deseas
+archidroid.tweaks.cellbroadcasts.desc=Las emisiones de celda están diseñadas para entregas simultáneas a múltiples usuarios en un área determinada. A menudo son usadas con fines de spam. Selecciona sólo si lo necesitas
 archidroid.tweaks.navibar=Barra de navegación
 archidroid.tweaks.navibar.desc=Enciende la barra de navegación y desactiva las teclas de hardware (atrás, inicio, menú). Selecciona si quieres navegación en la pantalla
 archidroid.tweaks.navibar.hwenabled=Enable hardware keys
 archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
-archidroid.xposed.desc=El Xposed Framework permite a mádulos de terceros hacer cambios en el framework en tiempo de ejecución, sin modificar el sistema base. Muy recomendable
+archidroid.xposed.desc=El Xposed Framework permite a módulos de terceros hacer cambios en el framework en tiempo de ejecución, sin modificar el sistema base. Muy recomendable
 archidroid.xposed.gravitybox.desc=El módulo Xposed Todo-en-uno que contiene cientos de modificaciones al framework, que puede ser activadas o desactivadas posteriormente según tu preferencias
 archidroid.xposed.xprivacy.desc=Si quieres protejer tu privacidad, este módulo es para tí. Con este módulo podrás otogar permisos específicos para cada aplicación instalada
 
