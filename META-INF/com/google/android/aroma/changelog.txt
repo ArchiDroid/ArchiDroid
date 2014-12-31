@@ -1,3 +1,9 @@
+ArchiDroid 3.0.2
+[!] i9300-bugfix release
+- Reverted HWComposer due to graphical glitches on KK, it should be back on LP
+- Fixed some bugs related to audio, e.g. low microphone volume
+
+
 ArchiDroid 3.0.1.1
 [!] i9300-bugfix release
 - AROMA: Translation updates, thanks to appropriate contributors
