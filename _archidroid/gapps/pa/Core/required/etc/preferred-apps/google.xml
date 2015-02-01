@@ -133,14 +133,84 @@
             <path prefix="/store" />
         </filter>
     </item>
-    <item name="com.google.android.youtube/.app.honeycomb.Shell$WatchActivity">
+    <item name="com.google.android.youtube/.UrlActivity">
         <filter>
             <action name="android.intent.action.VIEW" />
-            <cat name="android.intent.category.BROWSABLE" />
             <cat name="android.intent.category.DEFAULT" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <scheme name="https" />
+            <auth host="youtu.be" />
+            <path prefix="" />
+        </filter>
+    </item>
+    <item name="com.google.android.youtube/.UrlActivity">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.DEFAULT" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <scheme name="http" />
+            <auth host="youtu.be" />
+            <path prefix="" />
+        </filter>
+    </item>
+    <item name="com.google.android.youtube/.UrlActivity">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.DEFAULT" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <scheme name="http" />
+            <auth host="m.youtube.com" />
+            <path prefix="" />
+        </filter>
+    </item>
+    <item name="com.google.android.youtube/.UrlActivity">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.DEFAULT" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <scheme name="https" />
+            <auth host="youtube.com" />
+            <path prefix="" />
+        </filter>
+    </item>
+    <item name="com.google.android.youtube/.UrlActivity">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.DEFAULT" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <scheme name="https" />
+            <auth host="www.youtube.com" />
+            <path prefix="" />
+        </filter>
+    </item>
+    <item name="com.google.android.youtube/.UrlActivity">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.DEFAULT" />
+            <cat name="android.intent.category.BROWSABLE" />
             <scheme name="http" />
             <auth host="www.youtube.com" />
-            <path prefix="/watch" />
+            <path prefix="" />
+        </filter>
+    </item>
+    <item name="com.google.android.youtube/.UrlActivity">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.DEFAULT" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <scheme name="https" />
+            <auth host="m.youtube.com" />
+            <path prefix="" />
+        </filter>
+    </item>
+    <item name="com.google.android.youtube/.UrlActivity">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.DEFAULT" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <scheme name="http" />
+            <auth host="youtube.com" />
+            <path literal="/watch" />
         </filter>
     </item>
     <item name="com.google.android.apps.plus/.phone.HostPhotoViewIntentActivity">
@@ -225,5 +295,109 @@
             <cat name="android.intent.category.DEFAULT" />
             <scheme name="rtsp" />
         </filter>
+    </item>
+    <item name="com.google.android.apps.docs.editors.sheets/com.google.android.apps.docs.openurl.TrixOpenUrlActivityAlias">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <cat name="android.intent.category.DEFAULT" />
+            <scheme name="http" />
+            <scheme name="https" />
+            <auth host="spreadsheets.google.com" />
+        </filter>
+    </item>
+    <item name="com.google.android.apps.docs.editors.sheets/com.google.android.apps.docs.openurl.TrixOpenUrlActivityAlias">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <cat name="android.intent.category.DEFAULT" />
+            <scheme name="http" />
+            <scheme name="https" />
+            <auth host="docs.google.com" />
+            <path sglob="/spreadsheet/.*" />
+            <path sglob="/a/.*/spreadsheet/.*" />
+            <path sglob="/spreadsheets/d/.*" />
+            <path sglob="/a/.*/spreadsheets/d/.*" />
+        </filter>
+    </item>
+    <item name="com.google.android.apps.docs.editors.slides/com.google.android.apps.docs.openurl.PunchOpenUrlActivityAlias">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <cat name="android.intent.category.DEFAULT" />
+            <scheme name="http" />
+            <scheme name="https" />
+            <auth host="slides.google.com" />
+        </filter>
+    </item>
+    <item name="com.google.android.apps.docs.editors.slides/com.google.android.apps.docs.openurl.PunchOpenUrlActivityAlias">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <cat name="android.intent.category.DEFAULT" />
+            <scheme name="http" />
+            <scheme name="https" />
+            <auth host="docs.google.com" />
+            <path sglob="/present/.*" />
+            <path sglob="/a/.*/present/.*" />
+            <path sglob="/presentation/.*" />
+            <path sglob="/a/.*/presentation/.*" />
+        </filter>
+    </item>
+    <item name="com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.openurl.KixOpenUrlActivityAlias">
+        <filter>
+            <action name="android.intent.action.VIEW" />
+            <cat name="android.intent.category.BROWSABLE" />
+            <cat name="android.intent.category.DEFAULT" />
+            <scheme name="http" />
+            <scheme name="https" />
+            <auth host="docs.google.com" />
+            <path sglob="/document/.*" />
+            <path sglob="/a/.*/document/.*" />
+            <path sglob="/Doc" />
+            <path sglob="/a/.*/Doc" />
+            <path sglob="/View" />
+            <path sglob="/a/.*/View" />
+        </filter>
+    </item>
+    <item name="com.google.android.apps.docs.editors.sheets/com.google.android.apps.docs.editors.trix.quicksheet.QuickSheetDocumentOpenerActivityAlias">
+        <filter>
+            <action name="android.intent.action.EDIT" />
+            <cat name="android.intent.category.DEFAULT" />
+            <type name="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+            <type name="application/vnd.ms-excel.sheet.macroenabled.12" />
+            <type name="application/vnd.ms-excel" />
+            <type name="application/vnd.ms-excel.addin.macroenabled.12" />
+            <type name="application/vnd.ms-excel.template.macroenabled.12" />
+            <type name="application/vnd.openxmlformats-officedocument.spreadsheetml.template" />
+            <type name="application/x-msexcel" />
+        </filter>
+    </item>
+    <item name="com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.editors.kix.quickword.QuickWordDocumentOpenerActivityAlias">
+      <filter>
+            <action name="android.intent.action.EDIT" />
+            <cat name="android.intent.category.DEFAULT" />
+            <type name="application/vnd.ms-word" />
+            <type name="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+            <type name="application/vnd.ms-word.document.macroenabled.12" />
+            <type name="application/msword" />
+            <type name="application/vnd.ms-word.template.macroenabled.12" />
+            <type name="application/vnd.openxmlformats-officedocument.wordprocessingml.template" />
+            <type name="application/x-msword" />
+      </filter>
+    </item>
+    <item name="com.google.android.apps.docs.editors.slides/com.google.android.apps.docs.editors.kix.quickword.QuickWordDocumentOpenerActivityAlias">
+      <filter>
+            <action name="android.intent.action.EDIT" />
+            <cat name="android.intent.category.DEFAULT" />
+            <type name="application/vnd.openxmlformats-officedocument.presentationml.presentation" />
+            <type name="application/vnd.ms-powerpoint" />
+            <type name="application/vnd.openxmlformats-officedocument.presentationml.template" />
+            <type name="application/vnd.ms-powerpoint.presentation.macroenabled.12" />
+            <type name="application/vnd.openxmlformats-officedocument.presentationml.slideshow" />
+            <type name="application/vnd.ms-powerpoint.slideshow.macroenabled.12" />
+            <type name="application/x-mspowerpoint" />
+
+      </filter>
     </item>
 </preferred-activities>
