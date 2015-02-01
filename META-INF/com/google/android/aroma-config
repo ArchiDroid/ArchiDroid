@@ -365,9 +365,10 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 
 		"gapps", "<#selectbg_g>Google Apps</#>", "", "group",
 		"gapps", "Core", "<~archidroid.gapps.core.desc>", "check.checked",
-		"gapps-bksync", "Google Bookmarks Sync", "<~archidroid.gapps.bksync.desc>", "check.checked",
+#		"gapps-bksync", "Google Bookmarks Sync", "<~archidroid.gapps.bksync.desc>", "check.checked",
 		"gapps-calendargoogle", "Google Calendar", "<~archidroid.gapps.calendargoogle.desc>", "check.checked",
 		"gapps-calsync", "Google Calendar Sync", "<~archidroid.gapps.calsync.desc>", "check.checked",
+		"gapps-exchangegoogle", "Google Exchange Services", "<~archidroid.gapps.exchangegoogle.desc>", "check.checked",
 		"gapps-faceunlock", "Face Unlock", "<~archidroid.gapps.faceunlock.desc>", "check.checked",
 		"gapps-gmail", "Gmail", "<~archidroid.gapps.gmail.desc>", "check.checked",
 		"gapps-googleplus", "Google Plus", "<~archidroid.gapps.googleplus.desc>", "check",
