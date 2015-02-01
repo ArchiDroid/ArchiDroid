@@ -74,6 +74,19 @@
 
 			<remove-project name="CyanogenMod/android_kernel_samsung_smdk4412" />
 			<project name="ArchiDroid/ArchiKernel" path="kernel/samsung/smdk4412" remote="github" revision="m0" />
+
+
+			<remove-project name="CyanogenMod/android_bionic" />
+			<project name="ArchiDroid/android_bionic" path="bionic" remote="github" />
+
+			<remove-project name="CyanogenMod/android_frameworks_av" />
+			<project name="ArchiDroid/android_frameworks_av" path="frameworks/av" remote="github" />
+
+			<remove-project name="CyanogenMod/android_frameworks_base" />
+			<project name="ArchiDroid/android_frameworks_base" path="frameworks/base" remote="github" />
+
+			<remove-project name="CyanogenMod/android_frameworks_native" />
+			<project name="ArchiDroid/android_frameworks_native" path="frameworks/native" remote="github" />
 			-->
 		<!-- /i9300 -->
 		<!-- nicki -->
