@@ -73,7 +73,7 @@
 			<project name="ArchiDroid/android_hardware_samsung" path="hardware/samsung" remote="github" />
 
 			<remove-project name="CyanogenMod/android_kernel_samsung_smdk4412" />
-			<project name="ArchiDroid/ArchiKernel" path="kernel/samsung/smdk4412" remote="github" revision="m0" />
+			<project name="ArchiDroid/android_kernel_samsung_smdk4412" path="kernel/samsung/smdk4412" remote="github" />
 
 
 			<remove-project name="CyanogenMod/android_bionic" />
