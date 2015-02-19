@@ -1,0 +1,18 @@
+#!/system/bin/sh
+set -e
+
+ZRAM_DEVICES="zram0 zram1 zram2 zram3"
+ZRAM_SIZE="629145600"
+NUM_DEVICES="4"
+
+for ZRAM_DEVICE in $ZRAM_DEVICES; do
+	if [[ -e "/sys/block/$ZRAM_DEVICE/disksize" && -e "/dev/block/$ZRAM_DEVICE" ]]; then
+		echo `expr $ZRAM_SIZE \/ $NUM_DEVICES` > "/sys/block/$ZRAM_DEVICE/disksize"
+		mkswap "/dev/block/$ZRAM_DEVICE"
+		swapon "/dev/block/$ZRAM_DEVICE"
+	fi
+done
+
+echo 80 > /proc/sys/vm/swappiness
+
+exit 0
