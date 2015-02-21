@@ -157,7 +157,7 @@ fi
 
 cd "$ADROOT"
 
-rm -rf system recovery
+rm -rf install system recovery
 mv META-INF/com/google/android/updater-script META-INF/com/google/android/updater-script.old
 mv META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary.old
 unzip -o "$ADZIP"
@@ -258,8 +258,8 @@ fi
 
 
 ### Handle build.prop ###
-echo "# ArchiDroid build.prop" > build.prop.TEMP
 {
+	echo "# ArchiDroid build.prop"
 	echo "ro.archidroid=1"
 	echo "ro.archidroid.device=$DEVICE"
 	echo "ro.archidroid.rom=$ROM"
@@ -267,9 +267,8 @@ echo "# ArchiDroid build.prop" > build.prop.TEMP
 	echo "ro.archidroid.version=$VERSION"
 	echo "ro.archidroid.version.android=$AVERSION"
 	echo "ro.archidroid.version.type=$TVERSION"
-	echo
 	cat ../system/build.prop
-} >> build.prop.TEMP
+} > build.prop.TEMP
 
 # Change default version to our custom one
 sed -i "/ro.build.display.id=/c\ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE" build.prop.TEMP
