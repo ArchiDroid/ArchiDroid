@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -86,8 +86,8 @@ BACKGROUND=0
 FORCEDSEMAPHORE=0
 for ARG in "$@"; do
 	case "$ARG" in
-		"background") BACKGROUND=1 ;;
-		"force") FORCEDSEMAPHORE=1 ;;
+		--background|background) BACKGROUND=1 ;;
+		--force|force) FORCEDSEMAPHORE=1 ;;
 	esac
 done
 
