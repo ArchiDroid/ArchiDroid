@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,12 +54,12 @@ RESET_DNSES() {
 
 	sleep "$WAITFORNETD" # Make sure that we're the last
 	local IFPROBE="$(busybox route | grep "default" | head -n 1 | awk '{print $NF}')"
-	if [[ ! -z "$IFPROBE" ]]; then
-		echo "$(date) Detected new network interface: $IFPROBE. Forwarding $IFPROBE DNS requests to 127.0.0.1!"
+	if [[ -n "$IFPROBE" ]]; then
+		echo "$(date +"%F %T") INFO: Detected new network interface: $IFPROBE. Forwarding $IFPROBE DNS requests to 127.0.0.1!"
 		ndc resolver setifdns "$IFPROBE" "" "127.0.0.1"
 	else
 		# This should never happen
-		echo "$(date) WARNING: Could not detect default interface! Proxying all DNS requests to 127.0.0.1!"
+		echo "$(date +"%F %T") WARNING: Could not detect default interface! Proxying all DNS requests to 127.0.0.1!"
 		for IF in $(getprop mobiledata.interfaces | tr ',' '\n'); do
 			ndc resolver setifdns "$IF" "" "127.0.0.1"
 		done
@@ -71,11 +71,11 @@ MONITOR_DNS() {
 	DNS2="$(getprop net.dns2)"
 	local CURDNS1="$DNS1"
 	local CURDNS2="$DNS2"
-	echo "$(date) Current DNSes: $DNS1, $DNS2"
+	echo "$(date +"%F %T") INFO: Current DNSes: $DNS1, $DNS2"
 
 	setprop "net.dns1" "127.0.0.1" # This is only for us to get notified from netd
 	REGENERATE_RESOLV
-	if [[ ! -z "$DNS1" && "$DNS1" != "127.0.0.1" ]]; then
+	if [[ -n "$DNS1" && "$DNS1" != "127.0.0.1" ]]; then
 		setprop "archidroid.adblock.dns1" "$DNS1" # Store the original DNS, so we can restore it later
 		RESET_DNSES
 	fi
@@ -84,9 +84,9 @@ MONITOR_DNS() {
 		CURDNS1="$(getprop net.dns1)"
 		if [[ "$CURDNS1" != "127.0.0.1" ]]; then
 			CURDNS2="$(getprop net.dns2)"
-			echo "$(date) Detected DNS change!"
-			echo "$(date) Previous: $DNS1, $DNS2"
-			echo "$(date) Current: $CURDNS1, $CURDNS2"
+			echo "$(date +"%F %T") INFO: Detected DNS change!"
+			echo "$(date +"%F %T") INFO: Previous: $DNS1, $DNS2"
+			echo "$(date +"%F %T") INFO: Current: $CURDNS1, $CURDNS2"
 			DNS1="$CURDNS1"
 			DNS2="$CURDNS2"
 			setprop "net.dns1" "127.0.0.1" # This is only for us to get notified from netd
@@ -98,10 +98,10 @@ MONITOR_DNS() {
 	done
 }
 
-echo "$(date) Active!"
+echo "$(date +"%F %T") INFO: ArchiDroid_Monitor_DNS executed!"
 
 if [[ -f "$ADSTATUS" ]]; then
-	echo "$(date) Previous instance found, cleaning up..."
+	echo "$(date +"%F %T") Previous instance found, cleaning up..."
 	rm -f "$ADSTATUS"
 	sleep 1 # Give it some time to cleanup and finish
 fi
@@ -119,12 +119,12 @@ done
 
 MONITOR_DNS &
 
-if [[ ! -z "$(which inotifywait)" ]]; then
+if [[ -n "$(which inotifywait)" ]]; then
 	inotifywait -qq -e delete -e modify "$ADSTATUS"
 else
 	wait # Fallback, should never happen
 fi
 
-echo "$(date) Shutting down..."
+echo "$(date +"%F %T") Shutting down..."
 
 exit 0
