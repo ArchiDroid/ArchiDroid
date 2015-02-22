@@ -423,7 +423,7 @@ elif [[ ! -f "$ADSTATUS" ]]; then
 	# debuggerd and init.d are executed in the nearly same moment, which may cause typical race condition here
 	# It's very likely that these childs will enter this segment in the same moment, we must stop it right here
 	# If we're not the lowest PID of all the PIDs from the same process, exit
-	if [[ "$(pidof "$(basename "$0")" | awk '{print $1}')" != "$$" ]]; then
+	if [[ "$(pidof "$(basename "$0")" | awk '{print $NF}')" != "$$" ]]; then
 		exit 0
 	fi
 	ADSTART "TMPFS"
@@ -441,8 +441,8 @@ else
 		# Something tried to execute already running init, double-execution?
 		exit 3
 	else
-		# Old PID is dead and didn't exit properly, allow that for now
-		echo "$$" > "$ADSTATUS"
+		# Old PID is dead and didn't exit properly, probably panic
+		exit 4
 	fi
 fi
 
