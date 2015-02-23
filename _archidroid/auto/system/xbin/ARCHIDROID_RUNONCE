@@ -220,11 +220,10 @@ if [[ -f "$AD/INSTALL" || "$FORCE" -eq 1 ]]; then
 	echo "$(date +"%F %T") INFO: Install mode detected"
 	if [[ -d "$AD/FIRSTBOOT/DATA" ]]; then
 		(
-			mADMANY="$ADMANY"
-			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | while read FOLDER; do
-				((mADMANY++))
+			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read FOLDER; do
+				((ADMANY++))
 			done
-			echo "$mADMANY" > "$ADFIFO"
+			echo "$ADMANY" > "$ADFIFO")
 		) &
 		ADMANY="$(cat "$ADFIFO")"
 	fi
@@ -285,8 +284,7 @@ until [[ "$LOOP" -ge 600 ]] || pgrep com.android.systemui >/dev/null 2>&1; do
 	# Now let's MAKE SURE that our settings are in fact applied, only if we don't have shared_prefs already (prevent non-clean override)
 	if [[ "$ADMANY" -gt 0 ]]; then
 		(
-			mADMANY="$ADMANY"
-			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | while read FOLDER; do
+			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read FOLDER; do
 				FOLDERSHORT="$(basename "$FOLDER")"
 				if [[ -d "/data/data/$FOLDERSHORT" ]]; then
 
@@ -321,13 +319,13 @@ until [[ "$LOOP" -ge 600 ]] || pgrep com.android.systemui >/dev/null 2>&1; do
 
 					# And we're done!
 					rm -rf "$FOLDER"
-					((mADMANY--))
+					((ADMANY--))
 					echo "$(date +"%F %T") INFO: Merging done! $ADMANY to go"
-					echo "$mADMANY" > "$ADFIFO"
+					echo "$ADMANY" > "$ADFIFO"
 					exit 0
 				fi
 			done
-			echo "$mADMANY" > "$ADFIFO"
+			echo "$ADMANY" > "$ADFIFO")
 		) &
 		ADMANY="$(cat "$ADFIFO")"
 	fi
