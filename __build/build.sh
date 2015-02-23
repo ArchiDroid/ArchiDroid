@@ -157,11 +157,13 @@ fi
 
 cd "$ADROOT"
 
-rm -rf install system recovery
+rm -rf install system
 mv META-INF/com/google/android/updater-script META-INF/com/google/android/updater-script.old
 mv META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary.old
 unzip -o "$ADZIP"
 rm -f "$ADZIP"
+
+rm -rf recovery # Unused
 
 NEWMD5="$(md5sum META-INF/com/google/android/updater-script | awk '{print $1}')"
 if [[ -f "__build/_updater-scripts/archidroid/updater-script" ]]; then
