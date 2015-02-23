@@ -38,12 +38,19 @@ ADTWEAK() {
 	fi
 }
 
+ADEVENT() {
+	if [[ -p "$ADEVENTPIPE" ]]; then
+		echo "$@" > "$ADEVENTPIPE"
+	fi
+}
+
 ADSTOP() {
 	case "$1" in
 		"ALL")
 			ADSTOP "HAVEGED"
 			ADSTOP "FRANDOM"
 			ADSTOP "ADBLOCK"
+			ADSTOP "EVENT_LISTENER"
 			ADSTOP "TMPFS"
 			ADSTOP "LOGCAT"
 		;;
@@ -56,28 +63,14 @@ ADSTOP() {
 
 		# Services
 		"ADBLOCK")
-			ADSTOP "DNS_MONITOR"
 			ADSTOP "archidroid_dnsmasq"
 			ADSTOP "archidroid_pixelserv"
 
 			# If adblock is currently active, reset default DNS
-			if [[ "$(getprop net.dns1)" = "127.0.0.1" ]]; then
-				local IFPROBE="$(busybox route | grep "default" | head -n 1 | awk '{print $NF}')"
-				local DNS1="$(getprop archidroid.adblock.dns1)"
-				setprop net.dns1 "$DNS1"
-				if [[ -n "$IFPROBE" ]]; then
-					ndc resolver setifdns "$IFPROBE" "" "$DNS1"
-				else
-					# This should never happen
-					for IF in $(getprop mobiledata.interfaces | tr ',' '\n'); do
-						ndc resolver setifdns "$IF" "" "$DNS1"
-					done
-				fi
-				ndc resolver flushdefaultif >/dev/null 2>&1 # Flush DNS Cache
-			fi
+			ADEVENT "CONNECTIVITY_RESET"
 		;;
-		"DNS_MONITOR")
-			rm -f "$ADTMPFS/ARCHIDROID_MONITOR_DNS"
+		"EVENT_LISTENER")
+			rm -f "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID"
 		;;
 		"FRANDOM")
 			# Generic check if we're not doing something harmful
@@ -116,6 +109,7 @@ ADSTART() {
 		"ALL")
 			ADSTART "LOGCAT"
 			ADSTART "TMPFS"
+			ADSTART "EVENT_LISTENER"
 			ADSTART "HAVEGED"
 			ADSTART "FRANDOM"
 			ADSTART "ADBLOCK"
@@ -131,6 +125,9 @@ ADSTART() {
 		"ADBLOCK")
 			if [[ "$ADBLOCK" -eq 1 ]]; then
 				if [[ "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
+					# If adblock is currently deactivated, set proper DNSes
+					ADEVENT "CONNECTIVITY_CHANGE 0"
+
 					if ! cmp /system/archidroid/dev/spinners/_Hosts/Default /system/etc/hosts >/dev/null 2>&1; then
 						mount -o remount,rw /system
 
@@ -146,7 +143,6 @@ ADSTART() {
 
 						mount -o remount,ro /system
 					fi
-					ADSTART "DNS_MONITOR"
 					ADSTART "archidroid_dnsmasq"
 				else
 					if ! cmp /system/archidroid/etc/hosts /system/etc/hosts >/dev/null 2>&1; then
@@ -168,14 +164,8 @@ ADSTART() {
 				ADSTART "archidroid_pixelserv"
 			fi
 		;;
-		"DNS_MONITOR")
-			if [[ "$ADBLOCK" -eq 1 && "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
-				local EXTRA="--dnsproxy"
-				if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
-					EXTRA+=" --resolv"
-				fi
-				ARCHIDROID_MONITOR_DNS $EXTRA &
-			fi
+		"EVENT_LISTENER")
+			ARCHIDROID_EVENT_LISTENER &
 		;;
 		"FRANDOM")
 			if [[ "$FRANDOM" -eq 1 ]]; then
@@ -234,6 +224,7 @@ ADSTART() {
 				local EXTRA="--all-servers -x $ADTMPFS/DNSMASQ.PID"
 				if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
 					echo "$(date +"%F %T") INFO: ADBLOCK: Including local DNSes!"
+					ADEVENT "REFRESH_RESOLV"
 					if [[ "$ADBLOCKSTRICTORDER" -eq 1 ]]; then
 						echo "$(date +"%F %T") INFO: ADBLOCK: Strict order enabled!"
 						EXTRA+=" --strict-order"
@@ -332,6 +323,7 @@ AD="/data/media/0/ArchiDroid"
 ADSYS="/system/archidroid"
 ADDEV="$ADSYS/dev"
 ADTMPFS="$ADSYS/tmpfs"
+ADEVENTPIPE="$ADTMPFS/EVENTS"
 LOG="$AD/Init.log" # "/dev/null" is no verbose
 #RUNONCELOG="$AD/RunOnce.log" # Unused
 ADSTATUS="$ADTMPFS/ARCHIDROID_INIT_STATUS"
