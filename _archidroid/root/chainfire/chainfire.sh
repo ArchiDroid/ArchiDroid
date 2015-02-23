@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,6 +31,26 @@ else
 fi
 
 mkdir -p "/system/bin/.ext"
+chmod 0777 "/system/bin/.ext"
 cp -p "/system/xbin/su" "/system/bin/.ext/.su"
-sed -i "s/persist.sys.root_access=1/persist.sys.root_access=0/g" "/system/build.prop" # This is to silent built-in Superuser on AOSP
+
+rm -f "/system/bin/app_process"
+ln -s "../xbin/daemonsu" "/system/bin/app_process"
+
+for BIT in "64" "32"; do
+	if [[ -f "/system/bin/app_process${BIT}" ]]; then
+		if [[ ! -f "/system/bin/app_process${BIT}_original" ]]; then
+			mv "/system/bin/app_process${BIT}" "/system/bin/app_process${BIT}_original"
+		else
+			rm -f "/system/bin/app_process${BIT}"
+		fi
+		if [[ ! -f "/system/bin/app_process_init" ]]; then
+			cp -p "/system/bin/app_process${BIT}_original" "/system/bin/app_process_init"
+		fi
+		ln -s "../xbin/daemonsu" "/system/bin/app_process${BIT}"
+	fi
+done
+
+sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=0/g" "/system/build.prop" # This is to silent built-in Superuser in CM
+
 exit 0
