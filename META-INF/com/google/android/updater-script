@@ -487,7 +487,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 #			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-calendargoogle") == "1" then
 				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Calendar");
-				delete("/system/app/Calendar");
+				delete_recursive("/system/app/Calendar");
 				package_extract_dir("_archidroid/gapps/pa/GApps/calendargoogle", "/system");
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-calsync") == "1" then
@@ -496,7 +496,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-exchangegoogle") == "1" then
 				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Exchange Services");
-				delete("/system/app/Exchange2");
+				delete_recursive("/system/app/Exchange2");
 				package_extract_dir("_archidroid/gapps/pa/GApps/exchangegoogle", "/system");
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-faceunlock") == "1" then
@@ -605,7 +605,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		if file_getprop("/tmp/aroma-data/archidroid.prop", "keyboard") == "stock" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Stock keyboard");
 		else
-			delete("/system/app/LatinIME");
+			delete_recursive("/system/app/LatinIME");
 		endif;
 
 		set_progress(0.84);
@@ -631,7 +631,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		if file_getprop("/tmp/aroma-data/archidroid.prop", "launcher") == "stock" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Stock launcher");
 		else
-			delete("/system/priv-app/Trebuchet");
+			delete_recursive("/system/priv-app/Trebuchet");
 		endif;
 
 		set_progress(0.85);
@@ -702,7 +702,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Cell Broadcasts enabled");
 		else
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Cell Broadcasts disabled");
-			delete("/system/priv-app/CellBroadcastReceiver");
+			delete_recursive("/system/priv-app/CellBroadcastReceiver");
 		endif;
 
 		set_progress(0.87);
