@@ -379,7 +379,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"esfileexplorer", "ES File Explorer", "<~archidroid.apps.esfileexplorer.desc>", "check.checked",
 		"fdroid", "F-Droid", "<~archidroid.apps.fdroid.desc>", "check.checked",
 		"greenify", "Greenify", "<~archidroid.apps.greenify.desc>", "check.checked",
-		"lmt", "LMT", "<~archidroid.apps.lmt.desc>", "check.checked",
+		"lmt", "LMT", "<~archidroid.apps.lmt.desc>", "check",
 		"mxplayer", "MXPlayer", "<~archidroid.apps.mxplayer.desc>", "check.checked",
 #		"spiritfm", "Spirit FM", "<~archidroid.apps.spiritfm.desc>", "check.checked",
 		"titaniumbackup", "Titanium Backup", "<~archidroid.apps.titaniumbackup.desc>", "check.checked",
