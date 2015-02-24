@@ -22,9 +22,9 @@
 # limitations under the License.
 
 for BIT in "64" "32"; do
-	if [[ -f "/system/bin/app_process{$BIT}" && ! -f "/system/bin/app_process{$BIT}_original" ]]; then
-		mv "/system/bin/app_process{$BIT}" "/system/bin/app_process{$BIT}_original"
-		ln -s "app_process{$BIT}_xposed" "/system/bin/app_process{$BIT}"
+	if [[ -f "/system/bin/app_process${BIT}" && ! -f "/system/bin/app_process${BIT}_original" ]]; then
+		mv "/system/bin/app_process${BIT}" "/system/bin/app_process${BIT}_original"
+		ln -s "app_process${BIT}_xposed" "/system/bin/app_process${BIT}"
 	fi
 done
 mv "/system/bin/dex2oat" "/system/bin/dex2oat.orig"
