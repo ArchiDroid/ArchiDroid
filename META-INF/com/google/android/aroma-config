@@ -339,7 +339,8 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"stock", "Stock", "<~archidroid.launcher.stock.desc>", "select",
 
 		"bootanimation", "<#selectbg_g><~archidroid.bootanimation></#>", "", "group",
-		"archi3", "ArchiDroid 3.X", "<~archidroid.bootanimation.archi3.desc>", "select.selected",
+		"archi3m", "ArchiDroid 3.X Material", "<~archidroid.bootanimation.archi3m.desc>", "select.selected",
+		"archi3", "ArchiDroid 3.X", "<~archidroid.bootanimation.archi3.desc>", "select",
 		"archi2", "ArchiDroid 2.X", "<~archidroid.bootanimation.archi2.desc>", "select",
 		"archi1", "ArchiDroid 1.X", "<~archidroid.bootanimation.archi1.desc>", "select",
 		"stock", "Stock", "<~archidroid.bootanimation.stock.desc>", "select",
