@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
 # /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -116,10 +116,10 @@ if [[ -f "$AKDROP/boot.img-ramdisk.gz" ]]; then
 		fi
 
 		# If we have any executable files/folders, chmod them
-		TO755="sbin/ArchiKernel-Init res/uci.sh"
+		TO755="sbin res/synapse/actions"
 		for FILE in $TO755; do
 			if [[ -e "$AKDROP/ramdisk/$FILE" ]]; then
-				chmod 755 "$AKDROP/ramdisk/$FILE"
+				chmod -R 755 "$AKDROP/ramdisk/$FILE"
 			fi
 		done
 

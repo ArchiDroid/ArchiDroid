@@ -1,0 +1,54 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+AK="/data/.ArchiKernel"
+CONFIG_JSON="$AK/config.json"
+
+AKSYNAPSE="/res/synapse"
+AKACTION="$AKSYNAPSE/actions"
+
+PRINT_ACTIONPATH() {
+	echo "$AKACTION"
+}
+
+PRINT_CONFIG() {
+	if [[ ! -f "$CONFIG_JSON" ]]; then
+		RESET_CONFIG
+	fi
+	cat "$CONFIG_JSON"
+}
+
+DEBUG_CONFIG() {
+	source "$AKSYNAPSE/config.json.generate"
+}
+
+RESET_CONFIG() {
+	source "$AKSYNAPSE/config.json.generate" > "$CONFIG_JSON"
+}
+
+case "$1" in
+	actionpath) PRINT_ACTIONPATH ;;
+	config) PRINT_CONFIG ;;
+	debug) DEBUG_CONFIG ;;
+	reset) RESET_CONFIG ;;
+esac

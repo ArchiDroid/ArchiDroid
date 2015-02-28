@@ -1,0 +1,74 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Read -> return current preset from $1. Special: return all presets if $1 is "ALL"
+# Write -> set $2 preset in $1
+
+SYSFS_FILE="$1"
+TARGET_VALUE="$2"
+
+# Knows presets, don't forget to add them to the case below
+PRESETS="Flat Archi BaseLand BassExtreme BassTreble Classic Dance Eargasm Pleasant Rock Treble Custom"
+PRESET_FLAT="0 0 0 0 0"
+PRESET_ARCHI="8 4 4 2 6"
+PRESET_BASELAND="8 7 4 3 3"
+PRESET_BASSEXTREME="12 8 3 -1 1"
+PRESET_BASSTREBLE="10 7 0 2 5"
+PRESET_CLASSIC="0 0 0 -3 -5"
+PRESET_DANCE="4 0 -6 0 3"
+PRESET_EARGASM="12 8 4 2 3"
+PRESET_PLEASANT="4 3 2 2 3"
+PRESET_ROCK="4 3 0 -4 3"
+PRESET_TREBLE="-5 1 0 4 3"
+
+if [[ "$SYSFS_FILE" = "ALL" ]]; then
+	echo "$PRESETS"
+elif [[ -e "$SYSFS_FILE" ]]; then
+	if [[ -z "$TARGET_VALUE" ]]; then # Read mode
+		GAINS_CURRENT="$(tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d ':')"
+		case "$GAINS_CURRENT" in # Known presets case, Synapse return
+			*"$PRESET_FLAT") echo "Flat" ;;
+			*"$PRESET_ARCHI") echo "Archi" ;;
+			*"$PRESET_BASELAND") echo "BaseLand" ;;
+			*"$PRESET_BASSEXTREME") echo "BassExtreme" ;;
+			*"$PRESET_BASSTREBLE") echo "BassTreble" ;;
+			*"$PRESET_CLASSIC") echo "Classic" ;;
+			*"$PRESET_DANCE") echo "Dance" ;;
+			*"$PRESET_EARGASM") echo "Eargasm" ;;
+			*"$PRESET_PLEASANT") echo "Pleasant" ;;
+			*"$PRESET_ROCK") echo "Rock" ;;
+			*"$PRESET_TREBLE") echo "Treble" ;;
+			*) echo "Custom"
+		esac
+	else # Write mode
+		PRESET_CHOSEN="$(echo "$TARGET_VALUE" | tr '[:lower:]' '[:upper:]')" # To uppercase
+		if [[ "$PRESET_CHOSEN" != "CUSTOM" ]]; then
+			eval SYSFS_WRITE="\${PRESET_$PRESET_CHOSEN}" # eval is evil
+			if [[ -n "$SYSFS_WRITE" ]]; then
+				echo "$SYSFS_WRITE" > "$SYSFS_FILE" # Write effect
+			fi
+		fi
+	fi
+else
+	echo "N/A"
+fi
