@@ -64,7 +64,7 @@ SET_DNSES() {
 
 LISTEN_FOR_EVENTS() {
 	if [[ -p "$ADEVENTPIPE" ]]; then
-		rm -f "$ADEVENTPIPE" # Should never happen
+		rm "$ADEVENTPIPE" # Should never happen
 	fi
 
 	mkfifo -m "622" "$ADEVENTPIPE" # Allow everyone to write, but only us to read

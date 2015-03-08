@@ -40,6 +40,10 @@ ADTWEAK() {
 
 ADEVENT() {
 	if [[ -p "$ADEVENTPIPE" ]]; then
+		if ! pidof ARCHIDROID_EVENT_LISTENER >/dev/null 2>&1; then
+			ADSTART "EVENT_LISTENER"
+			sleep 2
+		fi
 		echo "$@" > "$ADEVENTPIPE"
 	fi
 }
