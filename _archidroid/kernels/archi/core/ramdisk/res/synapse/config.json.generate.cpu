@@ -56,7 +56,7 @@ _EOF
 		)
 		{
 			STitleBar:{
-			title:"CPU frequency scaling"
+				title:"CPU frequency scaling"
 			}
 		},
 		{
@@ -97,9 +97,54 @@ _EOF
 				}
 			}
 		},
+		$(
+			if [[ -e /sys/class/misc/touchboost_switch/touchboost_switch ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"Touch boost"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Touch boost",
+						description:"This setting allows you to control touch boost functionality. When active, the CPU frequency is boosted to a higher level when the touch screen is being used. This increases smoothness of the user interface, but also consumes slightly more CPU power. Usually you want to keep that feature active for extra smoothness, but with good CPU governor and it's settings, it may be optional",
+						default:$(AK_generic_ARGL /sys/class/misc/touchboost_switch/touchboost_switch),
+						action:"AK_generic_ARGL /sys/class/misc/touchboost_switch/touchboost_switch"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/class/misc/touchboost_switch/touchboost_freq ]]; then
+cat << _EOF
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Touch boost frequency",
+						description:"This is the frequency that CPU is boosted to when touch boost is active. This option has no effect if touch boost is disabled",
+						default:$(AK_generic_ARG1 /sys/class/misc/touchboost_switch/touchboost_freq),
+						action:"AK_generic_ARG1 /sys/class/misc/touchboost_switch/touchboost_freq",
+						values:{
+							$(
+								while read FREQ TIME; do
+									echo "$FREQ:"$((FREQ / 1000)) MHz", "
+								done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+							)
+						}
+					}
+				},
+_EOF
+			fi
+		)
 		{
 			STitleBar:{
-			title:"CPU undervolting"
+				title:"CPU undervolting"
 			}
 		},
 		$(

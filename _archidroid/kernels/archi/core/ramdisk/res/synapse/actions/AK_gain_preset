@@ -27,43 +27,42 @@
 SYSFS_FILE="$1"
 TARGET_VALUE="$2"
 
-# Knows presets, don't forget to add them to the case below
-PRESETS="Flat Archi BaseLand BassExtreme BassTreble Classic Dance Eargasm Pleasant Rock Treble Custom"
-PRESET_FLAT="0 0 0 0 0"
-PRESET_ARCHI="8 4 4 2 6"
-PRESET_BASELAND="8 7 4 3 3"
-PRESET_BASSEXTREME="12 8 3 -1 1"
-PRESET_BASSTREBLE="10 7 0 2 5"
-PRESET_CLASSIC="0 0 0 -3 -5"
-PRESET_DANCE="4 0 -6 0 3"
-PRESET_EARGASM="12 8 4 2 3"
-PRESET_PLEASANT="4 3 2 2 3"
-PRESET_ROCK="4 3 0 -4 3"
-PRESET_TREBLE="-5 1 0 4 3"
+# Knows presets
+KNOWN_PRESETS="Archi BaseLand BassExtreme BassTreble Classic Dance Eargasm Flat Pleasant Rock Treble"
+ALL_PRESETS="$KNOWN_PRESETS Custom"
+
+PRESET_Archi="8 4 4 2 6"
+PRESET_BaseLand="8 7 4 3 3"
+PRESET_BassExtreme="12 8 3 -1 1"
+PRESET_BassTreble="10 7 0 2 5"
+PRESET_Classic="0 0 0 -3 -5"
+PRESET_Dance="4 0 -6 0 3"
+PRESET_Eargasm="12 8 4 2 3"
+PRESET_Flat="0 0 0 0 0"
+PRESET_Pleasant="4 3 2 2 3"
+PRESET_Rock="4 3 0 -4 3"
+PRESET_Treble="-5 1 0 4 3"
 
 if [[ "$SYSFS_FILE" = "ALL" ]]; then
-	echo "$PRESETS"
+	echo "$ALL_PRESETS"
 elif [[ -e "$SYSFS_FILE" ]]; then
 	if [[ -z "$TARGET_VALUE" ]]; then # Read mode
 		GAINS_CURRENT="$(tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d ':')"
-		case "$GAINS_CURRENT" in # Known presets case, Synapse return
-			*"$PRESET_FLAT") echo "Flat" ;;
-			*"$PRESET_ARCHI") echo "Archi" ;;
-			*"$PRESET_BASELAND") echo "BaseLand" ;;
-			*"$PRESET_BASSEXTREME") echo "BassExtreme" ;;
-			*"$PRESET_BASSTREBLE") echo "BassTreble" ;;
-			*"$PRESET_CLASSIC") echo "Classic" ;;
-			*"$PRESET_DANCE") echo "Dance" ;;
-			*"$PRESET_EARGASM") echo "Eargasm" ;;
-			*"$PRESET_PLEASANT") echo "Pleasant" ;;
-			*"$PRESET_ROCK") echo "Rock" ;;
-			*"$PRESET_TREBLE") echo "Treble" ;;
-			*) echo "Custom"
-		esac
+		FOUND=0
+		for PRESET_CHOSEN in $KNOWN_PRESETS; do
+			eval PRESET_VALUES="\${PRESET_${PRESET_CHOSEN}}" # eval is evil
+			if [[ "$GAINS_CURRENT" = *"$PRESET_VALUES" ]]; then
+				echo "$PRESET_CHOSEN"
+				FOUND=1
+				break
+			fi
+		done
+		if [[ "$FOUND" -eq 0 ]]; then
+			echo "Custom"
+		fi
 	else # Write mode
-		PRESET_CHOSEN="$(echo "$TARGET_VALUE" | tr '[:lower:]' '[:upper:]')" # To uppercase
-		if [[ "$PRESET_CHOSEN" != "CUSTOM" ]]; then
-			eval SYSFS_WRITE="\${PRESET_$PRESET_CHOSEN}" # eval is evil
+		if [[ "$TARGET_VALUE" != "Custom" ]]; then
+			eval SYSFS_WRITE="\${PRESET_${TARGET_VALUE}}" # eval is evil
 			if [[ -n "$SYSFS_WRITE" ]]; then
 				echo "$SYSFS_WRITE" > "$SYSFS_FILE" # Write effect
 			fi

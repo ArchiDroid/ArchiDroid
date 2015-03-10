@@ -30,7 +30,7 @@ cat << EOF
 cat << _EOF
 				{
 					STitleBar:{
-					title:"Fading LED"
+						title:"Fading LED"
 					}
 				},
 				{
@@ -43,7 +43,7 @@ cat << _EOF
 				},
 				{
 					STitleBar:{
-					title:"LED settings"
+						title:"LED settings"
 					}
 				},
 				{
@@ -66,7 +66,7 @@ cat << _EOF
 				},
 				{
 					STitleBar:{
-					title:"LED slopes"
+						title:"LED slopes"
 					}
 				},
 				{

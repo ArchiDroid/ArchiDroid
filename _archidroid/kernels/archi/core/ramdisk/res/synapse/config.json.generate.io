@@ -26,14 +26,14 @@ cat << EOF
 	name:I/O,
 	elements:[
 		{
-			SPane:{
-				title:"I/O schedulers",
-				description:"Set the active I/O elevator algorithm. The scheduler decides how to handle I/O requests"
+			STitleBar:{
+				title:"Internal SD Card (eMMC)"
 			}
 		},
 		{
 			SOptionList:{
 				title:"Internal storage scheduler",
+				description:"The selected scheduling algorithm decides which order block I/O operations will be submitted to storage volumes.",
 				default:"$(AK_bracket /sys/block/mmcblk0/queue/scheduler)",
 				action:"AK_bracket /sys/block/mmcblk0/queue/scheduler",
 				values:[
@@ -46,37 +46,65 @@ cat << EOF
 			}
 		},
 		{
-			SOptionList:{
-				title:"SD card scheduler",
-				default:"$(AK_bracket /sys/block/mmcblk1/queue/scheduler)",
-				action:"AK_bracket /sys/block/mmcblk1/queue/scheduler",
-				values:[
-					$(
-						for IOSCHED in $(sed -e 's/\[//;s/\]//' < /sys/block/mmcblk1/queue/scheduler); do
-							echo ""$IOSCHED","
-						done
-					)
-				]
-			}
-		},
-		{
 			SSeekBar:{
 				title:"Internal storage read-ahead",
-				description:"The read-ahead value on the internal phone memory.",
+				description:"This setting controls how much extra data the operating system reads from disk when performing I/O operations.",
 				max:2048, min:128, unit:" kB", step:128,
-				default:$(cat /sys/block/mmcblk0/queue/read_ahead_kb),
+				default:$(AK_generic /sys/block/mmcblk0/queue/read_ahead_kb),
 				action:"AK_generic /sys/block/mmcblk0/queue/read_ahead_kb"
 			}
 		},
 		{
-			SSeekBar:{
-				title:"SD card read-ahead",
-				description:"The read-ahead value on the external SD card.",
-				max:2048, min:128, unit:" kB", step:128,
-				default:$(cat /sys/block/mmcblk1/queue/read_ahead_kb),
-				action:"AK_generic /sys/block/mmcblk1/queue/read_ahead_kb"
+			SCheckBox:{
+				label:"Entropy collection from internal storage I/O operations",
+				description:"By default, the amount of time to write a block is used as source of entropy. This behaviour can be disabled in order to improve I/O speed for the cost of potential lower kernel's entropy pool",
+				default:$(AK_generic /sys/block/mmcblk0/queue/add_random),
+				action:"AK_generic /sys/block/mmcblk0/queue/add_random"
 			}
 		},
+		$(
+			if [[ -e /sys/block/mmcblk1 ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"External SD Card"
+					}
+				},
+				{
+					SOptionList:{
+						title:"External storage scheduler",
+						description:"The selected scheduling algorithm decides which order block I/O operations will be submitted to storage volumes.",
+						default:"$(AK_bracket /sys/block/mmcblk1/queue/scheduler)",
+						action:"AK_bracket /sys/block/mmcblk1/queue/scheduler",
+						values:[
+							$(
+								for IOSCHED in $(sed -e 's/\[//;s/\]//' < /sys/block/mmcblk1/queue/scheduler); do
+									echo ""$IOSCHED","
+								done
+							)
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"External storage read-ahead",
+						description:"This setting controls how much extra data the operating system reads from disk when performing I/O operations.",
+						max:2048, min:128, unit:" kB", step:128,
+						default:$(AK_generic /sys/block/mmcblk1/queue/read_ahead_kb),
+						action:"AK_generic /sys/block/mmcblk1/queue/read_ahead_kb"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Entropy collection from external storage I/O operations",
+						description:"By default, the amount of time to write a block is used as source of entropy. This behaviour can be disabled in order to improve I/O speed for the cost of potential lower kernel's entropy pool",
+						default:$(AK_generic /sys/block/mmcblk1/queue/add_random),
+						action:"AK_generic /sys/block/mmcblk1/queue/add_random"
+					}
+				},
+_EOF
+			fi
+		)
 		$(
 			if [[ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]]; then
 cat << _EOF

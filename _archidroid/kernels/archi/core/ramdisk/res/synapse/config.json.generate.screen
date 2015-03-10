@@ -40,6 +40,75 @@ cat << _EOF
 _EOF
 			fi
 		)
+		$(
+			if [[ -e /sys/class/misc/touchwake ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"TouchWake",
+						description:"Version: $(cat /sys/class/misc/touchwake/version)"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"TouchWake",
+						description:"This feature allows you to quickly turn the screen back on after it times out, just by a simple tap. Please note that this feature works only for configured delay (below) after the timeout. This is because of the wakelock that must be set in order to listen for screen events, which prevents device from going to the deep sleep, therefore drains more battery for the time when device is waiting for your action",
+						default:$(AK_generic /sys/class/misc/touchwake/enabled),
+						action:"AK_generic /sys/class/misc/touchwake/enabled"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Wakelock duration (TouchWake delay)",
+						description:"This value determines the duration of the TouchWake wakelock, which specifies maximum time the device will wait for your reaction after the screen times out. For best effects, the suggested values are 5-10. Setting this to 0 causes infinite wakelock, which will drain much more battery, therefore it's NOT suggested for longer runs",
+						max:120000, min:0, unit:" seconds", weight:0.001, step:1000,
+						default:$(AK_generic /sys/class/misc/touchwake/delay),
+						action:"AK_generic /sys/class/misc/touchwake/delay"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Set infinite wakelock duration while charging",
+						description:"Charging the device keeps it awake regardless. When this option is on, wakelock duration is set to 0, but only while device is charging",
+						default:$(AK_generic /sys/class/misc/touchwake/charger_mode),
+						action:"AK_generic /sys/class/misc/touchwake/charger_mode"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SCheckBox:{
+						label:"KnockOn",
+						description:"This feature modifies TouchWake function to require double tapping in given duration, instead of a single tap only",
+						default:$(AK_generic /sys/class/misc/touchwake/knockon),
+						action:"AK_generic /sys/class/misc/touchwake/knockon"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SSeekBar:{
+						title:"KnockOn duration",
+						description:"This value determines the duration of the KnockOn feature, the maximum time between double taps. Setting this to 0 causes infinite waiting",
+						max:5000, min:0, unit:" seconds", weight:0.001, step:500,
+						default:$(AK_generic /sys/class/misc/touchwake/knockon_delay),
+						action:"AK_generic /sys/class/misc/touchwake/knockon_delay"
+					}
+				},
+_EOF
+			fi
+		)
 	]
 }
 EOF

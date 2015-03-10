@@ -1,0 +1,139 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+{
+	name:Memory,
+	elements:[
+		{
+			SSeekBar:{
+				title:"VM Swappiness",
+				description:"This setting controls the relative weight given to swapping out runtime memory, as opposed to dropping pages from the system page cache. A low value causes the kernel to avoid swapping, a higher value causes the kernel to try to use swap space. Keep in mind that this value affects both swap and zram",
+				max:100, min:0,
+				default:$(AK_generic /proc/sys/vm/swappiness),
+				action:"AK_generic /proc/sys/vm/swappiness"
+			}
+		},
+		{
+			SPane:{
+				title:"Swap",
+				description:"Swap space is a form of virtual memory. Simply put this means that if the system runs out of physical memory (RAM), then it will transfer some of the lesser used data in RAM to this space. This physically extends amount of memory, for a cost of potential I/O overhead and reduced flash memory lifespan"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Internal Swap",
+				description:"Swap located on internal eMMC card",
+				max:512, min:0, unit:" MB",
+				default:$(AK_swap /cache/ArchiKernel.swap),
+				action:"AK_swap /cache/ArchiKernel.swap"
+			}
+		},
+		$(
+			if [[ -e /sys/block/mmcblk1 ]]; then
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"External Swap",
+						description:"Swap located on external SD card",
+						max:512, min:0, unit:" MB",
+						default:$(AK_swap /storage/sdcard1/ArchiKernel.swap),
+						action:"AK_swap /storage/sdcard1/ArchiKernel.swap"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /dev/block/zram0 ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"zRAM",
+						description:"Provides a form of virtual memory compression. zRAM increases performance by avoiding paging to disk and using a compressed block device in RAM instead. Compressing unused memory pages can benefit the device by providing more free memory for other tasks"
+					}
+				},
+				$(
+					find /dev/block -mindepth 1 -maxdepth 1 -iname "zram*" | sort | while read ZRAM_BLOCK; do
+					ZRAM_DEVICE="$(basename "$ZRAM_BLOCK")"
+cat << __EOF
+						{
+							SSeekBar:{
+								title:"$ZRAM_DEVICE block",
+								description:"",
+								max:300, min:0, unit:" MB",
+								default:$(AK_zram $ZRAM_DEVICE),
+								action:"AK_zram $ZRAM_DEVICE"
+							}
+						},
+__EOF
+					done
+				)
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/mm/ksm ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"Kernel samepage merging"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"[EXPERIMENTAL] Kernel samepage merging",
+						description:"KSM is a kernel thread that runs in the background and compares pages in memory that have been marked MADV_MERGEABLE by user-space. If two pages are found to be the same, the KSM thread merges them back as a single copy-on-write page of memory. WARNING: This feature may cause strange camera problems on exynos4 board, therefore it's called experimental, use at your own risk!",
+						default:$(AK_generic /sys/kernel/mm/ksm/run),
+						action:"AK_generic /sys/kernel/mm/ksm/run"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SSeekBar:{
+						title:"KSM sleep duration",
+						description:"This value configures milliseconds ksmd should sleep between batches. Google suggests a value of 500 ms",
+						max:1000, min:10, unit:" ms",
+						default:$(AK_generic /sys/kernel/mm/ksm/sleep_millisecs),
+						action:"AK_generic /sys/kernel/mm/ksm/sleep_millisecs"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"KSM pages to scan",
+						description:"This value configures the number of pages ksmd should scan in one batch. Google suggests a value of 100 pages",
+						max:1000, min:10, unit:" pages",
+						default:$(AK_generic /sys/kernel/mm/ksm/pages_to_scan),
+						action:"AK_generic /sys/kernel/mm/ksm/pages_to_scan"
+					}
+				},
+_EOF
+			fi
+		)
+	]
+}
+EOF
