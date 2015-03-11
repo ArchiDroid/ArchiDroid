@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,37 +21,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BAREBONES=0
+# ArchiDroid Backend Fallback
+if [[ ! -f "/system/bin/debuggerd.real" && -f "/system/bin/addebuggerd" ]]; then
+	mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
+fi
+mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
 
-for ARG in "$@"; do
-	case "$ARG" in
-		barebones) BAREBONES=1 ;;
-	esac
-done
+# ArchiDroid Dnsmasq Fallback
+if [[ ! -f "/system/bin/dnsmasq.real" && -f "/system/bin/addnsmasq" ]]; then
+	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
+fi
+mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
 
-# Apply additional ArchiDroid things if we're not on barebones
-if [[ "$BAREBONES" -eq 0 ]]; then
-	# ArchiDroid Backend Fallback
-	if [[ ! -f "/system/bin/debuggerd.real" && -f "/system/bin/addebuggerd" ]]; then
-		mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
-	fi
-	mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
-
-	# ArchiDroid Dnsmasq Fallback
-	if [[ ! -f "/system/bin/dnsmasq.real" && -f "/system/bin/addnsmasq" ]]; then
-		mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
-	fi
-	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
-
-	# ArchiDroid Adblock Hosts
-	if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
-		ln -s "_Hosts/AdAway" "/system/archidroid/dev/spinners/Hosts"
-	fi
-	if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners/Hosts" ]]; then
-		ln -s "../dev/spinners/Hosts" "/system/archidroid/etc/hosts"
-	fi
-else
-	touch "/system/archidroid/dev/PRESET_BAREBONES"
+# ArchiDroid Adblock Hosts
+if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
+	ln -s "_Hosts/AdAway" "/system/archidroid/dev/spinners/Hosts"
+fi
+if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners/Hosts" ]]; then
+	ln -s "../dev/spinners/Hosts" "/system/archidroid/etc/hosts"
 fi
 
 exit 0

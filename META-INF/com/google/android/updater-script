@@ -87,19 +87,19 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 
 	set_progress(0.08);
 
-	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Executing pre-install ArchiDroid scripts");
-	package_extract_file("_archidroid/exec/archidroid.sh", "/tmp/archidroid.sh");
-	set_metadata("/tmp/archidroid.sh", "uid", 0, "gid", 0, "mode", 0755);
-
-	if file_getprop("/tmp/aroma-data/archidroidwipe.prop", "wipe") == "no" then
-		ui_print("<b><#ff0000>RunOnce</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>$</#></b> Update mode detected");
-		run_program("/tmp/archidroid.sh", "UPDATE");
-	else
-		ui_print("<b><#ff0000>RunOnce</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>$</#></b> Install mode detected");
-		run_program("/tmp/archidroid.sh", "INSTALL");
+	if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "barebones" then
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Executing pre-install ArchiDroid scripts");
+		package_extract_file("_archidroid/exec/archidroid.sh", "/tmp/archidroid.sh");
+		set_metadata("/tmp/archidroid.sh", "uid", 0, "gid", 0, "mode", 0755);
+		if file_getprop("/tmp/aroma-data/archidroidwipe.prop", "wipe") == "no" then
+			ui_print("<b><#ff0000>RunOnce</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>$</#></b> Update mode detected");
+			run_program("/tmp/archidroid.sh", "UPDATE");
+		else
+			ui_print("<b><#ff0000>RunOnce</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>$</#></b> Install mode detected");
+			run_program("/tmp/archidroid.sh", "INSTALL");
+		endif;
+		delete("/tmp/archidroid.sh");
 	endif;
-
-	delete("/tmp/archidroid.sh");
 
 	set_progress(0.1);
 
@@ -245,14 +245,14 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 
 	set_progress(0.52);
 
-	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing ArchiDroid backend");
-	### IMPORTANT ###
-	package_extract_dir("_archidroid/auto", "/");
-	package_extract_file("_archidroid/exec/archidroid_backend.sh", "/tmp/archidroid_backend.sh");
-	set_metadata("/tmp/archidroid_backend.sh", "uid", 0, "gid", 0, "mode", 0755);
-	run_program("/tmp/archidroid_backend.sh", file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset"));
-	delete("/tmp/archidroid_backend.sh");
-	### IMPORTANT ###
+	if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "barebones" then
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing ArchiDroid backend");
+		package_extract_dir("_archidroid/auto", "/");
+		package_extract_file("_archidroid/exec/archidroid_backend.sh", "/tmp/archidroid_backend.sh");
+		set_metadata("/tmp/archidroid_backend.sh", "uid", 0, "gid", 0, "mode", 0755);
+		run_program("/tmp/archidroid_backend.sh");
+		delete("/tmp/archidroid_backend.sh");
+	endif;
 
 	set_progress(0.53);
 
