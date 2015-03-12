@@ -1,0 +1,6 @@
+#!/system/bin/sh
+
+if [[ ! -f "/data/data/eu.chainfire.liveboot/files/liveboot" ]]; then # Launch LiveBoot only if user isn't using app yet
+	NO_ADDR_COMPAT_LAYOUT_FIXUP=1 ANDROID_ROOT=/system CLASSPATH=/system/app/LiveBoot/LiveBoot.apk /system/bin/app_process32 /system/bin eu.chainfire.liveboot.a.j /system/app/LiveBoot/LiveBoot.apk /system/app/LiveBoot/lib/arm/libcfsurface.so boot dark logcatlevels=VDIWEFS logcatbuffers=MSC logcatformat=brief dmesg=0-99 lines=80 wordwrap &
+fi
+exit 0
