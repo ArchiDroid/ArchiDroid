@@ -31,5 +31,5 @@ if [[ -e "$1" ]]; then
 		awk '{print $3}' < "$1"
 	fi
 else
-	echo "N/A"
+	echo "0"
 fi

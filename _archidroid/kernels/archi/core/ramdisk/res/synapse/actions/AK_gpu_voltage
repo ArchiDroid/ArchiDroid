@@ -47,5 +47,5 @@ if [[ -e "$SYSFS_FILE" ]]; then
 		echo "$SYSFS_WRITE" > "$SYSFS_FILE" # Write effect
 	fi
 else
-	echo "N/A"
+	echo "0"
 fi

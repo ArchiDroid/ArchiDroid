@@ -88,5 +88,5 @@ elif [[ -e "$SYSFS_FILE" ]]; then
 		fi
 	fi
 else
-	echo "N/A"
+	echo "0"
 fi

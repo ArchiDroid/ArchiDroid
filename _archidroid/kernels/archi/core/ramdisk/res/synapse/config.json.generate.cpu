@@ -97,6 +97,41 @@ _EOF
 				}
 			}
 		},
+		{
+			SOptionList:{
+				title:"CPU governor",
+				description:"CPU governor balances performance and battery usage within min and max frequency ranges specified above. In addition to frequency scaling, on exynos4 board CPU governor is also responsible for CPU hotplugging (turning on and off the CPU cores). Most of the governors allow further tweaking of values used in their algorithms, so you can set them exactly as you want",
+				default:"$(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)",
+				action:"AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+				values:[
+					$(
+						for GOVERNOR in $(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors); do
+							echo "\"$GOVERNOR\","
+						done
+					)
+				],
+				notify:[
+					{
+						on:APPLY,
+						do:[ REFRESH, APPLY ],
+						to:[
+							$(
+								for GOVERNOR in $(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors); do
+									if [[ "$GOVERNOR" = "pegasusq" ]]; then
+cat << _EOF
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/down_differential",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor",
+_EOF
+									fi
+								done
+							)
+						]
+					}
+				]
+			}
+		},
 		$(
 			if [[ -e /sys/class/misc/touchboost_switch/touchboost_switch ]]; then
 cat << _EOF

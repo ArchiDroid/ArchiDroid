@@ -31,5 +31,5 @@ if [[ -e "$1" ]]; then
 		awk '{print $1}' < "$1" | tr -d '[:alpha:]' | tr -d ':'
 	fi
 else
-	echo "N/A"
+	echo "0"
 fi

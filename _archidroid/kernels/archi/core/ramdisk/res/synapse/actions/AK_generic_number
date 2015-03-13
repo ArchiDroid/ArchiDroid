@@ -31,5 +31,5 @@ if [[ -e "$1" ]]; then
 		tr -d '[:alpha:]' < "$1" | tr -d ':'
 	fi
 else
-	echo "N/A"
+	echo "0"
 fi

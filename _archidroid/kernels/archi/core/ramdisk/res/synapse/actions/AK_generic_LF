@@ -31,5 +31,5 @@ if [[ -e "$1" ]]; then
 		echo "$(cat "$1")" # This is because returned value may have no newline
 	fi
 else
-	echo "N/A"
+	echo "0"
 fi

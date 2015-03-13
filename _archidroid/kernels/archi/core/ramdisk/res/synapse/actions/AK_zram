@@ -58,5 +58,5 @@ if [[ -e "$ZRAM_BLOCK" && -e "$ZRAM_VBLOCK" ]]; then
 		fi
 	fi
 else
-	echo "N/A"
+	echo "0"
 fi
