@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Please read README.md before making modifications here! -->
 <manifest>
+	<!-- Additional remotes -->
+		<remote name="gitlab" fetch="https://gitlab.com/" />
+	<!-- /Additional remotes -->
+
 	<!-- Toolchain -->
 		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" />
-		<project name="SaberMod/arm-androideabi-4.8" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" remote="github" revision="master" />
+		<project name="SaberMod/arm-linux-androideabi-4.8.git" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" remote="gitlab" revision="master" />
 	<!-- /Toolchain -->
 
 	<!-- Added projects -->
