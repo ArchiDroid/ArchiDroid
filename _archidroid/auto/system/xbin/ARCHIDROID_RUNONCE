@@ -230,6 +230,7 @@ if [[ -f "$AD/INSTALL" || "$FORCE" -eq 1 ]]; then
 	echo "$(date +"%F %T") INFO: Found $ADMANY folders for data merging"
 	DBUPDATE=1
 	ADRELOAD=1
+	setprop "persist.sys.root_access" "$(getprop persist.sys.root_access)" # This is required, as for some reason CM now reads the value from /data/property and not getprop()
 elif [[ -f "$AD/UPDATE" ]]; then
 	echo "$(date +"%F %T") INFO: Update mode detected. Turning off ADMANY and DBUPDATE"
 	DBUPDATE=0
