@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Description : this file should include all system input the devices
+	that are not HCI devices such as mouse, touch-screen and keyboards.
+-->
+
+<devices>
+  <device name="sii9234_rcp"/>
+</devices>
