@@ -50,7 +50,7 @@
 
 
 			<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
-			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-4.9-arm-linux-gnueabihf-cortexa9_neon" />
+			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-4.9-arm-linux-gnueabihf-cortex_a9_neon" />
 
 			<remove-project name="CyanogenMod/android_device_samsung_i9300" />
 			<project name="ArchiDroid/android_device_samsung_i9300" path="device/samsung/i9300" remote="github" />
