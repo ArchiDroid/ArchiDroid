@@ -35,8 +35,13 @@ exec 2>&1
 REFRESH_RESOLV() {
 	if [[ "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes")" = "Enabled" ]]; then
 		{
-			echo "nameserver $DNS1"
-			echo "nameserver $DNS2"
+			for DNS in "$DNS1" "$DNS2" "$DNS3" "$DNS4"; do
+				if [[ -n "$DNS" ]]; then
+					echo "nameserver $DNS"
+				else
+					break
+				fi
+			done
 			cat "/system/etc/resolv.conf"
 		} > "$ADTMPFS/resolv.conf"
 	fi
@@ -46,19 +51,27 @@ LAST_NETWORK_ID=0
 
 RESET_DNSES() {
 	if [[ "$LAST_NETWORK_ID" -ne 0 ]]; then
-		ndc resolver setnetdns "$LAST_NETWORK_ID" "" "$(getprop net.dns1)" "$(getprop net.dns2)"
+		ndc resolver setnetdns "$LAST_NETWORK_ID" "" "$DNS1" "$DNS2" "$DNS3" "$DNS4"
 		ndc resolver flushnet "$LAST_NETWORK_ID"
 	fi
 }
 
 SET_DNSES() {
-	if [[ "$1" -ne 0 ]]; then
+	if [[ -n "$1" && "$1" -ne 0 && -n "$2" ]]; then
 		LAST_NETWORK_ID="$1"
-	fi
-	if [[ "$LAST_NETWORK_ID" -ne 0 && "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" && "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
-		REFRESH_RESOLV
-		ndc resolver setnetdns "$LAST_NETWORK_ID" "" "127.0.0.1"
-		ndc resolver flushnet "$LAST_NETWORK_ID"
+		DNS1="$2"
+		DNS2="$3"
+		DNS3="$4"
+		DNS4="$5"
+		if [[ "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" && "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
+			REFRESH_RESOLV
+			if echo "$DNS1" | grep -q ':'; then # IPv6
+				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "::1"
+			else # IPv4
+				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "127.0.0.1"
+			fi
+			ndc resolver flushnet "$LAST_NETWORK_ID"
+		fi
 	fi
 }
 
@@ -73,10 +86,10 @@ LISTEN_FOR_EVENTS() {
 		while read EVENT; do
 			echo "$(date +"%F %T") EVENT: $EVENT"
 			case "$EVENT" in
-				"CONNECTIVITY_CHANGE "*) SET_DNSES "$(echo "$EVENT" | awk '{print $NF}')" ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
+				"CONNECTIVITY_CHANGE "*) SET_DNSES "$(echo "$EVENT" | cut -d ' ' -f2-)" ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
 				"CONNECTIVITY_RESET") RESET_DNSES ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
 				"REFRESH_RESOLV") REFRESH_RESOLV ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
-				*) echo "$(date +"%F %T") WARNING: That event is unknown and couldn't be handled, ignoring..." ;; # Should never happen
+				*) echo "$(date +"%F %T") WARNING: UNKNOWN EVENT: $EVENT, ignoring..." ;; # Should never happen
 			esac
 		done < "$ADEVENTPIPE"
 	done
