@@ -249,6 +249,54 @@
 /mnt/asec/[^/]+/[^/]+\.zip  u:object_r:asec_public_file:s0
 /mnt/asec/[^/]+/lib(/.*)?   u:object_r:asec_public_file:s0
 /data/app-asec(/.*)?        u:object_r:asec_image_file:s0
+#line 1 "device/samsung/i9300/selinux/file_contexts"
+# GFX
+/dev/mali                               u:object_r:mali_device:s0
+/dev/ump                                u:object_r:mali_device:s0
+/dev/fimg2d                             u:object_r:mali_device:s0
+
+# RIL
+/dev/umts_boot0                         u:object_r:radio_device:s0
+/dev/umts_boot1                         u:object_r:radio_device:s0
+/dev/umts_ipc0                          u:object_r:radio_device:s0
+/dev/umts_ramdump0                      u:object_r:radio_device:s0
+/dev/umts_rfs0                          u:object_r:radio_device:s0
+
+/dev/block/mmcblk0p7                    u:object_r:efs_block_device:s0
+/efs                                    u:object_r:efs_device_file:s0
+
+# Camera
+/data/ISP_CV                            u:object_r:camera_data_file:s0
+/dev/exynos-mem                         u:object_r:video_device:s0
+/dev/s3c-mfc                            u:object_r:mfc_device:s0
+
+# Bluetooth
+/dev/ttySAC0                            u:object_r:hci_attach_dev:s0
+/efs/bluetooth/bt_addr                  u:object_r:bluetooth_efs_file:s0
+
+# Display
+/sys/class/mdnie/mdnie/scenario         u:object_r:sysfs_display:s0
+/sys/class/mdnie/mdnie/mode             u:object_r:sysfs_display:s0
+
+# GPS
+/dev/ttySAC1                            u:object_r:gps_device:s0
+/system/bin/gpsd                        u:object_r:gpsd_exec:s0
+
+# Sensors
+/dev/akm8975                            u:object_r:sensors_device:s0
+/efs/gyro_cal_data                      u:object_r:sensors_data_file:s0
+
+# Wifi
+/dev/rfkill                             u:object_r:rfkill_device:s0
+/efs/wifi/.mac.info                     u:object_r:wifi_data_file:s0
+
+# Firmwares
+/system/vendor/firmware(/.*)?           u:object_r:firmware_camera:s0
+/system/vendor/firmware/mfc_fw.bin      u:object_r:firmware_mfc:s0
+/data/cfw(/.*)?                         u:object_r:firmware_camera:s0
+
+# Misc
+/dev/HPD                                u:object_r:hpd_device:s0
 #line 1 "vendor/cm/sepolicy/file_contexts"
 /cache/dalvik-cache(/.*)? u:object_r:dalvikcache_data_file:s0
 
@@ -264,6 +312,7 @@
 /system/bin/sysinit       u:object_r:sysinit_exec:s0
 
 /system/etc/init.d/90userinit           u:object_r:userinit_exec:s0
+/data/local/userinit.sh                 u:object_r:userinit_data_exec:s0
 
 # For minivold in recovery
 /sbin/minivold            u:object_r:vold_exec:s0

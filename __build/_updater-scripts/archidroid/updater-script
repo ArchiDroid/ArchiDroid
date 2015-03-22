@@ -162,6 +162,7 @@ set_metadata("/system/bin/dhcpcd", "uid", 0, "gid", 2000, "mode", 0755, "capabil
 set_metadata("/system/bin/dnsmasq", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:dnsmasq_exec:s0");
 set_metadata("/system/bin/drmserver", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:drmserver_exec:s0");
 set_metadata("/system/bin/dumpstate", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:dumpstate_exec:s0");
+set_metadata("/system/bin/gpsd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:gpsd_exec:s0");
 set_metadata("/system/bin/hostapd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:hostapd_exec:s0");
 set_metadata("/system/bin/install-recovery.sh", "uid", 0, "gid", 0, "mode", 0750, "capabilities", 0x0, "selabel", "u:object_r:install_recovery_exec:s0");
 set_metadata("/system/bin/installd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:installd_exec:s0");
@@ -227,8 +228,11 @@ set_metadata_recursive("/system/etc/updatecmds", "uid", 0, "gid", 2000, "dmode",
 set_metadata("/system/etc/updatecmds/migrate_nfc.txt", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/etc/wifi", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/recovery-from-boot.p", "uid", 0, "gid", 0, "mode", 0644);
+set_metadata_recursive("/system/vendor", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:firmware_camera:s0");
 set_metadata("/system/vendor", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata("/system/vendor/firmware", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/vendor/firmware", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:firmware_camera:s0");
+set_metadata("/system/vendor/firmware/mfc_fw.bin", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:firmware_mfc:s0");
+set_metadata_recursive("/system/vendor/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/lib", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/vendor/lib/drm", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/lib/drm/libdrmwvmplugin.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
