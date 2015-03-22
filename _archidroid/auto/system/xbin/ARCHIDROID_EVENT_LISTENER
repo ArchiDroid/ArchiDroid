@@ -86,7 +86,7 @@ LISTEN_FOR_EVENTS() {
 		while read EVENT; do
 			echo "$(date +"%F %T") EVENT: $EVENT"
 			case "$EVENT" in
-				"CONNECTIVITY_CHANGE "*) SET_DNSES "$(echo "$EVENT" | cut -d ' ' -f2-)" ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
+				"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$EVENT" | cut -d ' ' -f2-) ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
 				"CONNECTIVITY_RESET") RESET_DNSES ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
 				"REFRESH_RESOLV") REFRESH_RESOLV ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
 				*) echo "$(date +"%F %T") WARNING: UNKNOWN EVENT: $EVENT, ignoring..." ;; # Should never happen
