@@ -53,6 +53,20 @@ cat << _EOF
 _EOF
 			fi
 		)
+		$(
+			if [[ -e /sys/fs/selinux/enforce ]]; then
+cat << _EOF
+				{
+					SCheckBox:{
+						label:"Enforcing SELinux",
+						description:"As part of the Android security model, Android uses SELinux to enforce mandatory access control (MAC) over all processes, even processes running with root/superuser privileges. SELinux enhances Android security by confining privileged processes and automating security policy creation. By switching this option to off, SELinux mode will be set to permissive (inactive). Permissive mode may help to workaround some false-positive policy denials, but dramatically decreases security. You shouldn't change that setting, unless you know that you need it",
+						default:$(AK_generic_LF /sys/fs/selinux/enforce),
+						action:"AK_generic_LF /sys/fs/selinux/enforce"
+					}
+				},
+_EOF
+			fi
+		)
 	]
 }
 EOF

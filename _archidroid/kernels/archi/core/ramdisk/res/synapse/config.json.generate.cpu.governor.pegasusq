@@ -68,18 +68,50 @@ cat << EOF
 		},
 		{
 			SSeekBar:{
-				title:"Down rate",
+				title:"CPU down frequency",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_freq),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_freq",
+				values:{
+					$(
+						echo "0:0, "
+						while read FREQ TIME; do
+							echo "$FREQ:"$((FREQ / 1000)) MHz", "
+						done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+					)
+				}
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CPU down rate",
 				description:"Specifies number of samples to evaluate load to scale CPU down. After cpu_down_rate samples are finished for a frequency, CPU scale-down logic is executed. In other words - before scaling down, cpu_down_rate * sampling_rate micro seconds are spend at a frequency",
-				max:40, min:0, unit:" samples", step:1,
+				max:40, min:0, unit:" samples",
 				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate),
 				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate"
 			}
 		},
 		{
 			SSeekBar:{
-				title:"Up rate",
+				title:"CPU up frequency",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_freq),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_freq",
+				values:{
+					$(
+						echo "0:0, "
+						while read FREQ TIME; do
+							echo "$FREQ:"$((FREQ / 1000)) MHz", "
+						done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+					)
+				}
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CPU up rate",
 				description:"Specifies number of samples to evaluate load to scale CPU up. After cpu_up_rate samples are finished for a frequency, CPU scale-up logic is executed. In other words - before scaling up, cpu_up_rate * sampling_rate micro seconds are spend at a frequency",
-				max:40, min:0, unit:" samples", step:1,
+				max:40, min:0, unit:" samples",
 				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate),
 				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate"
 			}
@@ -88,18 +120,144 @@ cat << EOF
 			SSeekBar:{
 				title:"Down differential",
 				description:"Higher value of down_differential corresponds to delayed scaling down",
-				max:100, min:0, unit:"", step:1,
+				max:100, min:0,
 				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/down_differential),
 				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/down_differential"
+			}
+		},
+		{
+			SCheckBox:{
+				label:"DVFS debug",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/dvfs_debug),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/dvfs_debug"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Frequency step",
+				description:"",
+				max:100, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/freq_step),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/freq_step"
+			}
+		},
+		$(
+			find /sys/devices/system/cpu/cpufreq/pegasusq -name "hotplug_freq_*" | sort | while read SYSFS_FILE; do
+				SYSFS_NUMBERS="$(basename "$SYSFS_FILE" | cut -d '_' -f3-)"
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"Hotplug frequency $SYSFS_NUMBERS",
+						description:"",
+						default:$(AK_generic $SYSFS_FILE),
+						action:"AK_generic $SYSFS_FILE",
+						values:{
+							$(
+								echo "0:0, "
+								while read FREQ TIME; do
+									echo "$FREQ:"$((FREQ / 1000)) MHz", "
+								done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+							)
+						}
+					}
+				},
+_EOF
+			done
+		)
+		{
+			SSeekBar:{
+				title:"Hotplug lock",
+				description:"",
+				max:${CPUS_AVAILABLE}, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_lock),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_lock"
+			}
+		},
+		$(
+			find /sys/devices/system/cpu/cpufreq/pegasusq -name "hotplug_rq_*" | sort | while read SYSFS_FILE; do
+				SYSFS_NUMBERS="$(basename "$SYSFS_FILE" | cut -d '_' -f3-)"
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"Hotplug RQ $SYSFS_NUMBERS",
+						description:"",
+						max:1000, min:0,
+						default:$(AK_generic $SYSFS_FILE),
+						action:"AK_generic $SYSFS_FILE",
+					}
+				},
+_EOF
+			done
+		)
+		{
+			SCheckBox:{
+				label:"Ignore nice load",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load"
+			}
+		},
+		{
+			SCheckBox:{
+				label:"I/O is busy",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Maximum CPU lock",
+				description:"",
+				max:${CPUS_AVAILABLE}, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/max_cpu_lock),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/max_cpu_lock"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Minimum CPU lock",
+				description:"",
+				max:${CPUS_AVAILABLE}, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/min_cpu_lock),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/min_cpu_lock"
 			}
 		},
 		{
 			SSeekBar:{
 				title:"Sampling down factor",
 				description:"Acts as a multiplier for sampling interval for re-evaluating the load when CPU is truly busy and is on highest clock frequency. Setting to 1 makes no difference and causes CPU to immediately scale down from highest frequency. To sum up, use > 1 sampling_down_factor to avoid governor jumping down to lower frequency even on high CPU load",
-				max:100000, min:1, unit:"x multiplier", step:1,
+				max:100000, min:0, unit:"x multiplier",
 				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor),
 				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Sampling rate",
+				description:"",
+				max:1000000, min:0, step:10000, unit:" ms", weight:0.001,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Up CPUs",
+				description:"",
+				max:${CPUS_AVAILABLE}, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_nr_cpus),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_nr_cpus"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Up threshold",
+				description:"",
+				max:100, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold"
 			}
 		},
 	]
