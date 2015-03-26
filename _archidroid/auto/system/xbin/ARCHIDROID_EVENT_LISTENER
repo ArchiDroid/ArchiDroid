@@ -22,12 +22,10 @@
 # limitations under the License.
 
 AD="/data/media/0/ArchiDroid"
-ADSYS="/system/archidroid"
-ADDEV="$ADSYS/dev"
-ADTMPFS="$ADSYS/tmpfs"
+ADEVENTSDIR="/sdcard/ArchiDroid/System/Events"
+ADTMPFS="/dev/archidroid"
 LOG="$AD/EVENT_LISTENER.log"
 ADSTATUS="$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID"
-ADEVENTPIPE="$ADTMPFS/EVENTS"
 
 exec 1>"$LOG"
 exec 2>&1
@@ -76,22 +74,17 @@ SET_DNSES() {
 }
 
 LISTEN_FOR_EVENTS() {
-	if [[ -p "$ADEVENTPIPE" ]]; then
-		rm "$ADEVENTPIPE" # Should never happen
-	fi
-
-	mkfifo -m "622" "$ADEVENTPIPE" # Allow everyone to write, but only us to read
-
-	while [[ -p "$ADEVENTPIPE" ]]; do
+	mkdir -p "$ADEVENTSDIR"
+	inotifywait -q -m -e create -e moved_to "$ADEVENTSDIR" | while read EVENT_FILE; do
 		while read EVENT; do
 			echo "$(date +"%F %T") EVENT: $EVENT"
 			case "$EVENT" in
-				"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$EVENT" | cut -d ' ' -f2-) ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
-				"CONNECTIVITY_RESET") RESET_DNSES ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
-				"REFRESH_RESOLV") REFRESH_RESOLV ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
-				*) echo "$(date +"%F %T") WARNING: UNKNOWN EVENT: $EVENT, ignoring..." ;; # Should never happen
+				"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$EVENT" | cut -d ' ' -f2-) & ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
+				"CONNECTIVITY_RESET") RESET_DNSES & ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
+				"REFRESH_RESOLV") REFRESH_RESOLV & ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
 			esac
-		done < "$ADEVENTPIPE"
+		done < "$EVENT_FILE"
+		rm -f "$EVENT_FILE"
 	done
 }
 
@@ -104,15 +97,11 @@ if [[ -f "$ADSTATUS" ]]; then
 fi
 
 echo "$$" > "$ADSTATUS"
-trap 'kill $(jobs -p); rm -f "$ADSTATUS" "$ADEVENTPIPE"' SIGINT SIGTERM EXIT
+trap 'kill $(jobs -p); rm -f "$ADSTATUS"' SIGINT SIGTERM EXIT
 
 LISTEN_FOR_EVENTS &
 
-if [[ -n "$(which inotifywait)" ]]; then
-	inotifywait -qq -e delete -e modify "$ADSTATUS"
-else
-	wait # Fallback, should never happen
-fi
+inotifywait -qq -e delete -e modify "$ADSTATUS"
 
 echo "$(date +"%F %T") Shutting down..."
 
