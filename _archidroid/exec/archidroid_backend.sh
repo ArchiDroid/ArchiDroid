@@ -22,23 +22,29 @@
 # limitations under the License.
 
 # ArchiDroid Backend Fallback
-if [[ ! -f "/system/bin/debuggerd.real" && -f "/system/bin/addebuggerd" ]]; then
+if [[ ! -f "/system/bin/debuggerd.real" ]]; then
 	mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
+	mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
+	chcon "u:object_r:rootfs:s0" "/system/bin/debuggerd"
 fi
-mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
 
 # ArchiDroid Dnsmasq Fallback
-if [[ ! -f "/system/bin/dnsmasq.real" && -f "/system/bin/addnsmasq" ]]; then
+if [[ ! -f "/system/bin/dnsmasq.real" ]]; then
 	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
+	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
+	chcon "u:object_r:rootfs:s0" "/system/bin/dnsmasq"
 fi
-mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
 
 # ArchiDroid Adblock Hosts
 if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
-	ln -s "_Hosts/AdAway" "/system/archidroid/dev/spinners/Hosts"
+	ln -s "/system/archidroid/dev/spinners/_Hosts/AdAway" "/system/archidroid/dev/spinners/Hosts"
 fi
 if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners/Hosts" ]]; then
-	ln -s "../dev/spinners/Hosts" "/system/archidroid/etc/hosts"
+	ln -s "/system/archidroid/dev/spinners/Hosts" "/system/archidroid/etc/hosts"
 fi
+
+# ArchiDroid binaries
+chcon "u:object_r:rootfs:s0" "/system/xbin/archidroid_dnsmasq" "/system/xbin/archidroid_pixelserv"
+chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT" "/system/xbin/ARCHIDROID_LINUX"
 
 exit 0
