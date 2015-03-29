@@ -44,7 +44,7 @@ if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners
 fi
 
 # ArchiDroid binaries
-chcon "u:object_r:rootfs:s0" "/system/xbin/archidroid_dnsmasq" "/system/xbin/archidroid_pixelserv"
 chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT" "/system/xbin/ARCHIDROID_LINUX"
+chcon "u:object_r:radio:s0" "/system/xbin/archidroid_dnsmasq" "/system/xbin/archidroid_pixelserv"
 
 exit 0

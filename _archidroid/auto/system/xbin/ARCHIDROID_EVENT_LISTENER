@@ -22,7 +22,9 @@
 # limitations under the License.
 
 AD="/data/media/0/ArchiDroid"
-ADEVENTSDIR="/sdcard/ArchiDroid/System/Events"
+ADEVENTSDIR="$AD/System/Events"
+ADSYS="/system/archidroid"
+ADDEV="$ADSYS/dev"
 ADTMPFS="/dev/archidroid"
 LOG="$AD/EVENT_LISTENER.log"
 ADSTATUS="$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID"
@@ -63,6 +65,7 @@ SET_DNSES() {
 		DNS4="$5"
 		if [[ "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" && "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
 			REFRESH_RESOLV
+			return # TODO: REMOVE ME WHEN DNSMASQ WORKS
 			if echo "$DNS1" | grep -q ':'; then # IPv6
 				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "::1"
 			else # IPv4
@@ -74,8 +77,13 @@ SET_DNSES() {
 }
 
 LISTEN_FOR_EVENTS() {
-	mkdir -p "$ADEVENTSDIR"
-	inotifywait -q -m -e create -e moved_to "$ADEVENTSDIR" | while read EVENT_FILE; do
+	if [[ ! -d "$ADEVENTSDIR" ]]; then
+		echo "$(date +"%F %T") WARNING: Recreating ${ADEVENTSDIR}, this shouldn't happen"
+		mkdir -p "$ADEVENTSDIR"
+	fi
+	chmod 777 "$ADEVENTSDIR" # Allow everyone to write
+	while :; do
+		EVENT_FILE="$(inotifywait -q -e create -e moved_to "$ADEVENTSDIR" | cut -d ' ' -f 3-)"
 		while read EVENT; do
 			echo "$(date +"%F %T") EVENT: $EVENT"
 			case "$EVENT" in
@@ -83,8 +91,8 @@ LISTEN_FOR_EVENTS() {
 				"CONNECTIVITY_RESET") RESET_DNSES & ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
 				"REFRESH_RESOLV") REFRESH_RESOLV & ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
 			esac
-		done < "$EVENT_FILE"
-		rm -f "$EVENT_FILE"
+		done < "${ADEVENTSDIR}/${EVENT_FILE}"
+		rm -f "${ADEVENTSDIR}/${EVENT_FILE}"
 	done
 }
 
