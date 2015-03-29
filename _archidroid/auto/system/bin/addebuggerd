@@ -30,6 +30,9 @@
 
 # You may want to customize below options to your preferences
 
+# Is ArchiDroid's Init.d even enabled? I use this for backend hook only on ArchiDroid, you probably want to keep it on "1"
+INITD_ENABLED=0
+
 # Delay in seconds, which specifies the amount of time we need to wait for the kernel or other init.d callers
 # This is required in order to don't execute all init.d scripts twice
 # A 5 seconds should be the safe value and more than enough - if something is going to execute init.d, it should start within 5 seconds from boot
@@ -38,57 +41,55 @@ DELAY=5
 
 # Don't change values below unless you know what you're doing
 INITDPART="/system/etc/init.d/00ARCHIDROID_INITD" # This is the init.d part of ArchiDroid's Init.d
-CHECKPART="/data/ARCHIDROID_INITD" # This is the check-file, must be the same here and in the init.d part specified above
+CHECKPART="/data/local/tmp/ARCHIDROID_INITD" # This is the check-file, must be the same here and in the init.d part specified above
 LOG="/data/ArchiDroidInit.log" # Log for ArchiDroid's init.d
 
-# Forward stdout and stderr to our log
-exec 1>"$LOG"
-exec 2>&1
+exec 1>"$LOG" # Forward stdout
+exec 2>&1 # and stderr to our log
 
-# ArchiDroid Backend call, used only on ArchiDroid ROM
 if which ARCHIDROID_INIT >/dev/null 2>&1; then
-	ARCHIDROID_INIT --background &
+	ARCHIDROID_INIT --background & # ArchiDroid Backend call, used only on ArchiDroid ROM
 fi
 
-# Assume that kernel won't execute init.d before us, as we're earlier than sysinit
-rm -f "$CHECKPART" # We must make sure CHECKPART doesn't exist yet
-
-date
-echo "INFO: ArchiDroid Init.d started"
-
-# Core
-if [ ! -x "$INITDPART" ]; then
-	echo "ERROR: INITDPART $INITDPART was not found, make sure that it exists and is executable, halt"
-else
-	echo "INFO: INITDPART $INITDPART found, all good"
-	if [ ! -f "$CHECKPART" ]; then
-		echo "INFO: Init.d not yet executed, waiting $DELAY seconds for kernel's reaction"
-		sleep "$DELAY"
-	fi
-
-	if [ ! -f "$CHECKPART" ]; then
-		echo "INFO: After $DELAY seconds init.d is still not executed, executing all init.d scripts right now"
-		if which sysinit >/dev/null 2>&1; then
-			echo "INFO: Sysinit found, calling sysinit to execute init.d"
-			sysinit
-		elif which run-parts >/dev/null 2>&1; then
-			echo "INFO: Run-parts found, calling run-parts to execute init.d"
-			run-parts /system/etc/init.d
-		else
-			echo "INFO: Couldn't find any reliable method for executing init.d, using manual one"
-			find /system/etc/init.d -type f | sort | while read line; do
-				"$line" &
-			done
-		fi
-		if [ ! -f "$CHECKPART" ]; then
-			echo "ERROR: CHECKPART doesn't exist even after our init.d execution. This shouldn't happen, something is seriously broken here, please investigate"
-		else
-			echo "INFO: Init.d has been properly executed by ArchiDroid Init.d"
-		fi
+if ! [[ 1 -eq 1 ]] >/dev/null 2>&1; then # Make sure that extended brackes are available
+	echo "ERROR: ArchiDroid Init.d could not be executed because your environment doesn't support extended checks"
+	echo "This is usually caused by lack of busybox"
+elif [[ "$INITD_ENABLED" -eq 1 ]]; then
+	rm -f "$CHECKPART" # Assume that kernel won't execute init.d before us, as we're earlier than sysinit
+	date
+	echo "INFO: ArchiDroid Init.d started"
+	if [[ ! -x "$INITDPART" ]]; then
+		echo "ERROR: INITDPART $INITDPART was not found, make sure that it exists and is executable, halt"
 	else
-		echo "INFO: Init.d has been properly executed by the kernel, we don't need to do anything"
-	fi
-fi
+		echo "INFO: INITDPART $INITDPART found, all good"
+		if [[ ! -f "$CHECKPART" ]]; then
+			echo "INFO: Init.d not yet executed, waiting $DELAY seconds for kernel's reaction"
+			sleep "$DELAY"
+		fi
 
-rm -f "$CHECKPART" # We don't need you anymore
+		if [[ ! -f "$CHECKPART" ]]; then
+			echo "INFO: After $DELAY seconds init.d is still not executed, executing all init.d scripts right now"
+			if which sysinit >/dev/null 2>&1; then
+				echo "INFO: Sysinit found, calling sysinit to execute init.d"
+				sysinit
+			elif which run-parts >/dev/null 2>&1; then
+				echo "INFO: Run-parts found, calling run-parts to execute init.d"
+				run-parts /system/etc/init.d
+			else
+				echo "INFO: Couldn't find any reliable method for executing init.d, using manual one"
+				find /system/etc/init.d -type f | sort | while read line; do
+					"$line" &
+				done
+			fi
+			if [[ ! -f "$CHECKPART" ]]; then
+				echo "ERROR: CHECKPART doesn't exist even after our init.d execution. This shouldn't happen, something is seriously broken here, please investigate"
+			else
+				echo "INFO: Init.d has been properly executed by ArchiDroid Init.d"
+			fi
+		else
+			echo "INFO: Init.d has been properly executed by the kernel, we don't need to do anything"
+		fi
+	fi
+	rm -f "$CHECKPART" # We don't need you anymore
+fi
 exec "/system/bin/debuggerd.real" "$@"

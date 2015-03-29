@@ -35,11 +35,9 @@ ADTWEAK() {
 }
 
 ADEVENT() {
-	if ! pidof ARCHIDROID_EVENT_LISTENER >/dev/null 2>&1; then
-		ADSTART "EVENT_LISTENER"
-		sleep 2
+	if [[ -d "$ADEVENTS" ]]; then
+		echo "$@" > "$ADEVENTS/Init.EVENT"
 	fi
-	echo "$@" > "$ADEVENTS/Init.EVENT"
 }
 
 ADSTOP() {
@@ -121,7 +119,7 @@ ADSTART() {
 			if [[ "$ADBLOCK" -eq 1 ]]; then
 				if [[ "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
 					# If adblock is currently deactivated, set proper DNSes
-					ADEVENT "CONNECTIVITY_CHANGE 0"
+					ADEVENT "CONNECTIVITY_RESET"
 
 					if ! cmp /system/archidroid/dev/spinners/_Hosts/NoAdBlocking /system/etc/hosts >/dev/null 2>&1; then
 						mount -o remount,rw /system
@@ -347,7 +345,7 @@ DBUPDATE() {
 
 # Initial variables, you should NOT change them unless you know what you're doing
 AD="/data/media/0/ArchiDroid"
-ADEVENTS="/data/media/0/ArchiDroid/System/Events"
+ADEVENTS="$AD/System/Events"
 ADSYS="/system/archidroid"
 ADDEV="$ADSYS/dev"
 ADTMPFS="/dev/archidroid"
