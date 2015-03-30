@@ -21,19 +21,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# ArchiDroid Backend Fallback
+# ArchiDroid Backend hook
 if [[ ! -f "/system/bin/debuggerd.real" ]]; then
 	mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
 	mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
-	chcon "u:object_r:rootfs:s0" "/system/bin/debuggerd"
+	chcon "u:object_r:rootfs:s0" "/system/bin/debuggerd" # Rootfs is required, as we're running backend from here
 fi
 
-# ArchiDroid Dnsmasq Fallback
-if [[ ! -f "/system/bin/dnsmasq.real" ]]; then
-	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
-	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
-	chcon "u:object_r:rootfs:s0" "/system/bin/dnsmasq"
-fi
+# ArchiDroid Dnsmasq hook
+#if [[ ! -f "/system/bin/dnsmasq.real" ]]; then
+#	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
+#	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
+#	chcon "u:object_r:dnsmasq_exec:s0" "/system/bin/dnsmasq" # This is used only for tethering event, as it conflicts with archidroid_dnsmasq
+#fi
 
 # ArchiDroid Adblock Hosts
 if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
@@ -45,6 +45,6 @@ fi
 
 # ArchiDroid binaries
 chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT" "/system/xbin/ARCHIDROID_LINUX"
-chcon "u:object_r:radio:s0" "/system/xbin/archidroid_dnsmasq" "/system/xbin/archidroid_pixelserv"
+chcon "u:object_r:rootfs:s0" "/system/xbin/archidroid_dnsmasq" "/system/xbin/archidroid_haveged" "/system/xbin/archidroid_pixelserv"
 
 exit 0

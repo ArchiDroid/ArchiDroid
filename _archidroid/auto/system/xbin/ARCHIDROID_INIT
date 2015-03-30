@@ -185,6 +185,7 @@ ADSTART() {
 		;;
 		"TMPFS")
 			mkdir -p "$ADTMPFS"
+			chmod 711 "$ADTMPFS"
 		;;
 		"archidroid_dnsmasq")
 			if [[ "$ADBLOCK" -eq 1 && "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
@@ -202,7 +203,7 @@ ADSTART() {
 				else
 					cp -p "/system/etc/resolv.conf" "$ADTMPFS/resolv.conf"
 				fi
-				archidroid_dnsmasq $EXTRA -C /system/archidroid/etc/dnsmasq.conf # Yes, we must break on spaces in this case
+				archidroid_dnsmasq $EXTRA -C /system/archidroid/etc/dnsmasq.conf
 				echo "$(date +"%F %T") INFO: ADBLOCK: Activated archidroid_dnsmasq - local DNS server on 127.0.0.1:53, forwarding clean non-blocked traffic to specified DNS servers"
 			fi
 		;;
@@ -221,13 +222,13 @@ ADSTART() {
 
 				if [[ -c /dev/random.orig ]]; then
 					mv /dev/random /dev/random.TEMP &&
-					mv /dev/random.orig /dev/random &&
-					archidroid_haveged -p "$ADTMPFS/HAVEGED.PID" -w "$ENTROPY" >/dev/null 2>&1 &&
+					mv /dev/random.orig /dev/random
+					archidroid_haveged -p "$ADTMPFS/HAVEGED.PID" -w "$ENTROPY" >/dev/null 2>&1
 					sleep 2 && # Let's give haveged some time to initialize
 					mv /dev/random /dev/random.orig &&
 					mv /dev/random.TEMP /dev/random
 				else
-					archidroid_haveged -p "$ADTMPFS/HAVEGED.PID" -w "$ENTROPY" >/dev/null 2>&1 &&
+					archidroid_haveged -p "$ADTMPFS/HAVEGED.PID" -w "$ENTROPY" >/dev/null 2>&1
 					sleep 2 # Let's give haveged some time to initialize
 				fi
 
@@ -256,27 +257,27 @@ ADRELOAD() {
 	esac
 }
 
-ADNOTIFY() {
-	case "$1" in
-		"TETHERING")
-			ADSTOP "ADBLOCK"
-			(
-				sleep 2
-				PID=""
-				for PROCESS in "dnsmasq" "dnsmasq.real"; do
-					PID="$(pidof "$PROCESS" 2>/dev/null)";
-					if [[ -n "$PID" ]]; then
-						break
-					fi
-				done
-				while [[ -e "/proc/$PID" ]]; do
-					sleep 1
-				done
-				ARCHIDROID_INIT "START" "ADBLOCK"
-			) &
-		;;
-	esac
-}
+#ADNOTIFY() {
+#	case "$1" in
+#		"TETHERING")
+#			ADSTOP "ADBLOCK"
+#			(
+#				sleep 2
+#				PID=""
+#				for PROCESS in "dnsmasq" "dnsmasq.real"; do
+#					PID="$(pidof "$PROCESS" 2>/dev/null)";
+#					if [[ -n "$PID" ]]; then
+#						break
+#					fi
+#				done
+#				while [[ -e "/proc/$PID" ]]; do
+#					sleep 1
+#				done
+#				ARCHIDROID_INIT "START" "ADBLOCK"
+#			) &
+#		;;
+#	esac
+#}
 
 DBUPDATE() {
 	# Thanks to idcrisis, modified by JustArchi
@@ -415,7 +416,7 @@ if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" || "$1" = "NOTIFY" ]]; 
 		"RELOAD") ADRELOAD "$2" ;;
 		"START") ADSTART "$2" ;;
 		"STOP") ADSTOP "$2" ;;
-		"NOTIFY") ADNOTIFY "$2" ;;
+#		"NOTIFY") ADNOTIFY "$2" ;;
 	esac
 	exit 0
 elif [[ ! -f "$ADSTATUS" ]]; then
@@ -448,20 +449,47 @@ fi
 
 # Parse args to variables
 BACKGROUND=0
+SU_SHELL=0
 for ARG in "$@"; do
 	case "$ARG" in
-		--background|background) BACKGROUND=1 ;;
+		--background) BACKGROUND=1 ;;
+		--su-shell) SU_SHELL=1 ;;
 	esac
 done
 
-# Now we need to make sure that this is a background process to prevent slowing down bootup
-if [[ "$BACKGROUND" -ne 1 ]]; then
-	echo "RESTART" > "$ADSTATUS"
-	"$0" "--background" "$@" &
-	exit 0
+ADRELOAD=0
+ADMANY=0
+DBUPDATE=0
+FIRSTBOOT=0
+
+if [[ -f "$AD/INSTALL" || -f "$AD/UPDATE" ]]; then
+	FIRSTBOOT=1
+	# Don't force install mode, unless FORCE file exists
+	if [[ -f "$AD/INSTALL" || -f "$AD/FORCE" ]]; then
+		mkfifo "$ADFIFO"
+		if [[ -d "$AD/FIRSTBOOT/DATA" ]]; then
+			(
+				find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read FOLDER; do
+					((ADMANY++))
+				done
+				echo "$ADMANY" > "$ADFIFO")
+			) &
+			ADMANY="$(cat "$ADFIFO")"
+		fi
+		DBUPDATE=1
+		ADRELOAD=1
+		setprop "persist.sys.root_access" "$(getprop persist.sys.root_access)" # This is required, as for some reason CM now reads the value from /data/property and not getprop()
+	fi
 fi
 
-# Redirect stdout and stderr to our log, just in case something bad happen
+# Now we need to make sure that this is a background process to prevent slowing down bootup
+if [[ "$BACKGROUND" -ne 1 || SU_SHELL -ne 1 ]]; then
+	echo "RESTART" > "$ADSTATUS"
+	su -c "$0 --background --su-shell $* &" && exit 0 # TODO: SU shell is required to workaround SELinux denials, maybe I can fix this in future
+	echo "$$" > "$ADSTATUS" # We really shouldn't be here
+fi
+
+# Redirect stdout and stderr to our log, just in case something bad happens
 if [[ -f "$LOG" ]]; then
 	mv "$LOG" "$LOG.old"
 fi
@@ -494,12 +522,6 @@ fi
 # | |___| (_) || |  |  __/
 #  \____|\___/ |_|   \___|
 #
-
-# Bring su daemon if available
-if which daemonsu >/dev/null 2>&1; then
-	echo "$(date +"%F %T") INFO: SuperSU daemon found, calling daemonsu!"
-	daemonsu --auto-daemon &
-fi
 
 # Show LiveBoot if included
 if [[ -f /system/app/LiveBoot/LiveBoot.apk && ! -f "/data/data/eu.chainfire.liveboot/files/liveboot" ]]; then # But only if user didn't touch it yet
@@ -534,36 +556,6 @@ done
 
 # ArchiDroid services
 ADSTART "ALL"
-
-ADRELOAD=0
-ADMANY=0
-DBUPDATE=0
-FIRSTBOOT=0
-
-if [[ -f "$AD/INSTALL" || -f "$AD/UPDATE" ]]; then
-	FIRSTBOOT=1
-	echo "$(date +"%F %T") NOTICE: This is first boot!"
-	# Don't force install mode, unless FORCE file exists
-	if [[ -f "$AD/INSTALL" || -f "$AD/FORCE" ]]; then
-		echo "$(date +"%F %T") INFO: Install mode"
-		mkfifo "$ADFIFO"
-		if [[ -d "$AD/FIRSTBOOT/DATA" ]]; then
-			(
-				find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read FOLDER; do
-					((ADMANY++))
-				done
-				echo "$ADMANY" > "$ADFIFO")
-			) &
-			ADMANY="$(cat "$ADFIFO")"
-		fi
-		echo "$(date +"%F %T") INFO: Found $ADMANY folders for data merging"
-		DBUPDATE=1
-		ADRELOAD=1
-		setprop "persist.sys.root_access" "$(getprop persist.sys.root_access)" # This is required, as for some reason CM now reads the value from /data/property and not getprop()
-	else
-		echo "$(date +"%F %T") INFO: Update mode"
-	fi
-fi
 
 # ArchiDroid Semaphore
 # Wait until we see some android processes to consider boot is more or less complete (initial idea thanks to AndiP71)

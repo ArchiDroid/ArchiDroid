@@ -65,7 +65,6 @@ SET_DNSES() {
 		DNS4="$5"
 		if [[ "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" && "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
 			REFRESH_RESOLV
-			return # TODO: REMOVE ME WHEN DNSMASQ WORKS
 			if echo "$DNS1" | grep -q ':'; then # IPv6
 				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "::1"
 			else # IPv4
@@ -90,6 +89,7 @@ LISTEN_FOR_EVENTS() {
 				"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$EVENT" | cut -d ' ' -f2-) & ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
 				"CONNECTIVITY_RESET") RESET_DNSES & ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
 				"REFRESH_RESOLV") REFRESH_RESOLV & ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
+#				"TETHERING") ARCHIDROID_INIT "NOTIFY" "TETHERING" & ;; # Used by dnsmasq to notify us about tethering event
 			esac
 		done < "${ADEVENTSDIR}/${EVENT_FILE}"
 		rm -f "${ADEVENTSDIR}/${EVENT_FILE}"
