@@ -21,6 +21,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARCHIDROID_INIT "NOTIFY" "TETHERING"
+ADEVENT() {
+	if [[ -d "$ADEVENTS" ]]; then
+		echo "$@" > "$ADEVENTS/Dnsmasq.EVENT"
+	fi
+}
+
+AD="/data/media/0/ArchiDroid"
+ADEVENTS="$AD/System/Events"
+
+ADEVENT "TETHERING"
+sleep 2 # Give backend some time to kill current instance of dnsmasq
 
 exec "/system/bin/dnsmasq.real" "$@" # Exec original binary and share the environment
