@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,7 +49,7 @@ REPO_DEPENDS_ON_UPSTREAM() {
 
 UPDATEREPO() {
 	cd "$1" || return 1
-	if [[ ! -z "$BRANCH" ]]; then
+	if [[ -n "$BRANCH" ]]; then
 		git checkout "$BRANCH" >/dev/null 2>&1
 		if [[ $? -ne 0 ]]; then
 			echo "WARNING: Branch $BRANCH is not supported in $(basename "$1") repo, skipping..."
@@ -59,6 +59,7 @@ UPDATEREPO() {
 	CURBRANCH="$(git rev-parse --abbrev-ref HEAD)"
 	git pull "$REPO" "$CURBRANCH" >/dev/null 2>&1 || return 1
 	if [[ -f "UPSTREAMS" ]]; then
+		echo "INFO: Updating $(basename "$1")"
 		while read UPSTREAM; do
 			UPSTREAM_REPO="$(echo "$UPSTREAM" | awk '{print $1}')"
 			UPSTREAM_BRANCH="$(echo "$UPSTREAM" | awk '{print $2}')"
@@ -94,7 +95,7 @@ while read line; do
 	else
 		echo "INFO: Not interested in $line"
 	fi
-done < <(curl https://api.github.com/users/ArchiDroid/repos?per_page=100 2>/dev/null | grep "\"name\":" | cut -d '"' -f4)
+done < <(curl https://api.github.com/users/ArchiDroid/repos?per_page=9999 2>/dev/null | grep "\"name\":" | cut -d '"' -f4)
 
 wait
 
