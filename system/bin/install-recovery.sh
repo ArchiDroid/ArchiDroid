@@ -1,10 +1,10 @@
 #!/system/bin/sh
 if [ -f /system/etc/recovery-transform.sh ]; then
-  exec sh /system/etc/recovery-transform.sh 8445952 5a0114da209eb3fa18430337cc05513bf29fbb88 5926912 618ea782543082f6a960ddc7fa134cca18739ce3
+  exec sh /system/etc/recovery-transform.sh 9390080 30ee49a27dd12838a4c0c1bbe8b700a6838c53c2 6168576 8c31bc5ecfd5bf0305d4a5266537c1c3cfc9862a
 fi
 
-if ! applypatch -c EMMC:/dev/block/mmcblk0p6:8445952:5a0114da209eb3fa18430337cc05513bf29fbb88; then
-  applypatch -b /system/etc/recovery-resource.dat EMMC:/dev/block/mmcblk0p5:5926912:618ea782543082f6a960ddc7fa134cca18739ce3 EMMC:/dev/block/mmcblk0p6 5a0114da209eb3fa18430337cc05513bf29fbb88 8445952 618ea782543082f6a960ddc7fa134cca18739ce3:/system/recovery-from-boot.p && log -t recovery "Installing new recovery image: succeeded" || log -t recovery "Installing new recovery image: failed"
+if ! applypatch -c EMMC:/dev/block/mmcblk0p6:9390080:30ee49a27dd12838a4c0c1bbe8b700a6838c53c2; then
+  applypatch -b /system/etc/recovery-resource.dat EMMC:/dev/block/mmcblk0p5:6168576:8c31bc5ecfd5bf0305d4a5266537c1c3cfc9862a EMMC:/dev/block/mmcblk0p6 30ee49a27dd12838a4c0c1bbe8b700a6838c53c2 9390080 8c31bc5ecfd5bf0305d4a5266537c1c3cfc9862a:/system/recovery-from-boot.p && log -t recovery "Installing new recovery image: succeeded" || log -t recovery "Installing new recovery image: failed"
 else
   log -t recovery "Recovery image already installed"
 fi
