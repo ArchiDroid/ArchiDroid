@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,12 +27,13 @@ SUCCESS=0
 DETECT_BCM() {
 	if [[ -f "/data/.cid.info" ]]; then
 		BCM="$(cat "/data/.cid.info")"
-		if [[ ! -z "$BCM" ]]; then
+		if [[ -n "$BCM" ]]; then
 			SUCCESS=1
 			return
 		fi
 	fi
 	if [[ -f "/efs/wifi/.mac.info" ]]; then
+		SUCCESS=1
 		BCM="$(tr '[:upper:]' '[:lower:]' < "/efs/wifi/.mac.info")"
 		case "$BCM" in # Ref: android_hardware_samsung -> macloader/macloader.cpp
 			# murata
@@ -63,6 +64,7 @@ DETECT_BCM() {
 			# semcosh
 			"34:23:ba"*) BCM="semcosh" ;;
 			"38:aa:3c"*) BCM="semcosh" ;;
+			"50:cc:f8"*) BCM="semcosh" ;;
 			"5c:0a:5b"*) BCM="semcosh" ;;
 			"88:32:9b"*) BCM="semcosh" ;;
 			"90:18:7c"*) BCM="semcosh" ;;
@@ -72,12 +74,8 @@ DETECT_BCM() {
 			"48:5a:3f"*) BCM="wisol" ;;
 
 			# Unknown
-			*) BCM="Unknown, $BCM" ;;
+			*) SUCCESS=0; BCM="Unknown, $BCM" ;;
 		esac
-		if [[ ! -z "$BCM" && "$BCM" != Unknown* ]]; then
-			SUCCESS=1
-			return
-		fi
 	fi
 }
 
