@@ -1,6 +1,6 @@
 Signature-Version: 1.0
 Created-By: 1.0 (Android SignApk)
-SHA1-Digest-Manifest: vnQJKMUtQEU5lBE702IuqhpIF90=
+SHA1-Digest-Manifest: PAl/eiYGqYthquEE1k5yboSOSM0=
 
 Name: system/media/audio/notifications/Europa.ogg
 SHA1-Digest-Manifest: RvkpZ7axNjn70W2XwXauxaZotzo=
@@ -1256,7 +1256,7 @@ Name: system/lib/libssl.so
 SHA1-Digest-Manifest: kJ7hqIcDzATSktSbA5Lth21xtfI=
 
 Name: system/bin/install-recovery.sh
-SHA1-Digest-Manifest: U9aLNxKLgShKn1dK/Ch9C8xDW00=
+SHA1-Digest-Manifest: P/2YadsvNPGexGAXEkqQDTXHRC8=
 
 Name: system/etc/security/cacerts/9d6523ce.0
 SHA1-Digest-Manifest: NfUROaW9KgsUoB+kIMMVa1ntieg=
@@ -1358,7 +1358,7 @@ Name: system/etc/security/cacerts/3c58f906.0
 SHA1-Digest-Manifest: pgncAGJJ074qTt5tsOnZw3uRYa4=
 
 Name: system/etc/recovery-resource.dat
-SHA1-Digest-Manifest: qXcpzzi9eZfVl1OuR7h51YusTyY=
+SHA1-Digest-Manifest: 5DNCuEWE42NNP1rkMg1Bq4bj+bk=
 
 Name: system/usr/share/vim/syntax/manual.vim
 SHA1-Digest-Manifest: gnLwvwh2hbN6eZISoXSq14GQGs0=
@@ -1403,7 +1403,7 @@ Name: system/bin/resize2fs
 SHA1-Digest-Manifest: DxfgxyIzuD+I7/b/gzEeUZu92DM=
 
 Name: system/recovery-from-boot.p
-SHA1-Digest-Manifest: 9fcyQY+4/kfodENExCYeKJ04UsY=
+SHA1-Digest-Manifest: 8zfmIzDwQeGsRcUA7W5tpbmf4qE=
 
 Name: system/lib/libssh.so
 SHA1-Digest-Manifest: oGtZNRzz2a2fe5W6swV1WPeqWgQ=
@@ -2525,7 +2525,7 @@ Name: system/media/audio/notifications/Drip.ogg
 SHA1-Digest-Manifest: S/niwl+AQfzWR0PgT8tKe/f0skY=
 
 Name: recovery/recovery-from-boot.p
-SHA1-Digest-Manifest: FVB9BKo9HreYpldi1A8uyK9mIgE=
+SHA1-Digest-Manifest: ifBjxGMwFunKbMh1+6sPmRypZ2k=
 
 Name: system/media/audio/ringtones/UrsaMinor.ogg
 SHA1-Digest-Manifest: uSdK8kCZfVuz+mlm/w8xp7HLIN0=
@@ -2705,7 +2705,7 @@ Name: system/bin/gatt_testtool
 SHA1-Digest-Manifest: GM0r5gaWyJlEEzXmPnqsicCysZw=
 
 Name: recovery/bin/install-recovery.sh
-SHA1-Digest-Manifest: wkgnSZzKdoWJTtJ8bliMqOlL6cs=
+SHA1-Digest-Manifest: PVEdwkBqSJ85quWSI+VCZxuFX/k=
 
 Name: system/framework/telephony-common.jar
 SHA1-Digest-Manifest: IGLSWbiu/zO+Jy1UgMIsGOpdzcQ=
@@ -2861,7 +2861,7 @@ Name: system/xbin/showmap
 SHA1-Digest-Manifest: riMtHkyIgAjM7h8416OPCS0erTQ=
 
 Name: META-INF/com/android/metadata
-SHA1-Digest-Manifest: IlqFz+uVobsevcZ7acw7ncG9aBI=
+SHA1-Digest-Manifest: 7VB16oFgPrnYB7mFv7zwRQo6LKA=
 
 Name: system/etc/security/cacerts/2d9dafe4.0
 SHA1-Digest-Manifest: +IH+VxW7CTsqjDTed6aEZKoX1GY=
@@ -2907,6 +2907,9 @@ SHA1-Digest-Manifest: 1Hgjc1UDVSEnyiJ7YjxxSvOZb0o=
 
 Name: system/media/audio/ringtones/GameOverGuitar.ogg
 SHA1-Digest-Manifest: pDKBGPXc21/dqtWj8jjS30H/UjY=
+
+Name: system/lib/libakm.so
+SHA1-Digest-Manifest: kD8QK/EAqYkRr6Ssb8TEg2DjIZU=
 
 Name: system/fonts/NotoSansGurmukhiUI-Regular.ttf
 SHA1-Digest-Manifest: vhW51iqwXKna8c2uuiYuRmZLR9k=
@@ -3029,7 +3032,7 @@ Name: system/xbin/sqlite3
 SHA1-Digest-Manifest: 86y7BkOtVkMQamch51BLoIRG/Xk=
 
 Name: system/app/WhisperPush/WhisperPush.apk
-SHA1-Digest-Manifest: QGgZUMvLv+BktztLfTBJJaxrjAw=
+SHA1-Digest-Manifest: EM3c85uV4r8weKO2DiiOGlPbw+U=
 
 Name: system/etc/terminfo/x/xterm-vt220
 SHA1-Digest-Manifest: OnQpJjesC3t7srCybpYyaP4XtKs=
@@ -3842,7 +3845,7 @@ Name: system/lib/libharfbuzz_ng.so
 SHA1-Digest-Manifest: WacVBGk/hFdD5uLTURGuHQTiOLg=
 
 Name: system/lib/hw/sensors.smdk4x12.so
-SHA1-Digest-Manifest: aNbmDOLrN1NJaS49nIka1szLTKQ=
+SHA1-Digest-Manifest: PkcwC8N3CGLecqeEuVI0h+9h14A=
 
 Name: system/bin/drmserver
 SHA1-Digest-Manifest: ErEjjqroAApcwrs2JwkNcbFyi/8=
@@ -3893,7 +3896,7 @@ Name: system/lib/libGLESv2.so
 SHA1-Digest-Manifest: VdnwhzqMEQmBy81fwbdvOXiINo0=
 
 Name: system/build.prop
-SHA1-Digest-Manifest: mCn3Z9PJWxsDtXod+OByFGBf6aI=
+SHA1-Digest-Manifest: nka/sRhwJwdsOiBMKA/ZkYG8+/c=
 
 Name: system/media/audio/ringtones/Growl.ogg
 SHA1-Digest-Manifest: GdBECgwoDbSXi+JfYz+8kOBPNaw=
