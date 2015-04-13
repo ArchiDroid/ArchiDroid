@@ -81,20 +81,17 @@ archidroid.detect.previouspreset.fail.notavailable=Sorry, it seems like you don'
 archidroid.experimental=Experimental build
 archidroid.experimental.terms.check=I understand that this build is not finished and may even brick my device
 
-archidroid.gapps.bksync.desc=Provides bookmark sync function for Google Chrome
-archidroid.gapps.calendargoogle.desc=Replaces stock calendar. Extends standard calendar with Google account integration and other features
-archidroid.gapps.calsync.desc=Provides calendar sync function for Google Calendar
-archidroid.gapps.core.desc=Provides core Google Apps functionality. Includes Google's mobile services, framework, store and other required components. Mandatory for all Google apps
-archidroid.gapps.faceunlock.desc=Provides face unlock feature, which can be activated in lockscreen options after installation
-archidroid.gapps.gmail.desc=A mail client designed to work with Gmail service. Includes integration with Google account, mail synchronization and more
-archidroid.gapps.googleplus.desc=A social networking client designed to work with Google Plus service. If you're using Google Plus, you may want to select this
-archidroid.gapps.googletts.desc=TTS stands for Text-To-Speech. Absolutely required if you wish to hear written text, e.g. during GPS navigation
-archidroid.gapps.hangouts.desc=Hangouts client - features support for gmail "messages", also may act as optional SMS/MMS app
-archidroid.gapps.maps.desc=A maps client designed to work with Google Maps service. Features built-in navigation support and other functions
-archidroid.gapps.search.desc=A search client designed to work with Google service. This package also includes Google Voice, so it's mandatory if you want to use e.g. voice commands in Google Launcher
-archidroid.gapps.speech.desc=Provides Google Voice components. Mandatory if you want to use Google Voice
-archidroid.gapps.street.desc=A street view client designed to work with Google Street View. Select this if you want to extend Google Maps with additional functionality
-archidroid.gapps.youtube.desc=A video client designed to work with YouTube service. If you wish to watch YouTube videos on your phone without using the browser, this is mandatory
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc=Sacrifice your I/O for more memory
 archidroid.hardswap.size.0.desc=This will remove hardswap file from the partition
@@ -152,6 +149,7 @@ archidroid.tweaks.navibar.hwenabled=Enable hardware keys
 archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework allows various third-party modules to make framework changes on-the-fly, without modification of system files. Highly recommended
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=All-In-One Xposed module that contains a hundred of framework modifications, which may be activated/deactivated later according to your preferences
 archidroid.xposed.xprivacy.desc=If you like to protect your privacy, this module is for you. With this app you'll be able to precisely specify permissions for every installed app
 

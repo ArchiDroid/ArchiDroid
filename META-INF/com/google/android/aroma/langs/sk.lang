@@ -81,20 +81,17 @@ archidroid.detect.previouspreset.fail.notavailable=Ľutujem, nemáte predchádza
 archidroid.experimental=Experimentálna verzia
 archidroid.experimental.terms.check=Som si vedomý, že táto verzia nie je dokončená a môže poškodiť moje zariadenie.
 
-archidroid.gapps.bksync.desc=Poskytuje synchronizáciu záložiek pre Google Chrome
-archidroid.gapps.calendargoogle.desc=Nahradí pôvodný kalendár. Rozširuje štandartný kalendár o integráciu s Vašim Google účtom a o ďalšie funkcionality
-archidroid.gapps.calsync.desc=Poskytuje funkciu synchronizácie kalendára pre Google Calendar
-archidroid.gapps.core.desc=Poskytuje základné Google Apps funkcionality. Obsahuje mobilné služby, obchod a iné vyžadované komponenty. Potrebné pre všetky Google aplikácie
-archidroid.gapps.faceunlock.desc=Poskytuje funkcionalitu Odomykanie zariadenia tvárou. Po inštalácii možete aktivovať v Zabezpečeni obrazovky.
-archidroid.gapps.gmail.desc=E-mailový klient vytvorený na prácu so službou Gmail. Je integrovaný s Vašim Google účtom, obsahuje e-mailovú synchronizáciu a ďalšie funkcionality.
-archidroid.gapps.googleplus.desc=Klient sociálnej siete navrhnutý tak, aby fungoval so službou Google Plus. V prípade, ak využívate Google Plus, možno sa Vám táto aplikácia zíde.
-archidroid.gapps.googletts.desc=TTS (Text-To-Speech) je vyžadovaná funkcionalita v prípade, ked si potrebujete vypočuť napísaný text, napr. počas GPS navigácie.
-archidroid.gapps.hangouts.desc=Hangouts - voliteľná SMS/MMS aplikácia, ktorá zároven podporuje správy služby Gmail. 
-archidroid.gapps.maps.desc=Aplikácia navrhnutá tak, aby fungovala so službou Google Maps. Obsahuje vstavanú navigáciu a iné užitočné funkcie.
-archidroid.gapps.search.desc=Vyhľadávací klient navrhnutý tak, aby fungoval so službou Google. Tento balíček tiež obsahuje Google Voice, ktorý je vyžadovaný, pokiaľ chcete používať napr. hlasové ovládanie na Google domovskej stránke. 
-archidroid.gapps.speech.desc=Poskytuje Google Voice. Vyžadovaná aplikácia, pokiaľ chcete používať Google Voice
-archidroid.gapps.street.desc=Street View klient. Označte v prípade, keď chcete rozšíriť funkcionalitu aplikácie Google Maps o Street View.
-archidroid.gapps.youtube.desc=Video klient navrhnutý tak, aby fungoval so službou YouTube. Táto aplikácia je nutná v prípade, keď chcete sledovať YouTube videá na Vašom zariadení bez internetového prehliadača.
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc=Obetovať I/O pre viac pamäte
 archidroid.hardswap.size.0.desc=Toto nastavenie vymaže súbor hardswap z Vašej partície
@@ -152,6 +149,7 @@ archidroid.tweaks.navibar.hwenabled=Enable hardware keys
 archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework umožňuje rôznym modulom, aby modifikovali Váš systém, bez nutnosti zmeny systémových súborov. Vysoko odporúčaný framework
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=Xposed modul, ktorý obsahuje stovky nastavení
 archidroid.xposed.xprivacy.desc=V prípade, keď chcete mať súkromie pod kontrolou, tento modul je pre Vás. S touto appkou budete mať možnosť definovať prístupy pre každú inštalovanú aplikáciu
 

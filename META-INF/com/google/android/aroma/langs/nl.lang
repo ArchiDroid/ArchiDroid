@@ -81,20 +81,17 @@ archidroid.detect.previouspreset.fail.notavailable=Sorry, het lijkt erop dat je 
 archidroid.experimental=Experimentele versie
 archidroid.experimental.terms.check=Ik begrijp dat deze versie nog niet af is en dat hij zelfs mijn apparaat kan slopen.
 
-archidroid.gapps.bksync.desc=Biedt bladwijzer synchronisatie voor Google Chrome
-archidroid.gapps.calendargoogle.desc=Vervangt de standaard kalender. Bereidt de standaard kalender uit met de functies zoals Google integratie en andere
-archidroid.gapps.calsync.desc=Biedt kalender synchronisatie voor Google Kalender
-archidroid.gapps.core.desc=Biedt de basis Google Apps functionaleit. Bevat Googles mobiele services, framework, store en andere vereiste componenten. Nodig voor alle Google Apps
-archidroid.gapps.faceunlock.desc=Biedt gezichtontgrendelingsfunctie, die geactiveerd kan worden in vergrendelscherm opties na de installatie
-archidroid.gapps.gmail.desc=Een e-mail cliënt gemaakt voor Gmail. Bevat integratie met je Google account, mail synchronisatie en meer
-archidroid.gapps.googleplus.desc=Een sociale netwerk cliënt gemaakt voor Google Plus. Als je Google Plus gebruikt wil je dit waarschijnlijk gebruiken.
-archidroid.gapps.googletts.desc=TTS staat voor Text-To-Speech. Vereist als je voorgelezen tekst wilt. Bijvoorbeeld tijdens gps navigatie
-archidroid.gapps.hangouts.desc=Hangouts cliënt. Biedt ondersteuning voor gmail "berichten", kan ook als optionele SMS/MMS app gebruikt worden
-archidroid.gapps.maps.desc=Een cliënt voor Google Maps. Bevat onder andere ingebouwde navigatie
-archidroid.gapps.search.desc=Een zoek cliënt gemaakt om met Google service samen te werken. Deze app bevat Google Voice, dus het is vereist als je bijvoorbeeld stemcommando's wilt gebruiken in Google Launcher
-archidroid.gapps.speech.desc=Biedt Google Voice componenten. Vereist voor Google Voice
-archidroid.gapps.street.desc=Een street view cliënt gemaakt voor Google Street View. Selecteer dit als je een extentie voor Google Maps wilt.
-archidroid.gapps.youtube.desc=Een video cliënt voor YouTube. Als je zonder browser YouTube wilt kijken, is dit vereist
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc=Lever je lees- en schrijf snelheid in voor meer geheugen
 archidroid.hardswap.size.0.desc=Dit zal je hardswap bestand van de partitie verwijderen
@@ -152,6 +149,7 @@ archidroid.tweaks.navibar.hwenabled=Zet de hardware toetsen aan
 archidroid.tweaks.navibar.hwenabled.desc=Normaal gesproken schakelt de navigatiebalk de hardware toetsen uit. Selecteer deze optie als je beide navigatieopties beschikbaar wilt hebben
 
 archidroid.xposed.desc=Xposed Framework staat verschillende third-party modules toe om je framework te veranderen, zonder modificatie van systeembestanden. Erg aanbevolen
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=Allesomvattende Xposed module die enorm veel framwork modificaties bevat
 archidroid.xposed.xprivacy.desc=Als je je persoonsgegevens wilt beschermen, is deze app voor jou. Hiermee kan je precies elke permissie beheren voor elke geïnstalleerde app
 
