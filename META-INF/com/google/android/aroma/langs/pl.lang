@@ -81,20 +81,17 @@ archidroid.detect.previouspreset.fail.notavailable=Przepraszam, ale wygląda na 
 archidroid.experimental=Wersja eksperymentalna
 archidroid.experimental.terms.check=Rozumiem, że ta wersja nie jest skończona i może uszkodzić moje urządzenie
 
-archidroid.gapps.bksync.desc=Dostarcza funkcję synchronizacji zakładek dla Google Chrome
-archidroid.gapps.calendargoogle.desc=Zamienia domyślny kalendarz. Ulepsza go o integrację z kontem Google oraz inne przydatne funkcje
-archidroid.gapps.calsync.desc=Dostarcza funkcję synchronizacji kalendarza dla Google Calendar
-archidroid.gapps.core.desc=Dostarcza główną funkcjonalność aplikacji Google. Zawiera usługi Google, sklep oraz inne podstawowe komponenty. Obowiązkowa opcja dla wszystkich aplikacji Google
-archidroid.gapps.faceunlock.desc=Dostarcza funkcję odblokowywania ekranu twarzą (face unlock), która może być włączona w opcjach blokady ekranu po instalacji
-archidroid.gapps.gmail.desc=Klient pocztowy przeznaczony do pracy z Gmailem. Zawiera integrację z kontem Google, synchronizację poczty oraz inne przydatne funkcje pocztowe
-archidroid.gapps.googleplus.desc=Klient społecznościowy przeznaczony do pracy z Google Plus. Jeśli używasz tej platformy społecznościowej, możesz być zainteresowany wybraniem tej opcji
-archidroid.gapps.googletts.desc=TTS oznacza Text-To-Speech - zamianę tekstu na mowę. Obowiązkowa opcja jeśli życzysz sobie usłyszeć pisany tekst, np. podczas nawigacji GPS
-archidroid.gapps.hangouts.desc=Klient Hangouts, zawiera wsparcie dla gmailowych "wiadomości". Może również działać jako zamiennik aplikacji SMS/MMS
-archidroid.gapps.maps.desc=Klient map przeznaczony do pracy z mapami Google. Zawiera wbudowaną nawigację oraz inne przydatbe funkcje
-archidroid.gapps.search.desc=Klient wyszukiwarki przeznaczony do pracy z wyszukiwarką Google. Ten pakiet zawiera również wsparcie dla głosu Google, toteż jest obowiązkowy jesli chcesz używać głosu np. w launcherze googla
-archidroid.gapps.speech.desc=Zawiera podstawowe komponenty głosu Google. Obowiązkowe jeśli zamierzasz z niego korzystać
-archidroid.gapps.street.desc=Klient widoku ulicy przeznaczony do pracy z Google Street View. Wybierz tę opcję, jeśli chciałbyś poszerzyć Google Maps o dodatkową funkcjonalność
-archidroid.gapps.youtube.desc=Klient wideo przeznaczony do pracy z serwisem YouTube. Obowiązkowe, jeśli zamierzasz oglądać filmy na YouTube bez użycia przeglądarki
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc=Poświęć swoją szybkość I/O dla większej ilości pamięci RAM
 archidroid.hardswap.size.0.desc=Ta opcja całkowicie usunie plik hardswap z tej partycji
@@ -152,6 +149,7 @@ archidroid.tweaks.navibar.hwenabled=Włącz przyciski fizyczne
 archidroid.tweaks.navibar.hwenabled.desc=Domyślnie włączenie paska nawigacyjnego wyłącza przyciski fizyczne. Zaznacz tę opcję, jeśli chciałbyś mieć dostępne obydwie metody nawigacji
 
 archidroid.xposed.desc=Xposed Framework pozwala różnym modułom trzecim na dokonywanie zmian we frameworku w mgnieniu oka, bez potrzeby modyfikacji plików systemowych. Wysoce zalecane
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=Moduł Xposed typu "Wszystko w jednym", który zawiera setki przydatnych modyfikacji, które to mogą być później włączane i wyłączane w zależności od twoich potrzeb
 archidroid.xposed.xprivacy.desc=Jeśli cenisz sobie swoją prywatność, ten moduł jest dla ciebie. Dzięki niemu będziesz w stanie precyzyjnie określić uprawnienia dla każdej zainstalowanej aplikacji
 

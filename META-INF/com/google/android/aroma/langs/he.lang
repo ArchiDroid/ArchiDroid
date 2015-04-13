@@ -81,20 +81,17 @@ archidroid.detect.previouspreset.fail.notavailable= מצטער, נראה שאי�
 archidroid.experimental= תצורה ניסיונית
 archidroid.experimental.terms.check= אני מבין שתצורה זו לא גמורה והיא עלולה לקלקל את המכשיר שלי
 
-archidroid.gapps.bksync.desc= Google Chrome מספק שירותי סינכרון ל
-archidroid.gapps.calendargoogle.desc= מחליף את לוח השנה המקורי. מרחיב את יכולות לוח השנה המקורי עם אופציאות של חשבון גוגל ויכולות נוספות
-archidroid.gapps.calsync.desc=Google Calendar מספק שרותי סינכרון עבור
-archidroid.gapps.core.desc= מספק תכונות ליבה עבור אפליקציות גוגל. כולל שרותי גוגל מובייל, פריימוורק, חנות האפליקציות  ועוד רכיבים חיוניים לכל אפליקציות גוגל. 
-archidroid.gapps.faceunlock.desc= מספק שרותי שיחרור נעילה ע"י זיהוי פנים. ניתן להפעיל במסך הנעילה לאחר ההתקנה
-archidroid.gapps.gmail.desc= סוכן דואר המיועד לעבוד עם שרותי גימייל. כולל אינטגרציה עם חשבון גוגל, סינכרון דואר ועוד
-archidroid.gapps.googleplus.desc= סוכן עבור רשתות חברתיות המיועד לעבוד עם שרותי גוגל פלוס. אם אתה עושה שימוש בגוגל פלוס, אתה תרצה לסמן אופציה זו
-archidroid.gapps.googletts.desc=TTS stands for Text-To-Speech הכוונה היא מטקסט למלל. ללא ספק נדרש אם אתה רוצה לשמוע טקסט כתוב, למשל בזמן ניווט
-archidroid.gapps.hangouts.desc=Hangouts סוכן - SMS/MMS מספק תמיכה בהודעות גימייל, כמו כן ניתן לעשות שימוש כאפליקציית 
-archidroid.gapps.maps.desc= סוכן עבור מפות המיועד לעבוד עם שרותי מפות גוגל. תמיכה מובנת בניווט ובפונקציאות נוספות
-archidroid.gapps.search.desc=  סוכן חיפוש המיועד לעבוד עם שרותי גוגל. חבילה זו כוללת שרותי גוגל קוליים , כך שהוא חיוני עם ברצונכם לעשות שימוש בפקודות קוליות
-archidroid.gapps.speech.desc= Google Voice מספק רכיבי גוגל וויס, כך שהוא חיוני עם תרצו לעשות שימוש ב
-archidroid.gapps.street.desc=Google Maps בחר באופציה זו עם אתה רוצה להרחיב את יכולות ה Google Street View סוכן המיועד לעבוד עם 
-archidroid.gapps.youtube.desc=ללא שימוש בתוכנת גלישה רכיב זה חיוני YouTube אם ברצונך לצפות בסרטונים ב .YouTube סוכן וידאו המיועד לעבוד עם שרותי  
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc= הקרבה של מהירות קלט/פלט עבור יותר זיכרון
 archidroid.hardswap.size.0.desc=מהמחיצה hardswap  אופציה זו תסיר את קובץ ה
@@ -152,6 +149,7 @@ archidroid.tweaks.navibar.hwenabled=Enable hardware keys
 archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Xposed Framework מאפשר למודולים צד ג' לבצע שינויים לפריימוורק תוך כדי עבודה, ללא צורך בשינוי קבצי סיסטם. מאוד ממומלץ 
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=All-In-One Xposed  מודול זה מכיל מאות שינויים בפריימוורק, שניתן לעשות בהם שימוש
 archidroid.xposed.xprivacy.desc= אם אתה אוהב את הפרטיות שלך, מודול זה הוא עבורך. אפליקציה זו תאפשר לך לציין במדוייק מה ההרשאות לכל אפליקציה מותקנת
 

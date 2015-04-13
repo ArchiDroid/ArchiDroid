@@ -81,20 +81,17 @@ archidroid.detect.previouspreset.fail.notavailable=对不起, 看起来您并没
 archidroid.experimental=测试版本
 archidroid.experimental.terms.check=我知道这个版本没有彻底完成并且可能存在令我的手机变砖的风险
 
-archidroid.gapps.bksync.desc=为 Google Chrome 提供书签同步功能
-archidroid.gapps.calendargoogle.desc=替换原生日历应用.通过 Google 账号整合以及更多功能扩展标准日历
-archidroid.gapps.calsync.desc=为 Google Calendar 提供日历同步功能
-archidroid.gapps.core.desc=提供 Google Apps 的核心功能. 包含 Google 的移动服务、框架、商店和其他必须组件. 对所有 Google 应用来说是必备的
-archidroid.gapps.faceunlock.desc=提供脸部解锁功能, 可以在安装之后在锁屏选项中激活该功能
-archidroid.gapps.gmail.desc=与 Gmail 服务协同工作的一款邮件客户端. 包含 Google 账号整合, 邮件同步以及更多功能
-archidroid.gapps.googleplus.desc=与 Google Plus 服务协同工作的一款社交网络客户端. 如果您正在使用 Google Plus, 您会选择该项的
-archidroid.gapps.googletts.desc=TTS 是文本转语音的缩写. 如果您希望听到文本信息当然需要选择该项, 比如用作 GPS 导航
-archidroid.gapps.hangouts.desc=环聊客户端 - 支持 gmail 信息, 也可以作为可选的 SMS/MMS 应用
-archidroid.gapps.maps.desc=与 Google Maps 服务协同工作的一款地图客户端. 包含内置导航功能以及其他功能
-archidroid.gapps.search.desc=与 Google 服务协同工作的一款搜索客户端. 也包含了 Google Voice, 如果您想要使用 Google 启动器的语音指令则该选项也是必选的
-archidroid.gapps.speech.desc=提供 Google Voice 组件. 如果您想要使用 Google Voice 则是必选的
-archidroid.gapps.street.desc=与 Google Street View 协同工作的一款街景客户端. 如果您想要为 Google Maps 扩展更多功能则选中该项
-archidroid.gapps.youtube.desc=与 YouTube 服务协同工作的一款视频客户端. 如果您希望在您手机上不通过浏览器观看 YouTube 视频, 该选项也是必选的
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc=牺牲您的 I/O 性能交换更多的运存
 archidroid.hardswap.size.0.desc=该选项从分区中移除 hardswap 文件
@@ -152,6 +149,7 @@ archidroid.tweaks.navibar.hwenabled=开启触摸键
 archidroid.tweaks.navibar.hwenabled.desc=默认情况下，导航栏会禁用触摸键。如果您想同时使用导航栏和触摸键的话，大胆开启吧
 
 archidroid.xposed.desc=Xposed Framework 允许您通过各种第三方模块随时调整框架, 而不用进行系统文件的修改. 强烈推荐！
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=包含海量框架修改功能的多合一的 Xposed 模块, 以后您可以根据您的需要随时激活或取消
 archidroid.xposed.xprivacy.desc=保护您个人隐私的最佳应用，属于 Xposed 模块. 通过该应用，您可以逐一调整每一个已安装应用的特定权限
 
