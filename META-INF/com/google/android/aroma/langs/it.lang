@@ -81,17 +81,17 @@ archidroid.detect.previouspreset.fail.notavailable=Mi spiace, sembra che non si 
 archidroid.experimental=Build sperimentale
 archidroid.experimental.terms.check=Ho capito che questa build è incompleta e potrebbe anche brickare il device
 
-archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
-archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
-archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
-archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
-archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
-archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
-archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
-archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
-archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
-archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
-archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+archidroid.gapps.core.desc=Fornisce il nocciolo delle Google Apps, come il framework, i servizi e lo store. Obbligatorio per tutte le altre Google Apps
+archidroid.gapps.calendar.desc=Sostituisce il calendario AOSP con l'implementazione proprietaria di Google
+archidroid.gapps.camera.desc=Sostituisce la fotocamera AOSP con l'implementazione proprietaria di Google
+archidroid.gapps.chrome.desc=Sostituisce il browser AOSP con l'implementazione proprietaria di Google
+archidroid.gapps.exchange.desc=Sostituisce i servizi Exchange AOSP con l'implementazione proprietaria di Google
+archidroid.gapps.face.desc=Amplia l'AOSP con l'implementazione del rilevamento volti proprietaria di Google
+archidroid.gapps.messenger.desc=Sostituisce gli SMS/MMS AOSP con l'implementazione proprietaria di Google
+archidroid.gapps.music.desc=Sostituisce il riproduttore audio AOSP con l'implementazione proprietaria di Google
+archidroid.gapps.gmail.desc=Sostituisce il servizio mail AOSP con l'implementazione proprietaria di Google
+archidroid.gapps.tts.desc=Sostituisce il sintetizzatore vocale PicoTTS AOSP con l'implementazione proprietaria di Google
+archidroid.gapps.search.desc=Sostituisce la funzione di ricerca rapida AOSP con l'implementazione proprietaria di Google
 
 archidroid.hardswap.desc=Sacrifica I/O a favore di più memoria
 archidroid.hardswap.size.0.desc=Questa opzione rimuoverà il file hardswap dalla partizione
@@ -149,7 +149,7 @@ archidroid.tweaks.navibar.hwenabled=Abilita i tasti hardware
 archidroid.tweaks.navibar.hwenabled.desc=Di default, la barra di navigazione disabilita i tasti hardware. Selezionare questa opzione se si vuole avere entrambi i metodi di navigazione disponibili
 
 archidroid.xposed.desc=Xposed Framework consente di modificare il framework al volo tramite vari moduli di terze parti, senza modificare file di sistema. Altamente raccomandato
-archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
+archidroid.xposed.appsettings.desc=Questo modulo consente di configurare le impostazioni per ogni app, come la densità personalizzata, il mantenimento in memoria etc.
 archidroid.xposed.gravitybox.desc=Modulo Xposed All-In-One che contiene centinaia di modifiche per il framework, che possono essere attivate/disattivate in seguito in base alle proprie preferenze
 archidroid.xposed.xprivacy.desc=Se si desidera proteggere la propria privacy, questo modulo è l'ideale. Con questa app si potrà specificare precisamente i permessi per ogni app installata
 
