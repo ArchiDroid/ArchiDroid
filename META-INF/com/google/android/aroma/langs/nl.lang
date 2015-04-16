@@ -27,10 +27,10 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Open-source reclameblokkade voor Android. Komt vooringesteld om zo nu en dan de host bestanden bij te werken in ArchiDroid's reclameblokkade
+archidroid.apps.adaway.desc=Open-source reclameblokkade voor Android. Komt vooringesteld om zo nu en dan het host bestand bij te werken in ArchiDroid's reclameblokkade
 archidroid.apps.cooltool.desc=Erg aanpasbare app die nuttige informatie over je apparaat laat zien (bijv. CPU gebruik) op de statusbar
-archidroid.apps.esfileexplorer.desc=Uitstekende bestandsbeheer vervanger voor android
-archidroid.apps.fdroid.desc=Installeerbare catalogus van gratis en open-source applicaties voor Android. Fantastische toevoeging op de Google Play Store
+archidroid.apps.esfileexplorer.desc=Uitstekende bestandsbeheer voor android
+archidroid.apps.fdroid.desc=Catalogus over gratis en open-source applicaties voor Android. Fantastische toevoeging op de Google Play Store
 archidroid.apps.greenify.desc=Spaart batterij door apps op de achtergrond te sluimeren als je ze niet gebruikt
 archidroid.apps.lmt.desc=Voegt PIE functie toe, gebaren etc.
 archidroid.apps.mxplayer.desc=Hardware geaccelereerde videospeler voor android
@@ -48,7 +48,7 @@ archidroid.bootanimation.none.desc=Geen opstartanimatie, voor een iets snellere 
 archidroid.bootanimation.stock.desc=Opstartanimatie aangeboden door het standaard systeem
 
 archidroid.changelog=Wijzigingen
-archidroid.changelog.desc=Wat is er nieuw
+archidroid.changelog.desc=Wat is er nieuw?
 
 archidroid.common.current=Huidige
 archidroid.common.default=Standaard waarde
@@ -64,10 +64,10 @@ archidroid.common.terms.check=Ik stem in met de gebruikersovereenkomsten
 archidroid.common.terms.readme=Lees dit eerst!
 archidroid.common.terms.unchecked=Selecteer alsjeblieft de overeenkomsten!
 
-archidroid.custom=Aanpasbaar
+archidroid.custom=Aanpassen
 archidroid.custom.desc=Pas de instellingen aan zoals jij wilt
 
-archidroid.detect.fail=ArchiDroid kon niet detecteren dat hij geïnstalleerd was. Daarom is een factory reset nodig. ArchiDroid zal je /data partition schoonmaken om te kunnen flashen. Je sd gegevens zijn veilig!
+archidroid.detect.fail=ArchiDroid kon niet detecteren dat hij is geïnstalleerd. Daarom is een factory reset nodig. ArchiDroid zal je /data partition schoonmaken om te kunnen flashen. Je sd gegevens zijn veilig!
 archidroid.detect.pass=ArchiDroid heeft gedetecteerd dat hij geïnstalleerd is. Wil je je gegevens toch verwijderen?
 archidroid.detect.pass.no=Nee, verwijder mijn gegevens niet
 archidroid.detect.pass.yes=Ja, verwijder mijn gegevens
@@ -79,25 +79,25 @@ archidroid.detect.previouspreset.fail.incompatible=Sorry, je oude instellingen k
 archidroid.detect.previouspreset.fail.notavailable=Sorry, het lijkt erop dat je nog geen vorige keuzes hebt gemaakt
 
 archidroid.experimental=Experimentele versie
-archidroid.experimental.terms.check=Ik begrijp dat deze versie nog niet af is en dat hij zelfs mijn apparaat kan slopen.
+archidroid.experimental.terms.check=Ik begrijp dat deze versie nog niet af is en dat hij zelfs mijn apparaat kan slopen
 
-archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
-archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
-archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
-archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
-archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
-archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
-archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
-archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
-archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
-archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
-archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+archidroid.gapps.core.desc=Bevat de kern van Google Apps, zoals het framework, services en de Play Store. Vereist voor alle Google Apps
+archidroid.gapps.calendar.desc=Vervangt AOSP Kalender door de versie van Google
+archidroid.gapps.camera.desc=Vervangt AOSP Camera door de versie van Google
+archidroid.gapps.chrome.desc=Vervangt AOSP Browser door de versie van Google
+archidroid.gapps.exchange.desc=Vervangt AOSP Exchange Services (Email) door de versie van Google
+archidroid.gapps.face.desc=Bereidt de AOSP gezichtsherkenning functie uit met de versie van Google
+archidroid.gapps.messenger.desc=Vervangt AOSP SMS/MMS door de versie van Google
+archidroid.gapps.music.desc=Vervangt AOSP Music door de versie van Google
+archidroid.gapps.gmail.desc=Vervangt AOSP Mail door de versie van Google
+archidroid.gapps.tts.desc=Vervangt AOSP PicoTTS door de versie van Google
+archidroid.gapps.search.desc=Vervangt AOSP QuickSearchBox door de versie van Google
 
 archidroid.hardswap.desc=Lever je lees- en schrijf snelheid in voor meer geheugen
 archidroid.hardswap.size.0.desc=Dit zal je hardswap bestand van de partitie verwijderen
 archidroid.hardswap.size.default.desc=Maximaal aanbevolen grootte
 
-archidroid.install.desc=<b>ArchiDroid</b> wordt nu geïnstalleerd. Wacht alsjeblieft totdat de installatie van <b>ArchiDroid</b> klaar is.
+archidroid.install.desc=<b>ArchiDroid</b> wordt nu geïnstalleerd. Wacht alsjeblieft totdat de installatie van <b>ArchiDroid</b> klaar is
 archidroid.install.finish=<b>ArchiDroid</b> installatie is afgerond. Druk op <b>Finish</b> om verder te gaan
 
 archidroid.kernel=Kernel
@@ -114,11 +114,11 @@ archidroid.launcher.nova.desc=Erg aanpasbaar, prestatie gedreven startscherm voo
 archidroid.launcher.stock.desc=Startscherm aangeboden door het standaard systeem
 
 archidroid.prepinstall=Klaar om te installeren
-archidroid.prepinstall.desc=Je bent nu klaar om de installatie te beginnen. Druk op <b>Installeer</b> om te beginnen. Als je je instellingen wilt herzien of veranderen, druk op <b>terug/b>
+archidroid.prepinstall.desc=Je bent nu klaar om de installatie te beginnen. Druk op <b>Installeer</b> om te beginnen. Als je je instellingen wilt herzien of veranderen, druk op <b>terug</b>
 
 archidroid.preset=Voorinstellingen
 archidroid.preset.barebones=Kaal
-archidroid.preset.barebones.desc=Deze optie installeert alleen de basis. Alleen voor foutopsporing, je zult een hoop ArchiDroid functies missen
+archidroid.preset.barebones.desc=Deze optie installeert alleen de basis. Alleen voor foutopsporing. Je zult een hoop ArchiDroid functies missen
 archidroid.preset.custom=Pas aan
 archidroid.preset.custom.desc=Selecteer deze optie als je elk aspect van ArchiDroid wilt aanpassen. Aanbevolen
 archidroid.preset.previous=Vorige instellingen
@@ -149,15 +149,15 @@ archidroid.tweaks.navibar.hwenabled=Zet de hardware toetsen aan
 archidroid.tweaks.navibar.hwenabled.desc=Normaal gesproken schakelt de navigatiebalk de hardware toetsen uit. Selecteer deze optie als je beide navigatieopties beschikbaar wilt hebben
 
 archidroid.xposed.desc=Xposed Framework staat verschillende third-party modules toe om je framework te veranderen, zonder modificatie van systeembestanden. Erg aanbevolen
-archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
-archidroid.xposed.gravitybox.desc=Allesomvattende Xposed module die enorm veel framwork modificaties bevat
+archidroid.xposed.appsettings.desc=Deze module biedt de mogelijkheid om instellingen per applicatie aan te passen, zoals een aangepaste pixeldichtheid, of dat de app in het werkgeheugen blijft, etc.
+archidroid.xposed.gravitybox.desc=Allesomvattende Xposed module die enorm veel framework modificaties bevat
 archidroid.xposed.xprivacy.desc=Als je je persoonsgegevens wilt beschermen, is deze app voor jou. Hiermee kan je precies elke permissie beheren voor elke geïnstalleerde app
 
 
 ### AROMA strings
 text_about=Over
 text_back=Terug
-text_calibrating=Calibratie
+text_calibrating=Calibreren
 text_next=Volgende
 text_no=Nee
 text_ok=Oké
