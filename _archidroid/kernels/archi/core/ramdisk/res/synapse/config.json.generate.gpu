@@ -88,7 +88,7 @@ cat << _EOF
 			{
 				SPane:{
 					title:"GPU thresholds",
-					description:"These values specify GPU load thresholds for GPU governor, which increases/decreases current frequency. Higher thresholds will be more battery-friendly (hard to increase, easy to decrease), while lower thresholds will provide the device with more performance (easy to increase, hard to decrease)"
+					description:"These values specify GPU load thresholds for GPU governor, which increases/decreases current frequency. Thresholds specify how high, or how low current GPU load must be to increase/decrease to given frequency"
 				}
 			},
 			{
@@ -99,12 +99,12 @@ cat << _EOF
 _EOF
 				COUNT=1
 				HELP_COUNT=1
-				HELP_DIRECTION="up"
+				HELP_DIRECTION="->"
 				for THRESHOLD in $(AK_gpu_threshold "/sys/class/misc/gpu_clock_control/gpu_control" "0"); do
 cat << _EOF
 					{
 						SSeekBar:{
-							title:"GPU threshold $HELP_COUNT <-> $((HELP_COUNT + 1)) $HELP_DIRECTION",
+							title:"GPU threshold $HELP_COUNT $HELP_DIRECTION $((HELP_COUNT + 1))",
 							max:100, min:0, unit:" %",
 							default:$THRESHOLD,
 							action:"AK_gpu_threshold /sys/class/misc/gpu_clock_control/gpu_control $COUNT"
@@ -112,10 +112,10 @@ cat << _EOF
 					},
 _EOF
 				((COUNT++))
-				if [[ "$HELP_DIRECTION" = "up" ]]; then
-					HELP_DIRECTION="down"
+				if [[ "$HELP_DIRECTION" = "->" ]]; then
+					HELP_DIRECTION="<-"
 				else
-					HELP_DIRECTION="up"
+					HELP_DIRECTION="->"
 					((HELP_COUNT++))
 				fi
 				done

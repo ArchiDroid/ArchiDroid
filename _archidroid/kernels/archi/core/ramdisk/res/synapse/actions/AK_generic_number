@@ -28,7 +28,7 @@ if [[ -e "$1" ]]; then
 	if [[ -n "$2" ]]; then
 		echo "$2" > "$1"
 	else
-		tr -d '[:alpha:]' < "$1" | tr -d ':'
+		tr -d '[:alpha:]' < "$1" | tr -d '[:punct:]'
 	fi
 else
 	echo "0"

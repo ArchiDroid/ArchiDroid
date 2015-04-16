@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
 # /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
 #
-# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,15 +29,15 @@ exec 1>"$LOG"
 exec 2>&1
 
 LASTVERSION="$AK/version.txt"
-VERSION="$(cat /proc/version)"
+VERSION="$(tr -d '#' < /proc/version)"
 
 date
 echo "ArchiKernel-Init called!"
 echo "Version: $VERSION"
 
-# Regenerate config on every boot, this is for debug purposes, in final version we should enable IFs
+# Regenerate config if needed
 #if [[ ! -f "$LASTVERSION" || "$(cat "$LASTVERSION")" != "$VERSION" ]]; then
-	echo "NOTICE: Regenerating config.json!"
+	echo "NOTICE: Detected new version, regenerating config.json!"
 	uci reset
 	echo "$VERSION" > "$LASTVERSION"
 #fi

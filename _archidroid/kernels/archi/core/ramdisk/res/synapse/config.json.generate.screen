@@ -26,8 +26,105 @@ cat << EOF
 	name:Screen,
 	elements:[
 		$(
+			if [[ -e /sys/class/mdnie/mdnie ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"mDNie"
+					}
+				},
+				$(
+					if [[ -e /sys/class/mdnie/mdnie/mode ]]; then
+cat << __EOF
+						{
+							SOptionList:{
+								title:"mDNie mode",
+								description:"Select mDNie mode you want to use",
+								default:"$(AK_generic /sys/class/mdnie/mdnie/mode)",
+								action:"AK_generic /sys/class/mdnie/mdnie/mode",
+								values:{
+									0:"Dynamic",
+									1:"Standard",
+									2:"Natural",
+									3:"Movie",
+									4:"Auto"
+								}
+							}
+						},
+__EOF
+					fi
+				)
+				$(
+					if [[ -e /sys/class/mdnie/mdnie/scenario ]]; then
+cat << __EOF
+						{
+							SOptionList:{
+								title:"mDNie scenario",
+								description:"Select mDNie scenario you want to use",
+								default:"$(AK_generic /sys/class/mdnie/mdnie/scenario)",
+								action:"AK_generic /sys/class/mdnie/mdnie/scenario",
+								values:{
+									0:"UI",
+									1:"Video",
+									2:"Video Warm",
+									3:"Video Cold",
+									4:"Camera",
+									5:"Navigation",
+									6:"Gallery",
+									7:"VT",
+									8:"Browser",
+									9:"E-book",
+									10:"E-mail"
+								}
+							}
+						},
+__EOF
+					fi
+				)
+				$(
+					if [[ -e /sys/class/mdnie/mdnie/negative ]]; then
+cat << __EOF
+					{
+						SCheckBox:{
+							label:"mDNie negative mode",
+							description:"When enabled, all colors displayed on the screen are inverted",
+							default:$(AK_generic_ARG1_number /sys/class/mdnie/mdnie/negative),
+							action:"AK_generic_ARG1_number /sys/class/mdnie/mdnie/negative"
+						}
+					},
+__EOF
+					fi
+				)
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/class/lcd/panel/power_reduce ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"Adaptive backlight"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Adaptive backlight",
+						description:"Dynamically adjust the brightness of the display's backlight to maximize battery life while maintaining usability",
+						default:$(AK_generic /sys/class/lcd/panel/power_reduce),
+						action:"AK_generic /sys/class/lcd/panel/power_reduce"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
 			if [[ -e /sys/kernel/early_suspend/early_suspend_delay ]]; then
 cat << _EOF
+				{
+					SPane:{
+						title:"Framebuffer suspend delay"
+					}
+				},
 				{
 					SSeekBar:{
 						title:"Framebuffer suspend delay",

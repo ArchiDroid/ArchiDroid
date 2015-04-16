@@ -27,7 +27,11 @@
 if [[ -f "$1" ]]; then
 	if [[ -n "$2" ]]; then
 		echo "$2" > "$1"
-		echo "Done!"
+		if [[ "$(cat "$1")" = "$2" ]]; then
+			echo "Success!"
+		else
+			echo "Failed!"
+		fi
 	else
 		cat "$1"
 	fi

@@ -51,7 +51,7 @@ cat << EOF
 		{
 			SButton:{
 				label:"Activate ${THIS_GOVERNOR} governor",
-				action:"AK_generic_with_response /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ${THIS_GOVERNOR}",
+				action:"AK_generic_with_response_check /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ${THIS_GOVERNOR}",
 				notify:[
 					{
 						on:APPLY,
@@ -75,9 +75,9 @@ cat << EOF
 				values:{
 					$(
 						echo "0:0, "
-						while read FREQ TIME; do
-							echo "$FREQ:"$((FREQ / 1000)) MHz", "
-						done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+						for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+						done
 					)
 				}
 			}
@@ -100,9 +100,9 @@ cat << EOF
 				values:{
 					$(
 						echo "0:0, "
-						while read FREQ TIME; do
-							echo "$FREQ:"$((FREQ / 1000)) MHz", "
-						done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+						for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+						done
 					)
 				}
 			}
@@ -155,9 +155,9 @@ cat << _EOF
 						values:{
 							$(
 								echo "0:0, "
-								while read FREQ TIME; do
-									echo "$FREQ:"$((FREQ / 1000)) MHz", "
-								done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+								for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+									echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+								done
 							)
 						}
 					}

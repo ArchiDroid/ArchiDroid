@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
 # /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
 #
-# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,14 +39,14 @@ echo "INFO: ArchiKernel flasher ready!"
 echo "INFO: Safety check: ON, flasher will immediately terminate in case of ANY error"
 
 if [[ ! -f "$AK/mkbootimg-static" || ! -f "$AK/unpackbootimg-static" ]]; then
-	echo "FATAL ERROR: No bootimg tools?!"
+	echo "ERROR: No bootimg tools?!"
 	exit 1
 else
 	chmod 755 "$AK/mkbootimg-static" "$AK/unpackbootimg-static"
 fi
 
 echo "INFO: Pulling boot.img from $KERNEL"
-if [[ ! -z "$(which dump_image)" ]]; then
+if which dump_image >/dev/null; then
 	dump_image "$KERNEL" "$AK/boot.img"
 else
 	dd if="$KERNEL" of="$AK/boot.img"
@@ -63,24 +63,24 @@ if [[ -f "$AKDROP/boot.img-ramdisk.gz" ]]; then
 		echo "INFO: Detecting ramdisk format..."
 		CBIN="gzip -9" # We use gzip as final compression in every scenario
 
-		if [[ "$(gunzip -t ../boot.img-ramdisk.gz >/dev/null 2>&1; echo $?)" -eq 0 ]]; then
+		if gunzip -t ../boot.img-ramdisk.gz >/dev/null 2>&1; then
 			echo "INFO: GZIP format detected"
 			#CBIN="gzip -9"
 			DBIN="gunzip -c"
-		elif [[ "$(lzop -t ../boot.img-ramdisk.gz >/dev/null 2>&1; echo $?)" -eq 0 ]]; then
+		elif lzop -t ../boot.img-ramdisk.gz >/dev/null 2>&1; then
 			echo "INFO: LZO format detected"
 			#CBIN="lzop -9"
 			DBIN="lzop -dc"
-		elif [[ "$(xz -t ../boot.img-ramdisk.gz >/dev/null 2>&1; echo $?)" -eq 0 ]]; then
+		elif xz -t ../boot.img-ramdisk.gz >/dev/null 2>&1; then
 			echo "INFO: XZ format detected"
 			#CBIN="xz -9"
 			DBIN="xz -dc"
-		elif [[ "$(lzma -t ../boot.img-ramdisk.gz >/dev/null 2>&1; echo $?)" -eq 0 ]]; then
+		elif lzma -t ../boot.img-ramdisk.gz >/dev/null 2>&1; then
 			echo "INFO: LZMA format detected"
 			#CBIN="lzma -9"
 			DBIN="lzma -dc"
 		else
-			echo "ERROR: Couldn't detect any known ramdisk format!"
+			echo "ERROR: Could not detect any known ramdisk format!"
 			exit 1
 		fi
 
@@ -93,7 +93,7 @@ if [[ -f "$AKDROP/boot.img-ramdisk.gz" ]]; then
 
 			# Remove all current modules from ramdisk
 			find "$AKDROP/ramdisk/lib/modules" -type f -iname "*.ko" | while read line; do
-				rm -f "$line"
+				rm "$line"
 			done
 
 			# Copy all new ArchiKernel modules from system to ramdisk
@@ -124,7 +124,9 @@ if [[ -f "$AKDROP/boot.img-ramdisk.gz" ]]; then
 		done
 
 		# Add ArchiKernel Init if required
-		if [[ "$(grep -qi "ArchiKernel-Init" "$AKDROP/ramdisk/init.rc"; echo $?)" -ne 0 ]]; then
+		if grep -q "ArchiKernel-Init" "$AKDROP/ramdisk/init.rc"; then
+			echo "INFO: User is updating the kernel!"
+		else
 			echo "INFO: User is flashing the kernel for the first time!"
 			{
 				echo
@@ -134,15 +136,12 @@ if [[ -f "$AKDROP/boot.img-ramdisk.gz" ]]; then
 				echo "    group root"
 				echo "    oneshot"
 			} >> "$AKDROP/ramdisk/init.rc"
-		else
-			echo "INFO: User is updating the kernel!"
 		fi
 
-		rm -f "$AKDROP/boot.img-ramdisk.gz"
 		find . | cpio -o -H newc | $CBIN > "$AKDROP/boot.img-ramdisk.gz"
 	fi
 else
-	echo "FATAL ERROR: No ramdisk?!"
+	echo "ERROR: No ramdisk?!"
 	exit 2
 fi
 echo "INFO: Combining ArchiKernel zImage and current kernel ramdisk"
@@ -161,7 +160,7 @@ echo "INFO: Combining ArchiKernel zImage and current kernel ramdisk"
 echo "INFO: newboot.img ready!"
 
 echo "INFO: Flashing newboot.img on $KERNEL"
-if [[ ! -z "$(which flash_image)" ]]; then
+if which flash_image >/dev/null; then
 	flash_image "$KERNEL" "$AK/newboot.img"
 else
 	dd if="$AK/newboot.img" of="$KERNEL"

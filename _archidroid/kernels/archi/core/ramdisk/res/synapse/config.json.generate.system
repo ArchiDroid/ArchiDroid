@@ -26,6 +26,43 @@ cat << EOF
 	name:System,
 	elements:[
 		$(
+			if [[ -e /sys/vibrator/pwm_val ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"Vibration"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Vibration intensity",
+						description:"This setting controls intensity of the vibration",
+						max:100, min:0, unit:"%",
+						default:$(AK_generic /sys/vibrator/pwm_val),
+						action:"AK_generic /sys/vibrator/pwm_val"
+					}
+				},
+_EOF
+				if [[ -e /sys/devices/virtual/timed_output/vibrator/enable ]]; then
+cat << _EOF
+					{
+						SButton:{
+							label:"Vibration test",
+							action:"AK_generic_with_response /sys/devices/virtual/timed_output/vibrator/enable 1000"
+						}
+					},
+_EOF
+				fi
+cat << _EOF
+				{
+					SDescription:{
+						description:""
+					}
+				},
+_EOF
+			fi
+		)
+		$(
 			if [[ -e /sys/kernel/logger_mode/logger_mode ]]; then
 cat << _EOF
 				{

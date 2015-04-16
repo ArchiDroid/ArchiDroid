@@ -21,16 +21,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Read -> generic
-# Write -> generic, with response to stdout
-
-if [[ -f "$1" ]]; then
-	if [[ -n "$2" ]]; then
-		echo "$2" > "$1"
-		echo "Done!"
-	else
-		cat "$1"
-	fi
-else
-	echo "0"
-fi
+am start -a "android.intent.action.VIEW" -d "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=JustArchi%40JustArchi%2enet&lc=PL&item_name=JustArchi&item_number=ArchiKernel&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" >/dev/null
+echo "Thank you! :)"

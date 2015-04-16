@@ -241,7 +241,14 @@ cat << _EOF
 						description:"This value determines boost of the band 1",
 						max:12, min:-12, unit:"", step:1,
 						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 1),
-						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 1"
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
 					}
 				},
 				{
@@ -250,7 +257,14 @@ cat << _EOF
 						description:"This value determines boost of the band 2",
 						max:12, min:-12, unit:"", step:1,
 						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 2),
-						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 2"
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
 					}
 				},
 				{
@@ -259,7 +273,14 @@ cat << _EOF
 						description:"This value determines boost of the band 3",
 						max:12, min:-12, unit:"", step:1,
 						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 3),
-						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 3"
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 3",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
 					}
 				},
 				{
@@ -268,7 +289,14 @@ cat << _EOF
 						description:"This value determines boost of the band 4",
 						max:12, min:-12, unit:"", step:1,
 						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 4),
-						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 4"
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
 					}
 				},
 				{
@@ -277,7 +305,14 @@ cat << _EOF
 						description:"This value determines boost of the band 5",
 						max:12, min:-12, unit:"", step:1,
 						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 5),
-						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 5"
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 5",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
 					}
 				},
 				{
@@ -332,7 +367,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 1 1),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 1"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -341,7 +383,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 1 2),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 2"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -350,7 +399,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 1 4),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 4"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -359,7 +415,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 2 1),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 1"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -368,7 +431,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 2 2),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 2"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -377,7 +447,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 2 3),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 3"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 3",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -386,7 +463,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 2 4),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 4"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -395,7 +479,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 3 1),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 1"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -404,7 +495,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 3 2),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 2"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -413,7 +511,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 3 3),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 3"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 3",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -422,7 +527,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 3 4),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 4"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -431,7 +543,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 4 1),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 1"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -440,7 +559,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 4 2),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 2"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -449,7 +575,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 4 3),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 3"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 3",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -458,7 +591,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 4 4),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 4"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -467,7 +607,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 5 1),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 1"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -476,7 +623,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 5 2),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 2"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{
@@ -485,7 +639,14 @@ cat << _EOF
 						description:"",
 						max:65535, min:0, unit:"", step:1,
 						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 5 4),
-						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 4"
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
 					}
 				},
 				{

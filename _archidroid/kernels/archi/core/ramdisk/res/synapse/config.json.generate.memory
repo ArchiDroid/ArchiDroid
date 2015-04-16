@@ -74,13 +74,12 @@ cat << _EOF
 					}
 				},
 				$(
-					find /dev/block -mindepth 1 -maxdepth 1 -iname "zram*" | sort | while read ZRAM_BLOCK; do
+					find /dev/block -mindepth 1 -maxdepth 1 -name "zram*" | sort | while read ZRAM_BLOCK; do
 					ZRAM_DEVICE="$(basename "$ZRAM_BLOCK")"
 cat << __EOF
 						{
 							SSeekBar:{
 								title:"$ZRAM_DEVICE block",
-								description:"",
 								max:300, min:0, unit:" MB",
 								default:$(AK_zram $ZRAM_DEVICE),
 								action:"AK_zram $ZRAM_DEVICE"

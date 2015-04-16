@@ -21,6 +21,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+if [[ -z "$AKACTION" ]]; then # This should never happen
+	return
+	exit 1 # If we're in fact sourcing this file, this won't execute
+fi
+
 export PATH="$AKACTION:$PATH"
 
 cat << EOF

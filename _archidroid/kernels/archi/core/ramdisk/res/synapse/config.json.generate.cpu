@@ -53,7 +53,6 @@ _EOF
 		)
 		$(
 			if [[ -e /sys/devices/system/cpu/cpu0/cpufreq/asv_level ]]; then
-			ASV_LEVEL="$(cat /sys/devices/system/cpu/cpu0/cpufreq/asv_level)"
 cat << _EOF
 				{
 					SLiveLabel:{
@@ -76,7 +75,7 @@ _EOF
 				title:"CPU frequency",
 				description:"Current CPU frequency",
 				refresh:250,
-				action:"for CORE in 0 1 2 3 4 5 6 7; do if [[ -e /sys/devices/system/cpu/cpu\${CORE} ]]; then if [[ -e /sys/devices/system/cpu/cpu\${CORE}/cpufreq/cpuinfo_cur_freq ]]; then echo CPU\${CORE}: \$((\$(cat /sys/devices/system/cpu/cpu\${CORE}/cpufreq/cpuinfo_cur_freq) / 1000)) MHz@n; else echo CPU\${CORE}: Offline@n; fi; else break; fi; done"
+				action:"for CORE in 0 1 2 3 4 5 6 7; do if [[ -e /sys/devices/system/cpu/cpu\${CORE}/cpufreq ]]; then if [[ -e /sys/devices/system/cpu/cpu\${CORE}/cpufreq/cpuinfo_cur_freq ]]; then echo CPU\${CORE}: \$((\$(cat /sys/devices/system/cpu/cpu\${CORE}/cpufreq/cpuinfo_cur_freq) / 1000)) MHz@n; else echo CPU\${CORE}: Offline@n; fi; else break; fi; done"
 			}
 		},
 		{
@@ -87,9 +86,9 @@ _EOF
 				action:"AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
 				values:{
 					$(
-						while read FREQ TIME; do
-							echo "$FREQ:"$((FREQ / 1000)) MHz", "
-						done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+						for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+						done
 					)
 				}
 			}
@@ -102,13 +101,33 @@ _EOF
 				action:"AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq",
 				values:{
 					$(
-						while read FREQ TIME; do
-							echo "$FREQ:"$((FREQ / 1000)) MHz", "
-						done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+						for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+						done
 					)
 				}
 			}
 		},
+		$(
+			if [[ -e /sys/module/cpuidle_exynos4/parameters/enable_mask ]]; then
+cat << _EOF
+				{
+					SOptionList:{
+						title:"CPU idle mode",
+						description:"This setting controls which idle modes are available for the CPU. Enabling more of them should potentially improve battery life",
+						default:"$(AK_generic /sys/module/cpuidle_exynos4/parameters/enable_mask)",
+						action:"AK_generic /sys/module/cpuidle_exynos4/parameters/enable_mask",
+						values:{
+							0:"IDLE",
+							1:"IDLE + AFTR",
+							2:"IDLE + LPA",
+							3:"IDLE + AFTR + LPA"
+						}
+					}
+				},
+_EOF
+			fi
+		)
 		{
 			SOptionList:{
 				title:"CPU governor",
@@ -208,9 +227,9 @@ cat << _EOF
 						action:"AK_generic_ARG1 /sys/class/misc/touchboost_switch/touchboost_freq",
 						values:{
 							$(
-								while read FREQ TIME; do
-									echo "$FREQ:"$((FREQ / 1000)) MHz", "
-								done < /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state
+								for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+									echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+								done
 							)
 						}
 					}
@@ -227,14 +246,13 @@ _EOF
 			if [[ -e /sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table ]]; then
 				cat /sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table | sed -e 's/mhz://g;s/uV//g' | while read UV_TABLE; do
 					FREQ="$(echo "$UV_TABLE" | awk '{print $1}')"
-					VALUE="$(echo "$UV_TABLE" | awk '{print $2}')"
+					VOLTAGE="$(echo "$UV_TABLE" | awk '{print $2}')"
 cat << _EOF
 					{
 						SSeekBar:{
 							title:"$FREQ MHz step",
-							description:"asdasd",
 							max:1500000, min:600000, unit:" uV", step:12500,
-							default:$VALUE,
+							default:$VOLTAGE,
 							action:"AK_UV /sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table $FREQ"
 						}
 					},

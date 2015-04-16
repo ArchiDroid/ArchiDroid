@@ -21,16 +21,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Read -> generic
-# Write -> generic, with response to stdout
-
-if [[ -f "$1" ]]; then
-	if [[ -n "$2" ]]; then
-		echo "$2" > "$1"
-		echo "Done!"
-	else
-		cat "$1"
-	fi
-else
-	echo "0"
-fi
+cat << EOF
+{
+	name:ArchiKernel,
+	elements:[
+		{
+			SPane:{
+				title:"ArchiKernel",
+				description:"$(cat /proc/version)"
+			}
+		},
+		{
+			SButton:{
+				label:"Buy me a beer! :)",
+				action:"AK_donate"
+			}
+		},
+	]
+}
+EOF

@@ -47,7 +47,7 @@ if [[ "$SYSFS_FILE" = "ALL" ]]; then
 	echo "$ALL_PRESETS"
 elif [[ -e "$SYSFS_FILE" ]]; then
 	if [[ -z "$TARGET_VALUE" ]]; then # Read mode
-		GAINS_CURRENT="$(tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d ':')"
+		GAINS_CURRENT="$(tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d '[:punct:]')"
 		FOUND=0
 		for PRESET_CHOSEN in $KNOWN_PRESETS; do
 			eval PRESET_VALUES="\${PRESET_${PRESET_CHOSEN}}" # eval is evil
