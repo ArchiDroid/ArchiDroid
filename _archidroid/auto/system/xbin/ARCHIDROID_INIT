@@ -209,7 +209,7 @@ ADSTART() {
 		;;
 		"archidroid_pixelserv")
 			if [[ "$ADBLOCK" -eq 1 ]]; then
-				archidroid_pixelserv 127.0.0.1 &
+				archidroid_pixelserv 127.0.0.1 -n lo &
 				echo "$(date +"%F %T") INFO: ADBLOCK: Activated archidroid_pixelserv - local web server on 127.0.0.1:80, responding with NULLGIF"
 			fi
 		;;
