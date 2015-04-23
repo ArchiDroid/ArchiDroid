@@ -25,17 +25,14 @@
 # exit 1 -> All fine, we're NOT running ArchiDroid
 # exit 2 -> No build.prop detected, we can't check ArchiDroid existance. Full wipe?
 
-if [[ -f "/system/build.prop" ]]; then
-	# We're not after full wipe
-	if [[ "$(grep -qi "ArchiDroid" "/system/build.prop"; echo $?)" -eq 0 ]]; then
-		# We're running ArchiDroid"
-		exit 0
+if [[ -f "/system/build.prop" ]]; then # We're not after full wipe
+	if grep -qi "ArchiDroid" "/system/build.prop"; then
+		exit 0 # We're running ArchiDroid"
 	else
-		# We're not running ArchiDroid
-		exit 1
+		exit 1 # We're not running ArchiDroid
 	fi
 else
-	exit 2
+	exit 2 # Unknown
 fi
 
 exit 0
