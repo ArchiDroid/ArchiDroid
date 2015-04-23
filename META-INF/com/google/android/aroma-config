@@ -373,7 +373,6 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"xposed-xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check",
 
 		"archiapps", "<#selectbg_g>ArchiDroid Apps</#>", "", "group",
-		"adaway", "AdAway", "<~archidroid.apps.adaway.desc>", "check",
 		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
 		"esfileexplorer", "ES File Explorer", "<~archidroid.apps.esfileexplorer.desc>", "check.checked",
 		"fdroid", "F-Droid", "<~archidroid.apps.fdroid.desc>", "check.checked",
