@@ -110,7 +110,7 @@ fi
 if [[ "$INSTALL" -eq 1 ]]; then
 	if [[ ! -e "$ADMNT/bin/bash" ]]; then
 		mkdir -p "$ADMNT"
-		busybox tar -zxf "$ADSYS/system/debian.tar.xz" -C "$ADMNT" || exit 1
+		busybox tar -xf "$ADSYS/system/debian.tar.xz" -C "$ADMNT" || exit 1
 
 		# Fixes
 		touch "$ADMNT/.nomedia" # Tell Android media process to DON'T scan this dir
