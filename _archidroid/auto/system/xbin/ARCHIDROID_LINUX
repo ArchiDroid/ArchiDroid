@@ -109,7 +109,8 @@ fi
 
 if [[ "$INSTALL" -eq 1 ]]; then
 	if [[ ! -e "$ADMNT/bin/bash" ]]; then
-		mkdir -p "$ADMNT" && busybox tar -zxf "$ADSYS/system/debian.tar.gz" -C "$ADMNT"
+		mkdir -p "$ADMNT"
+		busybox tar -xf "$ADSYS/system/debian.tar.xz" -C "$ADMNT" || exit 1
 
 		# Fixes
 		touch "$ADMNT/.nomedia" # Tell Android media process to DON'T scan this dir
@@ -118,8 +119,8 @@ if [[ "$INSTALL" -eq 1 ]]; then
 		LINUX_PREPARE_SHELL
 		LINUX_SHELL_COMMAND "ln -s /proc/mounts /etc/mtab" # This is done automatically on most distros on first boot, but we won't have first boot here
 		LINUX_SHELL_COMMAND "sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config" # Newer versions of SSH deny root access by default now, and since we don't have any other user, we need it
-		LINUX_SHELL_COMMAND "echo -e 'archidroid$\narchidroid$' | passwd >/null.txt 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
-		LINUX_SHELL_COMMAND "rm -f /null.txt" # Remove our temporary /dev/null
+		LINUX_SHELL_COMMAND "echo -e 'archidroid$\narchidroid$' | passwd >/null.sink 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
+		LINUX_SHELL_COMMAND "rm -f /null.sink" # Remove our temporary /dev/null
 	else
 		echo "ERROR: ArchiDroid's Linux has been installed already in $ADMNT!"
 		exit 1

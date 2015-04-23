@@ -478,7 +478,6 @@ if [[ -f "$AD/INSTALL" || -f "$AD/UPDATE" ]]; then
 		fi
 		DBUPDATE=1
 		ADRELOAD=1
-		setprop "persist.sys.root_access" "$(getprop persist.sys.root_access)" # This is required, as for some reason CM now reads the value from /data/property and not getprop()
 	fi
 fi
 
@@ -690,6 +689,7 @@ else
 fi
 
 if [[ "$FIRSTBOOT" -eq 1 ]]; then
+	setprop "persist.sys.root_access" "$(getprop persist.sys.root_access)" # This is required, as CM now reads the value from /data/property and defaults to 0 in case of not found
 	rm -f "$ADFIFO" "$AD/INSTALL" "$AD/UPDATE" "$AD/FORCE"
 	rm -rf "$AD/FIRSTBOOT"
 fi
