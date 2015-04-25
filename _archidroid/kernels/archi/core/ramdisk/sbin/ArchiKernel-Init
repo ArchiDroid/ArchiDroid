@@ -21,6 +21,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+BACKGROUND=0
+
+# Parse ARGs
+for ARG in "$@"; do
+	case "$ARG" in
+		--background) BACKGROUND=1 ;;
+	esac
+done
+
+if [[ "$BACKGROUND" -eq 0 ]]; then
+	"$0" "--background" "$@" &
+	exit 0
+fi
+
 AK="/data/.ArchiKernel"
 mkdir -p "$AK"
 

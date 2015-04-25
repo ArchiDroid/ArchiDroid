@@ -35,9 +35,9 @@ if [[ -e "$SYSFS_FILE" ]]; then
 		SLOPE_COUNTER=1
 		for SLOPE_VALUE in $(tr -d '[:alpha:]' < "$SYSFS_FILE" | sed -e 's/,/ /g' | tr -d '[:punct:]'); do
 			if [[ "$SLOPE_COUNTER" -eq "$TARGET_TYPE" ]]; then
-				SYSFS_WRITE="$SYSFS_WRITE $TARGET_VALUE"
+				SYSFS_WRITE+=" $TARGET_VALUE"
 			else
-				SYSFS_WRITE="$SYSFS_WRITE $SLOPE_VALUE"
+				SYSFS_WRITE+=" $SLOPE_VALUE"
 			fi
 			((SLOPE_COUNTER++))
 		done

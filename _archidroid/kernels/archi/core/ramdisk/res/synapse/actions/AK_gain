@@ -35,9 +35,9 @@ if [[ -e "$SYSFS_FILE" ]]; then
 		GAIN_COUNTER=1
 		for GAIN_VALUE in $(tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d '[:punct:]'); do
 			if [[ "$GAIN_COUNTER" -eq "$TARGET_TYPE" ]]; then
-				SYSFS_WRITE="$SYSFS_WRITE $TARGET_VALUE"
+				SYSFS_WRITE+=" $TARGET_VALUE"
 			else
-				SYSFS_WRITE="$SYSFS_WRITE $GAIN_VALUE"
+				SYSFS_WRITE+=" $GAIN_VALUE"
 			fi
 			((GAIN_COUNTER++))
 		done

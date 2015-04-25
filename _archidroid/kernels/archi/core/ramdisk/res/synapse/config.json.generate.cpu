@@ -23,9 +23,6 @@
 
 if [[ -e /sys/devices/system/cpu/present ]]; then
 	CPUS_AVAILABLE="$(($(cut -d '-' -f2 < /sys/devices/system/cpu/present) + 1))"
-	if ! [[ "$CPUS_AVAILABLE" -ge 1 && "$CPUS_AVAILABLE" -le 32 ]]; then # Check if it makes any sense, we negate if in case of a parse error
-		CPUS_AVAILABLE=1 # Well, at least one...
-	fi
 else
 	CPUS_AVAILABLE=1 # Well, at least one...
 fi
@@ -75,18 +72,32 @@ _EOF
 				title:"CPU frequency",
 				description:"Current CPU frequency",
 				refresh:250,
-				action:"for CORE in 0 1 2 3 4 5 6 7; do if [[ -e /sys/devices/system/cpu/cpu\${CORE}/cpufreq ]]; then if [[ -e /sys/devices/system/cpu/cpu\${CORE}/cpufreq/cpuinfo_cur_freq ]]; then echo CPU\${CORE}: \$((\$(cat /sys/devices/system/cpu/cpu\${CORE}/cpufreq/cpuinfo_cur_freq) / 1000)) MHz@n; else echo CPU\${CORE}: Offline@n; fi; else break; fi; done"
+				action:"CPU=0; while [[ \${CPU} -lt ${CPUS_AVAILABLE} ]]; do if [[ -e /sys/devices/system/cpu/cpu\${CPU}/cpufreq/cpuinfo_cur_freq ]]; then echo CPU\${CPU}: \$((\$(cat /sys/devices/system/cpu/cpu\${CPU}/cpufreq/cpuinfo_cur_freq) / 1000)) MHz@n; else echo CPU\${CPU}: Offline@n; fi; ((CPU++)); done"
 			}
 		},
+		$(
+			CPU=1 # Core 0 always must be online
+			while [[ "$CPU" -lt "$CPUS_AVAILABLE" ]]; do
+cat << _EOF
+				{
+					SButton:{
+						label:"CPU${CPU} On/Off",
+						action:"AK_cpu_hotplug $CPU"
+					}
+				},
+_EOF
+			((CPU++))
+			done
+		)
 		{
 			SSeekBar:{
 				title:"CPU max frequency",
 				description:"Set the maximum freqency the CPU scales up to",
-				default:$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq),
-				action:"AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
+				default:$(AK_cpu cpufreq/scaling_max_freq),
+				action:"AK_cpu cpufreq/scaling_max_freq",
 				values:{
 					$(
-						for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+						for FREQ in $(AK_cpu cpufreq/scaling_available_frequencies); do
 							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
 						done
 					)
@@ -97,11 +108,11 @@ _EOF
 			SSeekBar:{
 				title:"CPU min frequency",
 				description:"Set the minimum freqency the CPU scales down to",
-				default:$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq),
-				action:"AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq",
+				default:$(AK_cpu cpufreq/scaling_min_freq),
+				action:"AK_cpu cpufreq/scaling_min_freq",
 				values:{
 					$(
-						for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+						for FREQ in $(AK_cpu cpufreq/scaling_available_frequencies); do
 							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
 						done
 					)

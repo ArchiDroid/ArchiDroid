@@ -41,9 +41,9 @@ if [[ -e "$SYSFS_FILE" ]]; then
 		BAND_COUNTER=1
 		for BAND_VALUE in $BAND_VALUES; do
 			if [[ "$BAND_COUNTER" -eq "$TARGET_TYPE_VALUE" ]]; then
-				SYSFS_WRITE="$SYSFS_WRITE $TARGET_VALUE"
+				SYSFS_WRITE+=" $TARGET_VALUE"
 			else
-				SYSFS_WRITE="$SYSFS_WRITE $BAND_VALUE"
+				SYSFS_WRITE+=" $BAND_VALUE"
 			fi
 			((BAND_COUNTER++))
 		done

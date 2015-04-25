@@ -42,10 +42,10 @@ if [[ -e "$SYSFS_FILE" ]]; then
 			sed -e 's/mhz://g;s/uV//g' < "$SYSFS_FILE" | (while read UV_TABLE; do
 				FREQ="$(echo "$UV_TABLE" | awk '{print $1}')"
 				if [[ "$FREQ" -eq "$TARGET_TYPE" ]]; then
-					SYSFS_WRITE="$SYSFS_WRITE $TARGET_VALUE"
+					SYSFS_WRITE+=" $TARGET_VALUE"
 				else
 					VALUE="$(echo "$UV_TABLE" | awk '{print $2}')"
-					SYSFS_WRITE="$SYSFS_WRITE $VALUE"
+					SYSFS_WRITE+=" $VALUE"
 				fi
 			done
 			echo "$SYSFS_WRITE")

@@ -40,9 +40,9 @@ if [[ -e "$SYSFS_FILE" ]]; then
 			COUNT=1
 			grep "Threshold" "$SYSFS_FILE" | awk '{for (i=2; i<NF; i++) print $i; print $NF}' | (while read THRESHOLD; do
 				if [[ "$COUNT" -eq "$TARGET_TYPE" ]]; then
-					SYSFS_WRITE="$SYSFS_WRITE ${TARGET_VALUE}%"
+					SYSFS_WRITE+=" ${TARGET_VALUE}%"
 				else
-					SYSFS_WRITE="$SYSFS_WRITE $THRESHOLD"
+					SYSFS_WRITE+=" $THRESHOLD"
 				fi
 			((COUNT++))
 			done

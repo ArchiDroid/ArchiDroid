@@ -40,9 +40,9 @@ if [[ -e "$SYSFS_FILE" ]]; then
 			COUNT=1
 			grep "Step" "$SYSFS_FILE" | awk '{print $NF}' | (while read VOLTAGE; do
 				if [[ "$COUNT" -eq "$TARGET_TYPE" ]]; then
-					SYSFS_WRITE="$SYSFS_WRITE $TARGET_VALUE"
+					SYSFS_WRITE+=" $TARGET_VALUE"
 				else
-					SYSFS_WRITE="$SYSFS_WRITE $VOLTAGE"
+					SYSFS_WRITE+=" $VOLTAGE"
 				fi
 			((COUNT++))
 			done

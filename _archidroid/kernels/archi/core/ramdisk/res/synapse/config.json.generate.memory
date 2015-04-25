@@ -26,18 +26,87 @@ cat << EOF
 	name:Memory,
 	elements:[
 		{
+			SPane:{
+				title:"Low Memory Killer",
+				description:"LMK is android internal task killer. It contains the type of every process, and it's priority. When available memory gets below specified pages below, LMK kills lowest priority process of given type. FOREGROUND_APP is the most important type (try to never kill), while EMPTY_APP is the least important type (kill if necessary). Higher values will result in more aggressive killing (bigger amount of free memory that needs to be available), while lower values will make LMK more patient regarding low memory conditions (smaller amount of free memory that needs to be available)"
+			}
+		},
+		$(
+			LMK_1="$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1)"
+			LOOP=0
+			while [[ "$LOOP" -lt 30 ]] && [[ -z "$LMK_1" || "$LMK_1" -eq 1536 ]]; do # Wait till Android populates minfree with proper device (NOT default) values
+				((LOOP++))
+				sleep 1
+				LMK_1="$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1)"
+			done
+		)
+		{
 			SSeekBar:{
-				title:"VM Swappiness",
-				description:"This setting controls the relative weight given to swapping out runtime memory, as opposed to dropping pages from the system page cache. A low value causes the kernel to avoid swapping, a higher value causes the kernel to try to use swap space. Keep in mind that this value affects both swap and zram",
-				max:100, min:0,
-				default:$(AK_generic /proc/sys/vm/swappiness),
-				action:"AK_generic /proc/sys/vm/swappiness"
+				title:"FOREGROUND_APP",
+				description:"This is the process running the current foreground app",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"VISIBLE_APP",
+				description:"This is a process only hosting activities that are visible to the user",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 2),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 2"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"SECONDARY_SERVER",
+				description:"This is a process holding a secondary server",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 3),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 3"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"HIDDEN_APP",
+				description:"This is a process only hosting activities that are not visible",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 4),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 4"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CONTENT_PROVIDER",
+				description:"This is a process with a content provider that does not have any clients attached to it",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 5),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 5"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"EMPTY_APP",
+				description:"This is a process without anything currently running in it",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 6),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 6"
 			}
 		},
 		{
 			SPane:{
 				title:"Swap",
 				description:"Swap space is a form of virtual memory. Simply put this means that if the system runs out of physical memory (RAM), then it will transfer some of the lesser used data in RAM to this space. This physically extends amount of memory, for a cost of potential I/O overhead and reduced flash memory lifespan"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"VM Swappiness",
+				description:"This setting controls the relative weight given to swapping out runtime memory, as opposed to dropping pages from the system page cache. A low value causes the kernel to avoid swapping, a higher value causes the kernel to try to use swap space. Keep in mind that this value affects both swap and zram",
+				max:100, min:0,
+				default:$(AK_generic /proc/sys/vm/swappiness),
+				action:"AK_generic /proc/sys/vm/swappiness"
 			}
 		},
 		{

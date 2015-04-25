@@ -1,0 +1,65 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Read -> return current value from $1 for given $2 LMK type
+# Write -> set $3 value for given $2 LMK type in $1
+
+SYSFS_FILE="$1"
+TARGET_TYPE="$2"
+TARGET_VALUE="$3"
+
+LMK_MAX="6" # There are 6 LMK values
+
+if [[ -e "$SYSFS_FILE" ]]; then
+	if [[ -z "$TARGET_VALUE" ]]; then # Read mode
+		LMK="$(cut -d ',' -f "$TARGET_TYPE" < "$SYSFS_FILE" 2>/dev/null)"
+		LOOP=0
+		while [[ -z "$LMK" && "$LOOP" -lt 30 ]]; do
+			((LOOP++))
+			sleep 1
+			chmod 660 "$SYSFS_FILE" # For some reason google limited minfree access to 220 in Lollipop+
+			LMK="$(cut -d ',' -f "$TARGET_TYPE" < "$SYSFS_FILE" 2>/dev/null)"
+		done
+		if [[ -z "$LMK" ]]; then # Should never happen
+			echo "0" # Synapse return
+		else
+			echo "$LMK" # Synapse return
+		fi
+	else # Write mode
+		LMK_COUNTER=1
+		for LMK_VALUE in $(tr ',' '\n' < "$SYSFS_FILE"); do
+			if [[ "$LMK_COUNTER" -eq "$TARGET_TYPE" ]]; then
+				SYSFS_WRITE+="$TARGET_VALUE"
+			else
+				SYSFS_WRITE+="$LMK_VALUE"
+			fi
+			if [[ "$LMK_COUNTER" -lt "$LMK_MAX" ]]; then
+				SYSFS_WRITE+=","
+			fi
+			((LMK_COUNTER++))
+		done
+		echo "$SYSFS_WRITE" > "$SYSFS_FILE" # Write effect
+	fi
+else
+	echo "0"
+fi
