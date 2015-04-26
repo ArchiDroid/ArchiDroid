@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rm -f "/system/xbin/su" "/system/app/Superuser.apk" "/system/app/Superuser.odex" "/system/priv-app/Superuser.apk" "/system/priv-app/Superuser.odex"
-sed -i "s/persist.sys.root_access=1/persist.sys.root_access=0/g" "/system/build.prop"
-sync
+rm -f "/system/xbin/su"
+sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=0/g" "/system/build.prop"
+
 exit 0

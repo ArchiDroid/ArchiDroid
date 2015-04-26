@@ -1,0 +1,116 @@
+#!/system/bin/sh
+
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+AD="/data/media/0/ArchiDroid"
+ADEVENTSDIR="$AD/System/Events"
+ADSYS="/system/archidroid"
+ADDEV="$ADSYS/dev"
+ADTMPFS="/dev/archidroid"
+LOG="$AD/EVENT_LISTENER.log"
+ADSTATUS="$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID"
+
+exec 1>"$LOG"
+exec 2>&1
+
+REFRESH_RESOLV() {
+	if [[ "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes")" = "Enabled" ]]; then
+		{
+			for DNS in "$DNS1" "$DNS2" "$DNS3" "$DNS4"; do
+				if [[ -n "$DNS" ]]; then
+					echo "nameserver $DNS"
+				else
+					break
+				fi
+			done
+			cat "/system/etc/resolv.conf"
+		} > "$ADTMPFS/resolv.conf"
+	fi
+}
+
+LAST_NETWORK_ID=0
+
+RESET_DNSES() {
+	if [[ "$LAST_NETWORK_ID" -ne 0 ]]; then
+		ndc resolver setnetdns "$LAST_NETWORK_ID" "" "$DNS1" "$DNS2" "$DNS3" "$DNS4"
+		ndc resolver flushnet "$LAST_NETWORK_ID"
+	fi
+}
+
+SET_DNSES() {
+	if [[ -n "$1" && "$1" -ne 0 && -n "$2" ]]; then
+		LAST_NETWORK_ID="$1"
+		DNS1="$2"
+		DNS2="$3"
+		DNS3="$4"
+		DNS4="$5"
+		if [[ "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" && "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
+			REFRESH_RESOLV
+			if echo "$DNS1" | grep -q ':'; then # IPv6
+				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "::1"
+			else # IPv4
+				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "127.0.0.1"
+			fi
+			ndc resolver flushnet "$LAST_NETWORK_ID"
+		fi
+	fi
+}
+
+LISTEN_FOR_EVENTS() {
+	if [[ ! -d "$ADEVENTSDIR" ]]; then
+		echo "$(date +"%F %T") WARNING: Recreating ${ADEVENTSDIR}, this shouldn't happen"
+		mkdir -p "$ADEVENTSDIR"
+	fi
+	chmod 777 "$ADEVENTSDIR" # Allow everyone to write
+	while :; do
+		EVENT_FILE="$(inotifywait -q -e create -e moved_to "$ADEVENTSDIR" | cut -d ' ' -f 3-)"
+		while read EVENT; do
+			echo "$(date +"%F %T") EVENT: $EVENT"
+			case "$EVENT" in
+				"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$EVENT" | cut -d ' ' -f2-) & ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
+				"CONNECTIVITY_RESET") RESET_DNSES & ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
+				"REFRESH_RESOLV") REFRESH_RESOLV & ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
+#				"TETHERING") ARCHIDROID_INIT "NOTIFY" "TETHERING" & ;; # Used by dnsmasq to notify us about tethering event
+			esac
+		done < "${ADEVENTSDIR}/${EVENT_FILE}"
+		rm -f "${ADEVENTSDIR}/${EVENT_FILE}"
+	done
+}
+
+echo "$(date +"%F %T") INFO: ArchiDroid_Event_Listener executed!"
+
+if [[ -f "$ADSTATUS" ]]; then
+	echo "$(date +"%F %T") Previous instance found, cleaning up..."
+	rm -f "$ADSTATUS"
+	sleep 1 # Give it some time to cleanup and finish
+fi
+
+echo "$$" > "$ADSTATUS"
+trap 'kill $(jobs -p); rm -f "$ADSTATUS"' SIGINT SIGTERM EXIT
+
+LISTEN_FOR_EVENTS &
+
+inotifywait -qq -e delete -e modify "$ADSTATUS"
+
+echo "$(date +"%F %T") Shutting down..."
+
+exit 0

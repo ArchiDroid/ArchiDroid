@@ -27,7 +27,6 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Open source ad blocker pentru Android. Vine preconfigurat pentru actualizarea periodica a numelor-gazda in ArchiDroid Adblock
 archidroid.apps.cooltool.desc=Aplicatie extrem de customizabila care va arata informatii utile despre dispozitivul dvs. (ex. utilizare procesor) in panoul de notificare
 archidroid.apps.esfileexplorer.desc=Manager de fisiere foarte bun pentru android
 archidroid.apps.fdroid.desc=Catalog de aplicatii gratuite si open source pentru platforma Android. Un adaos foarte bun pentru Google Play Store
@@ -81,20 +80,17 @@ archidroid.detect.previouspreset.fail.notavailable=Scuze, se pare ca nu aveti ni
 archidroid.experimental=Versiune experimentala
 archidroid.experimental.terms.check=Eu inteleg ca aceasta versiune nu este finalizata si poate chiar sa faca dispozitivul meu nefunctional
 
-archidroid.gapps.bksync.desc=Asigura sincronizarea marcajelor pentru Google Chrome
-archidroid.gapps.calendargoogle.desc=inlocuieste calendarul standard. Extinde calendarul standard prin integrare cu contul google si alte caracteristici
-archidroid.gapps.calsync.desc=Asigura sincronizarea calendarului pentru Google Calendar
-archidroid.gapps.core.desc=Asigura functionalitatea de baza Google Apps. Include servicii mobile, framework, store si alte componente necesare Google. Este obligatoriu pentru alte aplicatii Google
-archidroid.gapps.faceunlock.desc=Asigura deblocarea dispozitivului prin detectarea fetei, optiune ce poate fi activata in setari Blocare ecran dupa instalare
-archidroid.gapps.gmail.desc=Client e-mail proiectat pentru a lucra cu serviciul Gmail. Include integrare cu un cont Google, sincronizare e-mail si altele
-archidroid.gapps.googleplus.desc=Client pentru retea de socializare proiectat pentru a lucra cu serviciul Google Plus. Daca folositi Google Plus, ati putea sa-l instalati
-archidroid.gapps.googletts.desc=TTS inseamna transformarea textului in vorbire. Este absolut necesar daca doriti sa ascultati un text, spre exemplu cand folositi navigare GPS
-archidroid.gapps.hangouts.desc=Client Hangouts – asigura suport pentru "mesaje" gmail, se poate utiliza si pentru SMS/MMS
-archidroid.gapps.maps.desc=Aplicatie proiectata pentru a lucra cu serviciul Google Maps. Asigura suport pentru navigare integrata si alte functii
-archidroid.gapps.search.desc=Client de cautare proiectat a lucra cu serviciul Google. Acest pachet include, de asemenea, Google Voice, deci este obligatoriu daca doriti sa utilizati, spre exemplu, comenzi vocale in Google Launcher
-archidroid.gapps.speech.desc=Asigura componente Google Voice. Este obligatoriu daca doriti sa utilizati Google Voice
-archidroid.gapps.street.desc=Client de vizualizare a strazilor, proiectat a lucra cu Google Street View. Selectati-l daca doriti sa adaugati functii suplimentare in Google Maps
-archidroid.gapps.youtube.desc=Client video, proiectat a lucra cu serviciul YouTube. Este obligatoriu daca doriti sa vizualizati clipuri video YouTube pe telefonul dvs. fara a utiliza un browser
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc=Sacrifica I/O pentru o memorie mai mare
 archidroid.hardswap.size.0.desc=Acesta va elimina fisierul hardswap file de pe partitie
@@ -152,6 +148,7 @@ archidroid.tweaks.navibar.hwenabled=Activeaza butoanele hardware
 archidroid.tweaks.navibar.hwenabled.desc=In mod implicit, bara de navigare dezactiveaza butoanele hardware. Selectati daca preferati sa aveti ambele metode de navigare
 
 archidroid.xposed.desc=Xposed Framework permite diverse module terte pentru modificarea instantanee a platformei, fara modificare a fisierilor de sistem. Foarte recomandat
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=Modul Xposed All-In-One ce contine sute de modificari ale platformei, ce pot fi activate/dezactivate mai tarziu conform preferintelor dvs.
 archidroid.xposed.xprivacy.desc=Daca doriti sa va protejati confidentialitatea, acest modul este pentru dvs. Cu aceasta aplicatie veti avea posibilitatea sa specificati permisiunile pentru fiecare aplicatie instalata
 

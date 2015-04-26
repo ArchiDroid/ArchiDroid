@@ -27,7 +27,6 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Nyílt forrású reklám blokkoló Androidra. Előre programozva az ArchiDroid Adblock host fájljainak frissítésére.
 archidroid.apps.cooltool.desc=Erősen személyre szabható program, mely hasznos információkat mutat az állapotsávon.(pl. CPU használat)
 archidroid.apps.esfileexplorer.desc=Nagyon jó alternatív fájlkezelő program Androidra.
 archidroid.apps.fdroid.desc=Nyílt és ingyenes programok katalógusa Androidra. Remek kiegészítés a Google Play Store mellé.
@@ -81,20 +80,17 @@ archidroid.detect.previouspreset.fail.notavailable=Sajnáljuk, úgy tűnik nem t
 archidroid.experimental=Kisérleti verzió
 archidroid.experimental.terms.check=Megértettem, hogy a jelen verzió csak kísérleti, akár a telefon károsodását is okozhatják.
 
-archidroid.gapps.bksync.desc=Biztosítja a könyvjelzők szinkronizálása fuknciót a Google Chrome számára.
-archidroid.gapps.calendargoogle.desc=Lecseréli a gyári naptár programot. Kiegészíti a gyári naptárat Google account integrációval, és egyéb lehetőségekkel
-archidroid.gapps.calsync.desc=Biztosítja a naptár szinkronizáció lehetőségét a Google Naptár számára
-archidroid.gapps.core.desc=Biztosítja a szükséges Google Apps funkciókat. Magában foglalja a Google mobile services, framework, áruház és egyéb szükséges komponenseit. Kötelező az összes Google alkalmazáshoz
-archidroid.gapps.faceunlock.desc=Biztosítja az arcalapú feloldás funkciót, melyet a zárképernyő beállításaiban aktiválhatsz
-archidroid.gapps.gmail.desc=E-mail kliens, mely együttműködik a Google szolgáltatásaival. Magában foglalja a Google account integrációt, e-mail szinkronizációt, stb.
-archidroid.gapps.googleplus.desc=Szociális hálózati kliens mely eggyütműködik a Google Plus szolgáltatásokkal. Ha használod a Google Plus-t, szükséged lehet rá
-archidroid.gapps.googletts.desc=TTS szolgáltatás Text-To-Speech-hez. Feltétlenül szükséges ha hallani szeretnéd a leírt szöveget, pl. GPS navigáció közben
-archidroid.gapps.hangouts.desc=Hangouts kliens - mely támogatja a Gmail "Üzenetek"-et, azaz használható SMS/MMS kliensnek
-archidroid.gapps.maps.desc=Térkép kliens mely eggyütműködik a Google Térkép szolgáltatásokkal. Tartalmaz beépített navigációt és egyéb fuknciókat
-archidroid.gapps.search.desc=Kereső kliens mely eggyütműködik a Google szolgáltatásokkal. A csomag tartalmazza a Google Voice-ot is, tehát kötelező, ha használni szeretnéd pl. a hangutasításokat a Google Launcher-ben
-archidroid.gapps.speech.desc=Biztosítja a Google Voice komponenseket. Kötelező, ha használni szeretnéd a Google Voice-t
-archidroid.gapps.street.desc=Street view kliens mely eggyüttműködik a Google Street View szolgáltatással. Válaszd, ha ki szeretnéd egészíteni a Google Térképet egyéb funkciókkal
-archidroid.gapps.youtube.desc=Videókliens mely eggyüttműködik a Youtube szolgáltatással. Ha YouTube videókat szeretnél nézni a telefonon böngésző nélkül, akkor használata kötelező
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc=Feláldozni az I/O-t a több memóriáért
 archidroid.hardswap.size.0.desc=Ez eltünteti a hardswap fájlt a particíóról
@@ -152,6 +148,7 @@ archidroid.tweaks.navibar.hwenabled=Hardware-s gombok aktiválása
 archidroid.tweaks.navibar.hwenabled.desc=Alapból a navigációs sáv kikapcsolja a hardweres gombokat. Válaszd ezt, ha mindkét navigációs módot használni szeretnéd
 
 archidroid.xposed.desc=Az Xposed Framework segítségével különböző külső programokkal módosíthatod a rendszer müködését, kinézetét, a rendszerfájlok érintése nélkül. Erősen ajánlott
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=Sokoldalú Xposed modul, mely magában foglal több száz rendszer módosítást, melyek később ki-be kapcsolhatók a felhasználó által
 archidroid.xposed.xprivacy.desc=Ha szereted megóvni személyes adataidat, akkor ezt neked találták ki. Ezzel a programmal módosíthatod az egyes programok jogosultságait.
 

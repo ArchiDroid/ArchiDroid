@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,7 +54,7 @@ LINUX_UMOUNT() {
 
 LINUX_EVERYTHING_UNMOUNTED() {
 	for ARG in "/dev" "/proc" "/sys" "/tmp" "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"; do
-		if [[ -e "$ADMNT$ARG" && "$(mount | grep -q "$ADMNT$ARG"; echo $?)" -eq 0 ]]; then
+		if [[ -e "$ADMNT$ARG" ]] && mount 2>&1 | grep -q "$ADMNT$ARG"; then
 			return 1
 		fi
 	done
@@ -64,7 +64,7 @@ LINUX_EVERYTHING_UNMOUNTED() {
 LINUX_PREPARE_SHELL() {
 	export TERM=linux
 	export HOME=/root
-	if [[ "$(echo "$PATH" | grep -q "/usr/local/sbin"; echo $?)" -ne 0 ]]; then
+	if ! echo "$PATH" | grep -q "/usr/local/sbin"; then
 		export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 	fi
 }
@@ -109,7 +109,8 @@ fi
 
 if [[ "$INSTALL" -eq 1 ]]; then
 	if [[ ! -e "$ADMNT/bin/bash" ]]; then
-		mkdir -p "$ADMNT" && busybox tar -zxf "$ADSYS/system/debian.tar.gz" -C "$ADMNT"
+		mkdir -p "$ADMNT"
+		busybox tar -xf "$ADSYS/system/debian.tar.xz" -C "$ADMNT" || exit 1
 
 		# Fixes
 		touch "$ADMNT/.nomedia" # Tell Android media process to DON'T scan this dir
@@ -118,8 +119,8 @@ if [[ "$INSTALL" -eq 1 ]]; then
 		LINUX_PREPARE_SHELL
 		LINUX_SHELL_COMMAND "ln -s /proc/mounts /etc/mtab" # This is done automatically on most distros on first boot, but we won't have first boot here
 		LINUX_SHELL_COMMAND "sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config" # Newer versions of SSH deny root access by default now, and since we don't have any other user, we need it
-		LINUX_SHELL_COMMAND "echo -e 'archidroid$\narchidroid$' | passwd >/null.txt 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
-		LINUX_SHELL_COMMAND "rm -f /null.txt" # Remove our temporary /dev/null
+		LINUX_SHELL_COMMAND "echo -e 'archidroid$\narchidroid$' | passwd >/null.sink 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
+		LINUX_SHELL_COMMAND "rm -f /null.sink" # Remove our temporary /dev/null
 	else
 		echo "ERROR: ArchiDroid's Linux has been installed already in $ADMNT!"
 		exit 1
@@ -171,7 +172,7 @@ if [[ "$UNINSTALL" -eq 1 ]]; then
 	fi
 fi
 
-if [[ "$SHELL" -eq 1 || ! -z "$COMMAND" ]]; then
+if [[ "$SHELL" -eq 1 || -n "$COMMAND" ]]; then
 	if [[ -e "$ADMNT/bin/bash" ]]; then
 		if [[ -e "$ADMNT/sys/kernel" ]]; then
 			LINUX_PREPARE_SHELL

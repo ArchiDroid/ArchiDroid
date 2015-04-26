@@ -27,7 +27,6 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.adaway.desc=Belirli aralıklarla sunucuyu güncelleyen, ArchiDroid'in Android için Açık kaynaklı olan reklam engelleyicisidir
 archidroid.apps.cooltool.desc=Cihazın üstünde faydalı bilgileri (örn CPU kullanımı) gösteren isteğe göre değiştirilebilir uygulama
 archidroid.apps.esfileexplorer.desc=Android için çok iyi bir yedek dosya yöneticisi
 archidroid.apps.fdroid.desc=Özel Google Play Store eklentileriyle Android platformu için ücretsiz ve açık kaynak kodlu uygulamaların Kurulabilir kataloğu
@@ -81,20 +80,17 @@ archidroid.detect.previouspreset.fail.notavailable=Üzgünüm, henüz herhangi b
 archidroid.experimental=Deneysel yapı
 archidroid.experimental.terms.check=Ben bu deneysel yapının bitmediğini ve cihazımı brick yapabileceğini anlıyorum
 
-archidroid.gapps.bksync.desc=Google Chrome için yer imi senkronizasyon fonksiyonunu sağlar
-archidroid.gapps.calendargoogle.desc=Stok Takvim yerine. Google hesabı entegrasyonu ve diğer özellikleri ile genişletilmiş standart takvim
-archidroid.gapps.calsync.desc=Google Takvim için takvim senkronizasyonu fonksiyonu sağlar
-archidroid.gapps.core.desc=Ana Google Apps işlevselliği sağlar. Google'ın mobil hizmetler, uygulama iskeleti, mağaza ve diğer gerekli bileşenleri içerir. Tüm google apps için zorunludur
-archidroid.gapps.faceunlock.desc=Kurulumdan sonra kilit ekranı seçenekleri ile devreye alınabilir yüz kilidi özelliği sağlar
-archidroid.gapps.gmail.desc=Gmail hizmeti ile çalışmak için Tasarlanmış bir posta istemcisi, Google hesabına posta senkronizasyonu ve daha fazla entegrasyon içerir
-archidroid.gapps.googleplus.desc=Google Plus hizmeti ile çalışmak için Tasarlanmış bir sosyal ağ istemcisi, Google Plus'ı kullanıyorsanız, bunu seçmek isteyebilirsiniz
-archidroid.gapps.googletts.desc=TTS Metin okuma demek. Örneğin gps navigasyon sırasında duymak istiyorsanız kesinlikle gerekli
-archidroid.gapps.hangouts.desc=Hangouts istemci- Ayrıca opsiyonel olarak gmail için destek "mesajlar" ve SMS / MMS uygulaması görevi görebilir
-archidroid.gapps.maps.desc=Dahili navigasyon desteği ve diğer fonksiyonlarıyla Google Maps hizmeti ile çalışmak için tasarlanmış bir harita istemcisi
-archidroid.gapps.search.desc=Google hizmeti ile çalışmak için tasarlanmış bir arama istemcisi. Bu paket aynı zamanda Google Voice içerir,sesli komutları Google Başlatıcı'da kullanmak istiyorsanız zorunlu bulunur
-archidroid.gapps.speech.desc=Google Voice bileşenlerini sağlar. Google Voice kullanmak istiyorsanız zorunludur
-archidroid.gapps.street.desc=Google Street View ile çalışmak için tasarlanmış bir sokak görünümü istemcisi. Google Maps'ı ek işlevler ile genişletmek istiyorsanız bunu seçin
-archidroid.gapps.youtube.desc=YouTube servisi ile çalışmak için Tasarlanmış bir video istemcisi. Eğer tarayıcı kullanmadan telefonunuzda YouTube videolarını izlemek istiyorsanız, bu zorunludur
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
 
 archidroid.hardswap.desc=Daha fazla bellek için sizin I / O kurban eder
 archidroid.hardswap.size.0.desc=Bu bölümdeki hardswap dosyası kaldıracaktır
@@ -152,6 +148,7 @@ archidroid.tweaks.navibar.hwenabled=Enable hardware keys
 archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
 archidroid.xposed.desc=Çeşitli üçüncü parti modülleri ile sistem dosyalarını değiştirmeden uygulama iskeletinde değişiklikler yapmanıza izin verir.Şiddetle önerilir
+archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=Yüzlerce Uygulama skeleti Modülü modifikasyonu içeren Tümü bir arada Xposed modülü 
 archidroid.xposed.xprivacy.desc=Gizliliğinizi korumak istiyorsanız, bu modül tam size göre. Bu uygulama ile yüklü her uygulama için izinleri kesin olarak ayrıntıları ile tayin etmek mümkün olacak
 

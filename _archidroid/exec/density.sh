@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,10 +21,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ORIGDENSITY="$(grep "ro.sf.lcd_density=" "/system/build.prop" | head -n 1 | cut -d '=' -f 2)"
-
-if [[ ! -z "$ORIGDENSITY" ]]; then
-	sed -i "s/ro.sf.lcd_density=$ORIGDENSITY/ro.sf.lcd_density=$1/g" "/system/build.prop"
+if [[ -n "$1" ]]; then
+	sed -i "s/ro.sf.lcd_density=.*/ro.sf.lcd_density=$1/g" "/system/build.prop"
 fi
 
 exit 0

@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,37 +21,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BAREBONES=0
-
-for ARG in "$@"; do
-	case "$ARG" in
-		barebones) BAREBONES=1 ;;
-	esac
-done
-
-# Apply additional ArchiDroid things if we're not on barebones
-if [[ "$BAREBONES" -eq 0 ]]; then
-	# ArchiDroid Backend Fallback
-	if [[ ! -f "/system/bin/debuggerd.real" && -f "/system/bin/addebuggerd" ]]; then
-		mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
-	fi
+# ArchiDroid Backend hook
+if [[ ! -f "/system/bin/debuggerd.real" ]]; then
+	mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
 	mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
-
-	# ArchiDroid Dnsmasq Fallback
-	if [[ ! -f "/system/bin/dnsmasq.real" && -f "/system/bin/addnsmasq" ]]; then
-		mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
-	fi
-	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
-
-	# ArchiDroid Adblock Hosts
-	if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
-		ln -s "_Hosts/AdAway" "/system/archidroid/dev/spinners/Hosts"
-	fi
-	if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners/Hosts" ]]; then
-		ln -s "../dev/spinners/Hosts" "/system/archidroid/etc/hosts"
-	fi
-else
-	touch "/system/archidroid/dev/PRESET_BAREBONES"
+	chcon "u:object_r:rootfs:s0" "/system/bin/debuggerd" # Rootfs is required, as we're running backend from here
 fi
+
+# ArchiDroid Dnsmasq hook
+#if [[ ! -f "/system/bin/dnsmasq.real" ]]; then
+#	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
+#	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
+#	chcon "u:object_r:dnsmasq_exec:s0" "/system/bin/dnsmasq" # This is used only for tethering event, as it conflicts with archidroid_dnsmasq
+#fi
+
+# ArchiDroid Adblock Hosts
+if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
+	ln -s "/system/archidroid/dev/spinners/_Hosts/AdAway" "/system/archidroid/dev/spinners/Hosts"
+fi
+if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners/Hosts" ]]; then
+	ln -s "/system/archidroid/dev/spinners/Hosts" "/system/archidroid/etc/hosts"
+fi
+
+# ArchiDroid binaries
+chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT" "/system/xbin/ARCHIDROID_LINUX"
+chcon "u:object_r:rootfs:s0" "/system/xbin/archidroid_dnsmasq" "/system/xbin/archidroid_haveged" "/system/xbin/archidroid_pixelserv"
 
 exit 0

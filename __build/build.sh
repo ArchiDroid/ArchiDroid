@@ -27,7 +27,7 @@ VERSION=3.1
 
 # Device-based
 DEVICE="nicki" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
-BUILDVARIANT="userdebug" # Change this to userdebug if for some reason you can't build with user variant
+BUILDVARIANT="userdebug" # Change this to user if you feel brave
 
 # Rom-based
 ROM="CyanogenMod" # This is actually for information purpose only, can be anything
@@ -157,11 +157,13 @@ fi
 
 cd "$ADROOT"
 
-rm -rf system recovery
+rm -rf install system
 mv META-INF/com/google/android/updater-script META-INF/com/google/android/updater-script.old
 mv META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary.old
 unzip -o "$ADZIP"
 rm -f "$ADZIP"
+
+rm -rf recovery # Unused
 
 NEWMD5="$(md5sum META-INF/com/google/android/updater-script | awk '{print $1}')"
 if [[ -f "__build/_updater-scripts/archidroid/updater-script" ]]; then
@@ -258,8 +260,8 @@ fi
 
 
 ### Handle build.prop ###
-echo "# ArchiDroid build.prop" > build.prop.TEMP
 {
+	echo "# ArchiDroid build.prop"
 	echo "ro.archidroid=1"
 	echo "ro.archidroid.device=$DEVICE"
 	echo "ro.archidroid.rom=$ROM"
@@ -267,9 +269,8 @@ echo "# ArchiDroid build.prop" > build.prop.TEMP
 	echo "ro.archidroid.version=$VERSION"
 	echo "ro.archidroid.version.android=$AVERSION"
 	echo "ro.archidroid.version.type=$TVERSION"
-	echo
 	cat ../system/build.prop
-} >> build.prop.TEMP
+} > build.prop.TEMP
 
 # Change default version to our custom one
 sed -i "/ro.build.display.id=/c\ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE" build.prop.TEMP
