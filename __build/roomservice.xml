@@ -101,6 +101,9 @@
 
 			<project name="ArchiDroid/proprietary_vendor_sony" path="vendor/sony" remote="github" />
 
+			<!-- This is temporary fix as there's no cm-12.1 in qcom-common at the moment, please remove when available -->
+			<remove-project name="CyanogenMod/android_device_sony_qcom-common" />
+			<project name="CyanogenMod/android_device_sony_qcom-common" path="device/sony/qcom-common" remote="github" revision="cm-12.0" />
 
 			<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
 			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-4.9-arm-linux-gnueabihf-cortex_a15_neon_vfpv4" />
