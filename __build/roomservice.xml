@@ -105,7 +105,7 @@
 			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-4.9-arm-linux-gnueabihf-cortex_a15_neon_vfpv4" />
 
 			<remove-project name="CyanogenMod/android_bootable_recovery" />
-			<project name="omnirom/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-5.0" />
+			<project name="omnirom/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-5.1" />
 
 			<remove-project name="CyanogenMod/android_device_sony_nicki" />
 			<project name="ArchiDroid/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
