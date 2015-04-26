@@ -118,8 +118,8 @@
 			<project name="ArchiDroid/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
 
 
-			<remove-project name="CyanogenMod/android_hardware_qcom_display" />
-			<project name="ArchiDroid/android_hardware_qcom_display" path="hardware/qcom/display" remote="github" />
+			<remove-project name="CyanogenMod/android_hardware_qcom_display" revision="cm-12.1-caf-8960" />
+			<project name="ArchiDroid/android_hardware_qcom_display" path="hardware/qcom/display-caf/msm8960" remote="github" revision="cm-12.1-caf-8960" />
 			-->
 		<!-- /nicki -->
 	<!-- /Devices -->
