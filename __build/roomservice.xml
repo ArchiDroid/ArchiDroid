@@ -116,6 +116,10 @@
 
 			<remove-project name="CyanogenMod/android_kernel_sony_msm8x27" />
 			<project name="ArchiDroid/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
+
+
+			<remove-project name="CyanogenMod/android_hardware_qcom_display" />
+			<project name="ArchiDroid/android_hardware_qcom_display" path="hardware/qcom/display" remote="github" />
 			-->
 		<!-- /nicki -->
 	<!-- /Devices -->
