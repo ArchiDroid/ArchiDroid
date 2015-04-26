@@ -112,6 +112,9 @@
 
 			<remove-project name="CyanogenMod/android_device_sony_nicki" />
 			<project name="ArchiDroid/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
+
+			<remove-project name="CyanogenMod/android_kernel_sony_msm8x27" />
+			<project name="ArchiDroid/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
 		<!-- /nicki -->
 	<!-- /Devices -->
 </manifest>
