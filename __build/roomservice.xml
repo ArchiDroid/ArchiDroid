@@ -102,6 +102,9 @@
 			<project name="ArchiDroid/proprietary_vendor_sony" path="vendor/sony" remote="github" />
 
 
+			<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
+			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-4.9-arm-linux-gnueabihf-cortex_a15_neon_vfpv4" />
+
 			<remove-project name="CyanogenMod/android_bootable_recovery" />
 			<project name="omnirom/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-5.0" />
 
