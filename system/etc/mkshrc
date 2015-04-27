@@ -6,7 +6,7 @@
 #
 # Support: https://launchpad.net/mksh
 
-: ${TERM:=vt100} ${HOME:=/data} ${MKSH:=/system/bin/sh} ${HOSTNAME:=$(getprop ro.product.device)}
+: ${TERM:=linux} ${HOME:=/data} ${MKSH:=/system/bin/sh} ${HOSTNAME:=$(getprop ro.product.device)}
 : ${SHELL:=$MKSH} ${USER:=$(typeset x=$(id); x=${x#*\(}; print -r -- ${x%%\)*})} ${HOSTNAME:=android}
 if (( USER_ID )); then PS1='$'; else PS1='#'; fi
 PS4='[$EPOCHREALTIME] '; PS1='${|
@@ -22,7 +22,9 @@ alias la='l -a'
 alias ll='l -l'
 alias lo='l -a -l'
 
-resize
+if [ "z$ANDROID_SOCKET_adbd" != "z" ]; then
+   resize
+fi
 
 function hd {
 	local -Uui16 -Z11 pos=0

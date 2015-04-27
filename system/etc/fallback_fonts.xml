@@ -223,7 +223,34 @@
     </family>
     <family>
         <fileset>
-            <file>NotoSansCherokee-Regular.ttf</file>
+            <file>NotoSansThaana-Regular.ttf</file>
+            <file>NotoSansThaana-Bold.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansCham-Regular.ttf</file>
+            <file>NotoSansCham-Bold.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansBalinese-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansBatak-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansBuginese-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansBuhid-Regular.ttf</file>
         </fileset>
     </family>
     <family>
@@ -233,7 +260,102 @@
     </family>
     <family>
         <fileset>
+            <file>NotoSansCherokee-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansCoptic-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansGlagolitic-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansHanunoo-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansJavanese-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansKayahLi-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansLepcha-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansLimbu-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansMeeteiMayek-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansOlChiki-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansRejang-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansSaurashtra-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansSundanese-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansSylotiNagri-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansTagbanwa-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansTaiTham-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansTaiViet-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoSansTifinagh-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
             <file>NotoSansYi-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>Lohit-Odia.ttf</file>
         </fileset>
     </family>
     <family>
@@ -281,10 +403,13 @@
             <file lang="ja">MTLmr3m.ttf</file>
         </fileset>
     </family>
-    <!-- Note: complex scripts (i.e. those requiring shaping in Harfbuzz) have
-         a cumulative limit of 64k glyphs. Thus, if they are placed after the
-         large fonts such as DroidSansFallback, they are likely to render
-         incorrectly. Please use caution when putting fonts toward the end of
-         the list.
+    <!--
+        Noto Sans Tai Le is intentionally kept last, to make sure it doesn't override
+        the East Asian punctuation for Chinese.
     -->
+    <family>
+        <fileset>
+            <file>NotoSansTaiLe-Regular.ttf</file>
+        </fileset>
+    </family>
 </familyset>
