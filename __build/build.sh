@@ -44,7 +44,7 @@ fi
 # Try to not change these if you can
 ADROOT="$HOME/shared/git/ArchiDroid" # This is where ArchiDroid GitHub repo is located
 ADZIP="$ROMSHORT-*.zip" # This is with what defined output zip. For omni it would be "omni-*.zip"
-ADCOMPILEROOT="$HOME/android/cm12" # This is where AOSP sources are located
+ADCOMPILEROOT="$HOME/android/$ROMSHORT" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of output zip from above sources, usually it doesn't need to be changed
 
 # Common
@@ -91,13 +91,13 @@ for ARG in "$@" ; do
 			;;
 	esac
 done
-sleep 1
+sleep 1 # User wants to see notices before we start spamming
 
 if [[ "$PREBUILT" -eq 0 ]]; then
 	cd "$ADCOMPILEROOT"
 	if [[ "$OLD" -eq 0 ]]; then
 		repo selfupdate
-		repo sync -f -j32
+		repo sync -j32
 	fi
 
 	if [[ "$CLEAN" -eq 1 ]]; then
@@ -131,10 +131,9 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	if [[ -z "$REALADZIP" ]]; then
 		echo "ERROR: It looks like build didn't succeed!"
 		exit 1
-	else
-		echo "INFO: Build succeeded!"
 	fi
 
+	echo "INFO: Build succeeded!"
 	ADZIP="$(basename "$REALADZIP")"
 	cp "$REALADZIP" "$ADROOT"
 else
@@ -157,13 +156,13 @@ fi
 
 cd "$ADROOT"
 
-rm -rf install system
-mv META-INF/com/google/android/updater-script META-INF/com/google/android/updater-script.old
-mv META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary.old
+rm -rf install system # Cleanup old dirs
+mv META-INF/com/google/android/updater-script META-INF/com/google/android/updater-script.old # Keep our custom updater-script
+mv META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary.old # Keep our AROMA installer
 unzip -o "$ADZIP"
 rm -f "$ADZIP"
 
-rm -rf recovery # Unused
+rm -rf recovery # We have no use of that, AOSP doesn't use it as well during installation
 
 NEWMD5="$(md5sum META-INF/com/google/android/updater-script | awk '{print $1}')"
 if [[ -f "__build/_updater-scripts/archidroid/updater-script" ]]; then
@@ -205,7 +204,7 @@ fi
 
 # Fix everything
 mv META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary-installer # New update-binary -> update-binary-installer
-mv META-INF/com/google/android/update-binary.old META-INF/com/google/android/update-binary # Aroma -> update-binary
+mv META-INF/com/google/android/update-binary.old META-INF/com/google/android/update-binary # AROMA -> update-binary
 mv META-INF/com/google/android/updater-script.old META-INF/com/google/android/updater-script # ArchiDroid updater-script -> updater-script
 
 cd __build
@@ -273,7 +272,12 @@ fi
 } > build.prop.TEMP
 
 # Change default version to our custom one
-sed -i "/ro.build.display.id=/c\ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE" build.prop.TEMP
+sed -i "s/ro.build.display.id=.*/ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE" build.prop.TEMP
+
+# Enable root by default. User has a choice in AROMA
+sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=1/g" build.prop.TEMP
+
+# Apply changes
 mv build.prop.TEMP ../system/build.prop
 
 exit 0
