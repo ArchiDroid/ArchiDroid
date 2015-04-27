@@ -1,6 +1,6 @@
 Signature-Version: 1.0
 Created-By: 1.0 (Android SignApk)
-SHA1-Digest-Manifest: Y7127N7Uuhw5wGbKIxCYx2bo4gk=
+SHA1-Digest-Manifest: v22OLwPVpB8z2xcgtxRiXxTwWNA=
 
 Name: system/fonts/Roboto-Medium.ttf
 SHA1-Digest-Manifest: gCq4yv+FkaagXMFxIlweISyWerY=
@@ -687,7 +687,7 @@ Name: system/etc/nano/nanorc.nanorc
 SHA1-Digest-Manifest: iQj2fgRCa730erCL+5ea/KCWeSQ=
 
 Name: system/bin/install-recovery.sh
-SHA1-Digest-Manifest: 71iPOygYhMHvX1i78wFJ1bvY5ko=
+SHA1-Digest-Manifest: H2K9YiQqLvTfEBlNkqMchSL8BB8=
 
 Name: system/etc/security/cacerts/9d6523ce.0
 SHA1-Digest-Manifest: NfUROaW9KgsUoB+kIMMVa1ntieg=
@@ -771,7 +771,7 @@ Name: system/app/UserDictionaryProvider/UserDictionaryProvider.apk
 SHA1-Digest-Manifest: cdzwjzajumMo5azKdE5aferCaFo=
 
 Name: system/recovery-from-boot.p
-SHA1-Digest-Manifest: 8RWOK6jBRdIASN2+dvgS7ME+5TI=
+SHA1-Digest-Manifest: c8XCmevVZT91SSboyd6cJKZdnfE=
 
 Name: system/media/audio/alarms/Alarm_Buzzer.ogg
 SHA1-Digest-Manifest: hQCM62arLTWWXYDH/rvXHo8FCOY=
@@ -834,7 +834,7 @@ Name: system/etc/permissions/platform.xml
 SHA1-Digest-Manifest: 76d2bEEEo7pWtr3JtagDy/Q/VqY=
 
 Name: system/framework/qcom.fmradio.jar
-SHA1-Digest-Manifest: 5k9rvLfwqo9FliT4OZwUTQUE2zQ=
+SHA1-Digest-Manifest: jOWHD5Qd46ttdTEX4wBAi8eZRao=
 
 Name: system/etc/security/cacerts/c3a6a9ad.0
 SHA1-Digest-Manifest: chF6L1GxPnOyHvpMdeXE7dffzPE=
@@ -1003,7 +1003,7 @@ Name: system/bin/bdt
 SHA1-Digest-Manifest: 1eoWtoCt+3bnzlC8AwajHZs5Qxk=
 
 Name: system/app/FM2/FM2.apk
-SHA1-Digest-Manifest: N2FjXCk51tC+1aDhGZ9KIQUadC0=
+SHA1-Digest-Manifest: S8DDczX/JWOuSRgLXLxNxyrWtJ0=
 
 Name: system/etc/permissions/com.android.location.provider.xml
 SHA1-Digest-Manifest: amS9x3HUOepZjI/MyRzFmoDrRd0=
@@ -1411,7 +1411,7 @@ Name: system/etc/hostapd/hostapd_default.conf
 SHA1-Digest-Manifest: f0snB5mXIySxEvg72JoWHvYb9nY=
 
 Name: recovery/recovery-from-boot.p
-SHA1-Digest-Manifest: YdhdvsRYMqyJM4k2GwvspvnsEag=
+SHA1-Digest-Manifest: 33EObcbKR+wyDMnrDMcUEJW3D6I=
 
 Name: system/semc/chargemon/data/non-charging_animation_06.png
 SHA1-Digest-Manifest: bcYKeDjLhsicF0BiVxUbyfbqVSQ=
@@ -1606,7 +1606,7 @@ Name: system/etc/init.qcom.baseband.sh
 SHA1-Digest-Manifest: HuE7OvoJPQMKLJFYsM/jndvK7Yo=
 
 Name: META-INF/com/android/metadata
-SHA1-Digest-Manifest: cuebaswv3IVhKm7XW/ifC9i8HRY=
+SHA1-Digest-Manifest: e22HIpFEaadTs2MML6i+iLhTvOI=
 
 Name: system/priv-app/CellBroadcastReceiver/CellBroadcastReceiver.apk
 SHA1-Digest-Manifest: sRjvHyEP/XFkkb0uQGQbwQLFTIk=
@@ -1732,7 +1732,7 @@ Name: system/xbin/sqlite3
 SHA1-Digest-Manifest: ZSP+fg09uImz1lmV1q7FrgBWF3U=
 
 Name: system/app/WhisperPush/WhisperPush.apk
-SHA1-Digest-Manifest: v7yw2qI0nUT6DT5Tm4TA1M0GNME=
+SHA1-Digest-Manifest: JpeGT4IKuvMIGaSEB9xjiXvvFcQ=
 
 Name: system/media/audio/ringtones/CyanTone.ogg
 SHA1-Digest-Manifest: qNcjKjiibxEoKgdoUYZf/o1gD2w=
@@ -2218,7 +2218,7 @@ Name: system/media/audio/ringtones/Growl.ogg
 SHA1-Digest-Manifest: GdBECgwoDbSXi+JfYz+8kOBPNaw=
 
 Name: system/build.prop
-SHA1-Digest-Manifest: SHE25Dt7rotskeMIKpEcMz4FhuE=
+SHA1-Digest-Manifest: vxG1OpbEtm7gmqACeZ6bmsM9wx4=
 
 Name: system/media/audio/notifications/Fomalhaut.ogg
 SHA1-Digest-Manifest: CSODjVs4oQvV9I1QqvCHwgmYFDI=
@@ -3229,7 +3229,7 @@ Name: system/bin/dnsmasq
 SHA1-Digest-Manifest: e3r1DRu8nLtG02twt2XK6jK1OPA=
 
 Name: system/etc/recovery-resource.dat
-SHA1-Digest-Manifest: ZUqe4FxTn/n5ve9QzosMKl4ZjVo=
+SHA1-Digest-Manifest: Sod1K6+6dZ20lACqH/S7ghQwpFc=
 
 Name: system/priv-app/Tag/Tag.apk
 SHA1-Digest-Manifest: uyd2L/oeQZK0yjIfMKSyU1SLCZQ=
@@ -3959,7 +3959,7 @@ Name: system/bin/gatt_testtool
 SHA1-Digest-Manifest: Z+v6qoWpzl7zt4GPEmFbezh4cbA=
 
 Name: recovery/bin/install-recovery.sh
-SHA1-Digest-Manifest: u2Ua9SSf4mKFvbwIEyuIUP4/MM4=
+SHA1-Digest-Manifest: O9RUA15itDH2bMb4ygwf/DHthbc=
 
 Name: system/framework/telephony-common.jar
 SHA1-Digest-Manifest: 7r6gquAsiNv9okk+hpEHEjRAEpw=
@@ -4319,7 +4319,7 @@ Name: system/lib/libmmmpod.so
 SHA1-Digest-Manifest: /d2NOoGIFXRq4v+lasQJq23mq7A=
 
 Name: boot.img
-SHA1-Digest-Manifest: 0ZlGNi9TVS/QyTq7f/8qcL9Sdzc=
+SHA1-Digest-Manifest: ppjgU/wtOrL1wVv7MyMf1PD4u+o=
 
 Name: system/lib/libsqlite.so
 SHA1-Digest-Manifest: 3ojyEwxdSR/GD59+t2YFCFWuT0g=
