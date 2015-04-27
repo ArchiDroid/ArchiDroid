@@ -25,77 +25,101 @@
 # It should be used only by repo owners with write access
 # Don't bother if you don't have your own repos with upstreams, like android_build
 
-REPO="origin"
-BRANCH="$1"
+ORIGIN="origin"
+TARGET_BRANCH="$1"
 
-CUSTOMREPOS="lge-kernel-lproj Superuser"
 REPO_DEPENDS_ON_UPSTREAM() {
-	# If it begins with android_, we definitely want this
-	if [[ "$1" = android_* ]]; then
-		return 0
-	# Same situation with proprietary
-	elif [[ "$1" = proprietary_* ]]; then
-		return 0
-	# If everything else fails, check for some predefined repos
-	else
-		for CUSTOMREPO in $CUSTOMREPOS; do
-			if [[ "$CUSTOMREPO" = "$1" ]]; then
-				return 0
-			fi
-		done
-	fi
-	return 1
+	case "$1" in
+		"android_"*) return 0 ;;
+		"proprietary_"*) return 0 ;;
+		"lge-kernel-lproj") return 0 ;;
+		"Superuser") return 0 ;;
+		*) return 1 ;;
+	esac
 }
 
 UPDATEREPO() {
 	cd "$1" || return 1
-	if [[ -n "$BRANCH" ]]; then
+	while read BRANCH; do
+		if [[ -n "$TARGET_BRANCH" ]]; then
+			BRANCH="$TARGET_BRANCH"
+		fi
+		if [[ -z "$BRANCH" || "$BRANCH" = HEAD* ]]; then
+			continue
+		fi
+		git reset --hard >/dev/null 2>&1 # Clean
+		git clean -fd >/dev/null 2>&1 # The mess
 		git checkout "$BRANCH" >/dev/null 2>&1
 		if [[ $? -ne 0 ]]; then
-			echo "WARNING: Branch $BRANCH is not supported in $(basename "$1") repo, skipping..."
-			return 1
+			echo -e "\e[33mNOT FOUND:\e[0m $1 $BRANCH"
+			if [[ -n "$TARGET_BRANCH" ]]; then
+				return 1
+			else
+				continue
+			fi
 		fi
-	fi
-	CURBRANCH="$(git rev-parse --abbrev-ref HEAD)"
-	git pull "$REPO" "$CURBRANCH" >/dev/null 2>&1 || return 1
-	if [[ -f "UPSTREAMS" ]]; then
-		echo "INFO: Updating $(basename "$1")"
-		while read UPSTREAM; do
-			UPSTREAM_REPO="$(echo "$UPSTREAM" | awk '{print $1}')"
-			UPSTREAM_BRANCH="$(echo "$UPSTREAM" | awk '{print $2}')"
-			if [[ -z "$UPSTREAM_BRANCH" ]]; then
-				UPSTREAM_BRANCH="$CURBRANCH"
-			fi
-			git pull "https://github.com/$UPSTREAM_REPO" "$UPSTREAM_BRANCH" >/dev/null 2>&1
-			if [[ $? -ne 0 ]]; then
-				# This is mandatory, we MUST stay in sync with upstream
-				git reset --hard >/dev/null 2>&1
-				git clean -fd >/dev/null 2>&1
-				git pull "https://github.com/$UPSTREAM_REPO" "$UPSTREAM_BRANCH"
-				if [[ $? -ne 0 ]]; then
-					git reset --hard >/dev/null 2>&1
-					git clean -fd >/dev/null 2>&1
-					echo "ERROR: Something went wrong with: $(basename "$1")"
-					return 1
+		git pull "$ORIGIN" "$BRANCH" >/dev/null 2>&1
+		if [[ $? -ne 0 ]]; then
+			git reset --hard >/dev/null 2>&1 # Clean
+			git clean -fd >/dev/null 2>&1 # The mess
+			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH"
+			continue
+		fi
+		SUCCESS=1
+		if [[ -f "UPSTREAMS" ]]; then
+			#echo "INFO: Updating $1 branch $BRANCH"
+			while read UPSTREAM; do
+				UPSTREAM_REPO="$(echo "$UPSTREAM" | awk '{print $1}')"
+				UPSTREAM_BRANCH="$(echo "$UPSTREAM" | awk '{print $2}')"
+				if [[ -z "$UPSTREAM_BRANCH" ]]; then
+					UPSTREAM_BRANCH="$BRANCH"
 				fi
-			fi
-		done < UPSTREAMS
-	fi
-	git push "$REPO" "$CURBRANCH"
-	return $?
+				git pull "https://github.com/$UPSTREAM_REPO" "$UPSTREAM_BRANCH" >/dev/null 2>&1
+				if [[ $? -ne 0 ]]; then
+					SUCCESS=0
+					git reset --hard >/dev/null 2>&1 # Clean
+					git clean -fd >/dev/null 2>&1 # The mess
+					break
+				fi
+			done < UPSTREAMS
+		fi
+		if [[ "$SUCCESS" -eq 1 ]]; then
+			git push "$ORIGIN" "$BRANCH"
+			echo -e "\e[32mSUCCESS:\e[0m $1 $BRANCH"
+		else
+			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH"
+		fi
+		if [[ -n "$TARGET_BRANCH" ]]; then
+			return 0
+		fi
+	done < <(git branch -r | tr -d '*' | tr -d ' ' | cut -d '/' -f2)
+	return 0
 }
 
-while read line; do
-	if [[ ! -d "$line" ]] && REPO_DEPENDS_ON_UPSTREAM "$line"; then
-		echo "INFO: Adding missing $line repo"
-		git clone "https://github.com/ArchiDroid/$line" &
-	elif [[ -d "$line/.git" ]]; then
-		echo "INFO: Updating $line"
-		UPDATEREPO "$line" &
-	else
-		echo "INFO: Not interested in $line"
+CHECKREPO() {
+	if [[ ! -d "$1" ]] && REPO_DEPENDS_ON_UPSTREAM "$1"; then
+		#echo "INFO: Cloning $1"
+		git clone "https://github.com/ArchiDroid/$1" >/dev/null 2>&1
 	fi
-done < <(curl https://api.github.com/users/ArchiDroid/repos?per_page=9999 2>/dev/null | grep "\"name\":" | cut -d '"' -f4)
+	if [[ -d "$1/.git" ]]; then
+		#echo "INFO: Checking $1"
+		UPDATEREPO "$1"
+	else
+		echo "INFO: Not interested in $1"
+	fi
+}
+
+if [[ -f "roomservice.xml" ]]; then
+	echo "INFO: Manifest mode!"
+	while read REPO; do
+		CHECKREPO "$REPO" &
+	done < <(grep "project name=\"ArchiDroid/" "roomservice.xml" | cut -d '"' -f2 | cut -d '/' -f2 | sort -u)
+else
+	echo "INFO: Repo mode!"
+	while read REPO; do
+		CHECKREPO "$REPO" &
+	done < <(curl https://api.github.com/users/ArchiDroid/repos?per_page=9999 2>/dev/null | grep "\"name\":" | cut -d '"' -f4 | sort -u)
+fi
 
 wait
 
