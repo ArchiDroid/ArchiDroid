@@ -469,11 +469,6 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			package_extract_dir("_archidroid/apps/cooltool", "/");
 		endif;
 
-		if file_getprop("/tmp/aroma-data/archidroid.prop", "esfileexplorer") == "1" then
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing ES File Explorer");
-			package_extract_dir("_archidroid/apps/esfileexplorer", "/");
-		endif;
-
 		if file_getprop("/tmp/aroma-data/archidroid.prop", "fdroid") == "1" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing F-Droid");
 			package_extract_dir("_archidroid/apps/fdroid", "/");
@@ -487,11 +482,6 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		if file_getprop("/tmp/aroma-data/archidroid.prop", "lmt") == "1" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing LMT");
 			package_extract_dir("_archidroid/apps/lmt", "/");
-		endif;
-
-		if file_getprop("/tmp/aroma-data/archidroid.prop", "mxplayer") == "1" then
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing MXPlayer");
-			package_extract_dir("_archidroid/apps/mxplayer", "/");
 		endif;
 
 #		if file_getprop("/tmp/aroma-data/archidroid.prop", "spiritfm") == "1" then
