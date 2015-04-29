@@ -272,7 +272,7 @@ fi
 } > build.prop.TEMP
 
 # Change default version to our custom one
-sed -i "s/ro.build.display.id=.*/ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE" build.prop.TEMP
+sed -i "s/ro.build.display.id=.*/ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE/g" build.prop.TEMP
 
 # Enable root by default. User has a choice in AROMA
 sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=1/g" build.prop.TEMP
