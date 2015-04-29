@@ -1,0 +1,670 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+{
+	name:Sound,
+	elements:[
+		$(
+			if [[ -e /sys/class/misc/boeffla_sound/boeffla_sound ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"Boeffla sound",
+						description:"Version: $(cat /sys/class/misc/boeffla_sound/version)"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Boeffla sound",
+						description:"By switching this option to on, boeffa hook will become active, which is required for all below options to work",
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/boeffla_sound),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/boeffla_sound",
+						notify:[
+							{
+								on:APPLY,
+								do:[ REFRESH, APPLY ],
+								to:[
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/mic_level_call",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/mic_level_general",
+									"AK_volume /sys/class/misc/boeffla_sound/speaker_volume L",
+									"AK_volume /sys/class/misc/boeffla_sound/speaker_volume R",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/speaker_tuning",
+									"AK_volume /sys/class/misc/boeffla_sound/headphone_volume L",
+									"AK_volume /sys/class/misc/boeffla_sound/headphone_volume R",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/stereo_expansion",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/dac_direct",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/dac_oversampling",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/fll_tuning",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/mono_downmix",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/eq",
+									"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains",
+									"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands",
+									"AK_generic_ARGL /sys/class/misc/boeffla_sound/privacy_mode"
+								]
+							}
+						]
+					}
+				},
+				{
+					STitleBar:{
+						title:"Microphone"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Microphone volume in-call",
+						description:"This setting allows you to control the microphones sensitivity for phone calls (only)",
+						max:31, min:0, unit:"", step:1,
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/mic_level_call),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/mic_level_call"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Microphone volume general",
+						description:"This setting allows you to control the microphones sensitivity for all general purposes, apart from calls",
+						max:31, min:0, unit:"", step:1,
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/mic_level_general),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/mic_level_general"
+					}
+				},
+				{
+					STitleBar:{
+						title:"Speakers"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Speakers volume left",
+						description:"This value increases/decreases volume of internal speakers. Left channel",
+						max:63, min:0, unit:"", step:1,
+						default:$(AK_volume /sys/class/misc/boeffla_sound/speaker_volume L),
+						action:"AK_volume /sys/class/misc/boeffla_sound/speaker_volume L"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Speakers volume right",
+						description:"This value increases/decreases volume of internal speakers. Right channel",
+						max:63, min:0, unit:"", step:1,
+						default:$(AK_volume /sys/class/misc/boeffla_sound/speaker_volume R),
+						action:"AK_volume /sys/class/misc/boeffla_sound/speaker_volume R"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Speakers tuning",
+						description:"This option enables the speaker tuning feature, which improves sound quality of internal speakers, by changing some equalizer settings (bass boost)",
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/speaker_tuning),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/speaker_tuning"
+					}
+				},
+				{
+					STitleBar:{
+						title:"Headphones"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Headphones volume left",
+						description:"This value increases/decreases volume of headphones connected to the device. Does not affect bluetooth connections. Left channel",
+						max:63, min:0, unit:"", step:1,
+						default:$(AK_volume /sys/class/misc/boeffla_sound/headphone_volume L),
+						action:"AK_volume /sys/class/misc/boeffla_sound/headphone_volume L"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Headphones volume right",
+						description:"This value increases/decreases volume of headphones connected to the device. Does not affect bluetooth connections. Right channel",
+						max:63, min:0, unit:"", step:1,
+						default:$(AK_volume /sys/class/misc/boeffla_sound/headphone_volume R),
+						action:"AK_volume /sys/class/misc/boeffla_sound/headphone_volume R"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Stereo expansion",
+						description:"This value controls the depth of simulated 3D sound on 2-channel headphones. Set 0 to disable this feature",
+						max:31, min:0, unit:"", step:1,
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/stereo_expansion),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/stereo_expansion"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"DAC direct",
+						description:"By switching DAC direct to on, you will bypass the output mixer in the signal path and connect the DAC directly to the headphone amplifier",
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/dac_direct),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/dac_direct"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"DAC oversampling",
+						description:"This setting changes the oversampling rate from 64 to 128 bit",
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/dac_oversampling),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/dac_oversampling"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"FLL tuning",
+						description:"Tunes the audio chip clock engine, to ensure the right power to your headphones and reduce distorsions and bad behaviours",
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/fll_tuning),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/fll_tuning"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Mono downmix",
+						description:"This setting changes internal signal handling to switch to mono output for headphones",
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/mono_downmix),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/mono_downmix"
+					}
+				},
+				{
+					STitleBar:{
+						title:"Kernel equalizer"
+					}
+				},
+				{
+					SOptionList:{
+						title:"Kernel equalizer",
+						description:"This switch controls the state of the hardware equalizer. SE stands for saturation prevention",
+						default:"$(AK_generic_ARGL /sys/class/misc/boeffla_sound/eq)",
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/eq",
+						values:{
+							0:Disabled,
+							1:Enabled with SE,
+							2:Enabled without SE
+						}
+					}
+				},
+				{
+					SPane:{
+						title:"Kernel equalizer gains",
+						description:"These settings allow you to modify gains on per-band basis"
+					}
+				},
+				{
+					SOptionList:{
+						title:"Equalizer gains preset",
+						default:"$(AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains)",
+						action:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains",
+						values:[
+							$(
+								for PRESET in $(AK_gain_preset "ALL"); do
+									echo "\"$PRESET\","
+								done
+							)
+						],
+						notify:[
+							{
+								on:APPLY,
+								do:[ REFRESH, APPLY ],
+								to:[
+									"AK_gain /sys/class/misc/boeffla_sound/eq_gains 1",
+									"AK_gain /sys/class/misc/boeffla_sound/eq_gains 2",
+									"AK_gain /sys/class/misc/boeffla_sound/eq_gains 3",
+									"AK_gain /sys/class/misc/boeffla_sound/eq_gains 4",
+									"AK_gain /sys/class/misc/boeffla_sound/eq_gains 5"
+								]
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 1 gain",
+						description:"This value determines boost of the band 1",
+						max:12, min:-12, unit:"", step:1,
+						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 1),
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 2 gain",
+						description:"This value determines boost of the band 2",
+						max:12, min:-12, unit:"", step:1,
+						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 2),
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 3 gain",
+						description:"This value determines boost of the band 3",
+						max:12, min:-12, unit:"", step:1,
+						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 3),
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 3",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 4 gain",
+						description:"This value determines boost of the band 4",
+						max:12, min:-12, unit:"", step:1,
+						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 4),
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 5 gain",
+						description:"This value determines boost of the band 5",
+						max:12, min:-12, unit:"", step:1,
+						default:$(AK_gain /sys/class/misc/boeffla_sound/eq_gains 5),
+						action:"AK_gain /sys/class/misc/boeffla_sound/eq_gains 5",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_gain_preset /sys/class/misc/boeffla_sound/eq_gains"
+							}
+						]
+					}
+				},
+				{
+					SPane:{
+						title:"Kernel equalizer bands",
+						description:"These settings are for advanced users only, allowing to modify band values"
+					}
+				},
+				{
+					SOptionList:{
+						title:"Equalizer bands preset",
+						default:"$(AK_band_preset /sys/class/misc/boeffla_sound/eq_bands)",
+						action:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands",
+						values:[
+							$(
+								for PRESET in $(AK_band_preset "ALL"); do
+									echo "\"$PRESET\","
+								done
+							)
+						],
+						notify:[
+							{
+								on:APPLY,
+								do:[ REFRESH, APPLY ],
+								to:[
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 1",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 2",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 4",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 1",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 2",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 3",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 4",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 1",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 2",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 3",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 4",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 1",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 2",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 3",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 4",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 1",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 2",
+									"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 4",
+								]
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 1 value A",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 1 1),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 1 value B",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 1 2),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 1 value PG",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 1 4),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 1 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 2 value A",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 2 1),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 2 value B",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 2 2),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 2 value C",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 2 3),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 3",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 2 value PG",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 2 4),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 2 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 3 value A",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 3 1),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 3 value B",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 3 2),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 3 value C",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 3 3),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 3",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 3 value PG",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 3 4),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 3 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 4 value A",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 4 1),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 4 value B",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 4 2),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 4 value C",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 4 3),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 3",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 4 value PG",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 4 4),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 4 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 5 value A",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 5 1),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 1",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 5 value B",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 5 2),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 2",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Band 5 value PG",
+						description:"",
+						max:65535, min:0, unit:"", step:1,
+						default:$(AK_band /sys/class/misc/boeffla_sound/eq_bands 5 4),
+						action:"AK_band /sys/class/misc/boeffla_sound/eq_bands 5 4",
+						notify:[
+							{
+								on:APPLY,
+								do:REFRESH,
+								to:"AK_band_preset /sys/class/misc/boeffla_sound/eq_bands"
+							}
+						]
+					}
+				},
+				{
+					STitleBar:{
+						title:"Other"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Privacy mode",
+						description:"This setting causes the speakers to be completely muted for all sounds as long as headphones are plugged in. This is applied globally to the whole system",
+						default:$(AK_generic_ARGL /sys/class/misc/boeffla_sound/privacy_mode),
+						action:"AK_generic_ARGL /sys/class/misc/boeffla_sound/privacy_mode"
+					}
+				},
+_EOF
+			fi
+		)
+	]
+}
+EOF

@@ -1,0 +1,55 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Read -> return current value for given $2 step from $1
+# Write -> set $3 value for given $2 step in $1
+
+SYSFS_FILE="$1"
+TARGET_TYPE="$2"
+TARGET_VALUE="$3"
+
+if [[ -e "$SYSFS_FILE" ]]; then
+	if [[ -z "$TARGET_VALUE" ]]; then # Read mode
+		if [[ "$TARGET_TYPE" -eq 0 ]]; then # Return all
+			grep "Step" "$SYSFS_FILE" | awk '{print $NF}' # Synapse return
+		else # Return specific one
+			grep "Step" "$SYSFS_FILE" | awk "FNR == $TARGET_TYPE {print \$NF}" # Synapse return
+		fi
+	else # Write mode
+		SYSFS_WRITE="$(
+			COUNT=1
+			grep "Step" "$SYSFS_FILE" | awk '{print $NF}' | (while read VOLTAGE; do
+				if [[ "$COUNT" -eq "$TARGET_TYPE" ]]; then
+					SYSFS_WRITE+=" $TARGET_VALUE"
+				else
+					SYSFS_WRITE+=" $VOLTAGE"
+				fi
+			((COUNT++))
+			done
+			echo "$SYSFS_WRITE")
+		)"
+		echo "$SYSFS_WRITE" > "$SYSFS_FILE" # Write effect
+	fi
+else
+	echo "0"
+fi

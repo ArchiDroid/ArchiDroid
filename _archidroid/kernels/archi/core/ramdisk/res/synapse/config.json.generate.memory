@@ -1,0 +1,198 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+{
+	name:Memory,
+	elements:[
+		{
+			SPane:{
+				title:"Low Memory Killer",
+				description:"LMK is android internal task killer. It contains the type of every process, and it's priority. When available memory gets below specified pages below, LMK kills lowest priority process of given type. FOREGROUND_APP is the most important type (try to never kill), while EMPTY_APP is the least important type (kill if necessary). Higher values will result in more aggressive killing (bigger amount of free memory that needs to be available), while lower values will make LMK more patient regarding low memory conditions (smaller amount of free memory that needs to be available)"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"FOREGROUND_APP",
+				description:"This is the process running the current foreground app",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"VISIBLE_APP",
+				description:"This is a process only hosting activities that are visible to the user",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 2),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 2"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"SECONDARY_SERVER",
+				description:"This is a process holding a secondary server",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 3),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 3"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"HIDDEN_APP",
+				description:"This is a process only hosting activities that are not visible",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 4),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 4"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CONTENT_PROVIDER",
+				description:"This is a process with a content provider that does not have any clients attached to it",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 5),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 5"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"EMPTY_APP",
+				description:"This is a process without anything currently running in it",
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 6),
+				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 6"
+			}
+		},
+		{
+			SPane:{
+				title:"Swap",
+				description:"Swap space is a form of virtual memory. Simply put this means that if the system runs out of physical memory (RAM), then it will transfer some of the lesser used data in RAM to this space. This physically extends amount of memory, for a cost of potential I/O overhead and reduced flash memory lifespan"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"VM Swappiness",
+				description:"This setting controls the relative weight given to swapping out runtime memory, as opposed to dropping pages from the system page cache. A low value causes the kernel to avoid swapping, a higher value causes the kernel to try to use swap space. Keep in mind that this value affects both swap and zram",
+				max:100, min:0,
+				default:$(AK_generic /proc/sys/vm/swappiness),
+				action:"AK_generic /proc/sys/vm/swappiness"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Internal Swap",
+				description:"Swap located on internal eMMC card",
+				max:512, min:0, unit:" MB",
+				default:$(AK_swap /cache/ArchiKernel.swap),
+				action:"AK_swap /cache/ArchiKernel.swap"
+			}
+		},
+		$(
+			if [[ -e /sys/block/mmcblk1 ]]; then
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"External Swap",
+						description:"Swap located on external SD card",
+						max:512, min:0, unit:" MB",
+						default:$(AK_swap /storage/sdcard1/ArchiKernel.swap),
+						action:"AK_swap /storage/sdcard1/ArchiKernel.swap"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /dev/block/zram0 ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"zRAM",
+						description:"Provides a form of virtual memory compression. zRAM increases performance by avoiding paging to disk and using a compressed block device in RAM instead. Compressing unused memory pages can benefit the device by providing more free memory for other tasks"
+					}
+				},
+				$(
+					find /dev/block -mindepth 1 -maxdepth 1 -name "zram*" | sort | while read ZRAM_BLOCK; do
+					ZRAM_DEVICE="$(basename "$ZRAM_BLOCK")"
+cat << __EOF
+						{
+							SSeekBar:{
+								title:"$ZRAM_DEVICE block",
+								max:300, min:0, unit:" MB",
+								default:$(AK_zram $ZRAM_DEVICE),
+								action:"AK_zram $ZRAM_DEVICE"
+							}
+						},
+__EOF
+					done
+				)
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/mm/ksm ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"Kernel samepage merging"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"[EXPERIMENTAL] Kernel samepage merging",
+						description:"KSM is a kernel thread that runs in the background and compares pages in memory that have been marked MADV_MERGEABLE by user-space. If two pages are found to be the same, the KSM thread merges them back as a single copy-on-write page of memory. WARNING: This feature may cause strange camera problems on exynos4 board, therefore it's called experimental, use at your own risk!",
+						default:$(AK_generic /sys/kernel/mm/ksm/run),
+						action:"AK_generic /sys/kernel/mm/ksm/run"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SSeekBar:{
+						title:"KSM sleep duration",
+						description:"This value configures milliseconds ksmd should sleep between batches. Google suggests a value of 500 ms",
+						max:1000, min:10, unit:" ms",
+						default:$(AK_generic /sys/kernel/mm/ksm/sleep_millisecs),
+						action:"AK_generic /sys/kernel/mm/ksm/sleep_millisecs"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"KSM pages to scan",
+						description:"This value configures the number of pages ksmd should scan in one batch. Google suggests a value of 100 pages",
+						max:1000, min:10, unit:" pages",
+						default:$(AK_generic /sys/kernel/mm/ksm/pages_to_scan),
+						action:"AK_generic /sys/kernel/mm/ksm/pages_to_scan"
+					}
+				},
+_EOF
+			fi
+		)
+	]
+}
+EOF

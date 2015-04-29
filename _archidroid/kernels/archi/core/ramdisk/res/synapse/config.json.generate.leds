@@ -1,0 +1,113 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+{
+	name:LEDs,
+	elements:[
+		$(
+			if [[ -e /sys/class/sec/led/led_fade ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"Fading LED"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Fading LED",
+						description:"By switching this option to on, LED will fade instead of blink",
+						default:$(AK_generic_ARG1 /sys/class/sec/led/led_fade),
+						action:"AK_generic_ARG1 /sys/class/sec/led/led_fade"
+					}
+				},
+				{
+					STitleBar:{
+						title:"LED settings"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"LED intensity",
+						description:"This setting will set intensity (brightness) of the LED",
+						max:255, min:0, unit:"", step:1,
+						default:$(AK_generic_ARG1 /sys/class/sec/led/led_intensity),
+						action:"AK_generic_ARG1 /sys/class/sec/led/led_intensity"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"LED speed",
+						description:"This setting will multiply speed of fading/blinking LED by given value",
+						max:5, min:1, unit:"x speed", step:1,
+						default:$(AK_generic_ARG1 /sys/class/sec/led/led_speed),
+						action:"AK_generic_ARG1 /sys/class/sec/led/led_speed"
+					}
+				},
+				{
+					STitleBar:{
+						title:"LED slopes"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"LED slope up operation 1",
+						description:"This value determines the time during slope up operation 1",
+						max:5, min:0, unit:" ms", weight:4.0,
+						default:$(AK_slope /sys/class/sec/led/led_slope 1),
+						action:"AK_slope /sys/class/sec/led/led_slope 1"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"LED slope up operation 2",
+						description:"This value determines the time during slope up operation 2",
+						max:5, min:0, unit:" ms", weight:4.0,
+						default:$(AK_slope /sys/class/sec/led/led_slope 2),
+						action:"AK_slope /sys/class/sec/led/led_slope 2"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"LED slope down operation 1",
+						description:"This value determines the time during slope down operation 1",
+						max:5, min:0, unit:" ms", weight:4.0,
+						default:$(AK_slope /sys/class/sec/led/led_slope 3),
+						action:"AK_slope /sys/class/sec/led/led_slope 3"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"LED slope down operation 2",
+						description:"This value determines the time during slope down operation 2",
+						max:5, min:0, unit:" ms", weight:4.0,
+						default:$(AK_slope /sys/class/sec/led/led_slope 4),
+						action:"AK_slope /sys/class/sec/led/led_slope 4"
+					}
+				},
+_EOF
+			fi
+		)
+	]
+}
+EOF

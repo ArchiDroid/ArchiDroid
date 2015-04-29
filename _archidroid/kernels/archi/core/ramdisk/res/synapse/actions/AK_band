@@ -1,0 +1,54 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Read -> return current $3 arg from for given $2 band from $1
+# Write -> set $4 value for given $3 arg for $2 band in $1
+
+SYSFS_FILE="$1"
+TARGET_TYPE="$2"
+TARGET_TYPE_VALUE="$3"
+TARGET_VALUE="$4"
+
+if [[ -e "$SYSFS_FILE" ]]; then
+	if [[ -z "$TARGET_VALUE" ]]; then # Read mode
+		((TARGET_TYPE++)) # First line is description
+		((TARGET_TYPE_VALUE++)) # First arg is band
+		awk "FNR == $TARGET_TYPE" < "$SYSFS_FILE" | cut -d ' ' -f "$TARGET_TYPE_VALUE" # Synapse return
+	else # Write mode
+		SYSFS_WRITE="$TARGET_TYPE"
+		((TARGET_TYPE++)) # First line is description
+		BAND_VALUES="$(awk "FNR == $TARGET_TYPE" < "$SYSFS_FILE" | cut -d ' ' -f 2-)" # First arg is band
+		BAND_COUNTER=1
+		for BAND_VALUE in $BAND_VALUES; do
+			if [[ "$BAND_COUNTER" -eq "$TARGET_TYPE_VALUE" ]]; then
+				SYSFS_WRITE+=" $TARGET_VALUE"
+			else
+				SYSFS_WRITE+=" $BAND_VALUE"
+			fi
+			((BAND_COUNTER++))
+		done
+		echo "$SYSFS_WRITE" > "$SYSFS_FILE" # Write effect
+	fi
+else
+	echo "0"
+fi

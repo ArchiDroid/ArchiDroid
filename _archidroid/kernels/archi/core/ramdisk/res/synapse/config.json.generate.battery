@@ -1,0 +1,131 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+{
+	name:Battery,
+	elements:[
+		$(
+			if [[ -e /sys/class/power_supply/battery/temp ]]; then
+cat << _EOF
+				{
+					SLiveLabel:{
+						title:"Battery temperature",
+						description:"Data read from battery temperature sensor",
+						refresh:500,
+						action:"echo \$((\$(cat /sys/class/power_supply/battery/temp) / 10)) °C"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/class/power_supply/battery/current_now ]]; then
+cat << _EOF
+				{
+					SLiveLabel:{
+						title:"Battery charging voltage",
+						description:"Data read from battery charging sensor",
+						refresh:500,
+						action:"echo \$(cat /sys/class/power_supply/battery/current_now) mA"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/charge_levels/charge_level_ac ]]; then
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"AC charge rate",
+						description:"This configures the charging rate when you load your phone via an AC charger",
+						max:1600, min:0, unit:" mA", step:25,
+						default:$(AK_generic_ARG1 /sys/kernel/charge_levels/charge_level_ac),
+						action:"AK_generic_ARG1 /sys/kernel/charge_levels/charge_level_ac"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/charge_levels/charge_level_usb ]]; then
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"USB charge rate",
+						description:"This configures the charging rate when you load your phone via USB",
+						max:1600, min:0, unit:" mA", step:25,
+						default:$(AK_generic_ARG1 /sys/kernel/charge_levels/charge_level_usb),
+						action:"AK_generic_ARG1 /sys/kernel/charge_levels/charge_level_usb"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/charge_levels/charge_level_wireless ]]; then
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"Wireless charge rate",
+						description:"This configures the charging rate when you load your phone via a wireless charging cover",
+						max:1600, min:0, unit:" mA", step:25,
+						default:$(AK_generic_ARG1 /sys/kernel/charge_levels/charge_level_wireless),
+						action:"AK_generic_ARG1 /sys/kernel/charge_levels/charge_level_wireless"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/charge_levels/ignore_unstable_power ]]; then
+cat << _EOF
+				{
+					SCheckBox:{
+						label:"Ignore unstable power",
+						description:"By switching this option to on, the charging logic will NOT reduce the charging current for faulty chargers with unstable power. Use at your own risk!",
+						default:$(cat /sys/kernel/charge_levels/ignore_unstable_power),
+						action:"AK_generic_LF /sys/kernel/charge_levels/ignore_unstable_power"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/charge_levels/ignore_safety_margin ]]; then
+cat << _EOF
+				{
+					SCheckBox:{
+						label:"Ignore safety margin",
+						description:"By switching this option to on, the further deduction of 100 mA after detecting a stable charging power will not be done. Use at your own risk!",
+						default:$(cat /sys/kernel/charge_levels/ignore_safety_margin),
+						action:"AK_generic_LF /sys/kernel/charge_levels/ignore_safety_margin"
+					}
+				},
+_EOF
+			fi
+		)
+	]
+}
+EOF

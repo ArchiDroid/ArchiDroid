@@ -1,0 +1,276 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+if [[ -e /sys/devices/system/cpu/present ]]; then
+	CPUS_AVAILABLE="$(($(cut -d '-' -f2 < /sys/devices/system/cpu/present) + 1))"
+else
+	CPUS_AVAILABLE=1 # Well, at least one...
+fi
+
+#CPU_MAX_FREQ="$(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq)"
+#CPU_MIN_FREQ="$(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq)"
+
+cat << EOF
+{
+	name:CPU,
+	elements:[
+		$(
+			if [[ -e /sys/devices/platform/s5p-tmu/temperature ]]; then
+cat << _EOF
+				{
+					SLiveLabel:{
+						title:"CPU temperature",
+						description:"Data read from CPU temperature sensor",
+						refresh:500,
+						action:"echo \$(cat /sys/devices/platform/s5p-tmu/temperature) °C"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/devices/system/cpu/cpu0/cpufreq/asv_level ]]; then
+cat << _EOF
+				{
+					SLiveLabel:{
+						title:"ASV level",
+						description:"ASV level is a measurement of your chip quality. Level 0 is the worst, while level 11 is the best. Better quality of the chip potentially improves OC/UV stability, giving you both faster and more battery-friendly values",
+						refresh:0,
+						action:"cat /sys/devices/system/cpu/cpu0/cpufreq/asv_level"
+					}
+				},
+_EOF
+			fi
+		)
+		{
+			STitleBar:{
+				title:"CPU frequency scaling"
+			}
+		},
+		{
+			SLiveLabel:{
+				title:"CPU frequency",
+				description:"Current CPU frequency",
+				refresh:250,
+				action:"CPU=0; while [[ \${CPU} -lt ${CPUS_AVAILABLE} ]]; do if [[ -e /sys/devices/system/cpu/cpu\${CPU}/cpufreq/cpuinfo_cur_freq ]]; then echo CPU\${CPU}: \$((\$(cat /sys/devices/system/cpu/cpu\${CPU}/cpufreq/cpuinfo_cur_freq) / 1000)) MHz@n; else echo CPU\${CPU}: Offline@n; fi; ((CPU++)); done"
+			}
+		},
+		$(
+			CPU=1 # Core 0 always must be online
+			while [[ "$CPU" -lt "$CPUS_AVAILABLE" ]]; do
+cat << _EOF
+				{
+					SButton:{
+						label:"CPU${CPU} On/Off",
+						action:"AK_cpu_hotplug $CPU"
+					}
+				},
+_EOF
+			((CPU++))
+			done
+		)
+		{
+			SSeekBar:{
+				title:"CPU max frequency",
+				description:"Set the maximum freqency the CPU scales up to",
+				default:$(AK_cpu cpufreq/scaling_max_freq),
+				action:"AK_cpu cpufreq/scaling_max_freq",
+				values:{
+					$(
+						for FREQ in $(AK_cpu cpufreq/scaling_available_frequencies); do
+							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+						done
+					)
+				}
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CPU min frequency",
+				description:"Set the minimum freqency the CPU scales down to",
+				default:$(AK_cpu cpufreq/scaling_min_freq),
+				action:"AK_cpu cpufreq/scaling_min_freq",
+				values:{
+					$(
+						for FREQ in $(AK_cpu cpufreq/scaling_available_frequencies); do
+							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+						done
+					)
+				}
+			}
+		},
+		$(
+			if [[ -e /sys/module/cpuidle_exynos4/parameters/enable_mask ]]; then
+cat << _EOF
+				{
+					SOptionList:{
+						title:"CPU idle mode",
+						description:"This setting controls which idle modes are available for the CPU. Enabling more of them should potentially improve battery life",
+						default:"$(AK_generic /sys/module/cpuidle_exynos4/parameters/enable_mask)",
+						action:"AK_generic /sys/module/cpuidle_exynos4/parameters/enable_mask",
+						values:{
+							0:"IDLE",
+							1:"IDLE + AFTR",
+							2:"IDLE + LPA",
+							3:"IDLE + AFTR + LPA"
+						}
+					}
+				},
+_EOF
+			fi
+		)
+		{
+			SOptionList:{
+				title:"CPU governor",
+				description:"CPU governor balances performance and battery usage within min and max frequency ranges specified above. In addition to frequency scaling, on exynos4 board CPU governor is also responsible for CPU hotplugging (turning on and off the CPU cores). Most of the governors allow further tweaking of values used in their algorithms, so you can set them exactly as you want",
+				default:"$(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)",
+				action:"AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+				values:[
+					$(
+						for GOVERNOR in $(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors); do
+							echo "\"$GOVERNOR\","
+						done
+					)
+				],
+				notify:[
+					{
+						on:APPLY,
+						do:[ REFRESH, APPLY ],
+						to:[
+							$(
+								CURRENT_GOV="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)" # Save current governor
+								for GOVERNOR in $(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors); do
+									if [[ "$GOVERNOR" = "pegasusq" ]]; then
+										echo "pegasusq" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor # Turn on our governor to populate /sys/devices/system/cpu/cpufreq
+cat << _EOF
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_freq",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_freq",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/down_differential",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/dvfs_debug",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/freq_step",
+										$(
+											find /sys/devices/system/cpu/cpufreq/pegasusq -name "hotplug_freq_*" | sort | while read SYSFS_FILE; do
+cat << __EOF
+												"AK_generic $SYSFS_FILE",
+__EOF
+											done
+										)
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_lock",
+										$(
+											find /sys/devices/system/cpu/cpufreq/pegasusq -name "hotplug_rq_*" | sort | while read SYSFS_FILE; do
+cat << __EOF
+												"AK_generic $SYSFS_FILE",
+__EOF
+											done
+										)
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/max_cpu_lock",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/min_cpu_lock",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_nr_cpus",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold",
+_EOF
+										echo "$CURRENT_GOV" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor # Return to previous governor
+									fi
+								done
+							)
+						]
+					}
+				]
+			}
+		},
+		$(
+			if [[ -e /sys/class/misc/touchboost_switch/touchboost_switch ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"Touch boost"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Touch boost",
+						description:"This setting allows you to control touch boost functionality. When active, the CPU frequency is boosted to a higher level when the touch screen is being used. This increases smoothness of the user interface, but also consumes slightly more CPU power. Usually you want to keep that feature active for extra smoothness, but with good CPU governor and it's settings, it may be optional",
+						default:$(AK_generic_ARGL /sys/class/misc/touchboost_switch/touchboost_switch),
+						action:"AK_generic_ARGL /sys/class/misc/touchboost_switch/touchboost_switch"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/class/misc/touchboost_switch/touchboost_freq ]]; then
+cat << _EOF
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Touch boost frequency",
+						description:"This is the frequency that CPU is boosted to when touch boost is active. This option has no effect if touch boost is disabled",
+						default:$(AK_generic_ARG1 /sys/class/misc/touchboost_switch/touchboost_freq),
+						action:"AK_generic_ARG1 /sys/class/misc/touchboost_switch/touchboost_freq",
+						values:{
+							$(
+								for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+									echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+								done
+							)
+						}
+					}
+				},
+_EOF
+			fi
+		)
+		{
+			STitleBar:{
+				title:"CPU undervolting"
+			}
+		},
+		$(
+			if [[ -e /sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table ]]; then
+				cat /sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table | sed -e 's/mhz://g;s/uV//g' | while read UV_TABLE; do
+					FREQ="$(echo "$UV_TABLE" | awk '{print $1}')"
+					VOLTAGE="$(echo "$UV_TABLE" | awk '{print $2}')"
+cat << _EOF
+					{
+						SSeekBar:{
+							title:"$FREQ MHz step",
+							max:1500000, min:600000, unit:" uV", step:12500,
+							default:$VOLTAGE,
+							action:"AK_UV /sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table $FREQ"
+						}
+					},
+_EOF
+				done
+			fi
+		)
+	]
+}
+EOF
