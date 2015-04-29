@@ -63,7 +63,7 @@ SET_DNSES() {
 		DNS2="$3"
 		DNS3="$4"
 		DNS4="$5"
-		if [[ "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" && "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
+		if [[ -e "$ADTMPFS/DNSMASQ.PID" && -e "/proc/$(cat "$ADTMPFS/DNSMASQ.PID")" ]]; then
 			REFRESH_RESOLV
 			if echo "$DNS1" | grep -q ':'; then # IPv6
 				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "::1"
