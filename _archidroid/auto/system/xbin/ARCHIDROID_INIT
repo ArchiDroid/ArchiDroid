@@ -35,7 +35,7 @@ ADTWEAK() {
 }
 
 ADEVENT() {
-	if [[ -d "$ADEVENTS" ]]; then
+	if [[ -d "$ADEVENTS" && -e "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID" && -e "/proc/$(cat "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID")" ]]; then
 		echo "$@" > "$ADEVENTS/Init.EVENT"
 	fi
 }
