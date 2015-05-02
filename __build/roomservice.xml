@@ -79,9 +79,6 @@
 			<remove-project name="CyanogenMod/android_frameworks_native" />
 			<project name="ArchiDroid/android_frameworks_native" path="frameworks/native" remote="github" />
 
-			<remove-project name="CyanogenMod/android_frameworks_opt_telephony" />
-			<project name="ArchiDroid/android_frameworks_opt_telephony" path="frameworks/opt/telephony" remote="github" />
-
 			<remove-project name="CyanogenMod/android_packages_apps_Settings" />
 			<project name="ArchiDroid/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" />
 
