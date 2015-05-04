@@ -35,7 +35,7 @@ cat << EOF
 			SSeekBar:{
 				title:"FOREGROUND_APP",
 				description:"This is the process running the current foreground app",
-				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:1,
 				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1),
 				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1"
 			}
@@ -44,7 +44,7 @@ cat << EOF
 			SSeekBar:{
 				title:"VISIBLE_APP",
 				description:"This is a process only hosting activities that are visible to the user",
-				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:1,
 				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 2),
 				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 2"
 			}
@@ -53,7 +53,7 @@ cat << EOF
 			SSeekBar:{
 				title:"SECONDARY_SERVER",
 				description:"This is a process holding a secondary server",
-				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:1,
 				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 3),
 				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 3"
 			}
@@ -62,7 +62,7 @@ cat << EOF
 			SSeekBar:{
 				title:"HIDDEN_APP",
 				description:"This is a process only hosting activities that are not visible",
-				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:1,
 				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 4),
 				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 4"
 			}
@@ -71,7 +71,7 @@ cat << EOF
 			SSeekBar:{
 				title:"CONTENT_PROVIDER",
 				description:"This is a process with a content provider that does not have any clients attached to it",
-				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:1,
 				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 5),
 				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 5"
 			}
@@ -80,7 +80,7 @@ cat << EOF
 			SSeekBar:{
 				title:"EMPTY_APP",
 				description:"This is a process without anything currently running in it",
-				max:262144, min:0, unit:" MB", weight:0.00390625, step:256,
+				max:262144, min:0, unit:" MB", weight:0.00390625, step:1,
 				default:$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 6),
 				action:"AK_lmk /sys/module/lowmemorykiller/parameters/minfree 6"
 			}
