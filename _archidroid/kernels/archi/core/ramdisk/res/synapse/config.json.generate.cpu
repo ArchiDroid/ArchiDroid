@@ -248,13 +248,15 @@ cat << _EOF
 _EOF
 			fi
 		)
-		{
-			STitleBar:{
-				title:"CPU undervolting"
-			}
-		},
 		$(
 			if [[ -e /sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"CPU undervolting"
+					}
+				},
+_EOF
 				cat /sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table | sed -e 's/mhz://g;s/uV//g' | while read UV_TABLE; do
 					FREQ="$(echo "$UV_TABLE" | awk '{print $1}')"
 					VOLTAGE="$(echo "$UV_TABLE" | awk '{print $2}')"

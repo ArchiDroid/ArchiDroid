@@ -58,8 +58,8 @@ cat << _EOF
 				{
 					SSeekBar:{
 						title:"LED speed",
-						description:"This setting will multiply speed of fading/blinking LED by given value",
-						max:5, min:1, unit:"x speed", step:1,
+						description:"This setting will multiply speed of fading/blinking LED by given value. 0 means continuous light",
+						max:15, min:0, unit:"x speed", step:1,
 						default:$(AK_generic_ARG1 /sys/class/sec/led/led_speed),
 						action:"AK_generic_ARG1 /sys/class/sec/led/led_speed"
 					}
