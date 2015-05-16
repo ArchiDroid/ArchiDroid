@@ -51,7 +51,7 @@
 
 
 			<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
-			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-4.9-arm-linux-gnueabihf-cortex_a9_neon" />
+			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-5.1-arm-linux-gnueabihf-cortex_a9_neon" />
 
 			<remove-project name="CyanogenMod/android_device_samsung_i9300" />
 			<project name="ArchiDroid/android_device_samsung_i9300" path="device/samsung/i9300" remote="github" />
@@ -104,7 +104,7 @@
 			<project name="CyanogenMod/android_device_sony_qcom-common" path="device/sony/qcom-common" remote="github" revision="cm-12.0" />
 
 			<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
-			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-4.9-arm-linux-gnueabihf-cortex_a15_neon_vfpv4" />
+			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-5.1-arm-linux-gnueabihf-cortex_a15_neon_vfpv4" />
 
 			<remove-project name="CyanogenMod/android_bootable_recovery" />
 			<project name="ArchiDroid/android_bootable_recovery" path="bootable/recovery" remote="github" />
