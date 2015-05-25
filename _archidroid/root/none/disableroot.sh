@@ -22,6 +22,6 @@
 # limitations under the License.
 
 rm -f "/system/xbin/su"
-sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=0/g" "/system/build.prop"
+sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=0/g" "/system/build.prop" # This is to silent built-in Superuser in CM
 
 exit 0
