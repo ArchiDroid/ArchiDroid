@@ -41,19 +41,19 @@ EXTRACT_RAMDISK() {
 	fi
 
 	echo "INFO: Detecting $1 ramdisk format..."
-	if gunzip --help 2>&1 | grep -q "\-\-test" && gunzip --test "$1"; then
+	if gunzip --help 2>&1 | grep -q "\-t" && gunzip -t "$1"; then
 		echo "INFO: GZIP format detected"
 		CBIN="gzip -9"
 		DBIN="gunzip -c"
-	elif lzop --help 2>&1 | grep -q "\-\-test" && lzop --test "$1"; then
+	elif lzop --help 2>&1 | grep -q "\-t" && lzop -t "$1"; then
 		echo "INFO: LZO format detected"
 		CBIN="lzop -9"
 		DBIN="lzop -dc"
-	elif xz --help 2>&1 | grep -q "\-\-test" && xz --test "$1"; then
+	elif xz --help 2>&1 | grep -q "\-t" && xz -t "$1"; then
 		echo "INFO: XZ format detected"
 		CBIN="xz -9"
 		DBIN="xz -dc"
-	elif lzma --help 2>&1 | grep -q "\-\-test" && lzma --test "$1"; then
+	elif lzma --help 2>&1 | grep -q "\-t" && lzma -t "$1"; then
 		echo "INFO: LZMA format detected"
 		CBIN="lzma -9"
 		DBIN="lzma -dc"
