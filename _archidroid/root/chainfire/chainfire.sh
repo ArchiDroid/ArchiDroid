@@ -35,13 +35,13 @@ chmod 0777 "/system/bin/.ext"
 cp -p "/system/xbin/su" "/system/bin/.ext/.su"
 
 rm -f "/system/bin/app_process"
-ln -s "../xbin/daemonsu" "/system/bin/app_process"
+ln -s "/system/xbin/daemonsu" "/system/bin/app_process"
 
 for BIT in "64" "32"; do
 	if [[ -f "/system/bin/app_process${BIT}" ]]; then
 		if [[ ! -f "/system/bin/app_process${BIT}_original" ]]; then
 			mv "/system/bin/app_process${BIT}" "/system/bin/app_process${BIT}_original"
-			ln -s "../xbin/daemonsu" "/system/bin/app_process${BIT}"
+			ln -s "/system/xbin/daemonsu" "/system/bin/app_process${BIT}"
 		fi
 		if [[ ! -f "/system/bin/app_process_init" ]]; then
 			cp -p "/system/bin/app_process${BIT}_original" "/system/bin/app_process_init"
