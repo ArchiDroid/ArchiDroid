@@ -259,7 +259,7 @@ ADRELOAD() {
 
 ADNOTIFY() {
 	case "$1" in
-		"TETHERING *")
+		"TETHERING "*)
 			ADSTOP "ADBLOCK"
 			DNSMASQ_PID="$(echo "$1" | cut -d ' ' -f 2)"
 			(
