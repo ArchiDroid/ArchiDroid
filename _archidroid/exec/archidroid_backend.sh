@@ -29,11 +29,11 @@ if [[ ! -f "/system/bin/debuggerd.real" ]]; then
 fi
 
 # ArchiDroid Dnsmasq hook
-#if [[ ! -f "/system/bin/dnsmasq.real" ]]; then
-#	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
-#	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
-#	chcon "u:object_r:dnsmasq_exec:s0" "/system/bin/dnsmasq" # This is used only for tethering event, as it conflicts with archidroid_dnsmasq
-#fi
+if [[ ! -f "/system/bin/dnsmasq.real" ]]; then
+	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
+	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
+	# TODO: Find out proper sepolicy to allow running with enforcing SELinux
+fi
 
 # ArchiDroid Adblock Hosts
 if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
