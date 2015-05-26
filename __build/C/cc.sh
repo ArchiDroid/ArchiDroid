@@ -21,7 +21,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -eu
+set -e
 
 if [[ -z "${CROSS_COMPILE}" ]]; then
 	echo "ERROR: Make sure that \${CROSS_COMPILE} variable is set!"
@@ -44,11 +44,20 @@ fi
 
 cd "$(dirname "$0")"
 
-"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o addebuggerd addebuggerd.c
+# addebuggerd
+"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addebuggerd addebuggerd.c && mv /tmp/addebuggerd addebuggerd
 "${CROSS_COMPILE}strip" -s -R .note -R .comment -R .gnu.version -R .gnu.version_r addebuggerd
 
 if [[ -f "../../_archidroid/auto/system/bin/addebuggerd" ]]; then
 	cp "addebuggerd" "../../_archidroid/auto/system/bin/addebuggerd"
+fi
+
+# addnsmasq
+"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addnsmasq addnsmasq.c && mv /tmp/addnsmasq addnsmasq
+"${CROSS_COMPILE}strip" -s -R .note -R .comment -R .gnu.version -R .gnu.version_r addnsmasq
+
+if [[ -f "../../_archidroid/auto/system/bin/addnsmasq" ]]; then
+	cp "addnsmasq" "../../_archidroid/auto/system/bin/addnsmasq"
 fi
 
 exit 0
