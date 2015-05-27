@@ -30,11 +30,11 @@ is no "u:r:sudaemon:s0" context (non-CyanogenMod systems).
 Also, this binary must be called from rootfs context, as it requires setexeccon()
 */
 
-#define BRANCH_PREDICTION
-
-#include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+
+#define BRANCH_PREDICTION
 
 #ifdef BRANCH_PREDICTION
 #define likely(x)       __builtin_expect((x),1)
@@ -44,30 +44,28 @@ Also, this binary must be called from rootfs context, as it requires setexeccon(
 #define unlikely(x)     x
 #endif
 
-static int writeFD(const char* path, const char* string) {
-	const int fd = open(path, O_WRONLY);
-	if (unlikely(fd < 0)) return 0; // Assume there is no SELinux, so we're fine
-	const int ret = write(fd, string, strlen(string) + 1); // This however must succeed, if there is fd available
-	close(fd);
-	return ret;
-}
+static const char* selinuxContext = "u:r:sudaemon:s0";
+static const char* selinuxFilePath = "/proc/self/attr/exec";
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
 	const int childPID = fork(); // Fork initial debuggerd into two independent processes
 	if (likely(childPID >= 0)) { // If fork succeeded
 		if (childPID != 0) { // Parent's block, objective: execute original debuggerd (debuggerd.real)
 			char realBinary[strlen(argv[0]) + 5 + 1];
-			snprintf(realBinary, sizeof(realBinary), "%s%s", argv[0], ".real");
+			sprintf(realBinary, "%s%s", argv[0], ".real");
 			execv(realBinary, argv);
 		} else { // Child's block, objective: execute ARCHIDROID_INIT
-			const char* context = "u:r:sudaemon:s0";
-			const char* pathExec = "/proc/self/attr/exec";
-			//const char pathSocket[] = "/proc/self/attr/sockcreate";
-
-			if (unlikely(writeFD(pathExec, context) < 0)) return 1;
-			//if (unlikely(writeFD(pathSocket, context) < 0)) return 1;
-			execv("/system/xbin/ARCHIDROID_INIT", (char *[]) { "/system/xbin/ARCHIDROID_INIT", "--background", NULL });
+			FILE* selinuxFile = fopen(selinuxFilePath, "w"); // Open selinux context file for writing
+			if (likely(selinuxFile != NULL)) { // If we succeeded, proceed
+				fprintf(selinuxFile, "%s", selinuxContext); // Write selinux context
+				fclose(selinuxFile); // Close selinux file
+			}
+			execv("/system/xbin/ARCHIDROID_INIT", (char* []) { "/system/xbin/ARCHIDROID_INIT", "--background", NULL }); // Launch backend
 		}
+	} else { // If fork failed just execute original debuggerd (debuggerd.real)
+		char realBinary[strlen(argv[0]) + 5 + 1];
+		sprintf(realBinary, "%s%s", argv[0], ".real");
+		execv(realBinary, argv);
 	}
 	return 0;
 }

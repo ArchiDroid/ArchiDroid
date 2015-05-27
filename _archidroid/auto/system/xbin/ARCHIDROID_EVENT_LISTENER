@@ -22,10 +22,12 @@
 # limitations under the License.
 
 AD="/data/media/0/ArchiDroid"
-ADEVENTSDIR="$AD/System/Events"
 ADSYS="/system/archidroid"
 ADDEV="$ADSYS/dev"
 ADTMPFS="/dev/archidroid"
+
+AD_DATA_EVENTS_DIR="$AD/System/Events"
+AD_DEV_EVENTS_DIR="$ADTMPFS/Events"
 LOG="$AD/EVENT_LISTENER.log"
 ADSTATUS="$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID"
 
@@ -75,24 +77,51 @@ SET_DNSES() {
 	fi
 }
 
-LISTEN_FOR_EVENTS() {
-	if [[ ! -d "$ADEVENTSDIR" ]]; then
-		echo "$(date +"%F %T") WARNING: Recreating ${ADEVENTSDIR}, this shouldn't happen"
-		mkdir -p "$ADEVENTSDIR"
+HANDLE_EVENT() {
+	if [[ -n "$1" ]]; then
+		echo "$(date +"%F %T") EVENT: $1"
+		case "$1" in
+			"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$1" | cut -d ' ' -f2-) ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
+			"CONNECTIVITY_RESET") RESET_DNSES ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
+			"REFRESH_RESOLV") REFRESH_RESOLV ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
+			"TETHERING "*) ARCHIDROID_INIT "NOTIFY" "$1" ;; # Used by dnsmasq to notify us about tethering event
+		esac
 	fi
-	chmod 777 "$ADEVENTSDIR" # Allow everyone to write
-	while :; do
-		EVENT_FILE="$(inotifywait -q -e create -e moved_to "$ADEVENTSDIR" | cut -d ' ' -f 3-)"
+}
+
+LISTEN_FOR_DEV_EVENTS() {
+	if [[ -d "$AD_DEV_EVENTS_DIR" ]]; then
+		find "$AD_DEV_EVENTS_DIR" -mindepth 1 -maxdepth 1 -type f | while read EVENT_FILE; do
+			rm -f "$EVENT_FILE"
+		done
+	else
+		mkdir -p "$AD_DEV_EVENTS_DIR"
+		chcon "u:object_r:net_data_file:s0" "$AD_DEV_EVENTS_DIR" # Set proper context to allow netd (dnsmasq hook) to write
+	fi
+	while [[ -d "$AD_DEV_EVENTS_DIR" ]]; do
+		EVENT_FILE="$(inotifywait -q -e create -e moved_to "$AD_DEV_EVENTS_DIR" | cut -d ' ' -f 3-)"
 		while read EVENT; do
-			echo "$(date +"%F %T") EVENT: $EVENT"
-			case "$EVENT" in
-				"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$EVENT" | cut -d ' ' -f2-) & ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
-				"CONNECTIVITY_RESET") RESET_DNSES & ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
-				"REFRESH_RESOLV") REFRESH_RESOLV & ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
-#				"TETHERING") ARCHIDROID_INIT "NOTIFY" "TETHERING" & ;; # Used by dnsmasq to notify us about tethering event
-			esac
-		done < "${ADEVENTSDIR}/${EVENT_FILE}"
-		rm -f "${ADEVENTSDIR}/${EVENT_FILE}"
+			HANDLE_EVENT "$EVENT" &
+		done < "${AD_DEV_EVENTS_DIR}/${EVENT_FILE}"
+		rm -f "${AD_DEV_EVENTS_DIR}/${EVENT_FILE}"
+	done
+}
+
+LISTEN_FOR_DATA_EVENTS() {
+	if [[ -d "$AD_DATA_EVENTS_DIR" ]]; then
+		find "$AD_DATA_EVENTS_DIR" -mindepth 1 -maxdepth 1 -type f | while read EVENT_FILE; do
+			rm -f "$EVENT_FILE"
+		done
+	else
+		mkdir -p "$AD_DATA_EVENTS_DIR"
+	fi
+	chmod 777 "$AD_DATA_EVENTS_DIR" # Allow everyone to write
+	while [[ -d "$AD_DATA_EVENTS_DIR" ]]; do
+		EVENT_FILE="$(inotifywait -q -e create -e moved_to "$AD_DATA_EVENTS_DIR" | cut -d ' ' -f 3-)"
+		while read EVENT; do
+			HANDLE_EVENT "$EVENT" &
+		done < "${AD_DATA_EVENTS_DIR}/${EVENT_FILE}"
+		rm -f "${AD_DATA_EVENTS_DIR}/${EVENT_FILE}"
 	done
 }
 
@@ -107,7 +136,8 @@ fi
 echo "$$" > "$ADSTATUS"
 trap 'kill $(jobs -p); rm -f "$ADSTATUS"' SIGINT SIGTERM EXIT
 
-LISTEN_FOR_EVENTS &
+LISTEN_FOR_DEV_EVENTS &
+LISTEN_FOR_DATA_EVENTS &
 
 inotifywait -qq -e delete -e modify "$ADSTATUS"
 

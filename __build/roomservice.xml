@@ -6,6 +6,8 @@
 	<!-- /Additional remotes -->
 
 	<!-- Toolchain -->
+		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
+		<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-5.1-arm-linux-gnueabihf" />
 		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" />
 		<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" remote="github" revision="sabermod-4.8-arm-linux-androideabi" />
 		<!-- <project name="SaberMod/arm-linux-androideabi-4.8.git" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" remote="gitlab" revision="master" /> -->
@@ -50,9 +52,6 @@
 			<project name="ArchiDroid/proprietary_vendor_samsung" path="vendor/samsung" remote="github" />
 
 
-			<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
-			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-5.1-arm-linux-gnueabihf-cortex_a9_neon" />
-
 			<remove-project name="CyanogenMod/android_device_samsung_i9300" />
 			<project name="ArchiDroid/android_device_samsung_i9300" path="device/samsung/i9300" remote="github" />
 
@@ -72,42 +71,26 @@
 			<remove-project name="CyanogenMod/android_frameworks_av" />
 			<project name="ArchiDroid/android_frameworks_av" path="frameworks/av" remote="github" />
 
-			<remove-project name="CyanogenMod/android_frameworks_base" />
-			<project name="ArchiDroid/android_frameworks_base" path="frameworks/base" remote="github" />
-
 			<remove-project name="CyanogenMod/android_frameworks_native" />
 			<project name="ArchiDroid/android_frameworks_native" path="frameworks/native" remote="github" />
 
 			<remove-project name="CyanogenMod/android_packages_apps_Settings" />
 			<project name="ArchiDroid/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" />
-
-			<remove-project name="CyanogenMod/android_packages_services_Telecomm" />
-			<project name="ArchiDroid/android_packages_services_Telecomm" path="packages/services/Telecomm" />
-
-			<remove-project name="CyanogenMod/android_packages_services_Telephony" />
-			<project name="ArchiDroid/android_packages_services_Telephony" path="packages/services/Telephony" />
 		<!-- /i9300 -->
 		<!-- nicki -->
 			<!--
 			<project name="CyanogenMod/android_device_sony_nicki" path="device/sony/nicki" remote="github" />
-			<project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" />
-			<project name="CyanogenMod/android_device_sony_common" path="device/sony/common" remote="github" />
 			<project name="CyanogenMod/android_device_sony_msm8960-common" path="device/sony/msm8960-common" remote="github" />
-			<project name="CyanogenMod/android_device_sony_qcom-common" path="device/sony/qcom-common" remote="github" />
-			<project name="CyanogenMod/android_hardware_qcom_fm" path="hardware/qcom/fm" remote="github" />
 			<project name="CyanogenMod/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
+			<project name="CyanogenMod/android_hardware_qcom_fm" path="hardware/qcom/fm" remote="github" />
+			<project name="CyanogenMod/android_device_sony_common" path="device/sony/common" remote="github" />
+			<project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" />
 
 			<project name="ArchiDroid/proprietary_vendor_sony" path="vendor/sony" remote="github" />
 
 
-			<remove-project name="CyanogenMod/android_device_sony_qcom-common" />
-			<project name="CyanogenMod/android_device_sony_qcom-common" path="device/sony/qcom-common" remote="github" revision="cm-12.0" />
-
-			<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
-			<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-5.1-arm-linux-gnueabihf-cortex_a15_neon_vfpv4" />
-
 			<remove-project name="CyanogenMod/android_bootable_recovery" />
-			<project name="ArchiDroid/android_bootable_recovery" path="bootable/recovery" remote="github" />
+			<project name="omnirom/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-5.1" />
 
 			<remove-project name="CyanogenMod/android_device_sony_nicki" />
 			<project name="ArchiDroid/android_device_sony_nicki" path="device/sony/nicki" remote="github" />

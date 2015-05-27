@@ -257,27 +257,20 @@ ADRELOAD() {
 	esac
 }
 
-#ADNOTIFY() {
-#	case "$1" in
-#		"TETHERING")
-#			ADSTOP "ADBLOCK"
-#			(
-#				sleep 2
-#				PID=""
-#				for PROCESS in "dnsmasq" "dnsmasq.real"; do
-#					PID="$(pidof "$PROCESS" 2>/dev/null)";
-#					if [[ -n "$PID" ]]; then
-#						break
-#					fi
-#				done
-#				while [[ -e "/proc/$PID" ]]; do
-#					sleep 1
-#				done
-#				ARCHIDROID_INIT "START" "ADBLOCK"
-#			) &
-#		;;
-#	esac
-#}
+ADNOTIFY() {
+	case "$1" in
+		"TETHERING "*)
+			ADSTOP "ADBLOCK"
+			DNSMASQ_PID="$(echo "$1" | cut -d ' ' -f 2)"
+			(
+				while [[ -e "/proc/$DNSMASQ_PID" ]]; do
+					sleep 2
+				done
+				ADSTART "ADBLOCK"
+			) &
+		;;
+	esac
+}
 
 DBUPDATE() {
 	# Thanks to idcrisis, modified by JustArchi
@@ -416,7 +409,7 @@ if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" || "$1" = "NOTIFY" ]]; 
 		"RELOAD") ADRELOAD "$2" ;;
 		"START") ADSTART "$2" ;;
 		"STOP") ADSTOP "$2" ;;
-#		"NOTIFY") ADNOTIFY "$2" ;;
+		"NOTIFY") ADNOTIFY "$2" ;;
 	esac
 	exit 0
 elif [[ ! -f "$ADSTATUS" ]]; then
