@@ -26,7 +26,16 @@ if [[ -z "$AKACTION" ]]; then # This should never happen
 	exit 1 # If we're in fact sourcing this file, this won't execute
 fi
 
-export PATH="$AKACTION:$PATH"
+export PATH="$AKACTION:$PATH" # Add $AKACTION to our $PATH
+
+# Wait till userspace sets default values, which we're going to use
+LMK="$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1)"
+LOOP=0
+while [[ "$LOOP" -lt 30 ]] && [[ -z "$LMK" || "$LMK" -eq 1536 ]]; do # Wait till Android populates minfree with proper device (NOT default) values
+	((LOOP++))
+	sleep 1
+	LMK="$(AK_lmk /sys/module/lowmemorykiller/parameters/minfree 1)"
+done
 
 cat << EOF
 {
