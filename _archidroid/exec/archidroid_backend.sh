@@ -32,7 +32,7 @@ fi
 if [[ ! -f "/system/bin/dnsmasq.real" ]]; then
 	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
 	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
-	# TODO: Find out proper sepolicy to allow running with enforcing SELinux
+	# Dnsmasq hook uses default sepolicy
 fi
 
 # ArchiDroid Adblock Hosts
@@ -44,7 +44,6 @@ if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners
 fi
 
 # ArchiDroid binaries
-chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT" "/system/xbin/ARCHIDROID_LINUX"
-chcon "u:object_r:rootfs:s0" "/system/xbin/archidroid_dnsmasq" "/system/xbin/archidroid_haveged" "/system/xbin/archidroid_pixelserv"
+chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT"
 
 exit 0

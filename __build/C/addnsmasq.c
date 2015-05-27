@@ -28,12 +28,13 @@ disabling ArchiDroid's Adblock prior to activating USB/Wi-Fi tethering.
 This is done through informing the backend about ongoing tethering event.
 */
 
-#define BRANCH_PREDICTION
-
 #include <stdio.h>
 #include <string.h>
-#include <sys/types.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+
+#define BRANCH_PREDICTION
 
 #ifdef BRANCH_PREDICTION
 #define likely(x)       __builtin_expect((x),1)
@@ -43,13 +44,20 @@ This is done through informing the backend about ongoing tethering event.
 #define unlikely(x)     x
 #endif
 
-int main(int argc, char **argv) {
-	remove("/data/media/0/ArchiDroid/System/Events/Tethering.EVENT"); // Make sure our event doesn't exist yet
-	FILE *eventFile = fopen("/data/media/0/ArchiDroid/System/Events/Tethering.EVENT", "w"); // Create event file for writing
-	if (likely(eventFile != NULL)) { // If we succeeded, proceed
-		fprintf(eventFile, "%s%u\n", "Tethering ", getpid()); // Write event content - notify event listener about ongoing tethering with our PID
-		fclose(eventFile); // Close event file
-		sleep(2); // Wait for backend's reaction
+static const char* eventDirPath = "/dev/archidroid/Events";
+static const char* eventFilePath = "/dev/archidroid/Events/Tethering.EVENT";
+static const unsigned int delay = 2; // Specifies minimum time we need to wait for backend's reaction
+
+int main(int argc, char** argv) {
+	struct stat st = {0};
+	if (stat(eventDirPath, &st) != -1) { // If events dir exists
+		remove(eventFilePath); // Make sure our event doesn't exist yet
+		FILE* eventFile = fopen(eventFilePath, "w"); // Create event file for writing
+		if (likely(eventFile != NULL)) { // If we succeeded, proceed
+			fprintf(eventFile, "%s%u\n", "TETHERING ", getpid()); // Write event content - notify event listener about ongoing tethering with our PID
+			fclose(eventFile); // Close event file
+			sleep(delay); // Wait for backend's reaction
+		}
 	}
 	char realBinary[strlen(argv[0]) + 5 + 1];
 	sprintf(realBinary, "%s%s", argv[0], ".real");
