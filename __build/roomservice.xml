@@ -72,20 +72,11 @@
 			<remove-project name="CyanogenMod/android_frameworks_av" />
 			<project name="ArchiDroid/android_frameworks_av" path="frameworks/av" remote="github" />
 
-			<remove-project name="CyanogenMod/android_frameworks_base" />
-			<project name="ArchiDroid/android_frameworks_base" path="frameworks/base" remote="github" />
-
 			<remove-project name="CyanogenMod/android_frameworks_native" />
 			<project name="ArchiDroid/android_frameworks_native" path="frameworks/native" remote="github" />
 
 			<remove-project name="CyanogenMod/android_packages_apps_Settings" />
 			<project name="ArchiDroid/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" />
-
-			<remove-project name="CyanogenMod/android_packages_services_Telecomm" />
-			<project name="ArchiDroid/android_packages_services_Telecomm" path="packages/services/Telecomm" />
-
-			<remove-project name="CyanogenMod/android_packages_services_Telephony" />
-			<project name="ArchiDroid/android_packages_services_Telephony" path="packages/services/Telephony" />
 			-->
 		<!-- /i9300 -->
 		<!-- nicki -->
