@@ -44,7 +44,7 @@ UPDATEREPO() {
 		if [[ -n "$TARGET_BRANCH" ]]; then
 			BRANCH="$TARGET_BRANCH"
 		fi
-		if [[ -z "$BRANCH" || "$BRANCH" = HEAD* ]]; then
+		if [[ -z "$BRANCH" || "$BRANCH" = "HEAD"* || "$BRANCH" = *"-old" ]]; then
 			continue
 		fi
 		git reset --hard >/dev/null 2>&1 # Clean
