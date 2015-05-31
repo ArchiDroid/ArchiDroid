@@ -55,6 +55,7 @@ PREBUILT=0
 STABLE=0
 STOCK=0
 OLD=0
+SYNC=0
 
 cd "$(dirname "$0")"
 
@@ -89,6 +90,10 @@ for ARG in "$@" ; do
 			OLD=1
 			echo "NOTICE: Not doing repo sync!"
 			;;
+		--sync|sync)
+			SYNC=1
+			echo "NOTICE: Doing only repo sync!"
+			;;
 	esac
 done
 sleep 1 # User wants to see notices before we start spamming
@@ -98,6 +103,9 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	if [[ "$OLD" -eq 0 ]]; then
 		repo selfupdate
 		repo sync -j32
+		if [[ "$SYNC" -eq 1 ]]; then
+			exit 0
+		fi
 	fi
 
 	if [[ "$CLEAN" -eq 1 ]]; then
