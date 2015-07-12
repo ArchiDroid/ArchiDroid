@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,12 +21,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# $1 - What
-# $2 - From where
+# Returns value of given property from build.prop-like file
+# $1 - Requested property name
+# $2 - Build.prop-like file location
+# String is returned on success
+
+set -e
+
+if [[ -z "$1" || -z "$2" ]]; then
+	exit 1
+fi
 
 if [[ -f "$2" ]]; then
 	grep "$1" "$2" | cut -d '=' -f 2 | tr -d '\n'
 else
 	printf "null"
 fi
+
 exit 0

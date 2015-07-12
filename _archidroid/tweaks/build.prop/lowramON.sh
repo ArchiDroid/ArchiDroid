@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,17 +21,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-echo "
-### ArchiDroid build.prop tweaks START ###
+# Enables low RAM device flag
 
-# Force navigation bar
-#qemu.hw.mainkeys=0
+set -e
 
-# Allow purging of assets
-# CyanogenMod Only
-persist.sys.purgeable_assets=1
-
-### ArchiDroid build.prop tweaks END ###
-" >> /system/build.prop
+if grep -q "#ro.config.low_ram=true" "/system/build.prop"; then
+	sed -i "s/#ro.config.low_ram=true/ro.config.low_ram=true/g" /system/build.prop
+else
+	echo "ro.config.low_ram=true" >> /system/build.prop
+fi
 
 exit 0

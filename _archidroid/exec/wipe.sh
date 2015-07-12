@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,19 +21,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if [ -f "/data/.layout_version" ]; then
-	LAYOUT="$(cat "/data/.layout_version")"
-fi
-if [ -z "$LAYOUT" ]; then
-	LAYOUT="2" # Default value
-fi
+# Wipes /data partition excluding internal storage (/data/media)
 
-find /data -mindepth 1 -maxdepth 1 | while read line; do
-	if [ "$line" != "/data/media" ]; then
-		rm -rf "$line"
-	fi
+set -e
+
+find /data -mindepth 1 -maxdepth 1 | while read FILE; do
+	case "$FILE" in
+		"/data/.layout_version") ;; # Don't wipe layout version
+		"/data/media") ;; # Don't wipe internal storage
+		*) rm -rf "$FILE"
+	esac
 done
 
-printf "%s" "$LAYOUT" > "/data/.layout_version"
-sync
 exit 0

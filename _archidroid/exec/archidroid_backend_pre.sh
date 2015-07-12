@@ -21,25 +21,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Unmounts device
-# $1 - Mount point
+# Executes pre-install ArchiDroid backend script
 
 set -e
 
-if [[ -z "$1" || ! -e "$1" ]]; then
-	exit 1
-fi
+AD="/data/media/0/ArchiDroid"
 
-# Check if it's unmounted already
-if ! mount | grep -qi "$1"; then
-	exit 0
-fi
+touch /data/ARCHIDROID_DONT_REMOVE_ME
+mkdir -p "$AD"
+rm -f "$AD/INSTALL" "$AD/UPDATE" "$AD/FORCE"
 
-# Stage 1 
-umount "$1" || true
-if ! mount | grep -qi "$1"; then
-	exit 0
-fi
+for ARG in "$@"; do
+	touch "$AD/$ARG"
+done
 
-# All stages failed
-exit 1
+exit 0

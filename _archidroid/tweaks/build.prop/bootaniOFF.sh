@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,14 +21,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-AD="/data/media/0/ArchiDroid"
+# Disables bootanimation
 
-touch /data/ARCHIDROID_DONT_REMOVE_ME
-mkdir -p "$AD"
-rm -f "$AD/INSTALL" "$AD/UPDATE" "$AD/FORCE"
+set -e
 
-for ARG in "$@"; do
-	touch "$AD/$ARG"
-done
+if grep -q "#debug.sf.nobootanimation=1" "/system/build.prop"; then
+	sed -i "s/#debug.sf.nobootanimation=1/debug.sf.nobootanimation=1/g" /system/build.prop
+else
+	echo "debug.sf.nobootanimation=1" >> /system/build.prop
+fi
 
 exit 0

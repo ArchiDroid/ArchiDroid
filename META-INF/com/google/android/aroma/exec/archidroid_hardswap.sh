@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,42 +21,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# shellcheck disable=2039
-if [[ -z "$2" ]]; then
-	echo "ERROR: Wrong arguments!"
-	echo "ERROR: Expected: [Path] [Size]"
-	echo "ERROR: Got: $*"
+# Managed ArchiDroid Hardswap
+# $1 - Hardswap file directory
+# $2 - Hardswap file size in megabytes
+
+set -e
+
+if [[ -z "$1" || -z "$2" ]]; then
 	exit 1
 fi
 
-ADMOUNTED() {
-	return "$(mount | grep -qi "$1"; echo $?)"
-}
-
-if ! ADMOUNTED "$1"; then
-	echo "Sorry, $1 partition is not available for your device, you can't change hardswap here"  # This will be useful e.g. for devices without external sd card
+# Check if device is available
+if ! mount | grep -qi "$1"; then
 	exit 1
 fi
 
-echo "Removing $1/ArchiDroid.swp"
+# Remove old hardswap file
 rm -f "$1/ArchiDroid.swp"
 
-# shellcheck disable=2039
-if [[ "$2" -ne 0 ]]; then
-	echo "Checking free space..."
+# If size is greater than 0, make new hardswap file
+if [[ "$2" -gt 0 ]]; then
 	FREESPACE="$(df -m "$1" | tail -n 1 | awk '{print $4}')"
-	echo "Required: $2"
-	echo "Available: $FREESPACE"
 	if [[ "$FREESPACE" -lt "$2" ]]; then
-		echo "Sorry, it looks like your partition is out of space"
 		exit 1
 	fi
-	echo "Creating $1/ArchiDroid.swp with $2 size"
 	dd if=/dev/zero of="$1/ArchiDroid.swp" bs=1M count="$2"
 	mkswap "$1/ArchiDroid.swp"
-	chown 0.0 "$1/ArchiDroid.swp" # We don't want to create
+	chown 0:0 "$1/ArchiDroid.swp" # We don't want to create
 	chmod 0600 "$1/ArchiDroid.swp" # A potential security risk
 fi
 
-echo "Done!"
 exit 0

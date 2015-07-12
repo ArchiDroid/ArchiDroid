@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,16 +21,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if [[ -z "$2" ]]; then
+# Locks or unlocks given file
+# $1 - A boolean value indicating whether to lock or unlock file
+# $2 - Target file
+
+set -e
+
+if [[ -z "$1" || -z "$2" || ! -f "$2" ]]; then
 	exit 1
 fi
 
-if [[ "$1" = "lock" ]]; then
-	chattr +i "$2"
-elif [[ "$1" = "unlock" ]]; then
-	chattr -i "$2"
-else
-	exit 1
-fi
+case "$1" in
+	0|unlock) chattr -i "$2" ;;
+	1|lock) chattr +i "$2" ;;
+	*) exit 1
+esac
 
 exit 0
