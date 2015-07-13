@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,11 +21,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# exit 0 -> All fine, we're running ArchiDroid
-# exit 1 -> All fine, we're NOT running ArchiDroid
-# exit 2 -> No build.prop detected, we can't check ArchiDroid existance. Full wipe?
+# Checks if ArchiDroid is currently installed
+# Error code 0 is returned on success
 
-if [[ -f "/system/build.prop" ]]; then # We're not after full wipe
+set -e
+
+if [[ -f "/system/build.prop" ]]; then
 	if grep -qi "ArchiDroid" "/system/build.prop"; then
 		exit 0 # We're running ArchiDroid"
 	else
@@ -34,5 +35,3 @@ if [[ -f "/system/build.prop" ]]; then # We're not after full wipe
 else
 	exit 2 # Unknown
 fi
-
-exit 0
