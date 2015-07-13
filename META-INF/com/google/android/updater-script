@@ -54,6 +54,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 	set_metadata_recursive("/tmp/install/bin", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755);
 
 	if file_getprop("/tmp/aroma-data/archidroidwipe.prop", "wipe") == "no" then
+		package_extract_file("META-INF/org/cyanogenmod/releasekey", "/tmp/releasekey");
 		run_program("/tmp/install/bin/otasigcheck.sh") != "31744" || abort("Can't install this package on top of incompatible data. A data wipe is required!");
 
 		if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "barebones" then
