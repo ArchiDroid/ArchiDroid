@@ -364,6 +364,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"gapps-messenger", "Google Messenger", "<~archidroid.gapps.messenger.desc>", "check.checked",
 		"gapps-music", "Google Music", "<~archidroid.gapps.music.desc>", "check.checked",
 		"gapps-search", "Google Search", "<~archidroid.gapps.search.desc>", "check.checked",
+		"gapps-speech", "Google Speech", "<~archidroid.gapps.speech.desc>", "check.checked",
 		"gapps-tts", "Google Text-To-Speech", "<~archidroid.gapps.tts.desc>", "check.checked",
 
 #		"xposed", "<#selectbg_g>Xposed</#>", "", "group",
