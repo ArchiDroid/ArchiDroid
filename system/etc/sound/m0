@@ -158,16 +158,19 @@ We are able to have most of our routing static so do that
         <ctl name="AIF2ADC HPF Switch" val="1"/>
         <ctl name="AIF1DAC1 Volume" val="96"/>
         <ctl name="AIF2DAC Volume" val="96"/>
-        <ctl name="AIF1 Boost Volume" val="0"/>
-        <ctl name="AIF2 Boost Volume" val="0"/>
+        <ctl name="AIF1 Boost Volume" val="1"/>
+        <ctl name="AIF2 Boost Volume" val="1"/>
         <ctl name="DAC1 Volume" val="96"/>
         <ctl name="Left Output Mixer DAC Volume" val="7"/>
         <ctl name="Right Output Mixer DAC Volume" val="7"/>
-        <ctl name="Output Volume" val="57"/>
+        <ctl name="Output Volume" val="60"/>
         <ctl name="Earpiece Volume" val="1"/>
     </path>
     <path name="off">
         <ctl name="RCV Switch" val="0"/>
+        <ctl name="AIF1 Boost Volume" val="0"/>
+        <ctl name="AIF2 Boost Volume" val="0"/>
+        <ctl name="Output Volume" val="57"/>
     </path>
 </device>
 <device name="headphone">

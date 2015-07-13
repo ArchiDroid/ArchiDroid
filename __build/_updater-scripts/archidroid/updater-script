@@ -7,9 +7,11 @@ mount("ext4", "EMMC", "/dev/block/mmcblk0p9", "/system", "");
 run_program("/tmp/install/bin/backuptool.sh", "backup");
 unmount("/system");
 if is_mounted("/data") then
+package_extract_file("META-INF/org/cyanogenmod/releasekey", "/tmp/releasekey");
 run_program("/tmp/install/bin/otasigcheck.sh") != "31744" || abort("Can't install this package on top of incompatible data. Please try another package or run a factory reset");
 else
 mount("ext4", "EMMC", "/dev/block/mmcblk0p12", "/data", "");
+package_extract_file("META-INF/org/cyanogenmod/releasekey", "/tmp/releasekey");
 run_program("/tmp/install/bin/otasigcheck.sh") != "31744" || abort("Can't install this package on top of incompatible data. Please try another package or run a factory reset");
 unmount("/data");
 endif;
@@ -229,9 +231,10 @@ set_metadata_recursive("/system/etc/updatecmds", "uid", 0, "gid", 2000, "dmode",
 set_metadata("/system/etc/updatecmds/migrate_nfc.txt", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/etc/wifi", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/recovery-from-boot.p", "uid", 0, "gid", 0, "mode", 0644);
-set_metadata_recursive("/system/vendor", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:firmware_camera:s0");
+set_metadata_recursive("/system/vendor", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:firmware_exynos:s0");
 set_metadata("/system/vendor", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata("/system/vendor/firmware", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:firmware_camera:s0");
+set_metadata("/system/vendor/firmware", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:firmware_exynos:s0");
+set_metadata("/system/vendor/firmware/bluetooth", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:firmware_exynos:s0");
 set_metadata("/system/vendor/firmware/mfc_fw.bin", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:firmware_mfc:s0");
 set_metadata_recursive("/system/vendor/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/lib", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
