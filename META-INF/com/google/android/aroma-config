@@ -379,11 +379,11 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"gapps-speech", "Google Speech", "<~archidroid.gapps.speech.desc>", "check.checked",
 		"gapps-tts", "Google Text-To-Speech", "<~archidroid.gapps.tts.desc>", "check.checked",
 
-#		"xposed", "<#selectbg_g>Xposed</#>", "", "group",
-#		"xposed", "[<~archidroid.experimental>] Xposed Framework", "<~archidroid.xposed.desc>", "check",
-#		"xposed-appsettings", "App Settings", "<~archidroid.xposed.appsettings.desc>", "check",
-#		"xposed-gravitybox", "GravityBox", "<~archidroid.xposed.gravitybox.desc>", "check",
-#		"xposed-xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check",
+		"xposed", "<#selectbg_g>Xposed</#>", "", "group",
+		"xposed", "[<~archidroid.experimental>] Xposed Framework", "<~archidroid.xposed.desc>", "check",
+		"xposed-appsettings", "App Settings", "<~archidroid.xposed.appsettings.desc>", "check",
+		"xposed-gravitybox", "GravityBox", "<~archidroid.xposed.gravitybox.desc>", "check",
+		"xposed-xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check",
 
 		"archiapps", "<#selectbg_g>ArchiDroid Apps</#>", "", "group",
 		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
