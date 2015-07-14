@@ -21,7 +21,7 @@
 
 ui_print(">>> ArchiDroid is now loading...");
 assert(getprop("ro.product.device") == "BRINGUP" ||
-		abort("This package is for device: BRINGUP; this device is " + getprop("ro.product.device") + "."););
+	abort("This package is for device: BRINGUP; this device is " + getprop("ro.product.device") + "."););
 
 ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Ready!");
 set_progress(0.01);
@@ -324,14 +324,17 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "xposed-appsettings") == "1" then
 				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Including App Settings module");
 				package_extract_dir("_archidroid/apps/xposed/appsettings", "/");
+				set_metadata_recursive("/system/app/AppSettings", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "xposed-gravitybox") == "1" then
 				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Including GravityBox module");
 				package_extract_dir("_archidroid/apps/xposed/gravitybox", "/");
+				set_metadata_recursive("/system/app/GravityBox", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "xposed-xprivacy") == "1" then
 				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Including XPrivacy module");
 				package_extract_dir("_archidroid/apps/xposed/xprivacy", "/");
+				set_metadata_recursive("/system/app/XPrivacy", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
 			endif;
 
 		endif;
