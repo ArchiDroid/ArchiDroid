@@ -26,8 +26,13 @@
 
 set -e
 
-if [[ -z "$1" || ! -e "$1" ]]; then
+if [[ -z "$1" ]]; then
 	exit 1
+fi
+
+# Check if mount point exists, if not, it's unmounted already
+if [[ ! -e "$1" ]]; then
+	exit 0
 fi
 
 # Check if it's unmounted already
