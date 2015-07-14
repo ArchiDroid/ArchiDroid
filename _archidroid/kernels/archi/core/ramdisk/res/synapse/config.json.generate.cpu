@@ -161,7 +161,7 @@ _EOF
 								CURRENT_GOV="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)" # Save current governor
 								for GOVERNOR in $(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors); do
 									if [[ "$GOVERNOR" = "pegasusq" ]]; then
-										echo "pegasusq" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor # Turn on our governor to populate /sys/devices/system/cpu/cpufreq
+										echo "pegasusq" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor # Turn on our governor to populate /sys/devices/system/cpu/cpufreq, this is required for below finds
 cat << _EOF
 										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_freq",
 										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate",
@@ -192,9 +192,13 @@ __EOF
 										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor",
 										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate",
 										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_nr_cpus",
-										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold",
+										"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold"
 _EOF
 										echo "$CURRENT_GOV" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor # Return to previous governor
+									elif [[ "$GOVERNOR" = "zzmoove" ]]; then
+cat << _EOF
+										"AK_generic /sys/devices/system/cpu/cpufreq/zzmoove/profile_number"
+_EOF
 									fi
 								done
 							)
