@@ -27,13 +27,18 @@
 
 set -e
 
-if [[ -z "$1" || ! -e "$1" || -z "$2" ]]; then
+if [[ -z "$1" || -z "$2" ]]; then
 	exit 1
 fi
 
 # Check if it's mounted already
 if mount | grep -qi "$1"; then
 	exit 0
+fi
+
+# Check if mount point exists, if not, create one
+if [[ ! -e "$1" ]]; then
+	mkdir -p "$1"
 fi
 
 # Stage 1 - fstab

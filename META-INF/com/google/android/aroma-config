@@ -104,7 +104,7 @@ resexec("exec/admount.sh", "/system", file_getprop("/tmp/aroma-data/device.prop"
 resexec("exec/admount.sh", "/data", file_getprop("/tmp/aroma-data/device.prop", "data"));
 resexec("exec/admount.sh", "/cache", file_getprop("/tmp/aroma-data/device.prop", "cache"));
 resexec("exec/admount.sh", "/preload", file_getprop("/tmp/aroma-data/device.prop", "preload"));
-resexec("exec/admount.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/device.prop", "extsd"));
+resexec("exec/admount.sh", "/external_sd", file_getprop("/tmp/aroma-data/device.prop", "extsd"));
 resexec("exec/admkdir.sh", getvar("adaroma"), "/tmp/archidroid");
 
 viewbox(
@@ -416,7 +416,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 	resexec("exec/archidroid_hardswap_check.sh", "/preload");
 	setvar("hardswappreload", getvar("exec_buffer"));
 
-	resexec("exec/archidroid_hardswap_check.sh", "/storage/sdcard1");
+	resexec("exec/archidroid_hardswap_check.sh", "/external_sd");
 	setvar("hardswapsdcard", getvar("exec_buffer"));
 
 	form(
@@ -459,7 +459,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
 	endif;
 	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1") != "current" then
-		resexec("exec/archidroid_hardswap.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1"));
+		resexec("exec/archidroid_hardswap.sh", "/external_sd", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1"));
 		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
 	endif;
 endif;
@@ -527,7 +527,7 @@ resexec("exec/adumount.sh", "/system");
 resexec("exec/adumount.sh", "/data");
 resexec("exec/adumount.sh", "/cache");
 resexec("exec/adumount.sh", "/preload");
-resexec("exec/adumount.sh", "/storage/sdcard1");
+resexec("exec/adumount.sh", "/external_sd");
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
 	resexec("exec/rebootrecovery.sh");
