@@ -703,17 +703,11 @@ fi
 if [[ -f "$AD/HARD_REBOOT_REQUIRED" ]]; then
 	echo "$(date +"%F %T") INFO: HARD_REBOOT_REQUIRED found, I'm rebooting device now..."
 	rm -f "$AD/SOFT_REBOOT_REQUIRED" "$AD/HARD_REBOOT_REQUIRED"
-	if [[ -f "$ADSYS/system/reboot.wav" ]] && which tinyplay >/dev/null 2>&1; then
-		tinyplay "$ADSYS/system/reboot.wav" >/dev/null 2>&1
-	fi
 	sync
 	reboot
 elif [[ "$ADRELOAD" -eq 1 || -f "$AD/SOFT_REBOOT_REQUIRED" ]]; then
 	echo "$(date +"%F %T") INFO: SOFT_REBOOT_REQUIRED found, I'm rebooting android interface now..."
 	rm -f "$AD/SOFT_REBOOT_REQUIRED"
-	if [[ -f "$ADSYS/system/reboot.wav" ]] && which tinyplay >/dev/null 2>&1; then
-		tinyplay "$ADSYS/system/reboot.wav" >/dev/null 2>&1 &
-	fi
 	sync
 	setprop ctl.restart surfaceflinger
 	setprop ctl.restart zygote
