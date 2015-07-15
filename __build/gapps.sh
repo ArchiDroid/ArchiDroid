@@ -28,6 +28,8 @@ set -e
 
 cd "$(dirname "$0")"
 
+find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*" -exec rm -f {} \;
+
 while read ZIP; do
 	GAPPSPACKAGE="$ZIP"
 done < <(find .. -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*.zip")
