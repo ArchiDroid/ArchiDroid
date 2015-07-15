@@ -26,6 +26,15 @@
 
 set -e
 
+arrayContainsString() {
+	for e in "${@:2}"; do
+		if [[ "$e" = "$1" ]]; then
+			return 0
+		fi
+	done
+	return 1
+}
+
 cd "$(dirname "$0")"
 
 find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*" -exec rm -f {} \;
@@ -85,6 +94,7 @@ done < <(find Core -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
 
 
 # Optional files
+UPDATEDEXTRAS=()
 while read TAR; do
 	PACKAGE="$(basename "$TAR" | cut -d '.' -f 1)"
 
@@ -92,6 +102,8 @@ while read TAR; do
 		echo "INFO: Skipping $PACKAGE"
 		continue
 	fi
+
+	UPDATEDEXTRAS+=("$PACKAGE")
 
 	rm -rf tmp-gapps
 	mkdir tmp-gapps
@@ -124,5 +136,14 @@ done < <(find GApps -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
 
 cd ..
 rm -rf tmp-gapps
+
+# Check if all extra packages have been updated
+while read FOLDER; do
+	PACKAGE="$(basename "$FOLDER")"
+	if ! arrayContainsString "$PACKAGE" "${UPDATEDEXTRAS[@]}"; then
+		echo "WARNING: $PACKAGE doesn't exist anymore!"
+		rm -rf "$FOLDER"
+	fi
+done < <(find "../_archidroid/gapps/extra" -mindepth 1 -maxdepth 1 -type d)
 
 exit 0
