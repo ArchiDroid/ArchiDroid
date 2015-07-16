@@ -81,6 +81,7 @@ unzip "../$(basename "$GAPPSPACKAGE")"
 
 # Core files
 rm -rf "../../_archidroid/gapps/base"
+mkdir "../../_archidroid/gapps/base"
 while read TAR; do
 	PACKAGE="$(basename "$TAR" | cut -d '.' -f 1)"
 
@@ -112,7 +113,7 @@ while read TAR; do
 	cd ..
 	rm -rf tmp-gapps
 
-	echo "DONE: $PACKAGE"
+	echo "DONE: CORE $PACKAGE"
 done < <(find Core -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
 
 
@@ -159,7 +160,7 @@ while read TAR; do
 	cd ..
 	rm -rf tmp-gapps
 
-	echo "DONE: $PACKAGE"
+	echo "DONE: OPTIONAL $PACKAGE"
 done < <(find GApps -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
 
 cd ..
