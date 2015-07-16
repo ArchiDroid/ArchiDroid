@@ -35,15 +35,23 @@ arrayContainsString() {
 	return 1
 }
 
+UPDATE=0
+
+for ARG in "$@"; do
+	case "$ARG" in
+		--update) UPDATE=1 ;;
+	esac
+done
+
 cd "$(dirname "$0")"
 
-find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*" -exec rm -f {} \;
-
-while read ZIP; do
-	GAPPSPACKAGE="$ZIP"
-done < <(find .. -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*.zip")
-
-if [[ -z "$GAPPSPACKAGE" ]]; then
+if [[ "$UPDATE" -eq 1 ]]; then
+	while read ZIP; do
+		GAPPSPACKAGE="$ZIP"
+		break
+	done < <(find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*.zip")
+else
+	find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*" -exec rm -f {} \;
 	LATEST="$(curl https://api.github.com/repos/opengapps/opengapps/tags 2>/dev/null | grep "\"name\":" | head -n 1 | cut -d '"' -f 4)"
 	if [[ -z "$LATEST" ]]; then
 		echo "ERROR: Could not fetch last Open GApps tags"
@@ -54,12 +62,22 @@ if [[ -z "$GAPPSPACKAGE" ]]; then
 	wget "https://github.com/opengapps/opengapps/releases/download/$LATEST/$GAPPSPACKAGE"
 fi
 
+if [[ -z "$GAPPSPACKAGE" ]]; then
+	echo "ERROR: Could not find any valid GAPPS package!"
+	exit 1
+fi
+
+# Detect proper density variant
+if [[ -f ../system/build.prop ]]; then
+	DPI="$(grep "ro.sf.lcd_density" "../system/build.prop" | head -n 1 | cut -d '=' -f2)"
+	echo "INFO: Will try to use $DPI variant if possible!"
+fi
+
 rm -rf tmp-gapps
 mkdir tmp-gapps
-mv "$GAPPSPACKAGE" tmp-gapps/
 cd tmp-gapps
 
-unzip "$(basename "$GAPPSPACKAGE")"
+unzip "../$(basename "$GAPPSPACKAGE")"
 
 # Core files
 rm -rf "../../_archidroid/gapps/base"
@@ -80,7 +98,12 @@ while read TAR; do
 	fi
 
 	# Main
-	if [[ -d "$PACKAGE/nodpi" ]]; then
+	if [[ -n "$DPI" && -d "$PACKAGE/$DPI" ]]; then
+		echo "INFO: Loaded $DPI variant for $PACKAGE"
+		while read FILE; do
+			cp -R "$FILE" "../../../_archidroid/gapps/base"
+		done < <(find "$PACKAGE/$DPI" -mindepth 1 -maxdepth 1)
+	elif [[ -d "$PACKAGE/nodpi" ]]; then
 		while read FILE; do
 			cp -R "$FILE" "../../../_archidroid/gapps/base"
 		done < <(find "$PACKAGE/nodpi" -mindepth 1 -maxdepth 1)
@@ -122,7 +145,12 @@ while read TAR; do
 	fi
 
 	# Main
-	if [[ -d "$PACKAGE/nodpi" ]]; then
+	if [[ -n "$DPI" && -d "$PACKAGE/$DPI" ]]; then
+		echo "INFO: Loaded $DPI variant for $PACKAGE"
+		while read FILE; do
+			cp -R "$FILE" "../../../_archidroid/gapps/extra/$PACKAGE"
+		done < <(find "$PACKAGE/$DPI" -mindepth 1 -maxdepth 1)
+	elif [[ -d "$PACKAGE/nodpi" ]]; then
 		while read FILE; do
 			cp -R "$FILE" "../../../_archidroid/gapps/extra/$PACKAGE"
 		done < <(find "$PACKAGE/nodpi" -mindepth 1 -maxdepth 1)
