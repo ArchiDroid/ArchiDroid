@@ -33,4 +33,9 @@ find /data -mindepth 1 -maxdepth 1 | while read FILE; do
 	esac
 done
 
+# Add layout version if needed
+if [[ ! -f "/data/.layout_version" ]]; then
+	printf "3" > "/data/.layout_version"
+fi
+
 exit 0

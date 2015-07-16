@@ -34,7 +34,7 @@ elif ! which "${CROSS_COMPILE}strip" >/dev/null; then
 	exit 1
 fi
 
-CFLAGS=(-Ofast -std=c11 -pedantic -Wall -Werror -march=armv7-a -mfpu=neon -mfloat-abi=softfp -fmodulo-sched -fmodulo-sched-allow-regmoves -funsafe-loop-optimizations -fsection-anchors -fivopts -ftree-loop-im -ftree-loop-ivcanon -ffunction-sections -fdata-sections -funswitch-loops -frename-registers -fomit-frame-pointer -fgcse-sm -fgcse-las -fweb -ftracer -fstrict-aliasing -flto -s -fvisibility=hidden -fPIC -fPIE -pie -DNDEBUG -D__ANDROID__ -DANDROID)
+CFLAGS=(-O3 -std=c11 -pedantic -Wall -Werror -march=armv7-a -mfpu=neon -mfloat-abi=softfp -fmodulo-sched -fmodulo-sched-allow-regmoves -funsafe-loop-optimizations -fsection-anchors -fivopts -ftree-loop-im -ftree-loop-ivcanon -ffunction-sections -fdata-sections -funswitch-loops -frename-registers -fomit-frame-pointer -fgcse-sm -fgcse-las -fweb -ftracer -fstrict-aliasing -flto -s -fvisibility=hidden -fPIC -fPIE -pie -DNDEBUG -D__ANDROID__ -DANDROID)
 LDFLAGS=(-Wl,-O3 -Wl,-flto -Wl,--as-needed -Wl,--gc-sections -Wl,--relax -Wl,--sort-common)
 SRCFLAGS=(-DLINUX -DPIC -DPIE)
 
