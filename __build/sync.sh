@@ -47,6 +47,12 @@ UPDATEREPO() {
 		git reset --hard >/dev/null 2>&1 # Clean
 		git clean -fd >/dev/null 2>&1 # The mess
 		git checkout "$BRANCH" >/dev/null 2>&1
+		if [[ $? -ne 0 ]]; then
+			git reset --hard >/dev/null 2>&1 # Clean
+			git clean -fd >/dev/null 2>&1 # The mess
+			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH"
+			continue
+		fi
 		git pull "$ORIGIN" "$BRANCH" >/dev/null 2>&1
 		if [[ $? -ne 0 ]]; then
 			git reset --hard >/dev/null 2>&1 # Clean
