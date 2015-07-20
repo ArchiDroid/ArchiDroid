@@ -474,10 +474,11 @@ ADMANY=0
 DBUPDATE=0
 FIRSTBOOT=0
 
-if [[ ! -d "/data/data/net.justarchi.archidroid" ]]; then
+if [[ ! -f "/data/.ARCHIDROID_FIRSTBOOT_COMPLETED" ]]; then
 	FIRSTBOOT=1
 	mkfifo "$ADFIFO"
 	if [[ -d "$ADSYS/FIRSTBOOT/DATA" ]]; then
+		rm -rf "$AD/FIRSTBOOT"
 		mkdir -p "$AD/FIRSTBOOT"
 		cp -pR "$ADSYS/FIRSTBOOT/DATA" "$AD/FIRSTBOOT"
 		(
@@ -687,6 +688,7 @@ fi
 if [[ "$FIRSTBOOT" -eq 1 ]]; then
 	rm -f "$ADFIFO"
 	rm -rf "$AD/FIRSTBOOT"
+	touch "/data/.ARCHIDROID_FIRSTBOOT_COMPLETED"
 fi
 
 # Execute a reboot if we need it
