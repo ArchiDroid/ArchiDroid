@@ -37,9 +37,6 @@ persist.sys.purgeable_assets=1
 # Force navigation bar
 #qemu.hw.mainkeys=0
 
-# Enables low ram mode, which deactivates some eye-candy memory-intensive tasks
-#ro.config.low_ram=true
-
 ### ArchiDroid build.prop tweaks END ###
 EOF
 
