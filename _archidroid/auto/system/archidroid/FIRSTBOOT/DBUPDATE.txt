@@ -1,0 +1,12 @@
+global animator_duration_scale 0.5
+global development_settings_enabled 1
+global transition_animation_scale 0.5
+global window_animation_scale 0.5
+global wifi_scan_always_enabled 0
+
+secure advanced_reboot 1
+secure button_backlight_timeout 1000
+secure install_non_market_apps 1
+
+system status_bar_battery_style 2
+system status_bar_show_battery_percent 1
