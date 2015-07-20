@@ -21,14 +21,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Enables low RAM device flag
+# Returns modification date of ArchiDroid.zip, if possible
+# String is returned on success
 
 set -e
+exec 2>/dev/null
 
-if grep -q "#ro.config.low_ram=true" "/system/build.prop"; then
-	sed -i "s/#ro.config.low_ram=true/ro.config.low_ram=true/g" /system/build.prop
-else
-	echo "ro.config.low_ram=true" >> /system/build.prop
+SUCCESS=0
+ZIPFILE="$(ps | grep [u]pdater | head -n 1 | awk '{print $NF}')" # Assume that zip path is last given parameter
+
+if [[ -n "$ZIPFILE" && -f "$ZIPFILE" ]]; then
+	MODIFIED="$(stat "$ZIPFILE" | grep "Modify:" | cut -d ' ' -f 2)"
+	if [[ -n "$MODIFIED" ]]; then
+		SUCCESS=1
+		echo "$MODIFIED" | tr -d '\n'
+	fi
+fi
+
+if [[ "$SUCCESS" -eq 0 ]]; then
+	printf "Unknown"
 fi
 
 exit 0
