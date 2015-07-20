@@ -569,7 +569,7 @@ ADSTART "ALL"
 # Also respect number of loops, maybe something went wrong
 echo "$(date +"%F %T") INFO: Init Semaphore started"
 LOOP=0
-while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemu >/dev/null 2>&1; do
+while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemui >/dev/null 2>&1; do
 	((LOOP++))
 
 	if [[ "$DBUPDATE" -eq 1 ]]; then
