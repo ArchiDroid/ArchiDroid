@@ -145,7 +145,7 @@ archidroid.tweaks.navibar.desc= מפעיל את סרגל הניווט, ומנט�
 archidroid.tweaks.navibar.hwenabled=Enable hardware keys
 archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
-archidroid.xposed.desc=Xposed Framework מאפשר למודולים צד ג' לבצע שינויים לפריימוורק תוך כדי עבודה, ללא צורך בשינוי קבצי סיסטם. מאוד ממומלץ 
+archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
 archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=All-In-One Xposed  מודול זה מכיל מאות שינויים בפריימוורק, שניתן לעשות בהם שימוש
 archidroid.xposed.xprivacy.desc= אם אתה אוהב את הפרטיות שלך, מודול זה הוא עבורך. אפליקציה זו תאפשר לך לציין במדוייק מה ההרשאות לכל אפליקציה מותקנת

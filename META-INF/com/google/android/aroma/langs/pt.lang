@@ -145,7 +145,7 @@ archidroid.tweaks.navibar.desc=Ativa a barra de navegação (inferior), e desati
 archidroid.tweaks.navibar.hwenabled=Enable hardware keys
 archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
-archidroid.xposed.desc=O Xposed Framework permite que vários módulos de terceiros façam alterações framework na hora, sem modificar os ficheiros do sistema. Altamente recomendado
+archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
 archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=Módulo Xposed tudo-em-um, que contém mais de uma centena de alterações framework, que podem ser efetuadas de forma fácil
 archidroid.xposed.xprivacy.desc=Se pretende proteger a sua privacidade, este módulo é para si. Com esta aplicação, poderá especificar com precisão as permissões que pretende dar a cada uma das aplicações instaladas no seu dispositivo installed app
