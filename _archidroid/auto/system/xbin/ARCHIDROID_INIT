@@ -626,10 +626,9 @@ while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemu >/dev/null 2>&1; do
 						rm -rf "$FOLDER"
 						((ADMANY--))
 						echo "$(date +"%F %T") INFO: Merging done! $ADMANY to go"
-						echo "$ADMANY" > "$ADFIFO"
-						break
 					fi
 				done
+				echo "$ADMANY" > "$ADFIFO"
 			)
 		) &
 		ADMANY="$(cat "$ADFIFO")"
