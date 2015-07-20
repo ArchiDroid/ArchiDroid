@@ -34,7 +34,7 @@ ADTWEAK() {
 	fi
 }
 
-ADEVENT() {
+ADEVENT_ASYNC() {
 	if [[ -d "$ADEVENTS" && -e "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID" && -e "/proc/$(cat "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID")" ]]; then
 		echo "$@" > "$ADEVENTS/Init.EVENT"
 	fi
@@ -59,11 +59,20 @@ ADSTOP() {
 
 		# Services
 		"ADBLOCK")
+			# If adblock is currently active, reset to default DNSes
+			ADEVENT_ASYNC "CONNECTIVITY_RESET"
+
 			ADSTOP "archidroid_dnsmasq"
 			ADSTOP "archidroid_pixelserv"
 
-			# If adblock is currently active, reset default DNS
-			ADEVENT "CONNECTIVITY_RESET"
+			# Fix hosts back to defaults if needed
+			if [[ "$ADBLOCK_PROXYDNS" -eq 0 ]]; then
+				if ! cmp /system/archidroid/etc/hosts /system/etc/hosts >/dev/null 2>&1; then
+					mount -o remount,rw /system
+					cp -p /system/archidroid/etc/hosts /system/etc/hosts
+					mount -o remount,ro /system
+				fi
+			fi
 		;;
 		"EVENT_LISTENER")
 			rm -f "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID"
@@ -118,9 +127,6 @@ ADSTART() {
 		"ADBLOCK")
 			if [[ "$ADBLOCK" -eq 1 ]]; then
 				if [[ "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
-					# If adblock is currently deactivated, set proper DNSes
-					ADEVENT "CONNECTIVITY_RESET"
-
 					if ! cmp /system/archidroid/dev/spinners/_Hosts/NoAdBlocking /system/etc/hosts >/dev/null 2>&1; then
 						mount -o remount,rw /system
 						cp -p /system/archidroid/dev/spinners/_Hosts/NoAdBlocking /system/etc/hosts
@@ -195,16 +201,17 @@ ADSTART() {
 				local EXTRA="--all-servers -x $ADTMPFS/DNSMASQ.PID"
 				if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
 					echo "$(date +"%F %T") INFO: ADBLOCK: Including local DNSes!"
-					ADEVENT "REFRESH_RESOLV"
 					if [[ "$ADBLOCKSTRICTORDER" -eq 1 ]]; then
 						echo "$(date +"%F %T") INFO: ADBLOCK: Strict order enabled!"
 						EXTRA+=" --strict-order"
 					fi
-				else
-					cp -p "/system/etc/resolv.conf" "$ADTMPFS/resolv.conf"
 				fi
+				cp -p "/system/etc/resolv.conf" "$ADTMPFS/resolv.conf" # Set DNSes to default ones, event listener will correct them if needed on CONNECTIVITY_APPLY
 				archidroid_dnsmasq $EXTRA -C /system/archidroid/etc/dnsmasq.conf
 				echo "$(date +"%F %T") INFO: ADBLOCK: Activated archidroid_dnsmasq - local DNS server on 127.0.0.1:53, forwarding clean non-blocked traffic to specified DNS servers"
+
+				# Set proper DNSes
+				ADEVENT_ASYNC "CONNECTIVITY_APPLY"
 			fi
 		;;
 		"archidroid_pixelserv")
@@ -264,7 +271,7 @@ ADNOTIFY() {
 			DNSMASQ_PID="$(echo "$1" | cut -d ' ' -f 2)"
 			(
 				while [[ -e "/proc/$DNSMASQ_PID" ]]; do
-					sleep 2
+					sleep 1
 				done
 				ADSTART "ADBLOCK"
 			) &
