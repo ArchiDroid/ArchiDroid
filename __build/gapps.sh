@@ -45,32 +45,54 @@ done
 
 cd "$(dirname "$0")"
 
+if [[ -f ../system/build.prop ]]; then
+	# Architecture
+	ARCH="$(grep "ro.product.cpu.abilist=" "../system/build.prop" | head -n 1 | cut -d '=' -f 2)"
+	case "$ARCH" in
+		arm64*) ARCH="arm64" ;;
+		arm*) ARCH="arm" ;;
+	esac
+	echo "ARCH: $ARCH"
+
+	# Density
+	DENSITY="$(grep "ro.sf.lcd_density=" "../system/build.prop" | head -n 1 | cut -d '=' -f 2)"
+	echo "DENSITY: $DENSITY"
+
+	# Android
+	ANDROID="$(grep "ro.build.version.release=" "../system/build.prop" | head -n 1 | cut -d '=' -f 2 | rev | cut -d '.' -f 2- | rev)"
+	echo "ANDROID: $ANDROID"
+else
+	# Defaults
+	ARCH="arm"
+	DENSITY="nodpi"
+	ANDROID="5.1"
+fi
+
 if [[ "$UPDATE" -eq 1 ]]; then
 	while read ZIP; do
 		GAPPSPACKAGE="$ZIP"
 		break
-	done < <(find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*.zip")
+	done < <(find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-$ARCH-$ANDROID-*.zip")
 else
-	find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*" -exec rm -f {} \;
-	LATEST="$(curl https://api.github.com/repos/opengapps/opengapps/tags 2>/dev/null | grep "\"name\":" | head -n 1 | cut -d '"' -f 4)"
+	LATEST="$(curl "https://api.github.com/repos/opengapps/$ARCH/releases/latest" 2>/dev/null | grep "\"tag_name\":" | head -n 1 | cut -d '"' -f 4)"
 	if [[ -z "$LATEST" ]]; then
 		echo "ERROR: Could not fetch last Open GApps tags"
 		exit 1
 	fi
 
-	GAPPSPACKAGE="open_gapps-arm-5.1-stock-$LATEST.zip"
-	wget "https://github.com/opengapps/opengapps/releases/download/$LATEST/$GAPPSPACKAGE"
+	GAPPSPACKAGE="open_gapps-$ARCH-$ANDROID-stock-$LATEST.zip"
+	if [[ -f "$GAPPSPACKAGE" ]]; then
+		echo "INFO: Newest GAPPS are applied already and --update wasn't given!"
+		exit 0
+	fi
+
+	find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*" -exec rm -f {} \;
+	wget "https://github.com/opengapps/$ARCH/releases/download/$LATEST/$GAPPSPACKAGE"
 fi
 
 if [[ -z "$GAPPSPACKAGE" ]]; then
 	echo "ERROR: Could not find any valid GAPPS package!"
 	exit 1
-fi
-
-# Detect proper density variant
-if [[ -f ../system/build.prop ]]; then
-	DPI="$(grep "ro.sf.lcd_density" "../system/build.prop" | head -n 1 | cut -d '=' -f2)"
-	echo "INFO: Will try to use $DPI variant if possible!"
 fi
 
 rm -rf tmp-gapps
@@ -99,11 +121,10 @@ while read TAR; do
 	fi
 
 	# Main
-	if [[ -n "$DPI" && -d "$PACKAGE/$DPI" ]]; then
-		echo "INFO: Loaded $DPI variant for $PACKAGE"
+	if [[ -n "$DENSITY" && -d "$PACKAGE/$DENSITY" ]]; then
 		while read FILE; do
 			cp -R "$FILE" "../../../_archidroid/gapps/base"
-		done < <(find "$PACKAGE/$DPI" -mindepth 1 -maxdepth 1)
+		done < <(find "$PACKAGE/$DENSITY" -mindepth 1 -maxdepth 1)
 	elif [[ -d "$PACKAGE/nodpi" ]]; then
 		while read FILE; do
 			cp -R "$FILE" "../../../_archidroid/gapps/base"
@@ -146,11 +167,10 @@ while read TAR; do
 	fi
 
 	# Main
-	if [[ -n "$DPI" && -d "$PACKAGE/$DPI" ]]; then
-		echo "INFO: Loaded $DPI variant for $PACKAGE"
+	if [[ -n "$DENSITY" && -d "$PACKAGE/$DENSITY" ]]; then
 		while read FILE; do
 			cp -R "$FILE" "../../../_archidroid/gapps/extra/$PACKAGE"
-		done < <(find "$PACKAGE/$DPI" -mindepth 1 -maxdepth 1)
+		done < <(find "$PACKAGE/$DENSITY" -mindepth 1 -maxdepth 1)
 	elif [[ -d "$PACKAGE/nodpi" ]]; then
 		while read FILE; do
 			cp -R "$FILE" "../../../_archidroid/gapps/extra/$PACKAGE"
