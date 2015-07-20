@@ -5,7 +5,7 @@
  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 
-Copyright 2015 Łukasz "JustArchi" Domeradzki
+Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 Contact: JustArchi@JustArchi.net
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
 				fprintf(selinuxFile, "%s", selinuxContext); // Write selinux context
 				fclose(selinuxFile); // Close selinux file
 			}
-			execv("/system/xbin/ARCHIDROID_INIT", (char* []) { "/system/xbin/ARCHIDROID_INIT", "--background", NULL }); // Launch backend
+			execv("/system/xbin/ARCHIDROID_INIT", (char* []) { "/system/xbin/ARCHIDROID_INIT", "--background", "--su-shell", NULL }); // Launch backend
 		}
 	} else { // If fork failed just execute original debuggerd (debuggerd.real)
 		char realBinary[strlen(argv[0]) + 5 + 1];
