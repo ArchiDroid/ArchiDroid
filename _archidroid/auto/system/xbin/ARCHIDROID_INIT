@@ -474,24 +474,23 @@ ADMANY=0
 DBUPDATE=0
 FIRSTBOOT=0
 
-if [[ -f "$AD/INSTALL" || -f "$AD/UPDATE" ]]; then
+if [[ ! -d "/data/data/net.justarchi.archidroid" ]]; then
 	FIRSTBOOT=1
-	# Don't force install mode, unless FORCE file exists
-	if [[ -f "$AD/INSTALL" || -f "$AD/FORCE" ]]; then
-		mkfifo "$ADFIFO"
-		if [[ -d "$AD/FIRSTBOOT/DATA" ]]; then
-			(
-				find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read FOLDER; do
-					((ADMANY++))
-				done
-				echo "$ADMANY" > "$ADFIFO")
-			) &
-			ADMANY="$(cat "$ADFIFO")"
-		fi
-		DBUPDATE=1
-		ADRELOAD=1
-		setprop "persist.sys.root_access" "$(getprop persist.sys.root_access)" # This is required, as for some reason CM now reads the value from /data/property and not getprop()
+	mkfifo "$ADFIFO"
+	if [[ -d "$ADSYS/FIRSTBOOT/DATA" ]]; then
+		mkdir -p "$AD/FIRSTBOOT"
+		cp -pR "$ADSYS/FIRSTBOOT/DATA" "$AD/FIRSTBOOT"
+		(
+			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read FOLDER; do
+				((ADMANY++))
+			done
+			echo "$ADMANY" > "$ADFIFO")
+		) &
+		ADMANY="$(cat "$ADFIFO")"
 	fi
+	DBUPDATE=1
+	ADRELOAD=1
+	setprop "persist.sys.root_access" "$(getprop persist.sys.root_access)" # This is required, as for some reason CM now reads the value from /data/property and not getprop()
 fi
 
 # Now we need to make sure that this is a background process to prevent slowing down bootup
@@ -544,11 +543,6 @@ if [[ -f /system/app/LiveBoot/LiveBoot.apk && ! -f "/data/data/eu.chainfire.live
 	rm /dev/.app_process_liveboot
 fi
 
-# Custom boot sound support
-if [[ -f "$AD/PowerOn.wav" ]] && which tinyplay >/dev/null 2>&1; then
-	tinyplay "$AD/PowerOn.wav" >/dev/null 2>&1 &
-fi
-
 # ArchiDroid Hardswap
 SWAP_BIN="swapon"
 SWAP_CMD="-p 1"
@@ -578,24 +572,17 @@ while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemu >/dev/null 2>&1; do
 	((LOOP++))
 
 	if [[ "$DBUPDATE" -eq 1 ]]; then
-		if [[ -f /data/data/com.android.providers.settings/databases/settings.db ]]; then
+		if [[ -f /data/data/com.android.providers.settings/databases/settings.db && -f "$ADSYS/FIRSTBOOT/DBUPDATE.txt" ]]; then
 			echo "$(date +"%F %T") INFO: settings.db created! Performing DBUPDATE"
 
-			# Faster animations
-			DBUPDATE global animator_duration_scale 0.5
-			DBUPDATE global transition_animation_scale 0.5
-			DBUPDATE global window_animation_scale 0.5
-
-			# Circle battery
-			DBUPDATE system status_bar_battery_style 2 # Circle icon
-			DBUPDATE system status_bar_show_battery_percent 1 # Text inside the icon
-
-			# General fixes
-			DBUPDATE global development_settings_enabled 1 # Enable development settings
-			DBUPDATE global wifi_scan_always_enabled 0 # Disable wi-fi scanning
-			DBUPDATE secure advanced_reboot 1 # Enable advanced reboot
-			DBUPDATE secure button_backlight_timeout 1000 # Set backlight timeout to 1 second
-			DBUPDATE secure install_non_market_apps 1 # Allow installing APKs from unknown sources
+			while read line; do
+				if [[ -n "$line" ]]; then
+					TABLE="$(echo "$line" | cut -d ' ' -f 1)"
+					COLUMN="$(echo "$line" | cut -d ' ' -f 2)"
+					VALUE="$(echo "$line" | cut -d ' ' -f 3)"
+					DBUPDATE "$TABLE" "$COLUMN" "$VALUE"
+				fi
+			done < "$ADSYS/FIRSTBOOT/DBUPDATE.txt"
 
 			# And don't execute twice
 			echo "$(date +"%F %T") INFO: Finished DBUPDATE"
@@ -605,53 +592,49 @@ while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemu >/dev/null 2>&1; do
 
 	if [[ "$ADMANY" -gt 0 ]]; then
 		(
-			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read FOLDER; do
-				FOLDERSHORT="$(basename "$FOLDER")"
-				if [[ -d "/data/data/$FOLDERSHORT" ]]; then
+			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (
+				while read FOLDER; do
+					FOLDERSHORT="$(basename "$FOLDER")"
+					if [[ -d "/data/data/$FOLDERSHORT" ]]; then
 
-					echo "$(date +"%F %T") INFO: Merging settings for $FOLDER"
+						echo "$(date +"%F %T") INFO: Merging settings for $FOLDER"
 
-					# Firstly, copy recursive everything i
-					find "$FOLDER" -mindepth 1 -maxdepth 1 | while read TOCOPY; do
-						cp -R "$TOCOPY" "/data/data/$FOLDERSHORT/"
-					done
+						# Firstly, copy recursive everything i
+						find "$FOLDER" -mindepth 1 -maxdepth 1 | while read TOCOPY; do
+							cp -R "$TOCOPY" "/data/data/$FOLDERSHORT/"
+						done
 
-					ADOWNER="$(busybox ls -ld "/data/data/$FOLDERSHORT" | awk '{print $3}')"
-					busybox chown -hR "$ADOWNER.$ADOWNER" "/data/data/$FOLDERSHORT"
+						ADOWNER="$(busybox ls -ld "/data/data/$FOLDERSHORT" | awk '{print $3}')"
+						busybox chown -hR "$ADOWNER.$ADOWNER" "/data/data/$FOLDERSHORT"
 
-					# Apply permissions for folders
-					find "/data/data/$FOLDERSHORT" -type d -mindepth 1 | while read mFOLDER; do
-						case "$(basename "$mFOLDER")" in # This will match filenames
-							*) chmod 771 "$mFOLDER"
-						esac
-					done
+						# Apply permissions for folders
+						find "/data/data/$FOLDERSHORT" -type d -mindepth 1 | while read mFOLDER; do
+							case "$(basename "$mFOLDER")" in # This will match filenames
+								*) chmod 771 "$mFOLDER"
+							esac
+						done
 
-					# Apply permissions for files
-					find "/data/data/$FOLDERSHORT" -type f -mindepth 1 | while read mFILE; do
-	#					case "$(echo "$mFILE" | awk -F '.' '{print $NF}')" in # This will match extensions, like jar
-	#						"jar") chmod 664 "$mFILE" ;;
-	#						*) chmod 660 "$mFILE"
-	#					esac
-						case "$(basename "$mFILE")" in # This will match filenames
-	#						"XposedBridge.jar") chmod 664 "$mFILE" ;;
-							*) chmod 660 "$mFILE"
-						esac
-					done
+						# Apply permissions for files
+						find "/data/data/$FOLDERSHORT" -type f -mindepth 1 | while read mFILE; do
+							case "$(basename "$mFILE")" in # This will match filenames
+								*) chmod 660 "$mFILE"
+							esac
+						done
 
-					# And we're done!
-					rm -rf "$FOLDER"
-					((ADMANY--))
-					echo "$(date +"%F %T") INFO: Merging done! $ADMANY to go"
-					echo "$ADMANY" > "$ADFIFO"
-					exit 0
-				fi
-			done
-			echo "$ADMANY" > "$ADFIFO")
+						# And we're done!
+						rm -rf "$FOLDER"
+						((ADMANY--))
+						echo "$(date +"%F %T") INFO: Merging done! $ADMANY to go"
+						echo "$ADMANY" > "$ADFIFO"
+						break
+					fi
+				done
+			)
 		) &
 		ADMANY="$(cat "$ADFIFO")"
 	fi
 
-	if [[ "$LEDS" -ge 1 ]]; then
+	if [[ "$LEDS" -gt 0 ]]; then
 		while :; do
 			case "$LEDS" in
 				1) RED=10; GREEN=0; BLUE=0 ;;
@@ -702,7 +685,7 @@ else
 fi
 
 if [[ "$FIRSTBOOT" -eq 1 ]]; then
-	rm -f "$ADFIFO" "$AD/INSTALL" "$AD/UPDATE" "$AD/FORCE"
+	rm -f "$ADFIFO"
 	rm -rf "$AD/FIRSTBOOT"
 fi
 
@@ -715,7 +698,6 @@ if [[ -f "$AD/HARD_REBOOT_REQUIRED" ]]; then
 elif [[ "$ADRELOAD" -eq 1 || -f "$AD/SOFT_REBOOT_REQUIRED" ]]; then
 	echo "$(date +"%F %T") INFO: SOFT_REBOOT_REQUIRED found, I'm rebooting android interface now..."
 	rm -f "$AD/SOFT_REBOOT_REQUIRED"
-	sync
 	setprop ctl.restart surfaceflinger
 	setprop ctl.restart zygote
 fi
