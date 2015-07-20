@@ -57,7 +57,7 @@ anisplash(
 );
 
 # Often edited settings
-setvar("preset_version", "24");
+setvar("preset_version", "25");
 
 # Aroma settings
 theme("archidroid");
