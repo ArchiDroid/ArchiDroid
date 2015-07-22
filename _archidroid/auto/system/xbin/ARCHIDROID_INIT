@@ -354,16 +354,12 @@ ADFIFO="$ADTMPFS/Init.fifo"
 LOG="$AD/Init.log" # "/dev/null" is no verbose
 ADSTATUS="$ADTMPFS/ARCHIDROID_INIT_STATUS"
 
-# Exit if barebones preset was used
-if [[ -f "/system/archidroid/dev/PRESET_BAREBONES" ]]; then
-	exit 0
-fi
-
 # Fix /data/media/0/0 if needed
 if [[ -d "/data/media/0/0" ]]; then
 	find "/data/media/0/0" -mindepth 1 -maxdepth 1 | while read line; do
 		mv "$line" "/data/media/0"
 	done
+	rmdir "/data/media/0/0"
 fi
 
 # Exit if there is no ArchiDroid folder
