@@ -21,8 +21,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if [[ -n "$1" ]]; then
-	sed -i "s/ro.sf.lcd_density=.*/ro.sf.lcd_density=$1/g" "/system/build.prop"
+# Sets device density
+# $1 - Target density
+
+set -e
+
+if [[ -z "$1" ]]; then
+	exit 1
 fi
+
+sed -i "s/ro.sf.lcd_density=.*/ro.sf.lcd_density=$1/g" /system/build.prop
 
 exit 0

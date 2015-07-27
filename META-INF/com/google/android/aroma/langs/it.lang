@@ -32,7 +32,7 @@ archidroid.apps.fdroid.desc=Catalogo installabile di applicazioni gratuite e ope
 archidroid.apps.greenify.desc=Risparmia batteria ibernando le applicazioni in background quando non le si sta utilizzando 
 archidroid.apps.lmt.desc=Arricchisce il device con la funzionalità PIE, il supporto alle gestures e altro ancora
 archidroid.apps.spiritfm.desc=App radio FM over-the-air. Non richiede l'accesso ad Internet
-archidroid.apps.titaniumbackup.desc=App di base per tutti gli utenti root. Consente di effettuare il backup/ripristino delle applicazioni e dei loro dati al volo
+archidroid.apps.titaniumbackup.desc=App essenziale per tutti gli utenti root. Consente di effettuare il backup/ripristino delle applicazioni e dei loro dati al volo
 
 archidroid.bcm=BCM profiling
 archidroid.bcm.archidetect.desc=ArchiDetect cerca di rilevare il firmware corretto per il proprio device automaticamente
@@ -145,7 +145,7 @@ archidroid.tweaks.navibar.desc=Abilita la barra di navigazione, e disabilita i t
 archidroid.tweaks.navibar.hwenabled=Abilita i tasti hardware
 archidroid.tweaks.navibar.hwenabled.desc=Di default, la barra di navigazione disabilita i tasti hardware. Selezionare questa opzione se si vuole avere entrambi i metodi di navigazione disponibili
 
-archidroid.xposed.desc=Xposed Framework consente di modificare il framework al volo tramite vari moduli di terze parti, senza modificare file di sistema. Altamente raccomandato
+archidroid.xposed.desc=Xposed Framework consente di applicare varie modifiche al volo, al costo di un sistema più lento e instabile. Non raccomandato
 archidroid.xposed.appsettings.desc=Questo modulo consente di configurare le impostazioni per ogni app, come la densità personalizzata, il mantenimento in memoria etc.
 archidroid.xposed.gravitybox.desc=Modulo Xposed All-In-One che contiene centinaia di modifiche per il framework, che possono essere attivate/disattivate in seguito in base alle proprie preferenze
 archidroid.xposed.xprivacy.desc=Se si desidera proteggere la propria privacy, questo modulo è l'ideale. Con questa app si potrà specificare precisamente i permessi per ogni app installata

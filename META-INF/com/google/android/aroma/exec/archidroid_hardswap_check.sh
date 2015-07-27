@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,25 +21,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Returns current hardswap status
+# $1 - Hardswap file location
+# String is returned on success
+
+set -e
+
 if [[ -z "$1" ]]; then
-	echo "ERROR: Wrong arguments!"
-	echo "ERROR: Expected: [Path]"
-	echo "ERROR: Got: $*"
 	exit 1
 fi
 
-ADMOUNTED() {
-	return "$(mount | grep -qi "$1"; echo $?)"
-}
-
-if ! ADMOUNTED "$1"; then
-	echo "Not Available" # This will be useful i.e. for devices without external sd card
-else
-	if [[ ! -f "$1/ArchiDroid.swp" ]]; then
-		echo "None"
-	else
+if mount | grep -qi "$1"; then
+	if [[ -f "$1/ArchiDroid.swp" ]]; then
 		echo "Available, $(du -mh "$1/ArchiDroid.swp" | awk '{print $1}')"
+	else
+		echo "None"
 	fi
+else
+	echo "Unavailable"
 fi
 
 exit 0

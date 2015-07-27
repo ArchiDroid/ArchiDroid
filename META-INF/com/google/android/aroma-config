@@ -56,19 +56,19 @@ anisplash(
 );
 
 # Often edited settings
-setvar("preset_version", "24");
-ini_set("rom_date", "April XXth, 2015");
+setvar("preset_version", "25");
 
-# Settings
+# Aroma settings
 theme("archidroid");
-ini_set("rom_name", "ArchiDroid");
-ini_set("rom_device", file_getprop("/tmp/aroma-data/device.prop", "name"));
-ini_set("rom_author", file_getprop("/tmp/aroma-data/device.prop", "maintainer"));
-
 fontresload("0", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf;ttf/NotoSansHans-Regular.otf", "12" ); #-- Use sets of font (Font Family)
 fontresload("1", "ttf/Roboto-Regular.ttf;ttf/NotoSansHebrew-Regular.ttf;ttf/NotoSansHans-Regular.otf", "14" ); #-- Use sets of font (Font Family)
 
-# Parse common variables
+# Core Aroma variables
+ini_set("rom_author", file_getprop("/tmp/aroma-data/device.prop", "maintainer"));
+ini_set("rom_device", file_getprop("/tmp/aroma-data/device.prop", "name"));
+ini_set("rom_name", "ArchiDroid");
+
+# Read common build.prop variables
 ziptotmp("system/build.prop", "archidroid.prop");
 
 resexec("exec/archidroid_getprop.sh", "ro.archidroid.device=", "/tmp/aroma-data/archidroid.prop");
@@ -81,8 +81,7 @@ resexec("exec/archidroid_getprop.sh", "ro.archidroid.rom.short=", "/tmp/aroma-da
 setvar("archidroid_rom_short", getvar("exec_buffer"));
 
 resexec("exec/archidroid_getprop.sh", "ro.archidroid.version=", "/tmp/aroma-data/archidroid.prop");
-setvar("archidroid_version", getvar("exec_buffer"));
-ini_set("rom_version", getvar("archidroid_version"));
+ini_set("rom_version", getvar("exec_buffer"));
 
 resexec("exec/archidroid_getprop.sh", "ro.archidroid.version.android=", "/tmp/aroma-data/archidroid.prop");
 setvar("archidroid_version_android", getvar("exec_buffer"));
@@ -93,6 +92,10 @@ setvar("archidroid_version_android_number", getvar("exec_buffer"));
 resexec("exec/archidroid_getprop.sh", "ro.archidroid.version.type=", "/tmp/aroma-data/archidroid.prop");
 setvar("archidroid_version_type", getvar("exec_buffer"));
 
+# Read ZIP modified date
+resexec("exec/archidroid_zipdate.sh");
+ini_set("rom_date", getvar("exec_buffer"));
+
 # Core
 setvar("ad", "/data/media/0/ArchiDroid");
 setvar("adaroma", getvar("ad") + "/AromaPreset/" + getvar("archidroid_rom_short"));
@@ -102,7 +105,7 @@ resexec("exec/admount.sh", "/system", file_getprop("/tmp/aroma-data/device.prop"
 resexec("exec/admount.sh", "/data", file_getprop("/tmp/aroma-data/device.prop", "data"));
 resexec("exec/admount.sh", "/cache", file_getprop("/tmp/aroma-data/device.prop", "cache"));
 #resexec("exec/admount.sh", "/preload", file_getprop("/tmp/aroma-data/device.prop", "preload"));
-resexec("exec/admount.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/device.prop", "extsd"));
+resexec("exec/admount.sh", "/external_sd", file_getprop("/tmp/aroma-data/device.prop", "extsd"));
 resexec("exec/admkdir.sh", getvar("adaroma"), "/tmp/archidroid");
 
 viewbox(
@@ -112,12 +115,12 @@ viewbox(
 	#-- Text
 	"Hello master, root@ArchiDroid here. You are about to install <b>ArchiDroid</b> for your device.\n\n\n\n\n\n\n\n"+
 
-	"<#selectbg_g>Device:\t\t</#><b><#3D5AFE>" + getvar("archidroid_device") + " (" + ini_get("rom_device") + ")" + "</#></b>\n"+
-	"<#selectbg_g>Base:\t\t</#><b><#3D5AFE>" + getvar("archidroid_rom") + "</#></b>\n"+
-	"<#selectbg_g>Version:\t\t</#><b><#3D5AFE>" + getvar("archidroid_version") + "</#></b>\n"+
-	"<#selectbg_g>Android:\t\t</#><b><#3D5AFE>" + getvar("archidroid_version_android") + " (" + getvar("archidroid_version_android_number") + ")" + "</#></b>\n"+
-	"<#selectbg_g>Type:\t\t</#><b><#3D5AFE>" + getvar("archidroid_version_type") + "</#></b>\n"+
-	"<#selectbg_g>Released:\t</#><b><#3D5AFE>" + ini_get("rom_date") + "</#></b>\n\n"+
+	"<#selectbg_g>Device:\t\t</#><b><#7986CB>" + getvar("archidroid_device") + " (" + ini_get("rom_device") + ")" + "</#></b>\n"+
+	"<#selectbg_g>Base:\t\t</#><b><#7986CB>" + getvar("archidroid_rom") + "</#></b>\n"+
+	"<#selectbg_g>Version:\t\t</#><b><#7986CB>" + ini_get("rom_version") + "</#></b>\n"+
+	"<#selectbg_g>Android:\t\t</#><b><#7986CB>" + getvar("archidroid_version_android") + " (" + getvar("archidroid_version_android_number") + ")" + "</#></b>\n"+
+	"<#selectbg_g>Type:\t\t</#><b><#7986CB>" + getvar("archidroid_version_type") + "</#></b>\n"+
+	"<#selectbg_g>Released:\t</#><b><#7986CB>" + ini_get("rom_date") + "</#></b>\n\n"+
 
 	"<#selectbg_g>Press <b>Next</b> to continue the installation</#>",
 
@@ -365,13 +368,14 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"gapps-messenger", "Google Messenger", "<~archidroid.gapps.messenger.desc>", "check.checked",
 		"gapps-music", "Google Music", "<~archidroid.gapps.music.desc>", "check.checked",
 		"gapps-search", "Google Search", "<~archidroid.gapps.search.desc>", "check.checked",
+		"gapps-speech", "Google Speech", "<~archidroid.gapps.speech.desc>", "check.checked",
 		"gapps-tts", "Google Text-To-Speech", "<~archidroid.gapps.tts.desc>", "check.checked",
 
-#		"xposed", "<#selectbg_g>Xposed</#>", "", "group",
-#		"xposed", "[<~archidroid.experimental>] Xposed Framework", "<~archidroid.xposed.desc>", "check",
-#		"xposed-appsettings", "App Settings", "<~archidroid.xposed.appsettings.desc>", "check",
-#		"xposed-gravitybox", "GravityBox", "<~archidroid.xposed.gravitybox.desc>", "check",
-#		"xposed-xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check",
+		"xposed", "<#selectbg_g>Xposed</#>", "", "group",
+		"xposed", "Xposed Framework", "<~archidroid.xposed.desc>", "check",
+		"xposed-appsettings", "App Settings", "<~archidroid.xposed.appsettings.desc>", "check",
+		"xposed-gravitybox", "GravityBox", "<~archidroid.xposed.gravitybox.desc>", "check",
+		"xposed-xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check",
 
 		"archiapps", "<#selectbg_g>ArchiDroid Apps</#>", "", "group",
 		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
@@ -403,7 +407,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 #	resexec("exec/archidroid_hardswap_check.sh", "/preload");
 #	setvar("hardswappreload", getvar("exec_buffer"));
 
-	resexec("exec/archidroid_hardswap_check.sh", "/storage/sdcard1");
+	resexec("exec/archidroid_hardswap_check.sh", "/external_sd");
 	setvar("hardswapsdcard", getvar("exec_buffer"));
 
 	form(
@@ -446,7 +450,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 #		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
 #	endif;
 	if file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1") != "current" then
-		resexec("exec/archidroid_hardswap.sh", "/storage/sdcard1", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1"));
+		resexec("exec/archidroid_hardswap.sh", "/external_sd", file_getprop("/tmp/aroma-data/archidroidhardswap.prop", "sdcard1"));
 		textbox("ArchiDroid Hardswap", "", "@shell", getvar("exec_buffer"));
 	endif;
 endif;
@@ -513,7 +517,7 @@ resexec("exec/adumount.sh", "/system");
 resexec("exec/adumount.sh", "/data");
 resexec("exec/adumount.sh", "/cache");
 #resexec("exec/adumount.sh", "/preload");
-resexec("exec/adumount.sh", "/storage/sdcard1");
+resexec("exec/adumount.sh", "/external_sd");
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "recovery" then
 	resexec("exec/rebootrecovery.sh");

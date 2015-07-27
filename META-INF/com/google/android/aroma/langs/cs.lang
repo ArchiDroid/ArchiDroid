@@ -27,9 +27,9 @@
 
 
 ### ArchiDroid strings
-archidroid.apps.cooltool.desc=Přizpůsobitelná aplikace, která ukazuje užitečné informace o vašem zařízení (např. CPU) na liště
+archidroid.apps.cooltool.desc=Přizpůsobitelná aplikace, která ukazuje užitečné informace o vašem zařízení (např. CPU) na liště
 archidroid.apps.fdroid.desc=Instalovatelný katalog open source a zdarma aplikací pro Android. Skvělý doplněk k vlastnímu obchodu Play
-archidroid.apps.greenify.desc=Šetří baterii hybernováním aplikací na pozadí, když zrovna nejsou používané
+archidroid.apps.greenify.desc=Šetří baterii hybernováním aplikací na pozadí, když zrovna nejsou používané
 archidroid.apps.lmt.desc=Vylepšuje zařízení funkcí PIE - podpora gest a další
 archidroid.apps.spiritfm.desc=Skutečné FM radio. Nevyžaduje připojení k internetu
 archidroid.apps.titaniumbackup.desc=Základní aplikace pro uživatele rootu. Umožnuje zálohovat/obnovit aplikace a jejich data za chodu
@@ -41,7 +41,7 @@ archidroid.bootanimation=Spouštěcí animace
 archidroid.bootanimation.archi1.desc=První ArchiDroid spouštěcí animace, od dob 1.X
 archidroid.bootanimation.archi2.desc=Druhá ArchiDroid spouštěcí animace, od dob 2.X
 archidroid.bootanimation.archi3.desc=Třetí ArchiDroid spouštěcí animace, od dob 3.X 
-archidroid.bootanimation.none.desc=Žádná spouštěcí animace, pro mírně rychlejší spuštění
+archidroid.bootanimation.none.desc=Žádná spouštěcí animace, pro mírně rychlejší spuštění
 archidroid.bootanimation.stock.desc=Spouštěcí animace poskytovaná základním systémem
 
 archidroid.changelog=Změny
@@ -54,7 +54,7 @@ archidroid.common.detected=Nalezené
 archidroid.common.finish=Dokončení
 archidroid.common.install=Instalovat
 archidroid.common.installation=Instalace
-archidroid.common.none=Žádné
+archidroid.common.none=Žádné
 archidroid.common.reboot=Reboot
 archidroid.common.reboot.question=Přejete si restartovat zařízení teď?
 archidroid.common.terms.check=Souhlasím s podmínkami
@@ -119,7 +119,7 @@ archidroid.preset.barebones.desc=Tato volba instaluje pouze základní ROM. Dopo
 archidroid.preset.custom=Vlastní
 archidroid.preset.custom.desc=Vyberte tuto možnost jestli si chcete upravit každý aspekt ArchiDroid ještě před instalováním. Doporučené
 archidroid.preset.previous=Minulá předvolba
-archidroid.preset.previous.desc=Jestliže jste si přizpůsobili instalaci dříve, tato možnost načte a použije starou předvolbu
+archidroid.preset.previous.desc=Jestliže jste si přizpůsobili instalaci dříve, tato možnost načte a použije starou předvolbu
 archidroid.preset.previousexpert=Minulá předvolba - Expert
 archidroid.preset.previousexpert.desc=Stejné jako volba výše, ale expert mód nedělá kontrolu kompatibility a povolí modifikaci vašich dřívějších předvoleb před instalací. Varování: Buďte opatrní, nekompatibilní nastavení může způsobit problémy během instalace
 archidroid.preset.recovery=Recovery
@@ -132,7 +132,7 @@ archidroid.recovery.twrp.desc=Vlastní recovery postavená na snadném použív�
 
 archidroid.superuser.chainfire.desc=Closed-source, modení řešení pro původní ROMs a uživatele, kteří preferují superuser nástroj budocnousti
 archidroid.superuser.koush.desc=Open-source, zabudovaný superuser přístup
-archidroid.superuser.none.desc=žádný superuser, tahle možnost zakáže root přístup. Tuhle monost můžete použít pro extra bezpečnost
+archidroid.superuser.none.desc=žádný superuser, tahle možnost zakáže root přístup. Tuhle monost můžete použít pro extra bezpečnost
 
 archidroid.thirdparty=Dohoda třetích stran
 
@@ -145,7 +145,7 @@ archidroid.tweaks.navibar.desc=Zapne navigační lištu a vypne HW tlačítka (m
 archidroid.tweaks.navibar.hwenabled=Enable hardware keys
 archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
 
-archidroid.xposed.desc=Xposed Framework umožňuje modulům třetích stran, aby modifikovali váš systém, bez nutnosti modifikace systémových souborů. Vysoce doporučované
+archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
 archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
 archidroid.xposed.gravitybox.desc=Xposed modul, který obsahuje přes stovky nastavení
 archidroid.xposed.xprivacy.desc=Jestli rádi chráníte své soukromí, tento modul je pro vás. S touto aplikací budete moci přesně určit oprávnění pro každou nainstalovanou aplikaci

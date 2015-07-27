@@ -1,6 +1,8 @@
-#############
-## Windows detritus
-#############
+# ArchiDroid GAPPS temp files
+__build/open_gapps-*.zip
+
+# ArchiDroid zips
+ArchiDroid*.zip
 
 # Windows image file caches
 Thumbs.db

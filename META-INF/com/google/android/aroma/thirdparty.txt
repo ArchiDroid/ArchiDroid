@@ -1,55 +1,49 @@
 <@center><b><#selectbg_g>THIRD-PARTY / CREDITS</#></b>
 
 ArchiDroid ROM contains many third-party additions.
-Credit for these components goes to appropriate developers responsible for creating them:
+Credit for all of these components goes to appropriate developers:
+
+<#selectbg_g>ArchiDroid Installer</#>
+- AROMA Installer
+- AROMA Material Theme (modified by raulx222)
+
+<#selectbg_g>ArchiDroid Backend</#>
+- Dnsmasq
+- Haveged
+- Inotify tools
+- Pixelserv
 
 <#selectbg_g>ArchiDroid Core</#>
-- AROMA Installer
-- AROMA Installer Material Theme
-- AROMA Filemanager
-- Boeffla Kernel
-- TWRP Recovery
-- PhilZ Touch Recovery
+- ArchiKernel
+- CyanogenMod
+- Debian GNU/Linux
+- GitHub
+- Open GApps
 - SuperSU
-- Nova Launcher
-- Hacker's Keyboard
-- Android Terminal Emulator
+- TWRP Recovery
+
+<#selectbg_g>Apps</#>
 - Cool Tool
 - Greenify
-- MX Player
 - LMT
-- Root Browser
+- MX Player
+- Nova Launcher
+- Spirit Free
+- Terminal Emulator for Android
 - Titanium Backup
+
+<#selectbg_g>Mods</#>
 - Xposed Framework
 - App Settings
-- XPrivacy
 - GravityBox
-
-- Debian
-- cURL
-- GitHub
-
-- CyanogenMod
-- Linaro Toolchain
-- Spirit 2
-
-- Samsung
-- SamMobile
-- Wanam Xposed
+- XPrivacy
 
 <b>Thank you!</b>.
 
-If I forgot anyone, please let me know!
-
 <#selectbg_g>Special thanks to</#>:
-- Kenshin, for graphic design and ArchiDroid 2.X/3.X bootanimations
-- @mrtur, for graphic design, ArchiDroid 1.X bootanimation and helpful hand during ArchiDroid experimental tests
+- Kenshin, for graphic design and all of ArchiDroid 2.X/3.X bootanimations
+- @mrtur, for graphic design, ArchiDroid 1.X bootanimation and helpful hand during the very first ArchiDroid experimental tests
 - @malachow, for helping users across both international and polish board, sharing the spirit of ArchiDroid
 - All ArchiDroid Contributors, for improving and making ArchiDroid better!
 - ArchiDroid Facebook Group, for beta-testing the very first alphas of ArchiDroid 2.0.0
-- ROM Cleaner, for awesome generic list of bloatware used in stock AD variants
-- Android Revolution HD, for being ex-ArchiDroid 1.X base
-- WanamLite, for being ex-ArchiDroid 1.X base
-- Temasek's Unofficial Build, for being ex-ArchiDroid 2.X base
-- crDroid, for being ex-ArchiDroid 2.X base
 - You, for choosing ArchiDroid over other available ROMs

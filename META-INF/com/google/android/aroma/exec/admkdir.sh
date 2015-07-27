@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,5 +21,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Creates directories
+# $@ - Array of directories to create
+
+set -e
+
 mkdir -p "$@"
+
 exit 0

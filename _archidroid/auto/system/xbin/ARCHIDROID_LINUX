@@ -53,8 +53,9 @@ LINUX_UMOUNT() {
 }
 
 LINUX_EVERYTHING_UNMOUNTED() {
+	local MOUNTED="$(mount 2>&1)"
 	for ARG in "/dev" "/proc" "/sys" "/tmp" "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"; do
-		if [[ -e "$ADMNT$ARG" ]] && mount 2>&1 | grep -q "$ADMNT$ARG"; then
+		if [[ -e "$ADMNT$ARG" ]] && echo "$MOUNTED" | grep -q "$ADMNT$ARG"; then
 			return 1
 		fi
 	done
@@ -110,7 +111,7 @@ fi
 if [[ "$INSTALL" -eq 1 ]]; then
 	if [[ ! -e "$ADMNT/bin/bash" ]]; then
 		mkdir -p "$ADMNT"
-		busybox tar -xf "$ADSYS/system/debian.tar.xz" -C "$ADMNT" || exit 1
+		busybox tar -xJ -f "$ADSYS/system/debian.tar.xz" -C "$ADMNT" || exit 1
 
 		# Fixes
 		touch "$ADMNT/.nomedia" # Tell Android media process to DON'T scan this dir

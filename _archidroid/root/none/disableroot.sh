@@ -21,6 +21,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Disables root access
+
+set -e
+
 rm -f "/system/xbin/su"
 sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=0/g" "/system/build.prop" # This is to silent built-in Superuser in CM
 

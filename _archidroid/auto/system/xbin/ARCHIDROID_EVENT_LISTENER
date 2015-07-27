@@ -26,6 +26,7 @@ ADSYS="/system/archidroid"
 ADDEV="$ADSYS/dev"
 ADTMPFS="/dev/archidroid"
 
+AD_LAST_NETWORK_FILE="$ADTMPFS/LAST_NETWORK_DATA"
 AD_DATA_EVENTS_DIR="$AD/System/Events"
 AD_DEV_EVENTS_DIR="$ADTMPFS/Events"
 LOG="$AD/EVENT_LISTENER.log"
@@ -37,43 +38,52 @@ exec 2>&1
 REFRESH_RESOLV() {
 	if [[ "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes")" = "Enabled" ]]; then
 		{
-			for DNS in "$DNS1" "$DNS2" "$DNS3" "$DNS4"; do
-				if [[ -n "$DNS" ]]; then
+			if [[ -f "$AD_LAST_NETWORK_FILE" ]]; then
+				for DNS in $(cut -d ' ' -f 2- < "$AD_LAST_NETWORK_FILE"); do
 					echo "nameserver $DNS"
-				else
-					break
-				fi
-			done
+				done
+			fi
 			cat "/system/etc/resolv.conf"
 		} > "$ADTMPFS/resolv.conf"
 	fi
 }
 
-LAST_NETWORK_ID=0
-
 RESET_DNSES() {
-	if [[ "$LAST_NETWORK_ID" -ne 0 ]]; then
+	if [[ -f "$AD_LAST_NETWORK_FILE" ]]; then
+		local LAST_NETWORK_DATA="$(cat "$AD_LAST_NETWORK_FILE")"
+		local LAST_NETWORK_ID="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 1)"
+		local DNS1="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 2)"
+		local DNS2="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 3)"
+		local DNS3="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 4)"
+		local DNS4="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 5)"
+
 		ndc resolver setnetdns "$LAST_NETWORK_ID" "" "$DNS1" "$DNS2" "$DNS3" "$DNS4"
 		ndc resolver flushnet "$LAST_NETWORK_ID"
 	fi
 }
 
 SET_DNSES() {
-	if [[ -n "$1" && "$1" -ne 0 && -n "$2" ]]; then
-		LAST_NETWORK_ID="$1"
-		DNS1="$2"
-		DNS2="$3"
-		DNS3="$4"
-		DNS4="$5"
-		if [[ -e "$ADTMPFS/DNSMASQ.PID" && -e "/proc/$(cat "$ADTMPFS/DNSMASQ.PID")" ]]; then
-			REFRESH_RESOLV
-			if echo "$DNS1" | grep -q ':'; then # IPv6
-				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "::1"
-			else # IPv4
-				ndc resolver setnetdns "$LAST_NETWORK_ID" "" "127.0.0.1"
-			fi
-			ndc resolver flushnet "$LAST_NETWORK_ID"
+	local APPLY=0
+	if [[ -n "$1" && -n "$2" ]]; then
+		APPLY=1
+		local LAST_NETWORK_ID="$1"
+		local DNS1="$2"
+		echo "$LAST_NETWORK_ID $2 $3 $4 $5" > "$AD_LAST_NETWORK_FILE" # Save last network ID and up to 4 DNSes
+	elif [[ -f "$AD_LAST_NETWORK_FILE" ]]; then
+		APPLY=1
+		local LAST_NETWORK_DATA="$(cat "$AD_LAST_NETWORK_FILE")"
+		local LAST_NETWORK_ID="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 1)"
+		local DNS1="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 2)"
+	fi
+
+	if [[ "$APPLY" -eq 1 && -e "$ADTMPFS/DNSMASQ.PID" && -e "/proc/$(cat "$ADTMPFS/DNSMASQ.PID")" ]]; then
+		REFRESH_RESOLV
+		if echo "$DNS1" | grep -q ':'; then # IPv6
+			ndc resolver setnetdns "$LAST_NETWORK_ID" "" "::1"
+		else # IPv4
+			ndc resolver setnetdns "$LAST_NETWORK_ID" "" "127.0.0.1"
 		fi
+		ndc resolver flushnet "$LAST_NETWORK_ID"
 	fi
 }
 
@@ -81,7 +91,8 @@ HANDLE_EVENT() {
 	if [[ -n "$1" ]]; then
 		echo "$(date +"%F %T") EVENT: $1"
 		case "$1" in
-			"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$1" | cut -d ' ' -f2-) ;; # Used by ArchiDroid APK to notify about new NetworkID, and also by ArchiDroid_Init with "0" when refresh of last ones should be performed
+			"CONNECTIVITY_APPLY") SET_DNSES ;; # Used by ArchiDroid_Init to apply adblock after enabling
+			"CONNECTIVITY_CHANGE "*) SET_DNSES $(echo "$1" | cut -d ' ' -f 2-) ;; # Used by ArchiDroid APK to notify about new NetworkID
 			"CONNECTIVITY_RESET") RESET_DNSES ;; # Used by ArchiDroid_Init to reset DNSes back to original state after disabling adblock
 			"REFRESH_RESOLV") REFRESH_RESOLV ;; # Used by ArchiDroid_Init when dnsmasq with LocalDNSes is starting up
 			"TETHERING "*) ARCHIDROID_INIT "NOTIFY" "$1" ;; # Used by dnsmasq to notify us about tethering event

@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,44 +21,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Used by ArchiDroid for providing universal device-based paths
-# Usage: adumount.sh [Path] e.g. adumount.sh /storage/sdcard1
+# Unmounts device
+# $1 - Mount point
 
-ADMOUNTED() {
-	return "$(mount | grep -qi "$1"; echo $?)"
-}
+set -e
 
-LOG="/tmp/adumount.log" # We can use /dev/null if not required
-
-exec 1>>"$LOG"
-exec 2>&1
-
-# shellcheck disable=2039
 if [[ -z "$1" ]]; then
-	echo "ERROR: Wrong arguments!"
-	echo "ERROR: Expected: [Path]"
-	echo "ERROR: Got: $*"
 	exit 1
 fi
 
-if [[ ! -d "$1" ]]; then
+# Check if mount point exists, if not, it's unmounted already
+if [[ ! -e "$1" ]]; then
 	exit 0
 fi
 
-if ! ADMOUNTED "$1"; then
-	echo "SUCCESS: $1 is unmounted already!"
+# Check if it's unmounted already
+if ! mount | grep -qi "$1"; then
 	exit 0
 fi
 
 # Stage 1 
-echo "INFO: Trying umount"
-umount "$1"
-if ! ADMOUNTED "$1"; then
-	echo "SUCCESS: $1 has been unmounted properly!"
+umount "$1" || true
+if ! mount | grep -qi "$1"; then
 	exit 0
-else
-	echo "INFO: Failed!"
 fi
 
-echo "ERROR: All stages failed, we're not able to unmount that!"
+# All stages failed
 exit 1

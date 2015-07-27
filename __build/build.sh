@@ -46,6 +46,7 @@ ADROOT="$HOME/shared/git/ArchiDroid" # This is where ArchiDroid GitHub repo is l
 ADZIP="$ROMSHORT-*.zip" # This is with what defined output zip. For omni it would be "omni-*.zip"
 ADCOMPILEROOT="$HOME/android/$ROMSHORT" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of output zip from above sources, usually it doesn't need to be changed
+ADSMPREBUILTS="$HOME/sabermod-prebuilts" # A directory which should contain SaberMod prebuilts from http://sabermod.com which are used during ROM compiling
 
 # Common
 BARE=0
@@ -55,6 +56,7 @@ PREBUILT=0
 STABLE=0
 STOCK=0
 OLD=0
+SYNC=0
 
 cd "$(dirname "$0")"
 
@@ -89,15 +91,22 @@ for ARG in "$@" ; do
 			OLD=1
 			echo "NOTICE: Not doing repo sync!"
 			;;
+		--sync|sync)
+			SYNC=1
+			echo "NOTICE: Doing only repo sync!"
+			;;
 	esac
 done
-sleep 1 # User wants to see notices before we start spamming
+sleep 1
 
 if [[ "$PREBUILT" -eq 0 ]]; then
 	cd "$ADCOMPILEROOT"
 	if [[ "$OLD" -eq 0 ]]; then
 		repo selfupdate
 		repo sync -j32
+		if [[ "$SYNC" -eq 1 ]]; then
+			exit 0
+		fi
 	fi
 
 	if [[ "$CLEAN" -eq 1 ]]; then
@@ -113,6 +122,16 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 			rm -f "$ZIP"
 		done
 	fi
+
+	if [[ -d "$ADSMPREBUILTS" ]]; then
+		echo "NOTICE: SaberMod prebuilts found!"
+		export LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
+		export LD_LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
+	else
+		echo "WARNING: SaberMod prebuilts could not be found in $ADSMPREBUILTS"
+		echo "This error is not fatal, but you may encounter problems in case of using SM toolchain"
+	fi
+	sleep 1
 
 	source build/envsetup.sh
 

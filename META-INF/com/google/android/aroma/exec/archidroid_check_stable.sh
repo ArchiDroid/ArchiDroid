@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,4 +21,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-exit "$(echo "$@" | grep -qi "stable"; echo $?)"
+# Checks if version is stable
+# $@ - Version string
+# Error code 0 is returned on success
+
+set -e
+
+if echo "$@" | grep -qi "stable"; then
+	exit 0
+else
+	exit 1
+fi
