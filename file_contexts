@@ -288,6 +288,7 @@
 /dev/block/bootdevice/by-name/fsc               u:object_r:modem_efs_partition_device:s0
 /dev/block/bootdevice/by-name/ssd               u:object_r:ssd_device:s0
 /dev/block/mmcblk0rpmb                          u:object_r:rpmb_device:s0
+/dev/sg.*                                       u:object_r:sg_device:s0
 /dev/ccid_bridge                                u:object_r:usb_uicc_device:s0
 /dev/block/bootdevice/by-name/mdm1m9kefs1       u:object_r:efs_boot_dev:s0
 /dev/block/bootdevice/by-name/mdm1m9kefs2       u:object_r:efs_boot_dev:s0
@@ -308,6 +309,7 @@
 /dev/dpl_ctrl                                   u:object_r:rmnet_device:s0
 /dev/wcnss_ctrl                                 u:object_r:wcnss_device:s0
 /dev/wcnss_wlan                                 u:object_r:wcnss_device:s0
+/dev/pta                                        u:object_r:pta_device:s0
 /dev/hbtp_input                                 u:object_r:hbtp_device:s0
 /dev/jdi-bu21150                                u:object_r:bu21150_device:s0
 /dev/voice_svc                                  u:object_r:voice_device:s0
@@ -316,6 +318,7 @@
 /dev/coresight-tmc-etr                          u:object_r:qdss_device:s0
 /dev/coresight-tmc-etr-stream                   u:object_r:qdss_device:s0
 /dev/system_health_monitor                      u:object_r:system_health_monitor_device:s0
+/dev/block/bootdevice/by-name/frp               u:object_r:frp_block_device:s0
 
 ###################################
 # Dev socket nodes
@@ -394,6 +397,7 @@
 /system/bin/mdm_helper_proxy                    u:object_r:mdm_helper_exec:s0
 /system/bin/ks                                  u:object_r:mdm_helper_exec:s0
 /system/bin/pm-service                          u:object_r:per_mgr_exec:s0
+/system/bin/pm-proxy                            u:object_r:per_mgr_exec:s0
 /system/bin/usb_uicc_client                     u:object_r:usb_uicc_daemon_exec:s0
 /system/bin/qcom-system-daemon                  u:object_r:qcomsysd_exec:s0
 /system/xbin/qlogd                              u:object_r:qlogd_exec:s0
@@ -415,6 +419,8 @@
 /system/bin/garden_app                          u:object_r:location_exec:s0
 /system/bin/gpsone_daemon                       u:object_r:location_exec:s0
 /system/vendor/bin/slim_ap_daemon               u:object_r:location_exec:s0
+/system/bin/energy-awareness                    u:object_r:energyawareness_exec:s0
+/system/bin/dts_configurator                    u:object_r:dtsconfigurator_exec:s0
 /system/vendor/bin/qti                          u:object_r:qti_exec:s0
 /system/bin/wcnss_service                       u:object_r:wcnss_service_exec:s0
 /system/vendor/bin/hbtp_daemon                  u:object_r:hbtp_exec:s0
@@ -424,7 +430,8 @@
 #
 /sys/class/graphics/fb0/mdp/caps                                    u:object_r:sysfs_graphics:s0
 /sys/class/thermal(/.*)?                                            u:object_r:sysfs_thermal:s0
-/sys/devices/.*bcl.*(/.*)?                                          u:object_r:sysfs_thermal:s0
+/sys/devices/soc.0/qcom,bcl.*(/.*)?                                 u:object_r:sysfs_thermal:s0
+/sys/devices/qcom,bcl.*(/.*)?                                       u:object_r:sysfs_thermal:s0
 /sys/devices/f9200000.*/power_supply/usb(/.*)?                      u:object_r:sysfs_usb_supply:s0
 /sys/devices/msm_dwc3/power_supply/usb(/.*)?                        u:object_r:sysfs_usb_supply:s0
 /sys/devices/msm_otg/power_supply/usb(/.*)?                         u:object_r:sysfs_usb_supply:s0
@@ -444,6 +451,8 @@
 /sys/module/msm_thermal/core_control/cpus_offlined                  u:object_r:sysfs_mpdecision:s0
 /sys/devices/f9a55000.*/power_supply/usb(/.*)?                      u:object_r:sysfs_usb_supply:s0
 /sys/devices/virtual/graphics/fb([0-2])+/hpd                        u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb([0-2])+/res_info                   u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb([0-2])+/s3d_mode                   u:object_r:sysfs_graphics:s0
 /sys/class/graphics/fb([0-2])+/mdp/caps                             u:object_r:sysfs_graphics:s0
 /sys/class/graphics/fb([0-2])+/ad                                   u:object_r:sysfs_graphics:s0
 /sys/bus/platform/drivers/xhci_msm_hsic(/.*)?                       u:object_r:sysfs_hsic:s0
@@ -481,6 +490,7 @@
 /data/FTM_AP(/.*)?                                                  u:object_r:mmi_data_file:s0
 /data/misc/hbtp(/.*)?                                               u:object_r:hbtp_log_file:s0
 /data/misc/qlogd(/.*)?                                              u:object_r:qlogd_data_file:s0
+/data/misc/dts(/.*)?                                                u:object_r:dts_data_file:s0
 
 ###################################
 # persist files
