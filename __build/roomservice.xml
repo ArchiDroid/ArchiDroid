@@ -105,7 +105,8 @@
 			<remove-project name="CyanogenMod/android_external_sepolicy" />
 			<project name="ArchiDroid/android_external_sepolicy" path="external/sepolicy" remote="github" />
 
-			<remove-project name="CyanogenMod/android_hardware_qcom_display" revision="cm-12.1-caf-8960" />
+			<remove-project name="CyanogenMod/android_hardware_qcom_display" />
+			<project name="CyanogenMod/android_hardware_qcom_display" path="hardware/qcom/display" />
 			<project name="ArchiDroid/android_hardware_qcom_display" path="hardware/qcom/display-caf/msm8960" remote="github" revision="cm-12.1-caf-8960" />
 			-->
 		<!-- /nicki -->
