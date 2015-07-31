@@ -108,7 +108,7 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	cd "$ADCOMPILEROOT"
 	if [[ "$OLD" -eq 0 ]]; then
 		repo selfupdate
-		repo sync -j32
+		repo sync --force-sync -c -j 32
 		if [[ "$SYNC" -eq 1 ]]; then
 			exit 0
 		fi
