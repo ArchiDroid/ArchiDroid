@@ -4,7 +4,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -388,11 +388,11 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"xposed-xprivacy", "XPrivacy", "<~archidroid.xposed.xprivacy.desc>", "check",
 
 		"archiapps", "<#selectbg_g>ArchiDroid Apps</#>", "", "group",
-		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check.checked",
+		"cooltool", "CoolTool", "<~archidroid.apps.cooltool.desc>", "check",
 		"fdroid", "F-Droid", "<~archidroid.apps.fdroid.desc>", "check.checked",
-		"greenify", "Greenify", "<~archidroid.apps.greenify.desc>", "check.checked",
+		"greenify", "Greenify", "<~archidroid.apps.greenify.desc>", "check",
 		"lmt", "LMT", "<~archidroid.apps.lmt.desc>", "check",
-		"spiritfm", "Spirit FM", "<~archidroid.apps.spiritfm.desc>", "check.checked",
+		"spiritfm", "Spirit FM", "<~archidroid.apps.spiritfm.desc>", "check",
 		"titaniumbackup", "Titanium Backup", "<~archidroid.apps.titaniumbackup.desc>", "check.checked",
 
 		"architweaks", "<#selectbg_g>ArchiDroid Tweaks</#>", "", "group",

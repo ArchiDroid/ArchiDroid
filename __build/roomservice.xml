@@ -76,6 +76,9 @@
 			<remove-project name="CyanogenMod/android_frameworks_native" />
 			<project name="ArchiDroid/android_frameworks_native" path="frameworks/native" remote="github" />
 
+			<remove-project name="CyanogenMod/android_hardware_libhardware" />
+			<project name="ArchiDroid/android_hardware_libhardware" path="hardware/libhardware" remote="github" />
+
 			<remove-project name="CyanogenMod/android_packages_apps_Settings" />
 			<project name="ArchiDroid/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" />
 		<!-- /i9300 -->
