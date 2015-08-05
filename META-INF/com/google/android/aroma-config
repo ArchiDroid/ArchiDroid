@@ -57,7 +57,7 @@ anisplash(
 );
 
 # Often edited settings
-setvar("preset_version", "25");
+setvar("preset_version", "26");
 
 # Aroma settings
 theme("archidroid");
@@ -370,16 +370,36 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"gapps", "<#selectbg_g>Google Apps</#>", "", "group",
 		"gapps", "Core Google Apps", "<~archidroid.gapps.core.desc>", "check.checked",
 		"gapps-calendar", "Google Calendar", "<~archidroid.gapps.calendar.desc>", "check.checked",
+		"gapps-calsync", "Google Calendar Sync", "<~archidroid.gapps.calsync.desc>", "check.checked",
 		"gapps-camera", "Google Camera", "<~archidroid.gapps.camera.desc>", "check.checked",
 		"gapps-chrome", "Google Chrome", "<~archidroid.gapps.chrome.desc>", "check.checked",
+		"gapps-clock", "Google Clock", "<~archidroid.gapps.clock.desc>", "check.checked",
 		"gapps-exchange", "Google Exchange Services", "<~archidroid.gapps.exchange.desc>", "check.checked",
 		"gapps-face", "Google Face", "<~archidroid.gapps.face.desc>", "check.checked",
 		"gapps-gmail", "Gmail", "<~archidroid.gapps.gmail.desc>", "check.checked",
 		"gapps-messenger", "Google Messenger", "<~archidroid.gapps.messenger.desc>", "check.checked",
-		"gapps-music", "Google Music", "<~archidroid.gapps.music.desc>", "check.checked",
+		"gapps-music", "Google Music", "<~archidroid.gapps.music.desc>", "check",
+		"gapps-photos", "Google Photos", "<~archidroid.gapps.photos.desc>", "check.checked",
 		"gapps-search", "Google Search", "<~archidroid.gapps.search.desc>", "check.checked",
 		"gapps-speech", "Google Speech", "<~archidroid.gapps.speech.desc>", "check.checked",
+		"gapps-tag", "Google Tag", "<~archidroid.gapps.tag.desc>", "check.checked",
 		"gapps-tts", "Google Text-To-Speech", "<~archidroid.gapps.tts.desc>", "check.checked",
+		"gapps-webview", "Google Webview", "<~archidroid.gapps.webview.desc>", "check.checked",
+
+		"bloatware", "<#selectbg_g>Bloatware</#>", "Only checked apps will be preserved", "group",
+		"bloatware-basicdreams", "Basic Dreams", "<~archidroid.bloatware.basicdreams.desc>", "check",
+		"bloatware-cmaccount", "CyanogenMod Account", "<~archidroid.bloatware.cmaccount.desc>", "check",
+		"bloatware-cmaudiofx"", "CyanogenMod AudioFX", "<~archidroid.bloatware.cmaudiofx.desc>", "check",
+		"bloatware-cmwallpapers", "CyanogenMod Wallpapers", "<~archidroid.bloatware.cmwallpapers.desc>", "check",
+		"bloatware-galaxy", "Galaxy", "<~archidroid.bloatware.galaxy.desc>", "check",
+		"bloatware-holospiral", "Holo Spiral", "<~archidroid.bloatware.holospiral.desc>", "check",
+		"bloatware-livewallpapers", "Live Wallpapers", "<~archidroid.bloatware.livewallpapers.desc>", "check",
+		"bloatware-lockclock", "Lock Clock", "<~archidroid.bloatware.lockclock.desc>", "check.checked",
+		"bloatware-noisefield", "Noise Field", "<~archidroid.bloatware.noisefield.desc>", "check",
+		"bloatware-phasebeam", "Phase Beam", "<~archidroid.bloatware.phasebeam.desc>", "check",
+		"bloatware-photophase", "Photo Phase", "<~archidroid.bloatware.photophase.desc>", "check",
+		"bloatware-phototable", "Photo Table", "<~archidroid.bloatware.phototable.desc>", "check",
+		"bloatware-visualizationwallpapers", "Visualization Wallpapers", "<~archidroid.bloatware.visualizationwallpapers.desc>", "check",
 
 		"xposed", "<#selectbg_g>Xposed</#>", "", "group",
 		"xposed", "Xposed Framework", "<~archidroid.xposed.desc>", "check",
