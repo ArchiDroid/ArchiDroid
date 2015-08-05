@@ -378,7 +378,7 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"bloatware", "<#selectbg_g>Bloatware</#>", "Only checked apps will be preserved", "group",
 		"bloatware-basicdreams", "Basic Dreams", "<~archidroid.bloatware.basicdreams.desc>", "check",
 		"bloatware-cmaccount", "CyanogenMod Account", "<~archidroid.bloatware.cmaccount.desc>", "check",
-		"bloatware-cmaudiofx"", "CyanogenMod AudioFX", "<~archidroid.bloatware.cmaudiofx.desc>", "check",
+		"bloatware-cmaudiofx", "CyanogenMod AudioFX", "<~archidroid.bloatware.cmaudiofx.desc>", "check",
 		"bloatware-cmwallpapers", "CyanogenMod Wallpapers", "<~archidroid.bloatware.cmwallpapers.desc>", "check",
 		"bloatware-galaxy", "Galaxy", "<~archidroid.bloatware.galaxy.desc>", "check",
 		"bloatware-holospiral", "Holo Spiral", "<~archidroid.bloatware.holospiral.desc>", "check",
