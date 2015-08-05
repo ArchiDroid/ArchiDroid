@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
 # /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
 #
-# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,8 +22,10 @@
 # limitations under the License.
 
 # exit 0 -> All fine, we're running Lollipop+
-# exit 1 -> All fine, we're running pre-Lollipop
+# exit 1 -> All fine, we're running pre-Lollipop, fix applied
 # exit 2 -> No build.prop detected, or invalid value, assume Lollipop+
+
+set -e
 
 APKS="/system/app/Synapse/Synapse.apk"
 
@@ -34,9 +36,11 @@ if [[ -f "/system/build.prop" ]]; then
 			exit 0
 		else
 			for APK in $APKS; do
-				APK_DIR="$(dirname "$APK")"
-				mv "$APK" "${APK_DIR}/../"
-				rm -rf "$APK_DIR"
+				if [[ -f "$APK" ]]; then
+					APK_DIR="$(dirname "$APK")"
+					mv "$APK" "${APK_DIR}/../"
+					rm -rf "$APK_DIR"
+				fi
 			done
 			exit 1
 		fi
@@ -46,5 +50,3 @@ if [[ -f "/system/build.prop" ]]; then
 else
 	exit 2
 fi
-
-exit 0
