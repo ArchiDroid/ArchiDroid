@@ -1,4 +1,4 @@
-﻿#     _             _     _ ____            _     _
+#     _             _     _ ____            _     _
 #    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
 #   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
@@ -139,23 +139,23 @@ form(
 	"lang.prop",
 
 	"language", "<#selectbg_g>Language</#>", "", "group",
-	"zh_CN.lang", "Chinese (simplified)", "简化字", "select",
-	"cs.lang", "Czech", "Čeština", "select",
+	"zh_CN.lang", "Chinese (simplified)", "ç®€ĺŚ–ĺ­—", "select",
+	"cs.lang", "Czech", "ÄŚeĹˇtina", "select",
 	"nl.lang", "Dutch", "Nederlands", "select",
 	"en.lang", "English", "", "select.selected",
-	"fr.lang", "French", "Français", "select",
+	"fr.lang", "French", "FranĂ§ais", "select",
 	"de.lang", "German", "Deutsch", "select",
-	"gr.lang", "Greek", "ελληνικά", "select",
-	"he.lang", "Hebrew", "עברית", "select",
+	"gr.lang", "Greek", "ÎµÎ»Î»Î·Î˝ÎąÎşÎ¬", "select",
+	"he.lang", "Hebrew", "×˘×‘×¨×™×Ş", "select",
 	"hu.lang", "Hungarian", "Magyar", "select",
 	"it.lang", "Italian", "Italiano", "select",
 	"pl.lang", "Polish", "Polski", "select",
-	"pt.lang", "Portuguese", "Português", "select",
-	"ro.lang", "Romanian", "Român", "select",
-	"ru.lang", "Russian", "Pусский", "select",
-	"sk.lang", "Slovak", "Slovenčina", "select",
-	"es.lang", "Spanish", "Español", "select",
-	"tr.lang", "Turkish", "Türkçe", "select"
+	"pt.lang", "Portuguese", "PortuguĂŞs", "select",
+	"ro.lang", "Romanian", "RomĂ˘n", "select",
+	"ru.lang", "Russian", "PŃŃŃĐşĐ¸Đą", "select",
+	"sk.lang", "Slovak", "SlovenÄŤina", "select",
+	"es.lang", "Spanish", "EspaĂ±ol", "select",
+	"tr.lang", "Turkish", "TĂĽrkĂ§e", "select"
 );
 
 loadlang("langs/" + file_getprop("/tmp/aroma-data/lang.prop", "language"));
