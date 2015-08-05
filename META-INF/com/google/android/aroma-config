@@ -373,7 +373,6 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"gapps-speech", "Google Speech", "<~archidroid.gapps.speech.desc>", "check.checked",
 		"gapps-tag", "Google Tag", "<~archidroid.gapps.tag.desc>", "check.checked",
 		"gapps-tts", "Google Text-To-Speech", "<~archidroid.gapps.tts.desc>", "check.checked",
-		"gapps-webview", "Google Webview", "<~archidroid.gapps.webview.desc>", "check.checked",
 
 		"bloatware", "<#selectbg_g>Bloatware</#>", "Only checked apps will be preserved", "group",
 		"bloatware-basicdreams", "Basic Dreams", "<~archidroid.bloatware.basicdreams.desc>", "check",
