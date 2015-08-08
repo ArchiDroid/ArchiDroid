@@ -21,8 +21,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ADSYS="/system/archidroid"
+set -u
 
+ADDEBIAN="/system/archidroid/debian"
+
+HELP=0
 ADMNT=""
 COMMAND=""
 INSTALL=0
@@ -53,7 +56,7 @@ LINUX_UMOUNT() {
 }
 
 LINUX_EVERYTHING_UNMOUNTED() {
-	local MOUNTED="$(mount 2>&1)"
+	MOUNTED="$(mount 2>&1)"
 	for ARG in "/dev" "/proc" "/sys" "/tmp" "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"; do
 		if [[ -e "$ADMNT$ARG" ]] && echo "$MOUNTED" | grep -q "$ADMNT$ARG"; then
 			return 1
@@ -81,39 +84,103 @@ LINUX_SHELL_COMMAND() {
 # Parse ARGs
 for ARG in "$@"; do
 	case "$ARG" in
-		--install|install) INSTALL=1 ;;
-		--uninstall|uninstall) UNINSTALL=1 ;;
-		--mount|mount) MOUNT=1 ;;
-		--unmount|unmount) UNMOUNT=1 ;;
-		--shell|shell) SHELL=1 ;;
-		--command=*) COMMAND="$(echo "$ARG" | cut -d '=' -f2-)" ;;
-		--command) COMMAND="NextString" ;;
-		*)
-			if [[ "$COMMAND" = "NextString" ]]; then
-				COMMAND="$ARG"
-			else
-				ADMNT="$ARG"
-			fi
-		;;
+		--help) HELP=1 ;;
+		--install) INSTALL=1 ;;
+		--uninstall) UNINSTALL=1 ;;
+		--mount) MOUNT=1 ;;
+		--unmount) UNMOUNT=1 ;;
+		--shell) SHELL=1 ;;
+		--ssh) COMMAND="service ssh start" ;;
+		--ssh-stop) COMMAND="service ssh stop" ;;
+		--xorg) COMMAND="/bin/adstartx --background >/dev/null 2>&1 &" ;;
+		--command=*) COMMAND="$(echo "$ARG" | cut -d '=' -f 2-)" ;;
+		*) ADMNT="$ARG" ;;
 	esac
 done
+
+if [[ "$HELP" -eq 1 || $# -eq 0 ]]; then
+	echo "$0 - ArchiDroid's Pocket Debian (APD) helper"
+	echo "Usage: $0 [OPTION]... [PATH]"
+	echo
+	echo "Parameters:"
+	echo "--install   Installs APD in given PATH"
+	echo
+	echo "All below parameters require APD to be installed in given PATH"
+	echo "--uninstall Uninstalls APD - Requires APD to be in unmounted state"
+	echo "--mount     Mounts APD - Prepares APD to be used"
+	echo "--unmount   Unmounts APD - Shuts down APD. May fail if some programs are still using it"
+	echo
+	echo "Below commands require mounted APD and can not be put together. Last one takes precedence"
+	echo "--shell     Launches APD shell (bash) - This is what you want to use from ADB or Terminal Emulator"
+	echo "--ssh       Launches SSHD in APD - Default password for root login: archidroid$"
+	echo "--ssh-stop  Stops SSHD in APD"
+	echo "--xorg      Replaces SurfaceFlinger with APD X server - SF is turned on after user logs off"
+	echo "--command=* Executes APD command - Command can be anything possible to execute from bash shell"
+	echo
+	echo "Examples: "
+	echo "$0 --install /data/media/0/debian"
+	echo "$0 --install --mount --xorg /data/media/0/debian"
+	echo "$0 --command=\"apt-get update\" /data/media/0/debian # Remember to quote command if it contains spaces"
+fi
 
 if [[ -z "$ADMNT" ]]; then
 	echo "ERROR: You must specify ADMNT path!"
 	exit 1
 fi
 
-if [[ "$COMMAND" = "NextString" ]]; then
-	echo "ERROR: You didn't include a command. Use either --command=MyCMD or --command \"MyCMD\""
+if [[ ! -d "$ADMNT" && "$INSTALL" -eq 0 ]]; then
+	echo "ERROR: $ADMNT doesn't exist and --install wasn't given!"
 	exit 1
 fi
 
 if [[ "$INSTALL" -eq 1 ]]; then
 	if [[ ! -e "$ADMNT/bin/bash" ]]; then
 		mkdir -p "$ADMNT"
-		busybox tar -xJ -f "$ADSYS/system/debian.tar.xz" -C "$ADMNT" || exit 1
+		busybox tar -xJ -f "$ADDEBIAN/debian.tar.xz" -C "$ADMNT" || exit 1
 
-		# Fixes
+		# Overlay
+		find "$ADDEBIAN/overlay" -mindepth 1 -maxdepth 1 | while read -r OVERLAY; do
+			cp -R "$OVERLAY" "$ADMNT"
+		done
+
+		# Fix permissions
+		TO755="/bin/adstartx /root/Desktop"
+		for FILE in $TO755; do
+			if [[ -e "${ADMNT}${FILE}" ]]; then
+				chmod -R 755 "${ADMNT}${FILE}"
+			fi
+		done
+
+		# Fix xorg to match this device
+		if [[ -f "$ADMNT/etc/X11/xorg.conf" ]]; then
+			# Display device
+			RESOLUTION="$(dumpsys window | head -n 1 | grep init= | cut -d '=' -f 2 | cut -d ' ' -f 1)"
+			WIDTH="$(echo "$RESOLUTION" | cut -d 'x' -f 1)"
+			HEIGHT="$(echo "$RESOLUTION" | cut -d 'x' -f 2)"
+			if [[ -n "$WIDTH" && -n "$HEIGHT" ]]; then
+				find "/sys/class/graphics" -mindepth 1 -maxdepth 1 -name "fb*" | sort | while read -r DEV_DISPLAY; do
+					if [[ -e "$DEV_DISPLAY/virtual_size" ]]; then
+						if [[ "$(cat "$DEV_DISPLAY/virtual_size")" = "${WIDTH},${HEIGHT}" ]]; then
+							FB_DISPLAY="$(basename "$DEV_DISPLAY")"
+							sed -i "s/fb0/$FB_DISPLAY/g" "$ADMNT/etc/X11/xorg.conf"
+							break
+						fi
+					fi
+				done
+			fi
+			# Input device
+			find "/sys/class/input" -mindepth 1 -maxdepth 1 -name "event*" | sort | while read -r DEV_INPUT; do
+				if [[ -e "$DEV_INPUT/device/name" ]]; then
+					if grep -q "touchscreen" "$DEV_INPUT/device/name"; then
+						FB_INPUT="$(basename "$DEV_INPUT")"
+						sed -i "s/event1/$FB_INPUT/g" "$ADMNT/etc/X11/xorg.conf"
+						break
+					fi
+				fi
+			done
+		fi
+
+		# General fixes
 		touch "$ADMNT/.nomedia" # Tell Android media process to DON'T scan this dir
 		cp /file_contexts "$ADMNT" # We need SELinux context or various apps will go crazy
 
@@ -122,24 +189,29 @@ if [[ "$INSTALL" -eq 1 ]]; then
 		LINUX_SHELL_COMMAND "sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config" # Newer versions of SSH deny root access by default now, and since we don't have any other user, we need it
 		LINUX_SHELL_COMMAND "echo -e 'archidroid$\narchidroid$' | passwd >/null.sink 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
 		LINUX_SHELL_COMMAND "rm -f /null.sink" # Remove our temporary /dev/null
+		echo "INFO: ArchiDroid's Linux has been installed successfully in $ADMNT!"
 	else
-		echo "ERROR: ArchiDroid's Linux has been installed already in $ADMNT!"
-		exit 1
+		echo "NOTICE: ArchiDroid's Linux has been installed already in $ADMNT!"
 	fi
 fi
 
 if [[ "$MOUNT" -eq 1 ]]; then
 	if [[ -e "$ADMNT/bin/bash" ]]; then
-		# Core filesystems
-		LINUX_MOUNT "/dev"
-		LINUX_MOUNTFS "/dev/pts" "devpts"
-		LINUX_MOUNTFS "/dev/shm" "tmpfs"
-		LINUX_MOUNTFS "/proc" "proc"
-		LINUX_MOUNTFS "/sys" "sysfs"
-		LINUX_MOUNTFS "/tmp" "tmpfs"
+		if [[ ! -e "$ADMNT/sys/kernel" ]]; then
+			# Core filesystems
+			LINUX_MOUNT "/dev"
+			LINUX_MOUNTFS "/dev/pts" "devpts"
+			LINUX_MOUNTFS "/dev/shm" "tmpfs"
+			LINUX_MOUNTFS "/proc" "proc"
+			LINUX_MOUNTFS "/sys" "sysfs"
+			LINUX_MOUNTFS "/tmp" "tmpfs"
 
-		# Android filesystems
-		LINUX_MOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
+			# Android filesystems
+			LINUX_MOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
+			echo "INFO: ArchiDroid's Linux has been mounted successfully in $ADMNT!"
+		else
+			echo "NOTICE: ArchiDroid's Linux has been mounted already in $ADMNT!"
+		fi
 	else
 		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
 		exit 1
@@ -148,11 +220,22 @@ fi
 
 if [[ "$UNMOUNT" -eq 1 ]]; then
 	if [[ -e "$ADMNT/bin/bash" ]]; then
-		# Core filesystems
-		LINUX_UMOUNT "/dev/pts" "/dev/shm" "/dev" "/proc" "/sys" "/tmp"
+		if [[ -e "$ADMNT/sys/kernel" ]]; then
+			# Core filesystems
+			LINUX_UMOUNT "/dev/pts" "/dev/shm" "/dev" "/proc" "/sys" "/tmp"
 
-		# Android filesystems
-		LINUX_UMOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
+			# Android filesystems
+			LINUX_UMOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
+
+			if LINUX_EVERYTHING_UNMOUNTED; then
+				echo "INFO: ArchiDroid's Linux has been completely unmounted in $ADMNT!"
+			else
+				echo "WARNING: ArchiDroid's Linux could not be completely unmounted in $ADMNT!"
+				echo "If that issue persists, please reboot your device"
+			fi
+		else
+			echo "NOTICE: ArchiDroid's Linux has been unmounted already in $ADMNT!"
+		fi
 	else
 		echo "ERROR: ArchiDroid's Linux has not been installed yet in $ADMNT!"
 		exit 1
@@ -163,8 +246,10 @@ if [[ "$UNINSTALL" -eq 1 ]]; then
 	if [[ -e "$ADMNT/bin/bash" ]]; then
 		if LINUX_EVERYTHING_UNMOUNTED; then
 			rm -rf "$ADMNT"
+			echo "INFO: ArchiDroid's Linux located in $ADMNT has been successfully uninstalled!"
 		else
 			echo "ERROR: ArchiDroid's Linux has not been unmounted yet in $ADMNT!"
+			echo "If that issue persists, please reboot your device"
 			exit 1
 		fi
 	else
@@ -177,11 +262,11 @@ if [[ "$SHELL" -eq 1 || -n "$COMMAND" ]]; then
 	if [[ -e "$ADMNT/bin/bash" ]]; then
 		if [[ -e "$ADMNT/sys/kernel" ]]; then
 			LINUX_PREPARE_SHELL
-			if [[ -z "$COMMAND" ]]; then
+			if [[ -n "$COMMAND" ]]; then
+				LINUX_SHELL_COMMAND "$COMMAND"
+			else
 				cat "$ADMNT/etc/motd"
 				LINUX_SHELL
-			else
-				LINUX_SHELL_COMMAND "$COMMAND"
 			fi
 			exit $?
 		else
