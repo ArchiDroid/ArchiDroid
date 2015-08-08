@@ -153,31 +153,50 @@ if [[ "$INSTALL" -eq 1 ]]; then
 
 		# Fix xorg to match this device
 		if [[ -f "$ADMNT/etc/X11/xorg.conf" ]]; then
-			# Display device
-			RESOLUTION="$(dumpsys window | head -n 1 | grep init= | cut -d '=' -f 2 | cut -d ' ' -f 1)"
-			WIDTH="$(echo "$RESOLUTION" | cut -d 'x' -f 1)"
-			HEIGHT="$(echo "$RESOLUTION" | cut -d 'x' -f 2)"
-			if [[ -n "$WIDTH" && -n "$HEIGHT" ]]; then
-				find "/sys/class/graphics" -mindepth 1 -maxdepth 1 -name "fb*" | sort | while read -r DEV_DISPLAY; do
-					if [[ -e "$DEV_DISPLAY/virtual_size" ]]; then
-						if [[ "$(cat "$DEV_DISPLAY/virtual_size")" = "${WIDTH},${HEIGHT}" ]]; then
-							FB_DISPLAY="$(basename "$DEV_DISPLAY")"
-							sed -i "s/fb0/$FB_DISPLAY/g" "$ADMNT/etc/X11/xorg.conf"
+			# Defaults from /etc/X11/xorg.conf
+			FB_DISPLAY_DEFAULT="fb0"
+			FB_INPUT_DEFAULT="event1"
+
+			# Use database firstly if possible
+			case "$(getprop ro.archidroid.device)" in
+				i9300) FB_DISPLAY="fb3"; FB_INPUT="event1" ;;
+				nicki) ;; # TODO: Fill this when I have some time to do tests
+			esac
+
+			# Try to auto-detect proper FB_DISPLAY if needed
+			if [[ -z "$FB_DISPLAY" ]]; then
+				RESOLUTION="$(dumpsys window | head -n 1 | grep init= | cut -d '=' -f 2 | cut -d ' ' -f 1)"
+				WIDTH="$(echo "$RESOLUTION" | cut -d 'x' -f 1)"
+				HEIGHT="$(echo "$RESOLUTION" | cut -d 'x' -f 2)"
+				if [[ -n "$WIDTH" && -n "$HEIGHT" ]]; then
+					find "/sys/class/graphics" -mindepth 1 -maxdepth 1 -name "fb*" | sort | while read -r DEV_DISPLAY; do
+						if [[ -e "$DEV_DISPLAY/virtual_size" ]]; then
+							if [[ "$(cat "$DEV_DISPLAY/virtual_size")" = "${WIDTH},${HEIGHT}" ]]; then
+								FB_DISPLAY="$(basename "$DEV_DISPLAY")"
+								sed -i "s/$FB_DISPLAY_DEFAULT/$FB_DISPLAY/g" "$ADMNT/etc/X11/xorg.conf"
+								break
+							fi
+						fi
+					done
+				fi
+			elif [[ "$FB_DISPLAY" != "$FB_DISPLAY_DEFAULT" ]]; then
+				sed -i "s/$FB_DISPLAY_DEFAULT/$FB_DISPLAY/g" "$ADMNT/etc/X11/xorg.conf"
+			fi
+
+			# Try to auto-detect proper FB_INPUT if needed
+			if [[ -z "$FB_INPUT" ]]; then
+				find "/sys/class/input" -mindepth 1 -maxdepth 1 -name "event*" | sort | while read -r DEV_INPUT; do
+					if [[ -e "$DEV_INPUT/device/name" ]]; then
+						if grep -q "touchscreen" "$DEV_INPUT/device/name"; then
+							FB_INPUT="$(basename "$DEV_INPUT")"
+							sed -i "s/$FB_INPUT_DEFAULT/$FB_INPUT/g" "$ADMNT/etc/X11/xorg.conf"
 							break
 						fi
 					fi
 				done
+			elif [[ "$FB_INPUT" != "$FB_INPUT_DEFAULT" ]]; then
+				sed -i "s/$FB_INPUT_DEFAULT/$FB_INPUT/g" "$ADMNT/etc/X11/xorg.conf"
 			fi
-			# Input device
-			find "/sys/class/input" -mindepth 1 -maxdepth 1 -name "event*" | sort | while read -r DEV_INPUT; do
-				if [[ -e "$DEV_INPUT/device/name" ]]; then
-					if grep -q "touchscreen" "$DEV_INPUT/device/name"; then
-						FB_INPUT="$(basename "$DEV_INPUT")"
-						sed -i "s/event1/$FB_INPUT/g" "$ADMNT/etc/X11/xorg.conf"
-						break
-					fi
-				fi
-			done
 		fi
 
 		# General fixes
