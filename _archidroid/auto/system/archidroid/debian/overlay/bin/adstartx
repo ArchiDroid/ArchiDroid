@@ -37,9 +37,9 @@ if [[ "$BACKGROUND" -eq 0 ]]; then
 fi
 
 # If there is no X server, exit immediately
-if ! which startx >/dev/null 2>&1; do
+if ! which startx >/dev/null 2>&1; then
 	exit 1
-done
+fi
 
 # If there is any X session already running, exit immediately
 if pidof "X" >/dev/null 2>&1; then
