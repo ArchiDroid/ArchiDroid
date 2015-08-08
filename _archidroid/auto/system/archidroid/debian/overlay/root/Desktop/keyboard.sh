@@ -29,4 +29,8 @@ if [[ -t 1 ]]; then
 	exit 1
 fi
 
-xvkbd >/dev/null 2>&1 &
+if which florence >/dev/null 2>&1; then
+	florence >/dev/null 2>&1 &
+elif which xvkbd >/dev/null 2>&1; then
+	xvkbd >/dev/null 2>&1 &
+fi

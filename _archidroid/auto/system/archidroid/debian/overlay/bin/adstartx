@@ -54,7 +54,6 @@ echo "-17" > "/proc/$$/oom_adj" # Tell LMK to avoid killing this process
 
 # Turn on the lights
 /system/bin/setprop ctl.stop surfaceflinger
-sleep 1
 startx -- -dpi "$XORG_DPI" >/dev/null 2>&1 || true # startx may not finish successfully
 
 # In some cases ArchiDroid may want to restart X server instead of turning it off

@@ -29,9 +29,9 @@ if [[ ! -t 1 ]]; then
 	exit 1
 fi
 
-# Exit immediately if we've already installed full lxde
-if dpkg -s "lxde" >/dev/null 2>&1; then
-	xmessage -center -font -bitstream-terminal-bold-r-normal--20-140-100-100-c-110-iso8859-1 "You've already installed full LXDE!"
+# Exit immediately if we've already installed florence
+if dpkg -s "florence" >/dev/null 2>&1; then
+	xmessage -center -font -bitstream-terminal-bold-r-normal--20-140-100-100-c-110-iso8859-1 "You've already installed Florence!"
 	exit 0
 fi
 
@@ -39,11 +39,6 @@ xmessage -timeout 5 -center -font -bitstream-terminal-bold-r-normal--20-140-100-
 
 apt-get -f install # Fix APT packages if needed
 apt-get update
-apt-get -y install lxde
+apt-get -y install florence
 
-# Restart XORG if possible
-XORG_PID="$(pidof "X")"
-if [[ -n "$XORG_PID" && -e "/proc/$XORG_PID" ]]; then
-	touch /tmp/ARCHIDROID_XORG_RESTART
-	kill "$XORG_PID"
-fi
+xmessage -font -bitstream-terminal-bold-r-normal--20-140-100-100-c-110-iso8859-1 "Success!"
