@@ -69,7 +69,7 @@ EXTRACT_RAMDISK() {
 		DBIN="xz -dc"
 	elif [[ "$SUPPORTS_LZOP" -eq 1 ]] && lzop -t "$1" >/dev/null 2>&1; then
 		echo "INFO: LZO format detected"
-		CBIN="lzop -9"
+		CBIN="lzop -6" # Most recoveries do not support lzop with -9
 		DBIN="lzop -dc"
 #	elif [[ "$SUPPORTS_LZ4" -eq 1 ]] && lz4 -t "$1" >/dev/null 2>&1; then # Disabled because of unreliable lz4 -t
 #		echo "INFO: LZ4 format detected"
