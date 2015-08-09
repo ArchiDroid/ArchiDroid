@@ -43,7 +43,7 @@ exec 1>"$LOG"
 exec 2>&1
 
 LASTVERSION="$AK/version.txt"
-VERSION="$(tr -d '#' < /proc/version)"
+VERSION="$(tr -d '#' < /proc/version | tr -d '\n')"
 
 date
 echo "ArchiKernel-Init called!"
