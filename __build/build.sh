@@ -23,7 +23,7 @@
 
 set -e
 
-VERSION=3.1
+VERSION=3.1.1
 
 # Device-based
 DEVICE="nicki" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
@@ -53,6 +53,7 @@ BARE=0
 CACHE=0
 CLEAN=0
 PREBUILT=0
+SABERMODED=0
 STABLE=0
 STOCK=0
 OLD=0
@@ -77,6 +78,10 @@ for ARG in "$@" ; do
 		--prebuilt|prebuilt)
 			PREBUILT=1
 			echo "NOTICE: Assuming that build is already complete!"
+			;;
+		--sabermod|sabermod)
+			SABERMODED=1
+			echo "NOTICE: Assuming that SaberMod toolchain is being used!"
 			;;
 		--stable|stable)
 			STABLE=1
@@ -103,7 +108,7 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	cd "$ADCOMPILEROOT"
 	if [[ "$OLD" -eq 0 ]]; then
 		repo selfupdate
-		repo sync -j32
+		repo sync --force-sync -c -j 32
 		if [[ "$SYNC" -eq 1 ]]; then
 			exit 0
 		fi
@@ -125,8 +130,22 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 
 	if [[ -d "$ADSMPREBUILTS" ]]; then
 		echo "NOTICE: SaberMod prebuilts found!"
-		export LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
-		export LD_LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
+
+		# Check if we're actually using sabermod
+		if [[ "$SABERMODED" -eq 0 ]]; then
+			while read DIRECTORY; do
+				SABERMODED=1
+				break
+			done < <(find prebuilts/gcc/linux-x86 -name "*sabermod*")
+		fi
+
+		if [[ "$SABERMODED" -eq 1 ]]; then
+			export LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
+			export LD_LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
+			echo "INFO: SaberMod prebuilts have been included!"
+		else
+			echo "INFO: SaberMod prebuilts were NOT included, as no SaberMod toolchain has been found!"
+		fi
 	else
 		echo "WARNING: SaberMod prebuilts could not be found in $ADSMPREBUILTS"
 		echo "This error is not fatal, but you may encounter problems in case of using SM toolchain"

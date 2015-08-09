@@ -145,7 +145,7 @@ archidroid.tweaks.navibar.desc=开启导航栏, 同时关闭三大天王键. 如
 archidroid.tweaks.navibar.hwenabled=开启触摸键
 archidroid.tweaks.navibar.hwenabled.desc=默认情况下，导航栏会禁用触摸键。如果您想同时使用导航栏和触摸键的话，大胆开启吧
 
-archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
+archidroid.xposed.desc=Xposed Framework 允许您通过各种第三方模块进行即时系统调整, 代价是更慢更不稳定的系统. 不推荐
 archidroid.xposed.appsettings.desc=该模块允许您设置每个应用的设置，例如自定义分辨率、设置驻留内存标识等等
 archidroid.xposed.gravitybox.desc=包含海量框架修改功能的多合一的 Xposed 模块, 以后您可以根据您的需要随时激活或取消
 archidroid.xposed.xprivacy.desc=保护您个人隐私的最佳应用，属于 Xposed 模块. 通过该应用，您可以逐一调整每一个已安装应用的特定权限

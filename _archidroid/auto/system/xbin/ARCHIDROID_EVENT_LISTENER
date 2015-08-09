@@ -50,12 +50,12 @@ REFRESH_RESOLV() {
 
 RESET_DNSES() {
 	if [[ -f "$AD_LAST_NETWORK_FILE" ]]; then
-		local LAST_NETWORK_DATA="$(cat "$AD_LAST_NETWORK_FILE")"
-		local LAST_NETWORK_ID="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 1)"
-		local DNS1="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 2)"
-		local DNS2="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 3)"
-		local DNS3="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 4)"
-		local DNS4="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 5)"
+		LAST_NETWORK_DATA="$(cat "$AD_LAST_NETWORK_FILE")"
+		LAST_NETWORK_ID="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 1)"
+		DNS1="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 2)"
+		DNS2="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 3)"
+		DNS3="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 4)"
+		DNS4="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 5)"
 
 		ndc resolver setnetdns "$LAST_NETWORK_ID" "" "$DNS1" "$DNS2" "$DNS3" "$DNS4"
 		ndc resolver flushnet "$LAST_NETWORK_ID"
@@ -63,17 +63,17 @@ RESET_DNSES() {
 }
 
 SET_DNSES() {
-	local APPLY=0
+	APPLY=0
 	if [[ -n "$1" && -n "$2" ]]; then
 		APPLY=1
-		local LAST_NETWORK_ID="$1"
-		local DNS1="$2"
+		LAST_NETWORK_ID="$1"
+		DNS1="$2"
 		echo "$LAST_NETWORK_ID $2 $3 $4 $5" > "$AD_LAST_NETWORK_FILE" # Save last network ID and up to 4 DNSes
 	elif [[ -f "$AD_LAST_NETWORK_FILE" ]]; then
 		APPLY=1
-		local LAST_NETWORK_DATA="$(cat "$AD_LAST_NETWORK_FILE")"
-		local LAST_NETWORK_ID="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 1)"
-		local DNS1="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 2)"
+		LAST_NETWORK_DATA="$(cat "$AD_LAST_NETWORK_FILE")"
+		LAST_NETWORK_ID="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 1)"
+		DNS1="$(echo "$LAST_NETWORK_DATA" | cut -d ' ' -f 2)"
 	fi
 
 	if [[ "$APPLY" -eq 1 && -e "$ADTMPFS/DNSMASQ.PID" && -e "/proc/$(cat "$ADTMPFS/DNSMASQ.PID")" ]]; then
@@ -102,37 +102,45 @@ HANDLE_EVENT() {
 
 LISTEN_FOR_DEV_EVENTS() {
 	if [[ -d "$AD_DEV_EVENTS_DIR" ]]; then
-		find "$AD_DEV_EVENTS_DIR" -mindepth 1 -maxdepth 1 -type f | while read EVENT_FILE; do
+		find "$AD_DEV_EVENTS_DIR" -mindepth 1 -maxdepth 1 -type f | while read -r EVENT_FILE; do
 			rm -f "$EVENT_FILE"
 		done
 	else
 		mkdir -p "$AD_DEV_EVENTS_DIR"
 		chcon "u:object_r:net_data_file:s0" "$AD_DEV_EVENTS_DIR" # Set proper context to allow netd (dnsmasq hook) to write
 	fi
+	echo "-17" > "/proc/$$/oom_adj" # Tell LMK to avoid killing this process
 	while [[ -d "$AD_DEV_EVENTS_DIR" ]]; do
-		EVENT_FILE="$(inotifywait -q -e create -e moved_to "$AD_DEV_EVENTS_DIR" | cut -d ' ' -f 3-)"
-		while read EVENT; do
-			HANDLE_EVENT "$EVENT" &
-		done < "${AD_DEV_EVENTS_DIR}/${EVENT_FILE}"
-		rm -f "${AD_DEV_EVENTS_DIR}/${EVENT_FILE}"
+		INOTIFY_LINE="$(inotifywait -q -e create -e moved_to "$AD_DEV_EVENTS_DIR")"
+		if [[ -n "$INOTIFY_LINE" ]]; then
+			EVENT_FILE="$(echo "$INOTIFY_LINE" | cut -d ' ' -f 3-)"
+			while read -r EVENT; do
+				HANDLE_EVENT "$EVENT" &
+			done < "${AD_DEV_EVENTS_DIR}/${EVENT_FILE}"
+			rm -f "${AD_DEV_EVENTS_DIR}/${EVENT_FILE}"
+		fi
 	done
 }
 
 LISTEN_FOR_DATA_EVENTS() {
 	if [[ -d "$AD_DATA_EVENTS_DIR" ]]; then
-		find "$AD_DATA_EVENTS_DIR" -mindepth 1 -maxdepth 1 -type f | while read EVENT_FILE; do
+		find "$AD_DATA_EVENTS_DIR" -mindepth 1 -maxdepth 1 -type f | while read -r EVENT_FILE; do
 			rm -f "$EVENT_FILE"
 		done
 	else
 		mkdir -p "$AD_DATA_EVENTS_DIR"
 	fi
 	chmod 777 "$AD_DATA_EVENTS_DIR" # Allow everyone to write
+	echo "-17" > "/proc/$$/oom_adj" # Tell LMK to avoid killing this process
 	while [[ -d "$AD_DATA_EVENTS_DIR" ]]; do
-		EVENT_FILE="$(inotifywait -q -e create -e moved_to "$AD_DATA_EVENTS_DIR" | cut -d ' ' -f 3-)"
-		while read EVENT; do
-			HANDLE_EVENT "$EVENT" &
-		done < "${AD_DATA_EVENTS_DIR}/${EVENT_FILE}"
-		rm -f "${AD_DATA_EVENTS_DIR}/${EVENT_FILE}"
+		INOTIFY_LINE="$(inotifywait -q -e create -e moved_to "$AD_DATA_EVENTS_DIR")"
+		if [[ -n "$INOTIFY_LINE" ]]; then
+			EVENT_FILE="$(echo "$INOTIFY_LINE" | cut -d ' ' -f 3-)"
+			while read -r EVENT; do
+				HANDLE_EVENT "$EVENT" &
+			done < "${AD_DATA_EVENTS_DIR}/${EVENT_FILE}"
+			rm -f "${AD_DATA_EVENTS_DIR}/${EVENT_FILE}"
+		fi
 	done
 }
 

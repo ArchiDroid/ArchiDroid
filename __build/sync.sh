@@ -50,14 +50,14 @@ UPDATEREPO() {
 		if [[ $? -ne 0 ]]; then
 			git reset --hard >/dev/null 2>&1 # Clean
 			git clean -fd >/dev/null 2>&1 # The mess
-			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH"
+			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH (stage 1)"
 			continue
 		fi
 		git pull "$ORIGIN" "$BRANCH" >/dev/null 2>&1
 		if [[ $? -ne 0 ]]; then
 			git reset --hard >/dev/null 2>&1 # Clean
 			git clean -fd >/dev/null 2>&1 # The mess
-			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH"
+			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH (stage 2)"
 			continue
 		fi
 		SUCCESS=1
@@ -81,7 +81,7 @@ UPDATEREPO() {
 			git push "$ORIGIN" "$BRANCH"
 			echo -e "\e[32mSUCCESS:\e[0m $1 $BRANCH"
 		else
-			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH"
+			echo -e "\e[31mFAILED:\e[0m $1 $BRANCH (stage 3)"
 		fi
 	done < <(git branch -r | tr -d '*' | tr -d ' ' | cut -d '/' -f 2)
 	return 0
@@ -97,6 +97,11 @@ CHECKREPO() {
 		echo "INFO: Not interested in $1"
 	fi
 }
+
+if ! git config user.email >/dev/null 2>&1; then
+	git config --global user.email "JustArchi@JustArchi.net"
+	git config --global user.name "JustArchi"
+fi
 
 if [[ -f "roomservice.xml" ]]; then
 	echo "INFO: Manifest mode!"
