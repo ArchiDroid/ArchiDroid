@@ -26,6 +26,11 @@ set -eu
 # Device-specific
 KERNEL="/dev/block/mmcblk0p17" # THIS IS FOR XPERIA M ONLY
 
+# Device-specific quirks, enable as needed
+FORCE_POOR_COMPRESSION_CBIN="" # Put custom CBIN, e.g. "gzip -9" if LZO/LZ4 ramdisks should be repacked with other compression algorithm instead
+LZOP_LIES=1 # Enable if lzop -t lies
+LZ4_LIES=1 # Enable if lz4 -t lies
+
 # Global
 AK="/tmp/archikernel"
 AKDROP="$AK/drop"
@@ -67,14 +72,20 @@ EXTRACT_RAMDISK() {
 		echo "INFO: XZ format detected"
 		CBIN="xz -9"
 		DBIN="xz -dc"
-	elif [[ "$SUPPORTS_LZOP" -eq 1 ]] && lzop -t "$1" >/dev/null 2>&1; then
+	elif [[ "$SUPPORTS_LZOP" -eq 1 && "$LZOP_LIES" -eq 0 ]] && lzop -t "$1" >/dev/null 2>&1; then
 		echo "INFO: LZO format detected"
-		CBIN="gzip -9" # We want to use GZIP compression as image is too large with poor LZO
+		CBIN="lzop -6"
 		DBIN="lzop -dc"
-#	elif [[ "$SUPPORTS_LZ4" -eq 1 ]] && lz4 -t "$1" >/dev/null 2>&1; then # Disabled because of unreliable lz4 -t
-#		echo "INFO: LZ4 format detected"
-#		CBIN="lz4 -9"
-#		DBIN="lz4 -dc"
+		if [[ -n "$FORCE_POOR_COMPRESSION_CBIN" ]]; then
+			CBIN="$FORCE_POOR_COMPRESSION_CBIN"
+		fi
+	elif [[ "$SUPPORTS_LZ4" -eq 1 && "$LZ4_LIES" -eq 0 ]] && lz4 -t "$1" >/dev/null 2>&1; then
+		echo "INFO: LZ4 format detected"
+		CBIN="lz4 -9"
+		DBIN="lz4 -dc"
+		if [[ -n "$FORCE_POOR_COMPRESSION_CBIN" ]]; then
+			CBIN="$FORCE_POOR_COMPRESSION_CBIN"
+		fi
 	else
 		CBIN="raw"
 		DBIN="raw"
