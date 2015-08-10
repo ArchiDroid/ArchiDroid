@@ -23,6 +23,9 @@
 		<remove-project name="CyanogenMod/android_build" />
 		<project name="ArchiDroid/android_build" path="build" remote="github" revision="cm-12.1-optimized" />
 
+		<remove-project name="CyanogenMod/android_external_bluetooth_bluedroid" />
+		<project name="ArchiDroid/android_external_bluetooth_bluedroid" path="external/bluetooth/bluedroid" remote="github" />
+
 		<remove-project name="CyanogenMod/android_libcore" />
 		<project name="ArchiDroid/android_libcore" path="libcore" remote="github" />
 
