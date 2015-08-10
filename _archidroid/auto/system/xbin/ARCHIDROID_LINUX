@@ -160,7 +160,7 @@ if [[ "$INSTALL" -eq 1 ]]; then
 			# Use database firstly if possible
 			case "$(getprop ro.archidroid.device)" in
 				i9300) FB_DISPLAY="fb3"; FB_INPUT="event1" ;;
-				nicki) ;; # TODO: Fill this when I have some time to do tests
+				nicki) FB_DISPLAY="fb0"; FB_INPUT="event1" ;;
 			esac
 
 			# Try to auto-detect proper FB_DISPLAY if needed
@@ -187,7 +187,7 @@ if [[ "$INSTALL" -eq 1 ]]; then
 			if [[ -z "$FB_INPUT" ]]; then
 				find "/sys/class/input" -mindepth 1 -maxdepth 1 -name "event*" | sort | while read -r DEV_INPUT; do
 					if [[ -e "$DEV_INPUT/device/name" ]]; then
-						if grep -q "touchscreen" "$DEV_INPUT/device/name"; then
+						if grep -q "synaptics\|touchscreen" "$DEV_INPUT/device/name"; then
 							FB_INPUT="$(basename "$DEV_INPUT")"
 							sed -i "s/$FB_INPUT_DEFAULT/$FB_INPUT/g" "$ADMNT/etc/X11/xorg.conf"
 							break
