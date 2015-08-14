@@ -117,7 +117,7 @@ archidroid.preset=Hazır Ayar
 archidroid.preset.barebones=Temel unsurlar
 archidroid.preset.barebones.desc=Bu seçenek ile sadece taban ROM flaşlanır. Sadece hata ayıklama için önerilir, sen ArchiDroid'in bütün yeteneklerini kaçıracaksın
 archidroid.preset.custom=Özelleştirme 
-archidroid.preset.custom.desc=ArchiDroid'i flaşlamadan önce her yönü ile özelleştirmek istiyorsanız bu seçeneği seçin. Önerilen
+archidroid.preset.custom.desc=ArchiDroid 'i flaşlamadan önce her yönü ile özelleştirmek istiyorsanız bu seçeneği seçin. Önerilen
 archidroid.preset.previous=Önceki Hazır Ayar
 archidroid.preset.previous.desc=Zaten öceden kurulumu özelleştirdiyseniz, bu seçenek eski hazır ayarı yükler ve kullanır
 archidroid.preset.previousexpert=Önceki Hazır Ayar Uzmanı
@@ -141,12 +141,12 @@ archidroid.tou=Kullanım Şartları
 archidroid.tweaks.cellbroadcasts=Hücre yayınları
 archidroid.tweaks.cellbroadcasts.desc=Hücre yayınları belirli bir alanda birden fazla kullanıcıya aynı anda teslimat için tasarlanmıştır. Genellikle spam amaçlı kullanılır. Sadece ihtiyacınız varsa seçin
 archidroid.tweaks.navibar=Navigasyon çubuğu
-archidroid.tweaks.navibar.desc=Gezinme çubuğunu açar ve donanım tuşları (geri, ev, menü) devre dışı bırakır. Eğer ekranda navigasyon olması tercih ederseniz seçin
-archidroid.tweaks.navibar.hwenabled=Enable hardware keys
-archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
+archidroid.tweaks.navibar.desc=Gezinme çubuğunu açar ve donanım tuşlarını (geri, ev, menü) devre dışı bırakır. Eğer ekranda navigasyon olmasını tercih ederseniz seçin
+archidroid.tweaks.navibar.hwenabled=Donanım tuşlarını etkinleştir
+archidroid.tweaks.navibar.hwenabled.desc=Varsayılan olarak, gezinti çubuğu donanım tuşlarını devre dışı bırakır. Eğer her ikisinide aynı anda kullanmak istiyorsanız bu özelliği seçin
 
-archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
-archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
+archidroid.xposed.desc=Xposed Framework çeşitli üçüncü taraf modifikasyonlar yapma imkânı verir daha yavaş ve daha istikrarsız sisteme mâl olur.Tavsiye edilmez
+archidroid.xposed.appsettings.desc=Bu modül, özel çözünürlük, keep-in-memory flag ve başka uygulama başına ayarlar yapma imkânı verir
 archidroid.xposed.gravitybox.desc=Yüzlerce Uygulama skeleti Modülü modifikasyonu içeren Tümü bir arada Xposed modülü 
 archidroid.xposed.xprivacy.desc=Gizliliğinizi korumak istiyorsanız, bu modül tam size göre. Bu uygulama ile yüklü her uygulama için izinleri kesin olarak ayrıntıları ile tayin etmek mümkün olacak
 
