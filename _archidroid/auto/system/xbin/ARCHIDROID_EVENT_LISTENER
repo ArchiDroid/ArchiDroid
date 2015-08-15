@@ -144,6 +144,18 @@ LISTEN_FOR_DATA_EVENTS() {
 	done
 }
 
+BACKGROUND=0
+for ARG in "$@"; do
+	case "$ARG" in
+		--background) BACKGROUND=1 ;;
+	esac
+done
+
+if [[ "$BACKGROUND" -eq 0 ]]; then
+	"$0" --background "$@" &
+	exit 0
+fi
+
 echo "$(date +"%F %T") INFO: ArchiDroid_Event_Listener executed!"
 
 if [[ -f "$ADSTATUS" ]]; then
