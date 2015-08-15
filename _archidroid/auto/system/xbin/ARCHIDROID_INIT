@@ -48,7 +48,6 @@ ADSTOP() {
 			ADSTOP "ADBLOCK"
 			ADSTOP "EVENT_LISTENER"
 			ADSTOP "TMPFS"
-			ADSTOP "LOGCAT"
 		;;
 
 		# Symlinks
@@ -87,9 +86,6 @@ ADSTOP() {
 		"HAVEGED")
 			ADSTOP "archidroid_haveged"
 		;;
-		"LOGCAT")
-			kill $(pidof logcat) >/dev/null 2>&1
-		;;
 		"TMPFS")
 		;;
 		archidroid_haveged)
@@ -109,7 +105,6 @@ ADSTOP() {
 ADSTART() {
 	case "$1" in
 		"ALL")
-			ADSTART "LOGCAT"
 			ADSTART "TMPFS"
 			ADSTART "EVENT_LISTENER"
 			ADSTART "HAVEGED"
@@ -144,7 +139,7 @@ ADSTART() {
 			fi
 		;;
 		"EVENT_LISTENER")
-			ARCHIDROID_EVENT_LISTENER &
+			ARCHIDROID_EVENT_LISTENER --background &
 		;;
 		"FRANDOM")
 			if [[ "$FRANDOM" -eq 1 ]]; then
@@ -183,11 +178,6 @@ ADSTART() {
 		;;
 		"HAVEGED")
 			ADSTART "archidroid_haveged"
-		;;
-		"LOGCAT")
-			if [[ "$LOGCAT" -eq 1 ]]; then
-				logcat -f "$AD/logcat.txt" &
-			fi
 		;;
 		"TMPFS")
 			mkdir -p "$ADTMPFS"
@@ -256,7 +246,6 @@ ADRELOAD() {
 			ADRELOAD "HAVEGED"
 			ADRELOAD "FRANDOM"
 			ADRELOAD "ADBLOCK"
-			ADRELOAD "LOGCAT"
 			;;
 		*)
 			ADSTOP "$1"
@@ -356,7 +345,7 @@ ADSTATUS="$ADTMPFS/ARCHIDROID_INIT_STATUS"
 
 # Fix /data/media/0/0 if needed
 if [[ -d "/data/media/0/0" ]]; then
-	find "/data/media/0/0" -mindepth 1 -maxdepth 1 | while read line; do
+	find "/data/media/0/0" -mindepth 1 -maxdepth 1 | while read -r line; do
 		mv "$line" "/data/media/0"
 	done
 	rmdir "/data/media/0/0"
@@ -368,25 +357,25 @@ if [[ ! -d "$AD" ]]; then
 fi
 
 # Initial ArchiDroid dev status
-if [[ "$(cat "$ADDEV/switches/Haveged")" = "Enabled" ]]; then
+if [[ -f "$ADDEV/switches/Haveged" && "$(cat "$ADDEV/switches/Haveged")" = "Enabled" ]]; then
 	HAVEGED=1
 else
 	HAVEGED=0
 fi
 
-if [[ "$(cat "$ADDEV/switches/Frandom")" = "Enabled" ]]; then
+if [[ -f "$ADDEV/switches/Frandom" && "$(cat "$ADDEV/switches/Frandom")" = "Enabled" ]]; then
 	FRANDOM=1
 else
 	FRANDOM=0
 fi
 
-if [[ "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
+if [[ -f "$ADDEV/switches/Adblock" && "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
 	ADBLOCK=1
-	if [[ "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" ]]; then
+	if [[ -f "$ADDEV/switches/_Adblock/ProxyDNSes" && "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" ]]; then
 		ADBLOCK_PROXYDNS=1
-		if [[ "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes")" = "Enabled" ]]; then
+		if [[ -f "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes" && "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes")" = "Enabled" ]]; then
 			ADBLOCKLOCALDNSES=1
-			if [[ "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/_LocalDNSes/ForceLocalDNSes")" = "Enabled" ]]; then
+			if [[ -f "$ADDEV/switches/_Adblock/_ProxyDNSes/_LocalDNSes/ForceLocalDNSes" && "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/_LocalDNSes/ForceLocalDNSes")" = "Enabled" ]]; then
 				ADBLOCKSTRICTORDER=1
 			else
 				ADBLOCKSTRICTORDER=0
@@ -401,15 +390,9 @@ else
 	ADBLOCK=0
 fi
 
-if [[ "$(cat "$ADDEV/switches/Logcat")" = "Enabled" ]]; then
-	LOGCAT=1
-else
-	LOGCAT=0
-fi
-
 # RainbowLedOnBoot
 LEDS=0
-if [[ "$(cat "$ADDEV/switches/RainbowLedOnBoot")" = "Enabled" ]]; then
+if [[ -f "$ADDEV/switches/RainbowLedOnBoot" && "$(cat "$ADDEV/switches/RainbowLedOnBoot")" = "Enabled" ]]; then
 	if [[ -e "/sys/class/leds/led_r/brightness" && -e "/sys/class/leds/led_g/brightness" && -e "/sys/class/leds/led_b/brightness" ]]; then
 		LEDS=1
 	fi
@@ -478,7 +461,7 @@ if [[ ! -f "/data/.ARCHIDROID_FIRSTBOOT_COMPLETED" ]]; then
 		mkdir -p "$AD/FIRSTBOOT"
 		cp -pR "$ADSYS/FIRSTBOOT/DATA" "$AD/FIRSTBOOT"
 		(
-			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read FOLDER; do
+			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read -r FOLDER; do
 				((ADMANY++))
 			done
 			echo "$ADMANY" > "$ADFIFO")
@@ -491,7 +474,7 @@ if [[ ! -f "/data/.ARCHIDROID_FIRSTBOOT_COMPLETED" ]]; then
 fi
 
 # Now we need to make sure that this is a background process to prevent slowing down bootup
-if [[ "$BACKGROUND" -ne 1 || SU_SHELL -ne 1 ]]; then
+if [[ "$BACKGROUND" -eq 0 || "$SU_SHELL" -eq 0 ]]; then
 	echo "RESTART" > "$ADSTATUS"
 	su -c "$0 --background --su-shell $* &" && exit 0 # TODO: SU shell is required to workaround SELinux denials, maybe I can fix this in future
 	echo "$$" > "$ADSTATUS" # We really shouldn't be here
@@ -572,7 +555,7 @@ while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemui >/dev/null 2>&1; do
 		if [[ -f /data/data/com.android.providers.settings/databases/settings.db && -f "$ADSYS/FIRSTBOOT/DBUPDATE.txt" ]]; then
 			echo "$(date +"%F %T") INFO: settings.db created! Performing DBUPDATE"
 
-			while read line; do
+			while read -r line; do
 				if [[ -n "$line" ]]; then
 					TABLE="$(echo "$line" | cut -d ' ' -f 1)"
 					COLUMN="$(echo "$line" | cut -d ' ' -f 2)"
@@ -590,14 +573,14 @@ while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemui >/dev/null 2>&1; do
 	if [[ "$ADMANY" -gt 0 ]]; then
 		(
 			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (
-				while read FOLDER; do
+				while read -r FOLDER; do
 					FOLDERSHORT="$(basename "$FOLDER")"
 					if [[ -d "/data/data/$FOLDERSHORT" ]]; then
 
 						echo "$(date +"%F %T") INFO: Merging settings for $FOLDER"
 
 						# Firstly, copy recursive everything i
-						find "$FOLDER" -mindepth 1 -maxdepth 1 | while read TOCOPY; do
+						find "$FOLDER" -mindepth 1 -maxdepth 1 | while read -r TOCOPY; do
 							cp -R "$TOCOPY" "/data/data/$FOLDERSHORT/"
 						done
 
@@ -605,14 +588,14 @@ while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemui >/dev/null 2>&1; do
 						busybox chown -hR "$ADOWNER.$ADOWNER" "/data/data/$FOLDERSHORT"
 
 						# Apply permissions for folders
-						find "/data/data/$FOLDERSHORT" -type d -mindepth 1 | while read mFOLDER; do
+						find "/data/data/$FOLDERSHORT" -type d -mindepth 1 | while read -r mFOLDER; do
 							case "$(basename "$mFOLDER")" in # This will match filenames
 								*) chmod 771 "$mFOLDER"
 							esac
 						done
 
 						# Apply permissions for files
-						find "/data/data/$FOLDERSHORT" -type f -mindepth 1 | while read mFILE; do
+						find "/data/data/$FOLDERSHORT" -type f -mindepth 1 | while read -r mFILE; do
 							case "$(basename "$mFILE")" in # This will match filenames
 								*) chmod 660 "$mFILE"
 							esac
@@ -688,14 +671,13 @@ fi
 
 # Execute a reboot if we need it
 if [[ -f "$AD/HARD_REBOOT_REQUIRED" ]]; then
-	echo "$(date +"%F %T") INFO: HARD_REBOOT_REQUIRED found, I'm rebooting device now..."
+	echo "$(date +"%F %T") INFO: HARD_REBOOT_REQUIRED, I'm rebooting device now..."
 	rm -f "$AD/SOFT_REBOOT_REQUIRED" "$AD/HARD_REBOOT_REQUIRED"
 	sync
 	reboot
 elif [[ "$ADRELOAD" -eq 1 || -f "$AD/SOFT_REBOOT_REQUIRED" ]]; then
-	echo "$(date +"%F %T") INFO: SOFT_REBOOT_REQUIRED found, I'm rebooting android interface now..."
+	echo "$(date +"%F %T") INFO: SOFT_REBOOT_REQUIRED, I'm rebooting android interface now..."
 	rm -f "$AD/SOFT_REBOOT_REQUIRED"
-	setprop ctl.restart surfaceflinger
 	setprop ctl.restart zygote
 fi
 

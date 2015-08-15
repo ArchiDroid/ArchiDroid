@@ -78,17 +78,17 @@ archidroid.detect.previouspreset.fail.notavailable=Üzgünüm, henüz herhangi b
 archidroid.experimental=Deneysel yapı
 archidroid.experimental.terms.check=Ben bu deneysel yapının bitmediğini ve cihazımı brick yapabileceğini anlıyorum
 
-archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
-archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
-archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
-archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
-archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
-archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
-archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
-archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
-archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
-archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
-archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+archidroid.gapps.core.desc=Framework’lar, hizmetler veya mağaza gibi çekirdek Google Apps sağlar. Diğer tüm Google Apps için zorunludur
+archidroid.gapps.calendar.desc=Tescilli Google uygulaması ile AOSP Takvimi değiştirir
+archidroid.gapps.camera.desc=Tescilli Google uygulaması ile AOSP Kameranı değiştirir
+archidroid.gapps.chrome.desc=Tescilli Google uygulaması ile AOSP Tarayıcıyı değiştirir
+archidroid.gapps.exchange.desc=Tescilli Google uygulaması ile AOSP Exchange Hizmetlerini değiştirir
+archidroid.gapps.face.desc=Tescilli Google yüz algılama uygulaması ile AOSP genişletir
+archidroid.gapps.messenger.desc=Tescilli Google uygulaması ile AOSP SMS / MMS değiştirir
+archidroid.gapps.music.desc=AOSP Müziği tescilli Google uygulaması ile değiştirir
+archidroid.gapps.gmail.desc=AOSP Postanı tescilli Google uygulaması ile değiştirir
+archidroid.gapps.tts.desc=Tescilli Google uygulaması ile AOSP PicoTTS değiştirir
+archidroid.gapps.search.desc=AOSP QuickSearchBox tescilli Google uygulaması ile değiştirir
 
 archidroid.hardswap.desc=Daha fazla bellek için sizin I / O kurban eder
 archidroid.hardswap.size.0.desc=Bu bölümdeki hardswap dosyası kaldıracaktır
@@ -115,15 +115,15 @@ archidroid.prepinstall.desc=Şimdi kuruluma başlamak için hazırız. Başlatma
 
 archidroid.preset=Hazır Ayar
 archidroid.preset.barebones=Temel unsurlar
-archidroid.preset.barebones.desc=Bu seçenek ile sadece taban ROM flaşlanır. Sadece hata ayıklama için önerilir, sen ArchiDroid'in bütün yeteneklerini kaçıracaksın
+archidroid.preset.barebones.desc=Bu seçenek ile sadece taban ROM flaşlanır. Sadece hata ayıklama için önerilir, sen ArchiDroid 'in bütün yeteneklerini kaçıracaksın
 archidroid.preset.custom=Özelleştirme 
-archidroid.preset.custom.desc=ArchiDroid'i flaşlamadan önce her yönü ile özelleştirmek istiyorsanız bu seçeneği seçin. Önerilen
+archidroid.preset.custom.desc=ArchiDroid 'i flaşlamadan önce her yönü ile özelleştirmek istiyorsanız bu seçeneği seçin. Önerilen
 archidroid.preset.previous=Önceki Hazır Ayar
 archidroid.preset.previous.desc=Zaten öceden kurulumu özelleştirdiyseniz, bu seçenek eski hazır ayarı yükler ve kullanır
 archidroid.preset.previousexpert=Önceki Hazır Ayar Uzmanı
 archidroid.preset.previousexpert.desc=Yukarıdakı önceki hazır ayarla aynı ancak uzman modu uyumluluk kontrollerini zorlamaz ve flaşlama öncesi hazır ayarınızda değişiklik yapma olanağı sağlar. Uyarı: dikkatli ol, uyumsuz ön ayar flaşlanmaya bilir
 archidroid.preset.recovery=Recovery
-archidroid.preset.recovery.desc=ArchiDroid'i flashlamadan önce recovery'ni güncellemek istyorsanız bu özelliyi seçiniz
+archidroid.preset.recovery.desc=ArchiDroid 'i flashlamadan önce recovery'ni güncellemek istyorsanız bu özelliyi seçiniz
 
 archidroid.preview=Öngörünüm
 archidroid.preview.desc=Seçildiğinde, bir sonraki ekranda seçimi bir örnek olarak göreceksiniz
@@ -141,12 +141,12 @@ archidroid.tou=Kullanım Şartları
 archidroid.tweaks.cellbroadcasts=Hücre yayınları
 archidroid.tweaks.cellbroadcasts.desc=Hücre yayınları belirli bir alanda birden fazla kullanıcıya aynı anda teslimat için tasarlanmıştır. Genellikle spam amaçlı kullanılır. Sadece ihtiyacınız varsa seçin
 archidroid.tweaks.navibar=Navigasyon çubuğu
-archidroid.tweaks.navibar.desc=Gezinme çubuğunu açar ve donanım tuşları (geri, ev, menü) devre dışı bırakır. Eğer ekranda navigasyon olması tercih ederseniz seçin
-archidroid.tweaks.navibar.hwenabled=Enable hardware keys
-archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
+archidroid.tweaks.navibar.desc=Gezinme çubuğunu açar ve donanım tuşlarını (geri, ev, menü) devre dışı bırakır. Eğer ekranda navigasyon olmasını tercih ederseniz seçin
+archidroid.tweaks.navibar.hwenabled=Donanım tuşlarını etkinleştir
+archidroid.tweaks.navibar.hwenabled.desc=Varsayılan olarak, gezinti çubuğu donanım tuşlarını devre dışı bırakır. Eğer her ikisinide aynı anda kullanmak istiyorsanız bu özelliği seçin
 
-archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
-archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
+archidroid.xposed.desc=Xposed Framework çeşitli üçüncü taraf modifikasyonlar yapma imkânı verir daha yavaş ve daha istikrarsız sisteme mâl olur.Tavsiye edilmez
+archidroid.xposed.appsettings.desc=Bu modül, özel çözünürlük, keep-in-memory flag ve başka uygulama başına ayarlar yapma imkânı verir
 archidroid.xposed.gravitybox.desc=Yüzlerce Uygulama skeleti Modülü modifikasyonu içeren Tümü bir arada Xposed modülü 
 archidroid.xposed.xprivacy.desc=Gizliliğinizi korumak istiyorsanız, bu modül tam size göre. Bu uygulama ile yüklü her uygulama için izinleri kesin olarak ayrıntıları ile tayin etmek mümkün olacak
 
