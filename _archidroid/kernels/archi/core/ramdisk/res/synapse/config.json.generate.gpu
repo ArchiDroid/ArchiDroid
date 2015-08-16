@@ -1,0 +1,157 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+{
+	name:GPU,
+	elements:[
+		$(
+			if [[ -e /sys/module/mali/parameters/mali_gpu_clk ]]; then
+cat << _EOF
+				{
+					SLiveLabel:{
+						title:"GPU frequency",
+						description:"Current GPU frequency",
+						refresh:500,
+						action:"echo \$(cat /sys/module/mali/parameters/mali_gpu_clk) MHz"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/class/misc/gpu_clock_control/gpu_control ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"GPU frequencies",
+						description:"These values control GPU frequencies on each step. Please keep in mind that higher frequencies require also more power, so don't forget to adjust voltages accordingly!"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+_EOF
+				COUNT=1
+				AK_gpu_frequency "/sys/class/misc/gpu_clock_control/gpu_control" "0" | while read FREQ; do
+cat << _EOF
+					{
+						SOptionList:{
+							title:"GPU step $COUNT frequency",
+							default:$FREQ,
+							unit:" MHz",
+							action:"AK_gpu_frequency /sys/class/misc/gpu_clock_control/gpu_control $COUNT",
+							values:[
+								54,
+								108,
+								160,
+								266,
+								275,
+								300,
+								333,
+								350,
+								440,
+								533,
+								600,
+								640,
+								666,
+								700
+							]
+						}
+					},
+_EOF
+				((COUNT++))
+				done
+cat << _EOF
+			{
+				SPane:{
+					title:"GPU thresholds",
+					description:"These values specify GPU load thresholds for GPU governor, which increases/decreases current frequency. Thresholds specify how high, or how low current GPU load must be to increase/decrease to given frequency"
+				}
+			},
+			{
+				SDescription:{
+					description:""
+				}
+			},
+_EOF
+				COUNT=1
+				HELP_COUNT=1
+				HELP_DIRECTION="->"
+				for THRESHOLD in $(AK_gpu_threshold "/sys/class/misc/gpu_clock_control/gpu_control" "0"); do
+cat << _EOF
+					{
+						SSeekBar:{
+							title:"GPU threshold $HELP_COUNT $HELP_DIRECTION $((HELP_COUNT + 1))",
+							max:100, min:0, unit:" %",
+							default:$THRESHOLD,
+							action:"AK_gpu_threshold /sys/class/misc/gpu_clock_control/gpu_control $COUNT"
+						}
+					},
+_EOF
+				((COUNT++))
+				if [[ "$HELP_DIRECTION" = "->" ]]; then
+					HELP_DIRECTION="<-"
+				else
+					HELP_DIRECTION="->"
+					((HELP_COUNT++))
+				fi
+				done
+			fi
+		)
+		$(
+			if [[ -e /sys/class/misc/gpu_voltage_control/gpu_control ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"GPU voltages",
+						description:"These values control GPU voltages on each step. Higher voltages consume more battery and produce more heat, but also increase GPU stability"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+_EOF
+				COUNT=1
+				AK_generic_ARGL /sys/class/misc/gpu_voltage_control/gpu_control | while read VOLTAGE; do
+cat << _EOF
+					{
+						SSeekBar:{
+							title:"GPU step $COUNT voltage",
+							max:1300000, min:500000, unit:" uV", step:12500,
+							default:$VOLTAGE,
+							action:"AK_gpu_voltage /sys/class/misc/gpu_voltage_control/gpu_control $COUNT"
+						}
+					},
+_EOF
+				((COUNT++))
+				done
+			fi
+		)
+	]
+}
+EOF

@@ -23,17 +23,18 @@
 writetmpfile(
 	"device.prop",
 
-	"name=BRINGUP\n"+
+	"name=Samsung Galaxy S3\n"+
 	"maintainer=JustArchi\n"+
 	"colorspace=auto\n"+ # Possible values: "auto", "rgba", "abgr", "argb", "bgra". Use "rgba" if AROMA swaps red and blue colors on your device
-	"kernel=BRINGUP\n"+ # CORE
-	"recovery=BRINGUP\n"+ # CORE, "NULL" indicates kernel + recovery combo
-	"modem=BRINGUP\n"+ # CORE
-	"system=BRINGUP\n"+
-	"data=BRINGUP\n"+
-	"cache=BRINGUP\n"+
-	"preload=BRINGUP\n"+
-	"extsd=BRINGUP\n"
+	"kernel=/dev/block/platform/dw_mmc/by-name/BOOT\n"+ # CORE
+	"recovery=/dev/block/platform/dw_mmc/by-name/RECOVERY\n"+ # CORE, "NULL" indicates kernel + recovery combo
+	"modem=/dev/block/platform/dw_mmc/by-name/RADIO\n"+ # CORE
+	"efs=/dev/block/platform/dw_mmc/by-name/EFS\n"+
+	"system=/dev/block/platform/dw_mmc/by-name/SYSTEM\n"+
+	"data=/dev/block/platform/dw_mmc/by-name/USERDATA\n"+
+	"cache=/dev/block/platform/dw_mmc/by-name/CACHE\n"+
+	"preload=/dev/block/platform/dw_mmc/by-name/HIDDEN\n"+
+	"extsd=/dev/block/platform/s3c-sdhci.2/by-num/p1\n"
 );
 
 setvar("colorspace", file_getprop("/tmp/aroma-data/device.prop", "colorspace"));
@@ -101,6 +102,7 @@ setvar("ad", "/data/media/0/ArchiDroid");
 setvar("adaroma", getvar("ad") + "/AromaPreset/" + getvar("archidroid_rom_short"));
 
 # Mount required filesystems
+resexec("exec/admount.sh", "/efs", file_getprop("/tmp/aroma-data/device.prop", "efs"));
 resexec("exec/admount.sh", "/system", file_getprop("/tmp/aroma-data/device.prop", "system"));
 resexec("exec/admount.sh", "/data", file_getprop("/tmp/aroma-data/device.prop", "data"));
 resexec("exec/admount.sh", "/cache", file_getprop("/tmp/aroma-data/device.prop", "cache"));
@@ -137,23 +139,23 @@ form(
 	"lang.prop",
 
 	"language", "<#selectbg_g>Language</#>", "", "group",
-	"zh_CN.lang", "Chinese (simplified)", "简化字", "select",
-	"cs.lang", "Czech", "Čeština", "select",
+	"zh_CN.lang", "Chinese (simplified)", "ç®€ĺŚ–ĺ­—", "select",
+	"cs.lang", "Czech", "ÄŚeĹˇtina", "select",
 	"nl.lang", "Dutch", "Nederlands", "select",
 	"en.lang", "English", "", "select.selected",
-	"fr.lang", "French", "Français", "select",
+	"fr.lang", "French", "FranĂ§ais", "select",
 	"de.lang", "German", "Deutsch", "select",
-	"gr.lang", "Greek", "ελληνικά", "select",
-	"he.lang", "Hebrew", "עברית", "select",
+	"gr.lang", "Greek", "ÎµÎ»Î»Î·Î˝ÎąÎşÎ¬", "select",
+	"he.lang", "Hebrew", "×˘×‘×¨×™×Ş", "select",
 	"hu.lang", "Hungarian", "Magyar", "select",
 	"it.lang", "Italian", "Italiano", "select",
 	"pl.lang", "Polish", "Polski", "select",
-	"pt.lang", "Portuguese", "Português", "select",
-	"ro.lang", "Romanian", "Român", "select",
-	"ru.lang", "Russian", "Pусский", "select",
-	"sk.lang", "Slovak", "Slovenčina", "select",
-	"es.lang", "Spanish", "Español", "select",
-	"tr.lang", "Turkish", "Türkçe", "select"
+	"pt.lang", "Portuguese", "PortuguĂŞs", "select",
+	"ro.lang", "Romanian", "RomĂ˘n", "select",
+	"ru.lang", "Russian", "PŃŃŃĐşĐ¸Đą", "select",
+	"sk.lang", "Slovak", "SlovenÄŤina", "select",
+	"es.lang", "Spanish", "EspaĂ±ol", "select",
+	"tr.lang", "Turkish", "TĂĽrkĂ§e", "select"
 );
 
 loadlang("langs/" + file_getprop("/tmp/aroma-data/lang.prop", "language"));
@@ -309,27 +311,36 @@ endif;
 ###############################
 
 if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "custom" then
+	resexec("exec/bcm4334.sh");
+	setvar("bcm4334", getvar("exec_buffer"));
 	form(
 		"<~archidroid.custom>",
 		"<~archidroid.custom.desc>",
 		"@apps",
 		"archidroid.prop",
 
+		"bcm4334", "<#selectbg_g><~archidroid.bcm></#>", "", "group",
+		"archidetect", "ArchiDetect", "<~archidroid.bcm.archidetect.desc>. <~archidroid.common.detected>: " + getvar("bcm4334"), "select.selected",
+		"stock", "Stock", "", "select",
+		"murata", "Murata", "", "select",
+		"semcosh", "Semcosh", "", "select",
+
 		"kernel", "<#selectbg_g><~archidroid.kernel></#>", "", "group",
-		"stock", "Stock", "<~archidroid.kernel.stock.desc>", "select.selected",
+		"archi", "ArchiKernel", "<~archidroid.kernel.archi.desc>", "select.selected",
+		"stock", "Stock", "<~archidroid.kernel.stock.desc>", "select",
 
 		"density", "<#selectbg_g><~archidroid.common.density></#>", "", "group",
-		"80", "80", "", "select",
-		"120", "120", "", "select",
-		"160", "160", "", "select",
-		"200", "200", "", "select",
+#		"80", "80", "", "select",
+#		"120", "120", "", "select",
+#		"160", "160", "", "select",
+#		"200", "200", "", "select",
 		"240", "240", "", "select",
 		"280", "280", "", "select",
 		"320", "320", "", "select",
-		"360", "360", "", "select",
-		"400", "400", "", "select",
-		"440", "440", "", "select",
-		"480", "480", "", "select",
+#		"360", "360", "", "select",
+#		"400", "400", "", "select",
+#		"440", "440", "", "select",
+#		"480", "480", "", "select",
 		"default", "Stock", "<~archidroid.common.default>", "select.selected",
 
 		"keyboard", "<#selectbg_g><~archidroid.keyboard></#>", "", "group",
@@ -399,12 +410,12 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 		"fdroid", "F-Droid", "<~archidroid.apps.fdroid.desc>", "check.checked",
 		"greenify", "Greenify", "<~archidroid.apps.greenify.desc>", "check",
 		"lmt", "LMT", "<~archidroid.apps.lmt.desc>", "check",
-#		"spiritfm", "Spirit FM", "<~archidroid.apps.spiritfm.desc>", "check",
+		"spiritfm", "Spirit FM", "<~archidroid.apps.spiritfm.desc>", "check",
 		"titaniumbackup", "Titanium Backup", "<~archidroid.apps.titaniumbackup.desc>", "check.checked",
 
 		"architweaks", "<#selectbg_g>ArchiDroid Tweaks</#>", "", "group",
-#		"navibar", "<~archidroid.tweaks.navibar>", "<~archidroid.tweaks.navibar.desc>", "check",
-#		"navibar-hwenabled", "<~archidroid.tweaks.navibar.hwenabled>", "<~archidroid.tweaks.navibar.hwenabled.desc>", "check",
+		"navibar", "<~archidroid.tweaks.navibar>", "<~archidroid.tweaks.navibar.desc>", "check",
+		"navibar-hwenabled", "<~archidroid.tweaks.navibar.hwenabled>", "<~archidroid.tweaks.navibar.hwenabled.desc>", "check",
 		"cell", "<~archidroid.tweaks.cellbroadcasts>", "<~archidroid.tweaks.cellbroadcasts.desc>", "check"
 	);
 	if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation-preview") == "1" then
@@ -530,6 +541,7 @@ install(
 	"<~archidroid.install.finish>"
 );
 
+resexec("exec/adumount.sh", "/efs");
 resexec("exec/adumount.sh", "/system");
 resexec("exec/adumount.sh", "/data");
 resexec("exec/adumount.sh", "/cache");

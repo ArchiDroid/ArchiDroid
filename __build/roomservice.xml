@@ -48,7 +48,6 @@
 			-->
 		<!-- /e610 -->
 		<!-- i9300 -->
-			<!--
 			<project name="CyanogenMod/android_device_samsung_i9300" path="device/samsung/i9300" remote="github" />
 			<project name="CyanogenMod/android_device_samsung_smdk4412-common" path="device/samsung/smdk4412-common" remote="github" />
 			<project name="CyanogenMod/android_hardware_samsung" path="hardware/samsung" remote="github" />
@@ -85,7 +84,6 @@
 
 			<remove-project name="CyanogenMod/android_packages_apps_Settings" />
 			<project name="ArchiDroid/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" />
-			-->
 		<!-- /i9300 -->
 		<!-- nicki -->
 			<!--

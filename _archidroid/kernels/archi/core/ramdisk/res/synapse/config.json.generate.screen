@@ -1,0 +1,211 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+{
+	name:Screen,
+	elements:[
+		$(
+			if [[ -e /sys/class/mdnie/mdnie ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"mDNie"
+					}
+				},
+				$(
+					if [[ -e /sys/class/mdnie/mdnie/mode ]]; then
+cat << __EOF
+						{
+							SOptionList:{
+								title:"mDNie mode",
+								description:"Select mDNie mode you want to use",
+								default:"$(AK_generic /sys/class/mdnie/mdnie/mode)",
+								action:"AK_generic /sys/class/mdnie/mdnie/mode",
+								values:{
+									0:"Dynamic",
+									1:"Standard",
+									2:"Natural",
+									3:"Movie",
+									4:"Auto"
+								}
+							}
+						},
+__EOF
+					fi
+				)
+				$(
+					if [[ -e /sys/class/mdnie/mdnie/scenario ]]; then
+cat << __EOF
+						{
+							SOptionList:{
+								title:"mDNie scenario",
+								description:"Select mDNie scenario you want to use",
+								default:"$(AK_generic /sys/class/mdnie/mdnie/scenario)",
+								action:"AK_generic /sys/class/mdnie/mdnie/scenario",
+								values:{
+									0:"UI",
+									1:"Video",
+									2:"Video Warm",
+									3:"Video Cold",
+									4:"Camera",
+									5:"Navigation",
+									6:"Gallery",
+									7:"VT",
+									8:"Browser",
+									9:"E-book",
+									10:"E-mail"
+								}
+							}
+						},
+__EOF
+					fi
+				)
+				$(
+					if [[ -e /sys/class/mdnie/mdnie/negative ]]; then
+cat << __EOF
+					{
+						SCheckBox:{
+							label:"mDNie negative mode",
+							description:"When enabled, all colors displayed on the screen are inverted",
+							default:$(AK_generic_ARG1_number /sys/class/mdnie/mdnie/negative),
+							action:"AK_generic_ARG1_number /sys/class/mdnie/mdnie/negative"
+						}
+					},
+__EOF
+					fi
+				)
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/class/lcd/panel/power_reduce ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"Adaptive backlight"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Adaptive backlight",
+						description:"Dynamically adjust the brightness of the display's backlight to maximize battery life while maintaining usability",
+						default:$(AK_generic /sys/class/lcd/panel/power_reduce),
+						action:"AK_generic /sys/class/lcd/panel/power_reduce"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/early_suspend/early_suspend_delay ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"Framebuffer suspend delay"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Framebuffer suspend delay",
+						description:"This value configures additional delay before switching off the screen, allowing to play various screen-off animations",
+						max:600, min:0, unit:" ms", step:100,
+						default:$(AK_generic_ARG1_number /sys/kernel/early_suspend/early_suspend_delay),
+						action:"AK_generic_ARG1_number /sys/kernel/early_suspend/early_suspend_delay"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/class/misc/touchwake ]]; then
+cat << _EOF
+				{
+					SPane:{
+						title:"TouchWake",
+						description:"Version: $(cat /sys/class/misc/touchwake/version)"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"TouchWake",
+						description:"This feature allows you to quickly turn the screen back on after it times out, just by a simple tap. Please note that this feature works only for configured delay (below) after the timeout. This is because of the wakelock that must be set in order to listen for screen events, which prevents device from going to the deep sleep, therefore drains more battery for the time when device is waiting for your action",
+						default:$(AK_generic /sys/class/misc/touchwake/enabled),
+						action:"AK_generic /sys/class/misc/touchwake/enabled"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Wakelock duration (TouchWake delay)",
+						description:"This value determines the duration of the TouchWake wakelock, which specifies maximum time the device will wait for your reaction after the screen times out. For best effects, the suggested values are 5-10. Setting this to 0 causes infinite wakelock, which will drain much more battery, therefore it's NOT suggested for longer runs",
+						max:120000, min:0, unit:" seconds", weight:0.001, step:1000,
+						default:$(AK_generic /sys/class/misc/touchwake/delay),
+						action:"AK_generic /sys/class/misc/touchwake/delay"
+					}
+				},
+				{
+					SCheckBox:{
+						label:"Set infinite wakelock duration while charging",
+						description:"Charging the device keeps it awake regardless. When this option is on, wakelock duration is set to 0, but only while device is charging",
+						default:$(AK_generic /sys/class/misc/touchwake/charger_mode),
+						action:"AK_generic /sys/class/misc/touchwake/charger_mode"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SCheckBox:{
+						label:"KnockOn",
+						description:"This feature modifies TouchWake function to require double tapping in given duration, instead of a single tap only",
+						default:$(AK_generic /sys/class/misc/touchwake/knockon),
+						action:"AK_generic /sys/class/misc/touchwake/knockon"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+				{
+					SSeekBar:{
+						title:"KnockOn duration",
+						description:"This value determines the duration of the KnockOn feature, the maximum time between double taps. Setting this to 0 causes infinite waiting",
+						max:5000, min:0, unit:" seconds", weight:0.001, step:500,
+						default:$(AK_generic /sys/class/misc/touchwake/knockon_delay),
+						action:"AK_generic /sys/class/misc/touchwake/knockon_delay"
+					}
+				},
+_EOF
+			fi
+		)
+	]
+}
+EOF

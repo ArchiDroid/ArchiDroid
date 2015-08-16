@@ -1,0 +1,48 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Read -> generic from CPU0
+# Write -> generic to all CPUs
+
+SYSFS_PREFIX="/sys/devices/system/cpu"
+
+if [[ -f "${SYSFS_PREFIX}/cpu0/${1}" ]]; then
+	if [[ -n "$2" ]]; then
+		if [[ -e "${SYSFS_PREFIX}/present" ]]; then
+			CPUS_AVAILABLE="$(($(cut -d '-' -f2 < "${SYSFS_PREFIX}/present") + 1))"
+		else
+			CPUS_AVAILABLE=1 # Well, at least one...
+		fi
+		CPU=0
+		while [[ "$CPU" -lt "$CPUS_AVAILABLE" ]]; do
+			if [[ -e "${SYSFS_PREFIX}/cpu${CPU}/${1}" ]]; then
+				echo "$2" > "${SYSFS_PREFIX}/cpu${CPU}/${1}"
+			fi
+		((CPU++))
+		done
+	else
+		cat "${SYSFS_PREFIX}/cpu0/${1}"
+	fi
+else
+	echo "0"
+fi

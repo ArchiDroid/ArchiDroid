@@ -1,0 +1,109 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+{
+	name:System,
+	elements:[
+		$(
+			if [[ -e /sys/vibrator/pwm_val ]]; then
+cat << _EOF
+				{
+					STitleBar:{
+						title:"Vibration"
+					}
+				},
+				{
+					SSeekBar:{
+						title:"Vibration intensity",
+						description:"This setting controls intensity of the vibration",
+						max:100, min:0, unit:"%",
+						default:$(AK_generic /sys/vibrator/pwm_val),
+						action:"AK_generic /sys/vibrator/pwm_val"
+					}
+				},
+_EOF
+				if [[ -e /sys/devices/virtual/timed_output/vibrator/enable ]]; then
+cat << _EOF
+					{
+						SButton:{
+							label:"Vibration test",
+							action:"AK_generic_with_response /sys/devices/virtual/timed_output/vibrator/enable 1000"
+						}
+					},
+_EOF
+				fi
+cat << _EOF
+				{
+					SDescription:{
+						description:""
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/logger_mode/logger_mode ]]; then
+cat << _EOF
+				{
+					SCheckBox:{
+						label:"Android logcat interface",
+						description:"By switching this option to off, logcat will not log anything anymore. This may reduce logcat overhead, but it will prevent you from sending any useful debug information to the developer",
+						default:$(AK_generic_ARG3 /sys/kernel/logger_mode/logger_mode),
+						action:"AK_generic_ARG3 /sys/kernel/logger_mode/logger_mode"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/kernel/printk_mode/printk_mode ]]; then
+cat << _EOF
+				{
+					SCheckBox:{
+						label:"Kernel printk interface",
+						description:"By switching this option to off, printk will not log anything anymore. This may reduce printk overhead, but it will prevent you from sending any useful debug information to the developer",
+						default:$(AK_generic_ARG3 /sys/kernel/printk_mode/printk_mode),
+						action:"AK_generic_ARG3 /sys/kernel/printk_mode/printk_mode"
+					}
+				},
+_EOF
+			fi
+		)
+		$(
+			if [[ -e /sys/fs/selinux/enforce ]]; then
+cat << _EOF
+				{
+					SCheckBox:{
+						label:"Enforcing SELinux",
+						description:"As part of the Android security model, Android uses SELinux to enforce mandatory access control (MAC) over all processes, even processes running with root/superuser privileges. SELinux enhances Android security by confining privileged processes and automating security policy creation. By switching this option to off, SELinux mode will be set to permissive (inactive). Permissive mode may help to workaround some false-positive policy denials, but dramatically decreases security. You shouldn't change that setting, unless you know that you need it",
+						default:$(AK_generic_LF /sys/fs/selinux/enforce),
+						action:"AK_generic_LF /sys/fs/selinux/enforce"
+					}
+				},
+_EOF
+			fi
+		)
+	]
+}
+EOF

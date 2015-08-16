@@ -1,0 +1,62 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Read -> get current value of disksize for given $1 zram device
+# Write -> set $2 megabytes of disksize to $1 zram device, and activate it if needed
+
+ZRAM_BLOCK="/dev/block/$1"
+ZRAM_VBLOCK="/sys/devices/virtual/block/$1"
+
+if [[ -e "$ZRAM_BLOCK" && -e "$ZRAM_VBLOCK" ]]; then
+	if [[ -z "$2" ]]; then # Read mode
+		echo $(($(cat "${ZRAM_VBLOCK}/disksize") / 1048576)) # Bytes -> Megabytes
+	else # Write mode
+		if [[ "$(($(cat "${ZRAM_VBLOCK}/disksize") / 1048576))" -ne "$2" ]]; then # Do something only when needed
+			awk '{print $1}' < /proc/swaps | while read ZRAM_BLOCK_ACTIVE; do
+				if [[ "$ZRAM_BLOCK_ACTIVE" = "$ZRAM_BLOCK" ]]; then
+					swapoff "$ZRAM_BLOCK"
+					echo 1 > "${ZRAM_VBLOCK}/reset"
+					break
+				fi
+			done
+			if [[ "$2" -gt 0 ]]; then
+				echo $(($2 * 1048576)) > "${ZRAM_VBLOCK}/disksize" # Megabytes -> Bytes
+				mkswap "$ZRAM_BLOCK"
+
+				SWAP_BIN="swapon"
+				SWAP_CMD="-p 2"
+				if ! swapon 2>&1 | grep -qi "\-p pri"; then # If swapon doesn't support priority
+					if ! busybox swapon 2>&1 | grep -qi "\-p pri"; then # If busybox swapon doesn't support priority
+						SWAP_CMD="" # Disable priority
+					else
+						SWAP_BIN="busybox swapon" # Change binary to busybox swapon, as it supports priority
+					fi
+				fi
+
+				$SWAP_BIN $SWAP_CMD "$ZRAM_BLOCK"
+			fi
+		fi
+	fi
+else
+	echo "0"
+fi

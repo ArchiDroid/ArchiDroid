@@ -1,0 +1,92 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Read -> return current preset from $1. Special: return all presets if $1 is "ALL"
+# Write -> set $2 preset in $1
+
+SYSFS_FILE="$1"
+TARGET_VALUE="$2"
+
+# Knows presets
+KNOWN_PRESETS="BassOptimization Default"
+ALL_PRESETS="$KNOWN_PRESETS Custom"
+
+PRESET_Default_1="4042 1024 0 216"
+PRESET_Default_2="7861 61765 2933 453"
+PRESET_Default_3="7256 62323 2644 1368"
+PRESET_Default_4="5774 63529 1965 4355"
+PRESET_Default_5="1380 1369 0 16384"
+
+PRESET_BassOptimization_1="4027 1031 0 276"
+PRESET_BassOptimization_2="8076 61555 456 456"
+PRESET_BassOptimization_3="$PRESET_Default_3"
+PRESET_BassOptimization_4="$PRESET_Default_4"
+PRESET_BassOptimization_5="$PRESET_Default_5"
+
+if [[ "$SYSFS_FILE" = "ALL" ]]; then
+	echo "$ALL_PRESETS"
+elif [[ -e "$SYSFS_FILE" ]]; then
+	if [[ -z "$TARGET_VALUE" ]]; then # Read mode
+		# Firstly set default booleans for all presets to true
+		for PRESET_CHOSEN in $KNOWN_PRESETS; do
+			eval PRESET_${PRESET_CHOSEN}_BOOL=1 # eval is evil
+		done
+		BAND_COUNTER=1
+		tr -d '[:alpha:]' < /sys/class/misc/boeffla_sound/eq_bands | cut -d ' ' -f 2- | (while read BANDS_CURRENT; do
+			if [[ -z "$BANDS_CURRENT" ]]; then
+				continue
+			fi
+			for PRESET_CHOSEN in $KNOWN_PRESETS; do
+				eval PRESET_VALUES="\${PRESET_${PRESET_CHOSEN}_${BAND_COUNTER}}" # eval is evil
+				if [[ "$BANDS_CURRENT" != "$PRESET_VALUES" ]]; then
+					eval PRESET_${PRESET_CHOSEN}_BOOL=0 # eval is evil
+				fi
+			done
+			((BAND_COUNTER++))
+		done
+		# Now check if any preset is still valid
+		FOUND=0
+		for PRESET_CHOSEN in $KNOWN_PRESETS; do
+			eval PRESET_BOOL="\${PRESET_${PRESET_CHOSEN}_BOOL}" # eval is evil
+			if [[ "$PRESET_BOOL" -eq 1 ]]; then
+				echo "$PRESET_CHOSEN"
+				FOUND=1
+				break
+			fi
+		done
+		if [[ "$FOUND" -eq 0 ]]; then
+			echo "Custom"
+		fi)
+	else # Write mode
+		if [[ "$TARGET_VALUE" != "Custom" ]]; then
+			for BAND in "1" "2" "3" "4" "5"; do
+				eval SYSFS_WRITE="\${PRESET_${TARGET_VALUE}_${BAND}}" # eval is evil
+				if [[ -n "$SYSFS_WRITE" ]]; then
+					echo "$BAND $SYSFS_WRITE" > "$SYSFS_FILE" # Write effect
+				fi
+			done
+		fi
+	fi
+else
+	echo "0"
+fi

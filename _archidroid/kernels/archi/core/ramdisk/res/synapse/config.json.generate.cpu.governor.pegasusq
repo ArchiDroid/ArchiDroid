@@ -1,0 +1,267 @@
+#!/system/bin/sh
+
+#     _             _     _ _  __                    _
+#    / \   _ __ ___| |__ (_) |/ /___ _ __ _ __   ___| |
+#   / _ \ | '__/ __| '_ \| | ' // _ \ '__| '_ \ / _ \ |
+#  / ___ \| | | (__| | | | | . \  __/ |  | | | |  __/ |
+# /_/   \_\_|  \___|_| |_|_|_|\_\___|_|  |_| |_|\___|_|
+#
+# Copyright 2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+THIS_GOVERNOR="pegasusq"
+
+# Check if the kernel includes this governor
+GOVERNOR_INCLUDED=0
+for GOVERNOR in $(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors); do
+	if [[ "$GOVERNOR" = "$THIS_GOVERNOR" ]]; then
+		GOVERNOR_INCLUDED=1
+		break
+	fi
+done
+if [[ "$GOVERNOR_INCLUDED" -eq 0 ]]; then
+	return
+	exit 1 # If we're in fact sourcing this file, this won't execute
+fi
+
+CURRENT_GOV="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)" # Save current governor
+echo "$THIS_GOVERNOR" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor # Turn on our governor to populate /sys/devices/system/cpu/cpufreq
+
+cat << EOF
+{
+	name:CPU ${THIS_GOVERNOR},
+	elements:[
+		{
+			SDescription:{
+				description:"NOTICE: This tab is active ONLY if your CPU governor is ${THIS_GOVERNOR}"
+			}
+		},
+		{
+			SButton:{
+				label:"Activate ${THIS_GOVERNOR} governor",
+				action:"AK_generic_with_response_check /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ${THIS_GOVERNOR}",
+				notify:[
+					{
+						on:APPLY,
+						do:[ REFRESH, APPLY ],
+						to:"AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+					}
+				]
+			}
+		},
+		{
+			SDescription:{
+				description:""
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CPU down frequency",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_freq),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_freq",
+				values:{
+					$(
+						echo "0:0, "
+						for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+						done
+					)
+				}
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CPU down rate",
+				description:"Specifies number of samples to evaluate load to scale CPU down. After cpu_down_rate samples are finished for a frequency, CPU scale-down logic is executed. In other words - before scaling down, cpu_down_rate * sampling_rate micro seconds are spend at a frequency",
+				max:40, min:0, unit:" samples",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CPU up frequency",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_freq),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_freq",
+				values:{
+					$(
+						echo "0:0, "
+						for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+							echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+						done
+					)
+				}
+			}
+		},
+		{
+			SSeekBar:{
+				title:"CPU up rate",
+				description:"Specifies number of samples to evaluate load to scale CPU up. After cpu_up_rate samples are finished for a frequency, CPU scale-up logic is executed. In other words - before scaling up, cpu_up_rate * sampling_rate micro seconds are spend at a frequency",
+				max:40, min:0, unit:" samples",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Down differential",
+				description:"Higher value of down_differential corresponds to delayed scaling down",
+				max:100, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/down_differential),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/down_differential"
+			}
+		},
+		{
+			SCheckBox:{
+				label:"DVFS debug",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/dvfs_debug),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/dvfs_debug"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Frequency step",
+				description:"",
+				max:100, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/freq_step),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/freq_step"
+			}
+		},
+		$(
+			find /sys/devices/system/cpu/cpufreq/pegasusq -name "hotplug_freq_*" | sort | while read SYSFS_FILE; do
+				SYSFS_NUMBERS="$(basename "$SYSFS_FILE" | cut -d '_' -f3-)"
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"Hotplug frequency $SYSFS_NUMBERS",
+						description:"",
+						default:$(AK_generic $SYSFS_FILE),
+						action:"AK_generic $SYSFS_FILE",
+						values:{
+							$(
+								echo "0:0, "
+								for FREQ in $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies); do
+									echo "$FREQ:\"$((FREQ / 1000)) MHz\", "
+								done
+							)
+						}
+					}
+				},
+_EOF
+			done
+		)
+		{
+			SSeekBar:{
+				title:"Hotplug lock",
+				description:"",
+				max:${CPUS_AVAILABLE}, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_lock),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_lock"
+			}
+		},
+		$(
+			find /sys/devices/system/cpu/cpufreq/pegasusq -name "hotplug_rq_*" | sort | while read SYSFS_FILE; do
+				SYSFS_NUMBERS="$(basename "$SYSFS_FILE" | cut -d '_' -f3-)"
+cat << _EOF
+				{
+					SSeekBar:{
+						title:"Hotplug RQ $SYSFS_NUMBERS",
+						description:"",
+						max:1000, min:0,
+						default:$(AK_generic $SYSFS_FILE),
+						action:"AK_generic $SYSFS_FILE",
+					}
+				},
+_EOF
+			done
+		)
+		{
+			SCheckBox:{
+				label:"Ignore nice load",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load"
+			}
+		},
+		{
+			SCheckBox:{
+				label:"I/O is busy",
+				description:"",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Maximum CPU lock",
+				description:"",
+				max:${CPUS_AVAILABLE}, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/max_cpu_lock),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/max_cpu_lock"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Minimum CPU lock",
+				description:"",
+				max:${CPUS_AVAILABLE}, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/min_cpu_lock),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/min_cpu_lock"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Sampling down factor",
+				description:"Acts as a multiplier for sampling interval for re-evaluating the load when CPU is truly busy and is on highest clock frequency. Setting to 1 makes no difference and causes CPU to immediately scale down from highest frequency. To sum up, use > 1 sampling_down_factor to avoid governor jumping down to lower frequency even on high CPU load",
+				max:100000, min:0, unit:"x multiplier",
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Sampling rate",
+				description:"",
+				max:1000000, min:0, step:10000, unit:" ms", weight:0.001,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Up CPUs",
+				description:"",
+				max:${CPUS_AVAILABLE}, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_nr_cpus),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_nr_cpus"
+			}
+		},
+		{
+			SSeekBar:{
+				title:"Up threshold",
+				description:"",
+				max:100, min:0,
+				default:$(AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold),
+				action:"AK_generic /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold"
+			}
+		},
+	]
+}
+EOF
+
+echo "$CURRENT_GOV" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor # Return to previous governor
