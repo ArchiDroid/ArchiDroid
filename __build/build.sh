@@ -23,7 +23,7 @@
 
 set -e
 
-VERSION=3.1.1
+VERSION=3.1.2
 
 # Device-based
 DEVICE="i9300" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
@@ -122,35 +122,31 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 		echo "INFO: Forcing refresh of build.prop, removing $ADOUT/system/build.prop"
 		rm -f "$ADOUT/system/build.prop"
 
-		find "$ADOUT" -mindepth 1 -maxdepth 1 -iname "*.zip" | while read ZIP; do
+		while read ZIP; do
 			echo "INFO: Removing old zip file: $ZIP"
 			rm -f "$ZIP"
-		done
+		done < <(find "$ADOUT" -mindepth 1 -maxdepth 1 -iname "*.zip")
 	fi
 
-	if [[ -d "$ADSMPREBUILTS" ]]; then
-		echo "NOTICE: SaberMod prebuilts found!"
+	# Check if we're actually using sabermod
+	if [[ "$SABERMODED" -eq 0 ]]; then
+		while read DIRECTORY; do
+			SABERMODED=1
+			break
+		done < <(find prebuilts/gcc/linux-x86 -type d -name "*sabermod*")
+	fi
 
-		# Check if we're actually using sabermod
-		if [[ "$SABERMODED" -eq 0 ]]; then
-			while read DIRECTORY; do
-				SABERMODED=1
-				break
-			done < <(find prebuilts/gcc/linux-x86 -name "*sabermod*")
-		fi
-
-		if [[ "$SABERMODED" -eq 1 ]]; then
+	if [[ "$SABERMODED" -eq 1 ]]; then
+		if [[ -d "$ADSMPREBUILTS" ]]; then
 			export LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
 			export LD_LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
-			echo "INFO: SaberMod prebuilts have been included!"
+			echo "NOTICE: SaberMod prebuilts found and included!"
 		else
-			echo "INFO: SaberMod prebuilts were NOT included, as no SaberMod toolchain has been found!"
+			echo "WARNING: SaberMod prebuilts could not be found in $ADSMPREBUILTS"
+			echo "This error is not fatal, but you may encounter problems!"
 		fi
-	else
-		echo "WARNING: SaberMod prebuilts could not be found in $ADSMPREBUILTS"
-		echo "This error is not fatal, but you may encounter problems in case of using SM toolchain"
+		sleep 1
 	fi
-	sleep 1
 
 	source build/envsetup.sh
 
