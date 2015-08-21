@@ -35,6 +35,22 @@ arrayContainsString() {
 	return 1
 }
 
+INFO() {
+	echo -e "\e[94mINFO:\e[0m $*"
+}
+
+ERROR() {
+	echo -e "\e[31mERROR:\e[0m $*"
+}
+
+SUCCESS() {
+	echo -e "\e[32mSUCCESS:\e[0m $*"
+}
+
+WARNING() {
+	echo -e "\e[33mWARNING:\e[0m $*"
+}
+
 UPDATE=0
 
 for ARG in "$@"; do
@@ -52,15 +68,15 @@ if [[ -f ../system/build.prop ]]; then
 		arm64*) ARCH="arm64" ;;
 		arm*) ARCH="arm" ;;
 	esac
-	echo "ARCH: $ARCH"
+	INFO "ARCH: $ARCH"
 
 	# Density
 	DENSITY="$(grep "ro.sf.lcd_density=" "../system/build.prop" | head -n 1 | cut -d '=' -f 2)"
-	echo "DENSITY: $DENSITY"
+	INFO "DENSITY: $DENSITY"
 
 	# Android
 	ANDROID="$(grep "ro.build.version.release=" "../system/build.prop" | head -n 1 | cut -d '=' -f 2 | rev | cut -d '.' -f 2- | rev)"
-	echo "ANDROID: $ANDROID"
+	INFO "ANDROID: $ANDROID"
 else
 	# Defaults
 	ARCH="arm"
@@ -76,22 +92,22 @@ if [[ "$UPDATE" -eq 1 ]]; then
 else
 	LATEST="$(curl "https://api.github.com/repos/opengapps/$ARCH/releases/latest" 2>/dev/null | grep "\"tag_name\":" | head -n 1 | cut -d '"' -f 4)"
 	if [[ -z "$LATEST" ]]; then
-		echo "ERROR: Could not fetch last Open GApps tags"
+		ERROR "Could not fetch last Open GApps tags"
 		exit 1
 	fi
 
 	GAPPSPACKAGE="open_gapps-$ARCH-$ANDROID-stock-$LATEST.zip"
 	if [[ -f "$GAPPSPACKAGE" ]]; then
-		echo "INFO: Newest GAPPS are applied already and --update wasn't given!"
+		INFO "Newest GAPPS are applied already and --update wasn't given!"
 		exit 0
 	fi
 
-	find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*" -exec rm -f {} \;
+	find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*.zip" -exec rm -f {} \;
 	wget "https://github.com/opengapps/$ARCH/releases/download/$LATEST/$GAPPSPACKAGE"
 fi
 
 if [[ -z "$GAPPSPACKAGE" ]]; then
-	echo "ERROR: Could not find any valid GAPPS package!"
+	ERROR "Could not find any valid GAPPS package!"
 	exit 1
 fi
 
@@ -129,12 +145,17 @@ while read TAR; do
 		while read FILE; do
 			cp -R "$FILE" "../../../_archidroid/gapps/base"
 		done < <(find "$PACKAGE/nodpi" -mindepth 1 -maxdepth 1)
+	elif [[ -d "$PACKAGE/480" ]]; then
+		WARNING "Applying 480-DPI variant for $PACKAGE"
+		while read FILE; do
+			cp -R "$FILE" "../../../_archidroid/gapps/base"
+		done < <(find "$PACKAGE/480" -mindepth 1 -maxdepth 1)
 	fi
 
 	cd ..
 	rm -rf tmp-gapps
 
-	echo "DONE: CORE $PACKAGE"
+	SUCCESS "CORE $PACKAGE"
 done < <(find Core -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
 
 
@@ -144,7 +165,7 @@ while read TAR; do
 	PACKAGE="$(basename "$TAR" | cut -d '.' -f 1)"
 
 	if [[ ! -d "../../_archidroid/gapps/extra/$PACKAGE" ]]; then
-		echo "INFO: Skipping $PACKAGE"
+		INFO "Skipping $PACKAGE"
 		continue
 	fi
 
@@ -175,12 +196,17 @@ while read TAR; do
 		while read FILE; do
 			cp -R "$FILE" "../../../_archidroid/gapps/extra/$PACKAGE"
 		done < <(find "$PACKAGE/nodpi" -mindepth 1 -maxdepth 1)
+	elif [[ -d "$PACKAGE/480" ]]; then
+		WARNING "Applying 480-DPI variant for $PACKAGE"
+		while read FILE; do
+			cp -R "$FILE" "../../../_archidroid/gapps/extra/$PACKAGE"
+		done < <(find "$PACKAGE/480" -mindepth 1 -maxdepth 1)
 	fi
 
 	cd ..
 	rm -rf tmp-gapps
 
-	echo "DONE: OPTIONAL $PACKAGE"
+	SUCCESS "OPTIONAL $PACKAGE"
 done < <(find GApps -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
 
 cd ..
@@ -190,7 +216,7 @@ rm -rf tmp-gapps
 while read FOLDER; do
 	PACKAGE="$(basename "$FOLDER")"
 	if ! arrayContainsString "$PACKAGE" "${UPDATEDEXTRAS[@]}"; then
-		echo "WARNING: $PACKAGE doesn't exist anymore!"
+		WARNING "$PACKAGE doesn't exist anymore!"
 		rm -rf "$FOLDER"
 	fi
 done < <(find "../_archidroid/gapps/extra" -mindepth 1 -maxdepth 1 -type d)
