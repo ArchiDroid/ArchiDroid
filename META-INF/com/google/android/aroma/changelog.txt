@@ -1,4 +1,6 @@
 ArchiDroid 3.1.2
+- Switched arm-linux-androideabi toolchain back to SaberMod
+- Fixed wrong auto-vectorization of ID3 iterator causing various media crashes with badly-tagged MP3s
 - Newest ArchiKernel snapshot
 - Updated GAPPS
 - Updated Xposed
