@@ -26,6 +26,9 @@
 		<remove-project name="CyanogenMod/android_external_bluetooth_bluedroid" />
 		<project name="ArchiDroid/android_external_bluetooth_bluedroid" path="external/bluetooth/bluedroid" remote="github" />
 
+		<remove-project name="CyanogenMod/android_frameworks_av" />
+		<project name="ArchiDroid/android_frameworks_av" path="frameworks/av" remote="github" />
+
 		<remove-project name="CyanogenMod/android_libcore" />
 		<project name="ArchiDroid/android_libcore" path="libcore" remote="github" />
 
@@ -73,9 +76,6 @@
 
 			<remove-project name="CyanogenMod/android_bionic" />
 			<project name="ArchiDroid/android_bionic" path="bionic" remote="github" />
-
-			<remove-project name="CyanogenMod/android_frameworks_av" />
-			<project name="ArchiDroid/android_frameworks_av" path="frameworks/av" remote="github" />
 
 			<remove-project name="CyanogenMod/android_frameworks_native" />
 			<project name="ArchiDroid/android_frameworks_native" path="frameworks/native" remote="github" />
