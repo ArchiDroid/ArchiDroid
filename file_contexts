@@ -424,6 +424,7 @@
 /system/vendor/bin/qti                          u:object_r:qti_exec:s0
 /system/bin/wcnss_service                       u:object_r:wcnss_service_exec:s0
 /system/vendor/bin/hbtp_daemon                  u:object_r:hbtp_exec:s0
+/system/bin/wcnss_filter                        u:object_r:wcnss_filter_exec:s0
 
 ###################################
 # sysfs files

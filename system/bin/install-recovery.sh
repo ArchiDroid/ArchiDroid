@@ -1,10 +1,10 @@
 #!/system/bin/sh
 if [ -f /system/etc/recovery-transform.sh ]; then
-  exec sh /system/etc/recovery-transform.sh 11706368 49a59e65085a01aa8ec19d4eb551aae9be4173d9 13717504 fa9fe2fd143deefdf8dd1fb84c7ab68c23f81dad
+  exec sh /system/etc/recovery-transform.sh 11767808 52eea8c640897b1f3e9cbb991ca7534047fc5577 13803520 6d582faa58262fe67194b4b77ea843875b1393e6
 fi
 
-if ! applypatch -c EMMC:/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel:11706368:49a59e65085a01aa8ec19d4eb551aae9be4173d9; then
-  applypatch -b /system/etc/recovery-resource.dat EMMC:/dev/block/platform/msm_sdcc.1/by-name/boot:13717504:fa9fe2fd143deefdf8dd1fb84c7ab68c23f81dad EMMC:/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel 49a59e65085a01aa8ec19d4eb551aae9be4173d9 11706368 fa9fe2fd143deefdf8dd1fb84c7ab68c23f81dad:/system/recovery-from-boot.p && log -t recovery "Installing new recovery image: succeeded" || log -t recovery "Installing new recovery image: failed"
+if ! applypatch -c EMMC:/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel:11767808:52eea8c640897b1f3e9cbb991ca7534047fc5577; then
+  applypatch -b /system/etc/recovery-resource.dat EMMC:/dev/block/platform/msm_sdcc.1/by-name/boot:13803520:6d582faa58262fe67194b4b77ea843875b1393e6 EMMC:/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel 52eea8c640897b1f3e9cbb991ca7534047fc5577 11767808 6d582faa58262fe67194b4b77ea843875b1393e6:/system/recovery-from-boot.p && log -t recovery "Installing new recovery image: succeeded" || log -t recovery "Installing new recovery image: failed"
 else
   log -t recovery "Recovery image already installed"
 fi
