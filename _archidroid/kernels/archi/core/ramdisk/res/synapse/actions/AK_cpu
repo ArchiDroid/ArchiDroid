@@ -26,7 +26,7 @@
 
 SYSFS_PREFIX="/sys/devices/system/cpu"
 
-if [[ -f "${SYSFS_PREFIX}/cpu0/${1}" ]]; then
+if [[ -e "${SYSFS_PREFIX}/cpu0/${1}" ]]; then
 	if [[ -n "$2" ]]; then
 		if [[ -e "${SYSFS_PREFIX}/present" ]]; then
 			CPUS_AVAILABLE="$(($(cut -d '-' -f2 < "${SYSFS_PREFIX}/present") + 1))"

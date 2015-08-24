@@ -26,7 +26,7 @@
 
 SYSFS_CPU="/sys/devices/system/cpu/cpu${1}"
 
-if [[ -f "$SYSFS_CPU/online" ]]; then
+if [[ -e "$SYSFS_CPU/online" ]]; then
 	if [[ "$(cat "$SYSFS_CPU/online")" -eq 0 ]]; then
 		echo "1" > "$SYSFS_CPU/online"
 		echo "CPU${1} Online!"
