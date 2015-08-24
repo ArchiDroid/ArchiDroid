@@ -1,3 +1,12 @@
+ArchiDroid 3.1.3
+- Enabled kCollectorTypeHSpaceCompact for ART
+- Changed malloc implementation to dlmalloc
+# Both of above changes should greatly improve memory management and cut memory usage on low-memory devices
+
+- Newest ArchiKernel snapshot
+- AK: Added mpdecision switch to Synapse [nicki/Qualcomm]
+- Updated GAPPS, sources and other common things
+
 ArchiDroid 3.1.2
 - Switched arm-linux-androideabi toolchain back to SaberMod
 - Fixed wrong auto-vectorization of ID3 iterator causing various media crashes with badly-tagged MP3s
@@ -5,16 +14,3 @@ ArchiDroid 3.1.2
 - Updated GAPPS
 - Updated Xposed
 - Other misc changes and bugfixes
-
-ArchiDroid 3.1.1
-- ArchiDroid Optimizations V4.1
-- ArchiDroid is now built with UBERTC 4.9 androideabi (instead of SaberMod 4.9) and 5.2 ArchiToolchain eabi (instead of 5.1)
-- Newest ArchiKernel snapshot
-- Updated GAPPS
-- Updated Xposed
-- Other misc changes and bugfixes
-
-
-ArchiDroid 3.1
-
-- Initial release
