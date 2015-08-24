@@ -9,7 +9,7 @@
 		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
 		<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-5.2-arm-linux-gnueabihf" />
 		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" />
-		<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" remote="github" revision="uber-4.9-arm-linux-androideabi" />
+		<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" remote="github" revision="sabermod-4.9-arm-linux-androideabi" />
 	<!-- /Toolchain -->
 
 	<!-- Added projects -->
@@ -25,6 +25,9 @@
 
 		<remove-project name="CyanogenMod/android_external_bluetooth_bluedroid" />
 		<project name="ArchiDroid/android_external_bluetooth_bluedroid" path="external/bluetooth/bluedroid" remote="github" />
+
+		<remove-project name="CyanogenMod/android_frameworks_av" />
+		<project name="ArchiDroid/android_frameworks_av" path="frameworks/av" remote="github" />
 
 		<remove-project name="CyanogenMod/android_libcore" />
 		<project name="ArchiDroid/android_libcore" path="libcore" remote="github" />
@@ -73,9 +76,6 @@
 
 			<remove-project name="CyanogenMod/android_bionic" />
 			<project name="ArchiDroid/android_bionic" path="bionic" remote="github" />
-
-			<remove-project name="CyanogenMod/android_frameworks_av" />
-			<project name="ArchiDroid/android_frameworks_av" path="frameworks/av" remote="github" />
 
 			<remove-project name="CyanogenMod/android_frameworks_native" />
 			<project name="ArchiDroid/android_frameworks_native" path="frameworks/native" remote="github" />

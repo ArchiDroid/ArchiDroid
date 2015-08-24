@@ -1,3 +1,11 @@
+ArchiDroid 3.1.2
+- Switched arm-linux-androideabi toolchain back to SaberMod
+- Fixed wrong auto-vectorization of ID3 iterator causing various media crashes with badly-tagged MP3s
+- Newest ArchiKernel snapshot
+- Updated GAPPS
+- Updated Xposed
+- Other misc changes and bugfixes
+
 ArchiDroid 3.1.1
 - ArchiDroid Optimizations V4.1
 - ArchiDroid is now built with UBERTC 4.9 androideabi (instead of SaberMod 4.9) and 5.2 ArchiToolchain eabi (instead of 5.1)
