@@ -3,6 +3,7 @@ ArchiDroid 3.1.3
 - Changed malloc implementation to dlmalloc
 # Both of above changes should greatly improve memory management and cut memory usage on low-memory devices
 
+- Implemented dex-preoptimization for ART
 - Newest ArchiKernel snapshot
 - AK: Added mpdecision switch to Synapse [nicki/Qualcomm]
 - Updated GAPPS, sources and other common things
