@@ -310,6 +310,7 @@
 /dev/wcnss_ctrl                                 u:object_r:wcnss_device:s0
 /dev/wcnss_wlan                                 u:object_r:wcnss_device:s0
 /dev/pta                                        u:object_r:pta_device:s0
+/dev/mdss_rotator                               u:object_r:graphics_device:s0
 /dev/hbtp_input                                 u:object_r:hbtp_device:s0
 /dev/jdi-bu21150                                u:object_r:bu21150_device:s0
 /dev/voice_svc                                  u:object_r:voice_device:s0
@@ -440,6 +441,7 @@
 /sys/devices/qpnp-charger.*/power_supply/battery(/.*)?              u:object_r:sysfs_battery_supply:s0
 /sys/devices/system/cpu/cpu0/rq-stats/*                             u:object_r:sysfs_rqstats:s0
 /sys/devices/virtual/graphics/fb([0-2])+/idle_time                  u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb([0-2])+/dynamic_fps                u:object_r:sysfs_graphics:s0
 /sys/devices/virtual/graphics/fb([0-2])+/product_description        u:object_r:sysfs_graphics:s0
 /sys/devices/virtual/graphics/fb([0-2])+/vendor_name                u:object_r:sysfs_graphics:s0
 /sys/devices/virtual/hsicctl/hsicctl1[0-9]/modem_wait               u:object_r:sysfs_hsic_modem_wait:s0
