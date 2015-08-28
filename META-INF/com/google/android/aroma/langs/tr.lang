@@ -145,11 +145,6 @@ archidroid.tweaks.navibar.desc=Gezinme çubuğunu açar ve donanım tuşlarını
 archidroid.tweaks.navibar.hwenabled=Donanım tuşlarını etkinleştir
 archidroid.tweaks.navibar.hwenabled.desc=Varsayılan olarak, gezinti çubuğu donanım tuşlarını devre dışı bırakır. Eğer her ikisinide aynı anda kullanmak istiyorsanız bu özelliği seçin
 
-archidroid.xposed.desc=Xposed Framework çeşitli üçüncü taraf modifikasyonlar yapma imkânı verir daha yavaş ve daha istikrarsız sisteme mâl olur.Tavsiye edilmez
-archidroid.xposed.appsettings.desc=Bu modül, özel çözünürlük, keep-in-memory flag ve başka uygulama başına ayarlar yapma imkânı verir
-archidroid.xposed.gravitybox.desc=Yüzlerce Uygulama skeleti Modülü modifikasyonu içeren Tümü bir arada Xposed modülü 
-archidroid.xposed.xprivacy.desc=Gizliliğinizi korumak istiyorsanız, bu modül tam size göre. Bu uygulama ile yüklü her uygulama için izinleri kesin olarak ayrıntıları ile tayin etmek mümkün olacak
-
 
 ### AROMA strings
 text_about=Hakkında

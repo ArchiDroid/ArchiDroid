@@ -145,11 +145,6 @@ archidroid.tweaks.navibar.desc=Bekapcsolja a navigációs sávot, és kikapcsolj
 archidroid.tweaks.navibar.hwenabled=Hardware-s gombok aktiválása
 archidroid.tweaks.navibar.hwenabled.desc=Alapból a navigációs sáv kikapcsolja a hardweres gombokat. Válaszd ezt, ha mindkét navigációs módot használni szeretnéd
 
-archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
-archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
-archidroid.xposed.gravitybox.desc=Sokoldalú Xposed modul, mely magában foglal több száz rendszer módosítást, melyek később ki-be kapcsolhatók a felhasználó által
-archidroid.xposed.xprivacy.desc=Ha szereted megóvni személyes adataidat, akkor ezt neked találták ki. Ezzel a programmal módosíthatod az egyes programok jogosultságait.
-
 
 ### AROMA strings
 text_about=Részletek

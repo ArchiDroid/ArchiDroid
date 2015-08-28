@@ -145,11 +145,6 @@ archidroid.tweaks.navibar.desc=Włącza pasek nawigacyjny na dole ekranu, oraz w
 archidroid.tweaks.navibar.hwenabled=Włącz przyciski fizyczne
 archidroid.tweaks.navibar.hwenabled.desc=Domyślnie włączenie paska nawigacyjnego wyłącza przyciski fizyczne. Zaznacz tę opcję, jeśli chciałbyś mieć dostępne obydwie metody nawigacji
 
-archidroid.xposed.desc=Framework Xposed pozwala na różne modyfikacje aplikacji trzecich w locie, za cenę o wiele wolniejszego i mniej stabilnego systemu. Nie polecane
-archidroid.xposed.appsettings.desc=Ten moduł pozwala na oddzielne ustawienia dla każdej aplikacji m.in niestandardową głębię ekranu czy wymuszenie pozostawienia aplikacji w pamięci
-archidroid.xposed.gravitybox.desc=Moduł Xposed typu "Wszystko w jednym", który zawiera setki przydatnych modyfikacji, które to mogą być później włączane i wyłączane w zależności od twoich potrzeb
-archidroid.xposed.xprivacy.desc=Jeśli cenisz sobie swoją prywatność, ten moduł jest dla ciebie. Dzięki niemu będziesz w stanie precyzyjnie określić uprawnienia dla każdej zainstalowanej aplikacji
-
 
 ### AROMA strings
 text_about=O programie

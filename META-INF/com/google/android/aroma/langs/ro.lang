@@ -145,11 +145,6 @@ archidroid.tweaks.navibar.desc=Activeaza bara de navigare si dezactiveaza butoan
 archidroid.tweaks.navibar.hwenabled=Activeaza butoanele hardware
 archidroid.tweaks.navibar.hwenabled.desc=In mod implicit, bara de navigare dezactiveaza butoanele hardware. Selectati daca preferati sa aveti ambele metode de navigare
 
-archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
-archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
-archidroid.xposed.gravitybox.desc=Modul Xposed All-In-One ce contine sute de modificari ale platformei, ce pot fi activate/dezactivate mai tarziu conform preferintelor dvs.
-archidroid.xposed.xprivacy.desc=Daca doriti sa va protejati confidentialitatea, acest modul este pentru dvs. Cu aceasta aplicatie veti avea posibilitatea sa specificati permisiunile pentru fiecare aplicatie instalata
-
 
 ### AROMA strings
 text_about=Despre
