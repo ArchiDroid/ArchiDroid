@@ -145,11 +145,6 @@ archidroid.tweaks.navibar.desc=Включает панель управлени�
 archidroid.tweaks.navibar.hwenabled=Включить аппаратные кнопки
 archidroid.tweaks.navibar.hwenabled.desc=По умолчанию, панель управления отключает аппаратные кнопки. Выберите эту опцию если Вы хотите иметь два способа навигации
 
-archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
-archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
-archidroid.xposed.gravitybox.desc=All-In-One Xposed модуль, который содержит сотни разнообразных настроек
-archidroid.xposed.xprivacy.desc=Если Вы предпочитаете конфиденциальность, этот модуль для Вас. С этой программой Вы сможете тонко настроить права доступа для всех установленных программ
-
 
 ### AROMA strings
 text_about=О прошивке

@@ -145,11 +145,6 @@ archidroid.tweaks.navibar.desc=Dit zet de navigatie bar aan, en schakelt de hard
 archidroid.tweaks.navibar.hwenabled=Zet de hardware toetsen aan
 archidroid.tweaks.navibar.hwenabled.desc=Normaal gesproken schakelt de navigatiebalk de hardware toetsen uit. Selecteer deze optie als je beide navigatieopties beschikbaar wilt hebben
 
-archidroid.xposed.desc=Xposed Framework biedt de mogelijkheid om het systeem aan te kunnen passen door middel van apps van derden, ten koste van snelheid en stabiliteit. Niet aanbevolen
-archidroid.xposed.appsettings.desc=Deze module biedt de mogelijkheid om instellingen per applicatie aan te passen, zoals een aangepaste pixeldichtheid, of dat de app in het werkgeheugen blijft, etc.
-archidroid.xposed.gravitybox.desc=Allesomvattende Xposed module die enorm veel framework modificaties bevat
-archidroid.xposed.xprivacy.desc=Als je je persoonsgegevens wilt beschermen, is deze app voor jou. Hiermee kan je precies elke permissie beheren voor elke geïnstalleerde app
-
 
 ### AROMA strings
 text_about=Over

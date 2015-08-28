@@ -145,11 +145,6 @@ archidroid.tweaks.navibar.desc=Aktiviert die Navigationsleiste und deaktiviert d
 archidroid.tweaks.navibar.hwenabled=Aktiviere Hardwaretasten
 archidroid.tweaks.navibar.hwenabled.desc=Navigationsleiste deaktiviert standardmäßig die Hardwaretasten. Wähle diese Option, wenn du beide Navigationsmethoden verfügbar machen möchtest
 
-archidroid.xposed.desc=Xposed Framework allows for various third-party modifications on the fly, for the cost of much slower and more unstable system. Not recommended
-archidroid.xposed.appsettings.desc=This module allows you to set per-app settings, such as custom density, keep-in-memory flag etc.
-archidroid.xposed.gravitybox.desc=All-In-One Xposed Modul, das hunderte nützliche Framework-Änderungen enthält
-archidroid.xposed.xprivacy.desc=Wenn du gerne deine Privatsphäre schützen willst, ist dieses Modul für dich. Mit dieser App wirst du in der Lage sein, die genauen Berechtigungen für jede installierte App anzugeben. Absolut Empfohlen
-
 
 ### AROMA strings
 text_about=Über
