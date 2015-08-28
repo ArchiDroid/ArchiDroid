@@ -600,59 +600,6 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 				delete_recursive("/system/app/VisualizationWallpapers");
 			endif;
 
-		set_progress(0.80);
-
-
-		##############
-		### XPOSED ###
-		##############
-
-		if file_getprop("/tmp/aroma-data/archidroid.prop", "xposed") == "1" then
-
-			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Xposed framework");
-
-			# Xposed requires some additional work
-			package_extract_file("_archidroid/apps/xposed/xposed.sh", "/tmp/xposed.sh");
-			set_metadata("/tmp/xposed.sh", "uid", 0, "gid", 0, "mode", 0755);
-			run_program("/tmp/xposed.sh");
-			delete("/tmp/xposed.sh");
-
-			# EXTRACT
-			package_extract_dir("_archidroid/apps/xposed/xposed", "/");
-
-			# PERMISSIONS
-			set_metadata("/system/xposed.prop", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-			set_metadata_recursive("/system/app/Xposed", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
-			set_metadata("/system/bin/app_process32_xposed", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:zygote_exec:s0");
-			set_metadata("/system/bin/dex2oat", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:dex2oat_exec:s0");
-			set_metadata("/system/bin/oatdump", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-			set_metadata("/system/bin/patchoat", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:dex2oat_exec:s0");
-			set_metadata("/system/framework/XposedBridge.jar", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-			set_metadata("/system/lib/libart.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-			set_metadata("/system/lib/libart-compiler.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-			set_metadata("/system/lib/libart-disassembler.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-			set_metadata("/system/lib/libsigchain.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-			set_metadata("/system/lib/libxposed_art.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-
-			# Optional modules
-			if file_getprop("/tmp/aroma-data/archidroid.prop", "xposed-appsettings") == "1" then
-				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Including App Settings module");
-				package_extract_dir("_archidroid/apps/xposed/appsettings", "/");
-				set_metadata_recursive("/system/app/AppSettings", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
-			endif;
-			if file_getprop("/tmp/aroma-data/archidroid.prop", "xposed-gravitybox") == "1" then
-				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Including GravityBox module");
-				package_extract_dir("_archidroid/apps/xposed/gravitybox", "/");
-				set_metadata_recursive("/system/app/GravityBox", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
-			endif;
-			if file_getprop("/tmp/aroma-data/archidroid.prop", "xposed-xprivacy") == "1" then
-				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Including XPrivacy module");
-				package_extract_dir("_archidroid/apps/xposed/xprivacy", "/");
-				set_metadata_recursive("/system/app/XPrivacy", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
-			endif;
-
-		endif;
-
 		set_progress(0.82);
 
 

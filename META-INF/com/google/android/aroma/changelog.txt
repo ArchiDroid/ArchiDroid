@@ -1,11 +1,9 @@
 ArchiDroid 3.1.3
-- Enabled kCollectorTypeHSpaceCompact for ART
-- Changed malloc implementation to dlmalloc
-# Both of above changes should greatly improve memory management and cut memory usage on low-memory devices
-
+- [i9300] Changed malloc implementation to dlmalloc
 - Implemented dex-preoptimization for ART
+- Removed xposed due to incompatibility with dex-preoptimized ART
 - Newest ArchiKernel snapshot
-- AK: Added mpdecision switch to Synapse [nicki/Qualcomm]
+- [nicki] AK: Added mpdecision switch to Synapse
 - Updated GAPPS, sources and other common things
 
 ArchiDroid 3.1.2
