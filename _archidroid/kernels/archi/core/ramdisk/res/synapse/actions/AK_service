@@ -21,18 +21,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Read -> generic
-# Write -> ON/OFF switch, with response to stdout
+# Read -> return current status (alive) of the service/process
+# Write -> start/stop given service/process, if needed
 
-SYSFS_CPU="/sys/devices/system/cpu/cpu${1}"
-
-if [[ -e "$SYSFS_CPU/online" ]]; then
-	if [[ "$(cat "$SYSFS_CPU/online")" -eq 0 ]]; then
-		echo "1" > "$SYSFS_CPU/online"
-		echo "CPU${1} Online!"
+if [[ -n "$1" ]]; then
+	BIN_PATH="$(which "$1")"
+	if [[ -f "$BIN_PATH" ]]; then
+		if pidof "$1" >/dev/null 2>&1; then
+			PROCESS_ALIVE=1
+		else
+			PROCESS_ALIVE=0
+		fi
+		if [[ -n "$2" ]]; then
+			if [[ "$2" -eq 1 && "$PROCESS_ALIVE" -eq 0 ]]; then
+				start "$1"
+			elif [[ "$2" -eq 0 && "$PROCESS_ALIVE" -eq 1 ]]; then
+				stop "$1"
+			fi
+		else
+			echo "$PROCESS_ALIVE"
+		fi
 	else
-		echo "0" > "$SYSFS_CPU/online"
-		echo "CPU${1} Offline!"
+		echo "0"
 	fi
 else
 	echo "0"

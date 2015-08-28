@@ -67,6 +67,25 @@ _EOF
 				title:"CPU frequency scaling"
 			}
 		},
+		$(
+			if [[ -f /system/bin/mpdecision ]]; then
+cat << _EOF
+				{
+					SCheckBox:{
+						label:"MPDecision daemon",
+						description:"Qualcomm SoC uses proprietary binary called MPDecision to manage hotplugging of extra CPU cores. This greatly improves battery life but also prevents any other hotplugging solutions or manual hotplug found below from working. Also, while mpdecision is active you can't change any CPU1+ properties (such as max/min frequency). This switch allows you to disable mpdecision, you should do so only if you know what you're doing, as this will potentially decrease battery life and cause all CPU cores to be up and running whole the time, unless you decide to use other hotplugging solution or hotplug cores manually",
+						default:1,
+						action:"AK_service mpdecision"
+					}
+				},
+				{
+					SDescription:{
+						description:""
+					}
+				},
+_EOF
+			fi
+		)
 		{
 			SLiveLabel:{
 				title:"CPU frequency",
@@ -143,8 +162,8 @@ _EOF
 			SOptionList:{
 				title:"CPU governor",
 				description:"CPU governor balances performance and battery usage within min and max frequency ranges specified above. In addition to frequency scaling, on exynos4 board CPU governor is also responsible for CPU hotplugging (turning on and off the CPU cores). Most of the governors allow further tweaking of values used in their algorithms, so you can set them exactly as you want",
-				default:"$(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)",
-				action:"AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+				default:"$(AK_cpu cpufreq/scaling_governor)",
+				action:"AK_cpu cpufreq/scaling_governor",
 				values:[
 					$(
 						for GOVERNOR in $(AK_generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors); do
