@@ -324,7 +324,7 @@ Name: system/priv-app/DefaultContainerService/arm/DefaultContainerServ
 SHA1-Digest: 2sN9Ok1z3a1ORWEGOsela1JR+AI=
 
 Name: system/framework/arm/org.cyanogenmod.platform.odex
-SHA1-Digest: uvScI04KfbSFvV4cIsoIr+hDNE4=
+SHA1-Digest: EbnfE8va8BXSrer7Z3Dph0/jlpk=
 
 Name: system/lib/libOmxCore.so
 SHA1-Digest: 8XPphZrbZt/elniNLQMzuLIakAE=
@@ -640,7 +640,7 @@ Name: system/media/audio/notifications/Aldebaran.ogg
 SHA1-Digest: aJzy90WKZeAT+vNuaKX1YVLnLyk=
 
 Name: system/framework/ethernet-service.jar
-SHA1-Digest: VkbtVoXnel6V6aQNUbuNoDtZF3Y=
+SHA1-Digest: IrVSRtqCsrym5KqAjoZ9xNs91bY=
 
 Name: system/lib/libcutils.so
 SHA1-Digest: Gcnn4fkyYAdenVrbCQKKhGXRGu8=
@@ -721,7 +721,7 @@ Name: system/etc/nano/nanorc.nanorc
 SHA1-Digest: vsB80KMr5uks+iPsTV7dlHCzJWw=
 
 Name: system/bin/install-recovery.sh
-SHA1-Digest: 1QKw60QlcWxrQNJnGaFhpmhBQDs=
+SHA1-Digest: tqPw8pzMrE/zmvO5dErkYbiIpwc=
 
 Name: system/etc/security/cacerts/9d6523ce.0
 SHA1-Digest: C6avpfqbgwsn0cgkuBHS4OI6wbg=
@@ -805,7 +805,7 @@ Name: system/app/UserDictionaryProvider/UserDictionaryProvider.apk
 SHA1-Digest: iFq/rT/GQbMDbMz00v+zXxvQvtQ=
 
 Name: system/recovery-from-boot.p
-SHA1-Digest: ivzJYlAYaMuuIEp/HpRnXL1HkPs=
+SHA1-Digest: RBhGCspvSDG/kANVIqHCihAVNcY=
 
 Name: system/media/audio/alarms/Alarm_Buzzer.ogg
 SHA1-Digest: VtCKqWvleTvqHgGxm4oVDA0RBfU=
@@ -874,7 +874,7 @@ Name: system/etc/permissions/platform.xml
 SHA1-Digest: lVW2BBKPcnXM6m2jyr25VG3MdS4=
 
 Name: system/framework/qcom.fmradio.jar
-SHA1-Digest: hJlQpjEcNSefAm53k1QQJiGKVFE=
+SHA1-Digest: BD6Dp7DjhwCQfIO+1C3Ju2rQHKs=
 
 Name: system/app/PhotoTable/arm/PhotoTable.odex.gz
 SHA1-Digest: PedGDdKvs6CeOlP8+6o8EIYJevg=
@@ -1052,10 +1052,10 @@ Name: system/bin/bdt
 SHA1-Digest: hz4qYtGTMsVwjFKCr/0rRNgLUQM=
 
 Name: system/app/FM2/FM2.apk
-SHA1-Digest: uvlCsX33++B8kCYkR/WtBJ68VNc=
+SHA1-Digest: HAfZAH4BAmiWs+dsJypz+JqihO8=
 
 Name: system/priv-app/Mms/arm/Mms.odex.gz
-SHA1-Digest: GYhxCPbAAsmvR9ckUuPJQuNFyt0=
+SHA1-Digest: GOLOy8qFFMPwjqWhSiX5ipEA3IY=
 
 Name: system/etc/permissions/com.android.location.provider.xml
 SHA1-Digest: LTdinhy89ODvYRYxUm8yTOSA5VM=
@@ -1139,7 +1139,7 @@ Name: system/fonts/NotoSansBengali-Regular.ttf
 SHA1-Digest: MoTbFri3U2Ccc5NZsbfRCLf6BPE=
 
 Name: system/priv-app/Mms/Mms.apk
-SHA1-Digest: 4LM32VBj3YOXwfA4M+CHbS1dcEw=
+SHA1-Digest: MmXlFpxuDynxiAGmu8RNxZ0CV58=
 
 Name: system/lib/libjavacore.so
 SHA1-Digest: md2otuVOUWqcZ1O219/FKVHrlIA=
@@ -1480,7 +1480,7 @@ Name: system/app/UserDictionaryProvider/arm/UserDictionaryProvider.ode
 SHA1-Digest: R4nbamuvCEkU2NApOYS2dSCK+ms=
 
 Name: file_contexts
-SHA1-Digest: LWowTYPSJDlBwhtTKF+s+3HR/wg=
+SHA1-Digest: CxWDXXqKupyhtHFVBWtUUCVMjZc=
 
 Name: system/priv-app/CyanogenSetupWizard/arm/CyanogenSetupWizard.odex
  .gz
@@ -1505,7 +1505,7 @@ Name: system/media/audio/notifications/Drip.ogg
 SHA1-Digest: sE+btoNoJLKDl3c9m4fbGnA/+UY=
 
 Name: recovery/recovery-from-boot.p
-SHA1-Digest: ivzJYlAYaMuuIEp/HpRnXL1HkPs=
+SHA1-Digest: RBhGCspvSDG/kANVIqHCihAVNcY=
 
 Name: system/etc/hostapd/hostapd_default.conf
 SHA1-Digest: GA9Xi5tindGGxiGuShQEqjxShOc=
@@ -1719,7 +1719,7 @@ Name: system/etc/init.qcom.baseband.sh
 SHA1-Digest: wzI59+R/bex46KIq1XeraU6JELk=
 
 Name: META-INF/com/android/metadata
-SHA1-Digest: OvS9M6hmNaV/9gVZFafk0XrukpE=
+SHA1-Digest: GwX6hBl1aRCkBNkqUlqfo+O03fk=
 
 Name: system/priv-app/CellBroadcastReceiver/CellBroadcastReceiver.apk
 SHA1-Digest: zGwucjFd6zPaN38/OMFGOSyeKzo=
@@ -1848,7 +1848,7 @@ Name: system/etc/security/cacerts/5f47b495.0
 SHA1-Digest: PYa9YKJqJC6Y5T49dE0G0koN/KA=
 
 Name: system/app/WhisperPush/WhisperPush.apk
-SHA1-Digest: quar3TLzoNtRdHis6ihSUpMPBfM=
+SHA1-Digest: h6EooBqhsRjVbuCEtxKb8Oifjhw=
 
 Name: system/etc/terminfo/x/xterm-vt220
 SHA1-Digest: LsJqd1EIcGm9PeEvZxCYSckHcD0=
@@ -2365,7 +2365,7 @@ Name: system/lib/libGLESv2.so
 SHA1-Digest: M9mcXTrp8c5CD2EXAhXowxN4EBw=
 
 Name: system/build.prop
-SHA1-Digest: Q0QGOz0BUvxdto+lcibBGbgyhs4=
+SHA1-Digest: Qizl2XB+/V2KFSY2QtHgep7DRFE=
 
 Name: system/media/audio/ringtones/Growl.ogg
 SHA1-Digest: Sw2PM10h0ouQLIH8v21n7myXN7I=
@@ -2678,7 +2678,7 @@ Name: system/media/audio/notifications/Castor.ogg
 SHA1-Digest: boqnmu0qwPumHqpv++nFxngwdtg=
 
 Name: system/framework/arm/qcom.fmradio.odex
-SHA1-Digest: NEJizbtX8rtm9IVn9Ko9PCbqNo0=
+SHA1-Digest: H4WKsSOUGcSQkI13wZlKvAJ80jg=
 
 Name: install/bin/backuptool.functions
 SHA1-Digest: M6nPp7gWHXOBhTxkNaTc6beUFzw=
@@ -3138,7 +3138,7 @@ Name: system/framework/settings.jar
 SHA1-Digest: Vhg9q2I7UtPff3AYLxWwyJ2ZSZk=
 
 Name: system/framework/org.cyanogenmod.platform.jar
-SHA1-Digest: fTXVMpNz9aGekfl5JZlcOgRy1aQ=
+SHA1-Digest: twu+z7JWTyeDXwg1hMNKrinLnDQ=
 
 Name: system/etc/security/cacerts/7d453d8f.0
 SHA1-Digest: f7P3Fg1JSBn2fSiBH09ShiU7G1Y=
@@ -3159,7 +3159,7 @@ Name: system/media/audio/ringtones/Sceptrum.ogg
 SHA1-Digest: AKHPnHEQK9ZBH86LZrqy6z4Eh8w=
 
 Name: system/app/WhisperPush/arm/WhisperPush.odex.gz
-SHA1-Digest: YRr6oufGIr5GuYm3OVZ3rPq4msA=
+SHA1-Digest: SA4WwU83fl877Qv13N5KhGfZaq4=
 
 Name: system/media/audio/notifications/Heaven.ogg
 SHA1-Digest: jGewjg2m5+5bVmE98bUc78RO9ts=
@@ -3240,7 +3240,7 @@ Name: system/lib/libchromatix_s5k4e1_2nd_preview.so
 SHA1-Digest: ajOq86DGWYjdWSmgRRWy3NeA534=
 
 Name: system/framework/arm/wifi-service.odex
-SHA1-Digest: Qtq0K3aycQbQclJaSOotxPFvOFI=
+SHA1-Digest: paYoXUIdtNxlpa0KFDq8oIvHDAU=
 
 Name: system/vendor/lib/mediadrm/libdrmclearkeyplugin.so
 SHA1-Digest: JZMQQTnbiJALO1P16/VqLBEARvE=
@@ -3446,7 +3446,7 @@ Name: system/bin/dnsmasq
 SHA1-Digest: hKg8oAbzv9sc3c23lGt5caDUUt4=
 
 Name: system/etc/recovery-resource.dat
-SHA1-Digest: D03Vj6MxjiF/B2E/C+B9W9VLZAI=
+SHA1-Digest: oI5F4e/gTXs29DPK5MIjGFgCGts=
 
 Name: system/priv-app/Tag/Tag.apk
 SHA1-Digest: arz7qkwzT0K2CfHDRBPrOB1jRmw=
@@ -3689,7 +3689,7 @@ Name: system/lib/libmmosal.so
 SHA1-Digest: tH+NtTv5AISwXqzOpTie8oN1Uf8=
 
 Name: system/app/FM2/arm/FM2.odex.gz
-SHA1-Digest: Ly/Onvxyw2nVCtDkrnNipvKOypw=
+SHA1-Digest: bZcTWKKmCcuVeXrfxFPTngSJmsU=
 
 Name: system/priv-app/DefaultContainerService/DefaultContainerService.
  apk
@@ -3939,7 +3939,7 @@ Name: system/lib/modules/reset_modem.ko
 SHA1-Digest: WTSA/vyRYsy6X530HwPRKGAQt18=
 
 Name: system/framework/arm/services.odex
-SHA1-Digest: GcVyINvx82DY5b7RG6u/QqGCeps=
+SHA1-Digest: 5Pc4Mu0OEEys4lmiNtBnGYsnf1w=
 
 Name: system/etc/nano/ruby.nanorc
 SHA1-Digest: ZyGopMzFq4KP0CKLqtOmnsYdkCU=
@@ -4117,7 +4117,7 @@ Name: system/media/audio/ringtones/UrsaMinor.ogg
 SHA1-Digest: wzxvYATQ2mCBTK4y3BLO/neGZKI=
 
 Name: system/framework/arm/ethernet-service.odex
-SHA1-Digest: FTSfbQHZRVDUMMvdK+fKNxwQEgE=
+SHA1-Digest: PxUgPdXX2R1XmiU4ck2bmB7ZMMg=
 
 Name: system/bin/irsc_util
 SHA1-Digest: 5clYCZoBpEjq8nk9PbLK/0Ei7bU=
@@ -4219,7 +4219,7 @@ Name: system/bin/gatt_testtool
 SHA1-Digest: qsVV1y6B9acGAkIjB25PEoB+FoY=
 
 Name: recovery/bin/install-recovery.sh
-SHA1-Digest: 1QKw60QlcWxrQNJnGaFhpmhBQDs=
+SHA1-Digest: tqPw8pzMrE/zmvO5dErkYbiIpwc=
 
 Name: system/priv-app/ThemesProvider/arm/ThemesProvider.odex.gz
 SHA1-Digest: b/5H/ss9xHgDSxCuVk2xmXr2S98=
@@ -4498,7 +4498,7 @@ Name: system/etc/terminfo/s/screen-s
 SHA1-Digest: V29kPskjzg5WAHPh2w0mhcY42x4=
 
 Name: system/framework/wifi-service.jar
-SHA1-Digest: CmPXeICtbEJrT2pk05frXfo4KEw=
+SHA1-Digest: F/bk4oG1rzJyhW5dNeGGz2Zd7UY=
 
 Name: system/etc/security/cacerts/9dbefe7b.0
 SHA1-Digest: CLx0mzG0ajvb1yuk7RIfzqbHoME=
@@ -4555,7 +4555,7 @@ Name: system/lib/modules/scsi_wait_scan.ko
 SHA1-Digest: zUaTtjJBW7zl5wYSayToO+7YIB4=
 
 Name: system/framework/services.jar
-SHA1-Digest: CmPXeICtbEJrT2pk05frXfo4KEw=
+SHA1-Digest: zN8h3K8yHL0nq/8CHTyBY2gSYus=
 
 Name: system/bin/hostapd_cli
 SHA1-Digest: 8YrWLNKTE5NbAXoZTrfrzHpOk8Y=
@@ -4604,7 +4604,7 @@ Name: system/lib/libmmmpod.so
 SHA1-Digest: hPJDrFt+9sWAPn4sfSwekH7s8Nc=
 
 Name: boot.img
-SHA1-Digest: +GaY06gsQkKTxTYAZ4B8QdBOuJc=
+SHA1-Digest: tm63tC/bVh0Tu1KoaS9TyT8RfNo=
 
 Name: system/lib/libsqlite.so
 SHA1-Digest: +qLpaejilyj9tn+tHozgf63V6pw=

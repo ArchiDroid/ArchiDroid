@@ -347,6 +347,7 @@
 /dev/socket/rild2-debug                         u:object_r:rild_debug_socket:s0
 /dev/socket/rild3                               u:object_r:rild_socket:s0
 /dev/socket/rild3-debug                         u:object_r:rild_debug_socket:s0
+/dev/socket/msm_irqbalance                      u:object_r:msm_irqbalance_socket:s0
 
 ###################################
 # System files
