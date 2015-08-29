@@ -140,7 +140,8 @@ archidroid.tou=使用条款
 
 archidroid.tweaks.cellbroadcasts=小区广播
 archidroid.tweaks.cellbroadcasts.desc=小区广播被设计用来在一个特定区域为多用户同时推送信息. 大部分情况下被用来发送垃圾信息. 只有您确认需要时再选择该项
-archidroid.tweaks.dualsim=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
 archidroid.tweaks.navibar=导航栏
 archidroid.tweaks.navibar.desc=开启导航栏, 同时关闭三大天王键. 如果您更乐意使用虚拟导航键则选中该项
 archidroid.tweaks.navibar.hwenabled=开启触摸键
