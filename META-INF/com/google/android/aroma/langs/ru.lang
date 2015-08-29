@@ -140,7 +140,8 @@ archidroid.tou=Условия использования
 
 archidroid.tweaks.cellbroadcasts=Широковещательная трансляция
 archidroid.tweaks.cellbroadcasts.desc=Широковещательная трансляция предназначена для синхронной доставки сообщений множеству пользователей в определенной местности. Часто используется для рассылки спама. Выберите, если это Вам нужно
-archidroid.tweaks.dualsim=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
 archidroid.tweaks.navibar=Панель навигации
 archidroid.tweaks.navibar.desc=Включает панель управления и выключает аппаратные кнопки (Назад, Дом, Меню). Выберите, если Вы предпочитаете управление с экрана
 archidroid.tweaks.navibar.hwenabled=Включить аппаратные кнопки

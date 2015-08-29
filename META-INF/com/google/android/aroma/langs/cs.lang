@@ -140,7 +140,8 @@ archidroid.tou=Podmínky používání
 
 archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts je určený pro současné dodání zprávy více uživatelům ve specifické oblasti. Často se používá pro posílání spamu. Vyberte pouze v případě, že to službu potřebujete
-archidroid.tweaks.dualsim=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
 archidroid.tweaks.navibar=Navigační lišta
 archidroid.tweaks.navibar.desc=Zapne navigační lištu a vypne HW tlačítka (menu,domů,zpět). Vyber, jestli preferuješ navigační litu před HW tlačítkama 
 archidroid.tweaks.navibar.hwenabled=Enable hardware keys

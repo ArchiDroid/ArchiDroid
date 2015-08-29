@@ -140,7 +140,8 @@ archidroid.tou=Használati feltételek
 
 archidroid.tweaks.cellbroadcasts=Szélessávú cellakapcsolat
 archidroid.tweaks.cellbroadcasts.desc=A szélessávú cellakapcsolat az egyidejű kézbesítésre lett kitalálva több felhasználó számára egy meghatározott területen. Gyakran használják SPAM célokra. Csak akkor használd, ha szükséged van rá
-archidroid.tweaks.dualsim=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
 archidroid.tweaks.navibar=Navigációs sáv
 archidroid.tweaks.navibar.desc=Bekapcsolja a navigációs sávot, és kikapcsolja a hardware gombokat (vissza, home, menü). Csak akkor válaszd ki, ha jobban preferálod a kijelzőn látható gombokat
 archidroid.tweaks.navibar.hwenabled=Hardware-s gombok aktiválása
