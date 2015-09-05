@@ -53,7 +53,7 @@
 			<project name="ArchiDroid/android_device_lge_e610" path="device/lge/e610" remote="github" />
 
 			<remove-project name="TeamHackLG/android_device_lge_msm7x27a" />
-			<project name="ArchiDroid/android_device_lge_msm7x27a" path="device/lge/msm7x27a" remote="github" />
+			<project name="ArchiDroid/android_device_lge_msm7x27a-common" path="device/lge/msm7x27a-common" remote="github" />
 
 			<remove-project name="TeamHackLG/lge-kernel-lproj" />
 			<project name="ArchiDroid/ArchiKernel" path="kernel/lge/msm7x27a-common" remote="github" revision="msm7x27" />
