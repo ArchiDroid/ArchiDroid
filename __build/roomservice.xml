@@ -26,6 +26,9 @@
 		<remove-project name="CyanogenMod/android_external_bluetooth_bluedroid" />
 		<project name="ArchiDroid/android_external_bluetooth_bluedroid" path="external/bluetooth/bluedroid" remote="github" />
 
+		<remove-project name="CyanogenMod/android_external_sepolicy" />
+		<project name="ArchiDroid/android_external_sepolicy" path="external/sepolicy" remote="github" />
+
 		<remove-project name="CyanogenMod/android_frameworks_av" />
 		<project name="ArchiDroid/android_frameworks_av" path="frameworks/av" remote="github" />
 
@@ -48,6 +51,12 @@
 
 			<remove-project name="TeamHackLG/android_device_lge_e610" />
 			<project name="ArchiDroid/android_device_lge_e610" path="device/lge/e610" remote="github" />
+
+			<remove-project name="TeamHackLG/android_device_lge_msm7x27a" />
+			<project name="ArchiDroid/android_device_lge_msm7x27a" path="device/lge/msm7x27a" remote="github" />
+
+			<remove-project name="TeamHackLG/lge-kernel-lproj" />
+			<project name="ArchiDroid/ArchiKernel" path="kernel/lge/msm7x27a-common" remote="github" revision="msm7x27" />
 			-->
 		<!-- /e610 -->
 		<!-- i9300 -->
@@ -108,9 +117,6 @@
 			<remove-project name="CyanogenMod/android_kernel_sony_msm8x27" />
 			<project name="ArchiDroid/android_kernel_sony_msm8x27" path="kernel/sony/msm8x27" remote="github" />
 
-
-			<remove-project name="CyanogenMod/android_external_sepolicy" />
-			<project name="ArchiDroid/android_external_sepolicy" path="external/sepolicy" remote="github" />
 
 			<remove-project name="CyanogenMod/android_hardware_qcom_display" />
 			<project name="CyanogenMod/android_hardware_qcom_display" path="hardware/qcom/display" />
