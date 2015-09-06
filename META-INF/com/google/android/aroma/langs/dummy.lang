@@ -140,6 +140,8 @@ archidroid.tou=Terms of Use
 
 archidroid.tweaks.cellbroadcasts=Cell broadcasts
 archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts are designed for simultaneous delivery to multiple users in a specified area. Often they're used for spam purposes. Select only if you need them
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
 archidroid.tweaks.navibar=Navigation bar
 archidroid.tweaks.navibar.desc=Turns on navigation bar, and disables hardware keys (back, home, menu). Select if you prefer to have on-screen navigation
 archidroid.tweaks.navibar.hwenabled=Enable hardware keys

@@ -47,12 +47,14 @@ ADZIP="$ROMSHORT-*.zip" # This is with what defined output zip. For omni it woul
 ADCOMPILEROOT="$HOME/android/$ROMSHORT" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE" # This is the location of output zip from above sources, usually it doesn't need to be changed
 ADSMPREBUILTS="$HOME/sabermod-prebuilts" # A directory which should contain SaberMod prebuilts from http://sabermod.com which are used during ROM compiling
+JOBS="$(grep -c "processor" "/proc/cpuinfo")" # Maximum number of jobs, can be declared statically if needed, default to number of threads of the CPU
 
 # Common
 BARE=0
 CACHE=0
 CLEAN=0
 PREBUILT=0
+RECOVERY=0
 SABERMODED=0
 STABLE=0
 STOCK=0
@@ -78,6 +80,10 @@ for ARG in "$@" ; do
 		--prebuilt|prebuilt)
 			PREBUILT=1
 			echo "NOTICE: Assuming that build is already complete!"
+			;;
+		--recovery|recovery)
+			RECOVERY=1
+			echo "NOTICE: Building recovery image!"
 			;;
 		--sabermod|sabermod)
 			SABERMODED=1
@@ -152,6 +158,12 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 
 	if [[ "$CACHE" -eq 1 ]]; then
 		export USE_CCACHE=1
+	fi
+
+	if [[ "$RECOVERY" -eq 1 ]]; then
+		lunch "cm_$DEVICE-$BUILDVARIANT"
+		make -j "$JOBS" recoveryimage
+		exit 0
 	fi
 
 	brunch "$DEVICE" "$BUILDVARIANT" || true

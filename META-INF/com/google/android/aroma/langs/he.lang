@@ -140,6 +140,8 @@ archidroid.tou= תנאי שימוש
 
 archidroid.tweaks.cellbroadcasts=Cell broadcasts שידורי תא
 archidroid.tweaks.cellbroadcasts.desc= שידורי תא נועדו לשדר בו זמנית למספר משתמשים באיזור מסויים. לרוב ספאמרים עושים שימוש באופציה זו. תסמן רק אם באמת אתה צריך את זה. 
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
 archidroid.tweaks.navibar=Navigation bar סרגל ניווט
 archidroid.tweaks.navibar.desc= מפעיל את סרגל הניווט, ומנטרל את לחצני החומרה(אחורה, בית, תפריט). בחר אם אתה מעדיף לחצנים על המסך
 archidroid.tweaks.navibar.hwenabled=Enable hardware keys
