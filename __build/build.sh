@@ -53,6 +53,7 @@ BARE=0
 CACHE=0
 CLEAN=0
 PREBUILT=0
+RECOVERY=0
 SABERMODED=0
 STABLE=0
 STOCK=0
@@ -78,6 +79,10 @@ for ARG in "$@" ; do
 		--prebuilt|prebuilt)
 			PREBUILT=1
 			echo "NOTICE: Assuming that build is already complete!"
+			;;
+		--recovery|recovery)
+			RECOVERY=1
+			echo "NOTICE: Building recovery image!"
 			;;
 		--sabermod|sabermod)
 			SABERMODED=1
@@ -152,6 +157,11 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 
 	if [[ "$CACHE" -eq 1 ]]; then
 		export USE_CCACHE=1
+	fi
+
+	if [[ "$RECOVERY" -eq 1 ]]; then
+		lunch "cm_$DEVICE-$BUILDVARIANT"
+		exit 0
 	fi
 
 	brunch "$DEVICE" "$BUILDVARIANT" || true
