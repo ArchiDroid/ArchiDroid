@@ -30,10 +30,10 @@ TARGET_VALUE="$3"
 
 if [[ -e "$SYSFS_FILE" ]]; then
 	if [[ -z "$TARGET_VALUE" ]]; then # Read mode
-		tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d '[:punct:]' | awk "{print \$${TARGET_TYPE}}" # Synapse return
+		tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d ':' | awk "{print \$${TARGET_TYPE}}" # Synapse return
 	else # Write mode
 		GAIN_COUNTER=1
-		for GAIN_VALUE in $(tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d '[:punct:]'); do
+		for GAIN_VALUE in $(tr -d '[:alpha:]' < "$SYSFS_FILE" | tr -d ':'); do
 			if [[ "$GAIN_COUNTER" -eq "$TARGET_TYPE" ]]; then
 				SYSFS_WRITE+=" $TARGET_VALUE"
 			else
