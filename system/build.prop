@@ -109,4 +109,4 @@ dalvik.vm.isa.arm.features=default
 dalvik.vm.lockprof.threshold=500
 dalvik.vm.dexopt-flags=m=y
 net.bt.name=Android
-dalvik.vm.stack-trace-file=/data/anr/traces.tx
+dalvik.vm.stack-trace-file=/data/anr/traces.txt
