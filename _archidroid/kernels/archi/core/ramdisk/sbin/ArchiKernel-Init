@@ -50,11 +50,11 @@ echo "ArchiKernel-Init called!"
 echo "Version: $VERSION"
 
 # Regenerate config if needed
-#if [[ ! -f "$LASTVERSION" || "$(cat "$LASTVERSION")" != "$VERSION" ]]; then
+if [[ ! -f "$LASTVERSION" || "$(cat "$LASTVERSION")" != "$VERSION" ]]; then
 	echo "NOTICE: Detected new version, regenerating config.json!"
 	uci reset
 	echo "$VERSION" > "$LASTVERSION"
-#fi
+fi
 
 echo "ArchiKernel-Init finished!"
 date
