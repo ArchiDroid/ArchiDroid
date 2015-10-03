@@ -272,6 +272,7 @@
 /dev/rtc0                                       u:object_r:rtc_device:s0
 /dev/sensors                                    u:object_r:sensors_device:s0
 /dev/smd.*                                      u:object_r:smd_device:s0
+/dev/smd11                                      u:object_r:smd11_device:s0
 /dev/smem_log                                   u:object_r:smem_log_device:s0
 /dev/ttyHSL0                                    u:object_r:console_device:s0
 /dev/ttyHS[0-9]*                                u:object_r:serial_device:s0
@@ -493,6 +494,7 @@
 /data/misc/location(/.*)?                                           u:object_r:location_data_file:s0
 /data/FTM_AP(/.*)?                                                  u:object_r:mmi_data_file:s0
 /data/misc/hbtp(/.*)?                                               u:object_r:hbtp_log_file:s0
+/data/local/.Drm(/.*)?                                              u:object_r:oma_drm_data_file:s0
 /data/misc/qlogd(/.*)?                                              u:object_r:qlogd_data_file:s0
 /data/misc/dts(/.*)?                                                u:object_r:dts_data_file:s0
 
@@ -652,3 +654,12 @@
 
 # Lockscreen wallpaper
 /data/system/users/[0-9]+/keyguard_wallpaper   u:object_r:wallpaper_file:s0
+
+# Persistent properties
+/persist/properties         u:object_r:persist_property_file:s0
+
+# LiveDisplay
+/sys/devices/virtual/graphics/fb0/aco           u:object_r:livedisplay_sysfs:s0
+/sys/devices/virtual/graphics/fb0/cabc          u:object_r:livedisplay_sysfs:s0
+/sys/devices/virtual/graphics/fb0/rgb           u:object_r:livedisplay_sysfs:s0
+/sys/devices/virtual/graphics/fb0/sre           u:object_r:livedisplay_sysfs:s0
