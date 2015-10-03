@@ -23,7 +23,7 @@
 
 set -e
 
-VERSION=3.1.3
+VERSION=3.1.4
 
 # Device-based
 DEVICE="nicki" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300 here
@@ -315,15 +315,15 @@ fi
 	echo "ro.archidroid.version.android=$AVERSION"
 	echo "ro.archidroid.version.type=$TVERSION"
 	cat ../system/build.prop
-} > build.prop.TEMP
+} > /tmp/build.prop.TEMP
 
 # Change default version to our custom one
-sed -i "s/ro.build.display.id=.*/ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE/g" build.prop.TEMP
+sed -i "s/ro.build.display.id=.*/ro.build.display.id=ArchiDroid-$VERSION-$TVERSION-$AVERSION-$ROM-$DEVICE/g" /tmp/build.prop.TEMP
 
 # Enable root by default. User has a choice in AROMA
-sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=1/g" build.prop.TEMP
+sed -i "s/persist.sys.root_access=.*/persist.sys.root_access=1/g" /tmp/build.prop.TEMP
 
 # Apply changes
-mv build.prop.TEMP ../system/build.prop
+mv /tmp/build.prop.TEMP ../system/build.prop
 
 exit 0
