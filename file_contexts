@@ -617,6 +617,13 @@
 
 /sys/class/timed_output/vibrator/level          u:object_r:vibeamp_sysfs:s0
 /sys/devices/platform/mdp.525057/kcal           u:object_r:kcal_sysfs:s0
+
+/data/LED_deamon.rd                             u:object_r:led_deamon_data_file:s0
+/data/LED_deamon.wd                             u:object_r:led_deamon_data_file:s0
+/data/misc/sensor(/.*)?                         u:object_r:sensors_data_file:s0
+
+/system/bin/sensord                             u:object_r:sensors_exec:s0
+/system/bin/led_deamon                          u:object_r:led_deamon_exec:s0
 #line 1 "vendor/cm/sepolicy/file_contexts"
 /cache/dalvik-cache(/.*)? u:object_r:dalvikcache_data_file:s0
 
@@ -625,6 +632,9 @@
 # Auditd is a logging daemon. Put it into logd's context
 /system/bin/auditd        u:object_r:logd_exec:s0
 /data/misc/audit(/.*)?    u:object_r:auditd_log:s0
+
+# Bootchart
+/data/bootchart(/.*)?    u:object_r:bootchart_log:s0
 
 # Themes
 /data/system/theme(/.*)?  u:object_r:theme_data_file:s0
@@ -656,7 +666,7 @@
 /data/system/users/[0-9]+/keyguard_wallpaper   u:object_r:wallpaper_file:s0
 
 # Persistent properties
-/persist/properties         u:object_r:persist_property_file:s0
+/persist/properties(/.*)?         u:object_r:persist_property_file:s0
 
 # LiveDisplay
 /sys/devices/virtual/graphics/fb0/aco           u:object_r:livedisplay_sysfs:s0

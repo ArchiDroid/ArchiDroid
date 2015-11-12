@@ -22,10 +22,12 @@
             <Limit name="channel-count" max="8" />
             <Limit name="sample-rate" ranges="8000-192000" />
         </MediaCodec>
+        <!-- Can't use this without a Dolby(TM) license for DD(TM) and DDP(TM)
         <MediaCodec name="OMX.ffmpeg.ac3.decoder"    type="audio/ac3" >
             <Limit name="channel-count" max="8" />
             <Limit name="sample-rate" ranges="8000-192000" />
         </MediaCodec>
+        -->
         <MediaCodec name="OMX.ffmpeg.ape.decoder"    type="audio/x-ape" >
             <Limit name="channel-count" max="8" />
             <Limit name="sample-rate" ranges="8000-192000" />
