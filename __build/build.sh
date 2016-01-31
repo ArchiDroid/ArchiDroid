@@ -198,8 +198,11 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	export BLOCK_BASED_OTA=false
+	#export EXPERIMENTAL_USE_JAVA8=true # AOSP is not yet ready for that
 
-	source build/envsetup.sh || true
+	set +u
+	source build/envsetup.sh
+	set -u
 
 	if [[ "$CACHE" -eq 1 ]]; then
 		export USE_CCACHE=1
@@ -211,7 +214,9 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 		exit 0
 	fi
 
+	set +u
 	brunch "$DEVICE_CODENAME" "$DEVICE_BUILDVARIANT" || true
+	set -u
 
 	REALADZIP=""
 	while read ZIP; do
