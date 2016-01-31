@@ -47,6 +47,7 @@
 	<!-- /Replaced projects -->
 
 	<!-- Devices -->
+		<!-- Start of devices -->
 		<!-- e610 -->
 			<!--
 			<project name="TeamHackLG/android_device_lge_e610" path="device/lge/e610" remote="github" />
@@ -145,5 +146,7 @@
 			<project name="Grarak/android_kernel_oneplus_msm8994" path="kernel/oneplus/msm8994" remote="github" revision="cm-13.0-exp" />
 			-->
 		<!-- /oneplus2 -->
+
+		<!-- End of devices -->
 	<!-- /Devices -->
 </manifest>
