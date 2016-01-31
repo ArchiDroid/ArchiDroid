@@ -23,7 +23,7 @@
 
 # This script should define device-based properties
 
-DEVICE_CODENAME="BRINGUP" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300
+DEVICE_CODENAME="oneplus2" # This is AOSP variant to build, the one used in brunch command. If you use "brunch i9300", you should set it to i9300
 DEVICE_BUILDVARIANT="userdebug" # "user" is best, but requires extra fixes, so "userdebug" is default
 
 # Apart from above, don't forget to:

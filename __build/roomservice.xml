@@ -129,7 +129,6 @@
 			-->
 		<!-- /nicki -->
 		<!-- oneplus2 -->
-			<!--
 			<project name="CyanogenMod/android_device_oneplus_oneplus2" path="device/oneplus/oneplus2" remote="github" />
 			<project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" />
 			<project name="CyanogenMod/android_external_sony_boringssl-compat" path="external/sony/boringssl-compat" remote="github" />
@@ -144,7 +143,6 @@
 
 			<remove-project name="CyanogenMod/android_kernel_oneplus_msm8994" />
 			<project name="Grarak/android_kernel_oneplus_msm8994" path="kernel/oneplus/msm8994" remote="github" revision="cm-13.0-exp" />
-			-->
 		<!-- /oneplus2 -->
 
 		<!-- End of devices -->
