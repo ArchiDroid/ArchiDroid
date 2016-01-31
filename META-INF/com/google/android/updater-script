@@ -49,7 +49,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 
 	if file_getprop("/tmp/aroma-data/archidroidwipe.prop", "wipe") == "no" then
 		package_extract_file("META-INF/org/cyanogenmod/releasekey", "/tmp/releasekey");
-		run_program("/tmp/install/bin/otasigcheck.sh") != "31744" || abort("Can't install this package on top of incompatible data. A data wipe is required!");
+		run_program("/tmp/install/bin/otasigcheck.sh") != "31744" || abort("Can't install this package on top of incompatible data. Please try another package or run a factory reset");
 
 		if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "barebones" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Backing up all addons");
@@ -67,15 +67,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 		delete("/tmp/wipe.sh");
 	endif;
 
-	### ARCHIDROID TOOLS ###
-	package_extract_file("_archidroid/exec/adlock.sh", "/tmp/adlock.sh");
-	set_metadata("/tmp/adlock.sh", "uid", 0, "gid", 0, "mode", 0755);
-
 	set_progress(0.03);
-
-	### UNLOCK ###
-	run_program("/tmp/adlock.sh", "unlock", "/system/etc/hosts"); # AD 3.0.X regression, please delete me later (AD 3.2+)
-
 	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Wiping system partition");
 	delete_recursive("/system");
 
@@ -772,10 +764,6 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 
 
 		set_progress(0.90);
-
-		### LOCK ###
-#		run_program("/tmp/adlock.sh", "lock", "/system/etc/hosts");
-		delete("/tmp/adlock.sh");
 	endif;
 	set_progress(0.98);
 endif;

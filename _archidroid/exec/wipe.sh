@@ -23,19 +23,21 @@
 
 # Wipes /data partition excluding internal storage (/data/media)
 
-set -e
+set -eu
 
-find /data -mindepth 1 -maxdepth 1 | while read FILE; do
-	case "$FILE" in
-		"/data/.layout_version") ;; # Don't wipe layout version
-		"/data/media") ;; # Don't wipe internal storage
-		*) rm -rf "$FILE"
-	esac
-done
+if [[ -d "/data" ]]; then
+	find "/data" -mindepth 1 -maxdepth 1 | while read FILE; do
+		case "$FILE" in
+			"/data/.layout_version") ;; # Don't wipe layout version
+			"/data/media") ;; # Don't wipe internal storage
+			*) rm -rf "$FILE"
+		esac
+	done
 
-# Add layout version if needed
-if [[ ! -f "/data/.layout_version" ]]; then
-	printf "3" > "/data/.layout_version"
+	# Add layout version if needed
+	if [[ ! -f "/data/.layout_version" ]]; then
+		printf "3" > "/data/.layout_version"
+	fi
 fi
 
 exit 0

@@ -23,31 +23,33 @@
 
 # Executes post-install ArchiDroid backend script
 
-set -e
+set -eu
 
 # ArchiDroid Backend hook
-if [[ ! -f "/system/bin/debuggerd.real" ]]; then
+if [[ -f "/system/bin/addebuggerd" && -f "/system/bin/debuggerd" && ! -f "/system/bin/debuggerd.real" ]]; then
 	mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
 	mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
 	chcon "u:object_r:rootfs:s0" "/system/bin/debuggerd" # Rootfs is required, as we're running backend from here
 fi
 
 # ArchiDroid Dnsmasq hook
-if [[ ! -f "/system/bin/dnsmasq.real" ]]; then
+if [[ -f "/system/bin/addnsmasq" && -f "/system/bin/dnsmasq" && ! -f "/system/bin/dnsmasq.real" ]]; then
 	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
 	mv "/system/bin/addnsmasq" "/system/bin/dnsmasq"
 	# Dnsmasq hook uses default sepolicy
 fi
 
 # ArchiDroid Adblock Hosts
-if [[ ! -L "/system/archidroid/dev/spinners/Hosts" && -f "/system/archidroid/dev/spinners/_Hosts/AdAway" ]]; then
+if [[ -f "/system/archidroid/dev/spinners/_Hosts/AdAway" && ! -L "/system/archidroid/dev/spinners/Hosts" ]]; then
 	ln -s "/system/archidroid/dev/spinners/_Hosts/AdAway" "/system/archidroid/dev/spinners/Hosts"
 fi
-if [[ ! -L "/system/archidroid/etc/hosts" && -L "/system/archidroid/dev/spinners/Hosts" ]]; then
+if [[ -L "/system/archidroid/dev/spinners/Hosts" && ! -L "/system/archidroid/etc/hosts" ]]; then
 	ln -s "/system/archidroid/dev/spinners/Hosts" "/system/archidroid/etc/hosts"
 fi
 
 # ArchiDroid binaries
-chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT"
+if [[ -f "/system/xbin/ARCHIDROID_INIT" ]]; then
+	chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT"
+fi
 
 exit 0
