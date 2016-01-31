@@ -33,4 +33,4 @@ DEVICE_BUILDVARIANT="userdebug" # "user" is best, but requires extra fixes, so "
 # 4. Put proper GAPPS using gapps.sh
 # 5. I most likely forgot about something anyway, will update as needed
 
-exit 0
+return
