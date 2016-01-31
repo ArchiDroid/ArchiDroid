@@ -1,0 +1,82 @@
+-----BEGIN CERTIFICATE-----
+MIIEJzCCAw+gAwIBAgIHAI4X/iQggTANBgkqhkiG9w0BAQsFADCBsTELMAkGA1UE
+BhMCVFIxDzANBgNVBAcMBkFua2FyYTFNMEsGA1UECgxEVMOcUktUUlVTVCBCaWxn
+aSDEsGxldGnFn2ltIHZlIEJpbGnFn2ltIEfDvHZlbmxpxJ9pIEhpem1ldGxlcmkg
+QS7Fni4xQjBABgNVBAMMOVTDnFJLVFJVU1QgRWxla3Ryb25payBTZXJ0aWZpa2Eg
+SGl6bWV0IFNhxJ9sYXnEsWPEsXPEsSBINTAeFw0xMzA0MzAwODA3MDFaFw0yMzA0
+MjgwODA3MDFaMIGxMQswCQYDVQQGEwJUUjEPMA0GA1UEBwwGQW5rYXJhMU0wSwYD
+VQQKDERUw5xSS1RSVVNUIEJpbGdpIMSwbGV0acWfaW0gdmUgQmlsacWfaW0gR8O8
+dmVubGnEn2kgSGl6bWV0bGVyaSBBLsWeLjFCMEAGA1UEAww5VMOcUktUUlVTVCBF
+bGVrdHJvbmlrIFNlcnRpZmlrYSBIaXptZXQgU2HEn2xhecSxY8Sxc8SxIEg1MIIB
+IjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApCUZ4WWe60ghUEoI5RHwWrom
+/4NZzkQqL/7hzmAD/I0Dpe3/a6i6zDQGn1k19uwsu537jVJp45wnEFPzpALFp/kR
+Gml1bsMdi9GYjZOHp3GXDSHHmflS0yxjXVW86B8BSLlg/kJK9siArs1mep5Fimh3
+4khon6La8eHBEJ/rPCmBp+EyCNSgBbGM+42WAA4+Jd9ThiI7/PS98wl+d+yG6w8z
+5UNP9FR1bSmZLmZaQ9/LXMrI5Tjxfjs1nQ/0xVqhzPMggCTTV+wVunUlm+hkS7M0
+hO8EuPbJbKoCPrZV4jI3X/xml1/N1p7HIL9Nxqw/dV8c7TKcfGkAaZHjIxhT6QID
+AQABo0IwQDAdBgNVHQ4EFgQUVpkHHtOsDGlktAxQR95DLL4gwPswDgYDVR0PAQH/
+BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAJ5FdnsX
+SDLyOIspve6WSk6BGLFRRyDN0GSxDsnZAdkJzsiZ3GglE9Rc8qPoBP5yCccLqh0l
+VX6Wmle3usURehnmp349hQ71+S4pL+f5bFgWV1Al9j4uPqrtd3GqqpmWRgqujuwq
+URawXs3qZwQcWDD1YIq9pr1N5Za0/EKJAWv2cMhQOQwt1WbZyNKzMrcbGW3LM/nf
+peYVhDfwwvJllpKQd/Ct9JDpEXjXk4nAPQu6KfTomZ1yju2dL+6SfaHx/126M2CF
+Yv4HAqGEVka+lgqaE9chTLd8B59OTj+RdPsnnRHM3eaxynFNExc5JsUpISuTKWqW
++qtB4Uu2NQvAmxU=
+-----END CERTIFICATE-----
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 156233699172481 (0x8e17fe242081)
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=TR, L=Ankara, O=T\xC3\x9CRKTRUST Bilgi \xC4\xB0leti\xC5\x9Fim ve Bili\xC5\x9Fim G\xC3\xBCvenli\xC4\x9Fi Hizmetleri A.\xC5\x9E., CN=T\xC3\x9CRKTRUST Elektronik Sertifika Hizmet Sa\xC4\x9Flay\xC4\xB1c\xC4\xB1s\xC4\xB1 H5
+        Validity
+            Not Before: Apr 30 08:07:01 2013 GMT
+            Not After : Apr 28 08:07:01 2023 GMT
+        Subject: C=TR, L=Ankara, O=T\xC3\x9CRKTRUST Bilgi \xC4\xB0leti\xC5\x9Fim ve Bili\xC5\x9Fim G\xC3\xBCvenli\xC4\x9Fi Hizmetleri A.\xC5\x9E., CN=T\xC3\x9CRKTRUST Elektronik Sertifika Hizmet Sa\xC4\x9Flay\xC4\xB1c\xC4\xB1s\xC4\xB1 H5
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:a4:25:19:e1:65:9e:eb:48:21:50:4a:08:e5:11:
+                    f0:5a:ba:26:ff:83:59:ce:44:2a:2f:fe:e1:ce:60:
+                    03:fc:8d:03:a5:ed:ff:6b:a8:ba:cc:34:06:9f:59:
+                    35:f6:ec:2c:bb:9d:fb:8d:52:69:e3:9c:27:10:53:
+                    f3:a4:02:c5:a7:f9:11:1a:69:75:6e:c3:1d:8b:d1:
+                    98:8d:93:87:a7:71:97:0d:21:c7:99:f9:52:d3:2c:
+                    63:5d:55:bc:e8:1f:01:48:b9:60:fe:42:4a:f6:c8:
+                    80:ae:cd:66:7a:9e:45:8a:68:77:e2:48:68:9f:a2:
+                    da:f1:e1:c1:10:9f:eb:3c:29:81:a7:e1:32:08:d4:
+                    a0:05:b1:8c:fb:8d:96:00:0e:3e:25:df:53:86:22:
+                    3b:fc:f4:bd:f3:09:7e:77:ec:86:eb:0f:33:e5:43:
+                    4f:f4:54:75:6d:29:99:2e:66:5a:43:df:cb:5c:ca:
+                    c8:e5:38:f1:7e:3b:35:9d:0f:f4:c5:5a:a1:cc:f3:
+                    20:80:24:d3:57:ec:15:ba:75:25:9b:e8:64:4b:b3:
+                    34:84:ef:04:b8:f6:c9:6c:aa:02:3e:b6:55:e2:32:
+                    37:5f:fc:66:97:5f:cd:d6:9e:c7:20:bf:4d:c6:ac:
+                    3f:75:5f:1c:ed:32:9c:7c:69:00:69:91:e3:23:18:
+                    53:e9
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                56:99:07:1E:D3:AC:0C:69:64:B4:0C:50:47:DE:43:2C:BE:20:C0:FB
+            X509v3 Key Usage: critical
+                Certificate Sign, CRL Sign
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+    Signature Algorithm: sha256WithRSAEncryption
+         9e:45:76:7b:17:48:32:f2:38:8b:29:bd:ee:96:4a:4e:81:18:
+         b1:51:47:20:cd:d0:64:b1:0e:c9:d9:01:d9:09:ce:c8:99:dc:
+         68:25:13:d4:5c:f2:a3:e8:04:fe:72:09:c7:0b:aa:1d:25:55:
+         7e:96:9a:57:b7:ba:c5:11:7a:19:e6:a7:7e:3d:85:0e:f5:f9:
+         2e:29:2f:e7:f9:6c:58:16:57:50:25:f6:3e:2e:3e:aa:ed:77:
+         71:aa:aa:99:96:46:0a:ae:8e:ec:2a:51:16:b0:5e:cd:ea:67:
+         04:1c:58:30:f5:60:8a:bd:a6:bd:4d:e5:96:b4:fc:42:89:01:
+         6b:f6:70:c8:50:39:0c:2d:d5:66:d9:c8:d2:b3:32:b7:1b:19:
+         6d:cb:33:f9:df:a5:e6:15:84:37:f0:c2:f2:65:96:92:90:77:
+         f0:ad:f4:90:e9:11:78:d7:93:89:c0:3d:0b:ba:29:f4:e8:99:
+         9d:72:8e:ed:9d:2f:ee:92:7d:a1:f1:ff:5d:ba:33:60:85:62:
+         fe:07:02:a1:84:56:46:be:96:0a:9a:13:d7:21:4c:b7:7c:07:
+         9f:4e:4e:3f:91:74:fb:27:9d:11:cc:dd:e6:b1:ca:71:4d:13:
+         17:39:26:c5:29:21:2b:93:29:6a:96:fa:ab:41:e1:4b:b6:35:
+         0b:c0:9b:15
+SHA1 Fingerprint=C4:18:F6:4D:46:D1:DF:00:3D:27:30:13:72:43:A9:12:11:C6:75:FB
