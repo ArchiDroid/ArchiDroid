@@ -1,0 +1,687 @@
+#!/system/bin/sh
+
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+ADTWEAK() {
+	# $1 - what we're changing
+	# $2 - to what we're changing
+	local CURRENT=""
+	CURRENT="$(cat "$1")"
+	if [[ "$CURRENT" = "$2" ]]; then
+		echo "$(date +"%F %T") INFO: ADTWEAK: Value of $1 is already set to $CURRENT"
+	else
+		echo "$2" > "$1"
+		echo "$(date +"%F %T") INFO: ADTWEAK: Tweaked $1 value from $CURRENT to $2"
+	fi
+}
+
+ADEVENT_ASYNC() {
+	if [[ -d "$ADEVENTS" && -e "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID" && -e "/proc/$(cat "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID")" ]]; then
+		echo "$@" > "$ADEVENTS/Init.EVENT"
+	fi
+}
+
+ADSTOP() {
+	case "$1" in
+		"ALL")
+			ADSTOP "HAVEGED"
+			ADSTOP "FRANDOM"
+			ADSTOP "ADBLOCK"
+			ADSTOP "EVENT_LISTENER"
+			ADSTOP "TMPFS"
+		;;
+
+		# Symlinks
+		"HOSTS") ADSTOP "ADBLOCK" ;;
+		"LOCALDNSES") ADSTOP "ADBLOCK" ;;
+		"FORCELOCALDNSES") ADSTOP "ADBLOCK" ;;
+		"PROXYDNSES") ADSTOP "ADBLOCK" ;;
+
+		# Services
+		"ADBLOCK")
+			# If adblock is currently active, reset to default DNSes
+			ADEVENT_ASYNC "CONNECTIVITY_RESET"
+
+			ADSTOP "archidroid_dnsmasq"
+			ADSTOP "archidroid_pixelserv"
+
+			# Fix hosts back to defaults if needed
+			if [[ "$ADBLOCK_PROXYDNS" -eq 0 ]]; then
+				if ! cmp /system/archidroid/etc/hosts /system/etc/hosts >/dev/null 2>&1; then
+					mount -o remount,rw /system
+					cp -p /system/archidroid/etc/hosts /system/etc/hosts
+					mount -o remount,ro /system
+				fi
+			fi
+		;;
+		"EVENT_LISTENER")
+			rm -f "$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID"
+		;;
+		"FRANDOM")
+			# Generic check if we're not doing something harmful
+			if [[ -c /dev/urandom.orig && -c /dev/random.orig ]]; then
+				rm -f /dev/urandom && mv /dev/urandom.orig /dev/urandom
+				rm -f /dev/random && mv /dev/random.orig /dev/random
+			fi
+		;;
+		"HAVEGED")
+			ADSTOP "archidroid_haveged"
+		;;
+		"TMPFS")
+		;;
+		archidroid_haveged)
+			kill $(pidof archidroid_haveged) >/dev/null 2>&1
+		;;
+		archidroid_dnsmasq)
+			kill $(pidof archidroid_dnsmasq) >/dev/null 2>&1
+		;;
+		archidroid_pixelserv)
+			kill $(pidof archidroid_pixelserv) >/dev/null 2>&1
+		;;
+		*)
+			kill $(pidof "$1") >/dev/null 2>&1
+	esac
+}
+
+ADSTART() {
+	case "$1" in
+		"ALL")
+			ADSTART "TMPFS"
+			ADSTART "EVENT_LISTENER"
+			ADSTART "HAVEGED"
+			ADSTART "FRANDOM"
+			ADSTART "ADBLOCK"
+		;;
+
+		# Symlinks
+		"HOSTS") ADSTART "ADBLOCK" ;;
+		"LOCALDNSES") ADSTART "ADBLOCK" ;;
+		"FORCELOCALDNSES") ADSTART "ADBLOCK" ;;
+		"PROXYDNSES") ADSTART "ADBLOCK" ;;
+
+		# Services
+		"ADBLOCK")
+			if [[ "$ADBLOCK" -eq 1 ]]; then
+				if [[ "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
+					if ! cmp /system/archidroid/dev/spinners/_Hosts/NoAdBlocking /system/etc/hosts >/dev/null 2>&1; then
+						mount -o remount,rw /system
+						cp -p /system/archidroid/dev/spinners/_Hosts/NoAdBlocking /system/etc/hosts
+						mount -o remount,ro /system
+					fi
+					ADSTART "archidroid_dnsmasq"
+				else
+					if ! cmp /system/archidroid/etc/hosts /system/etc/hosts >/dev/null 2>&1; then
+						mount -o remount,rw /system
+						cp -p /system/archidroid/etc/hosts /system/etc/hosts
+						mount -o remount,ro /system
+					fi
+				fi
+				ADSTART "archidroid_pixelserv"
+			fi
+		;;
+		"EVENT_LISTENER")
+			ARCHIDROID_EVENT_LISTENER --background &
+		;;
+		"FRANDOM")
+			if [[ "$FRANDOM" -eq 1 ]]; then
+				echo "$(date +"%F %T") INFO: Activating frandom!"
+				if [[ ! -c /dev/frandom ]]; then
+					echo "$(date +"%F %T") INFO: FRANDOM: frandom device not found, searching for frandom.ko kernel module..."
+					for FRANDOMPATH in "/system/lib/modules" "/system/modules" "/lib/modules" "/modules"; do
+						if [[ -f "$FRANDOMPATH/frandom.ko" ]]; then
+							echo "FRANDOM: Loading frandom using $FRANDOMPATH/frandom.ko!"
+							insmod "$FRANDOMPATH/frandom.ko"
+							sleep 1
+							break
+						fi
+					done
+				fi
+				if [[ -c /dev/frandom ]]; then
+					echo "$(date +"%F %T") INFO: FRANDOM: frandom device found, activating erandom!"
+					if [[ ! -c /dev/urandom.orig && ! -c /dev/random.orig ]]; then
+						mv /dev/urandom /dev/urandom.orig &&
+						ln /dev/erandom /dev/urandom &&
+						chmod 666 /dev/urandom
+
+						mv /dev/random /dev/random.orig &&
+						ln /dev/frandom /dev/random &&
+						chmod 666 /dev/random
+						echo "$(date +"%F %T") INFO: FRANDOM: Activated!"
+					else
+						echo "$(date +"%F %T") INFO: FRANDOM: It looks like frandom has been already loaded"
+					fi
+				else
+					echo "$(date +"%F %T") INFO: FRANDOM: frandom device not found! This kernel does not provide frandom device, disabling..."
+				fi
+			else
+				echo "$(date +"%F %T") INFO: INFO: Frandom has been disabled"
+			fi
+		;;
+		"HAVEGED")
+			ADSTART "archidroid_haveged"
+		;;
+		"TMPFS")
+			mkdir -p "$ADTMPFS"
+			chmod 711 "$ADTMPFS"
+		;;
+		"archidroid_dnsmasq")
+			if [[ "$ADBLOCK" -eq 1 && "$ADBLOCK_PROXYDNS" -eq 1 ]]; then
+				if [[ ! -f "$ADTMPFS/resolv.conf" ]]; then
+					cp -p /system/etc/resolv.conf "$ADTMPFS/resolv.conf"
+				fi
+				local EXTRA="--all-servers -x $ADTMPFS/DNSMASQ.PID"
+				if [[ "$ADBLOCKLOCALDNSES" -eq 1 ]]; then
+					echo "$(date +"%F %T") INFO: ADBLOCK: Including local DNSes!"
+					if [[ "$ADBLOCKSTRICTORDER" -eq 1 ]]; then
+						echo "$(date +"%F %T") INFO: ADBLOCK: Strict order enabled!"
+						EXTRA+=" --strict-order"
+					fi
+				fi
+				cp -p "/system/etc/resolv.conf" "$ADTMPFS/resolv.conf" # Set DNSes to default ones, event listener will correct them if needed on CONNECTIVITY_APPLY
+				archidroid_dnsmasq $EXTRA -C /system/archidroid/etc/dnsmasq.conf
+				echo "$(date +"%F %T") INFO: ADBLOCK: Activated archidroid_dnsmasq - local DNS server on 127.0.0.1:53, forwarding clean non-blocked traffic to specified DNS servers"
+
+				# Set proper DNSes
+				ADEVENT_ASYNC "CONNECTIVITY_APPLY"
+			fi
+		;;
+		"archidroid_pixelserv")
+			if [[ "$ADBLOCK" -eq 1 ]]; then
+				archidroid_pixelserv 127.0.0.1 -n lo &
+				echo "$(date +"%F %T") INFO: ADBLOCK: Activated archidroid_pixelserv - local web server on 127.0.0.1:80, responding with NULLGIF"
+			fi
+		;;
+		"archidroid_haveged")
+			if [[ "$HAVEGED" -eq 1 ]]; then
+				echo "$(date +"%F %T") INFO: INFO: Activating haveged!"
+				local ENTROPY="1024" # Default: 128, Linux: 896, Max: 4096 - We want to make it high enough, but with considering battery life as well
+				ADTWEAK "/proc/sys/vm/dirty_expire_centisecs" "1000"
+				ADTWEAK "/proc/sys/vm/dirty_writeback_centisecs" "500"
+
+				if [[ -c /dev/random.orig ]]; then
+					mv /dev/random /dev/random.TEMP &&
+					mv /dev/random.orig /dev/random
+					archidroid_haveged -p "$ADTMPFS/HAVEGED.PID" -w "$ENTROPY" >/dev/null 2>&1
+					sleep 2 && # Let's give haveged some time to initialize
+					mv /dev/random /dev/random.orig &&
+					mv /dev/random.TEMP /dev/random
+				else
+					archidroid_haveged -p "$ADTMPFS/HAVEGED.PID" -w "$ENTROPY" >/dev/null 2>&1
+					sleep 2 # Let's give haveged some time to initialize
+				fi
+
+				echo "$(date +"%F %T") INFO: INFO: Activated archidroid_haveged - HArdware Volatile Entropy Gathering and Expansion Daemon, regenerating kernel's entropy pool"
+				echo "$(date +"%F %T") INFO: HAVEGED: Entropy levels: Android default: 128, Linux: 896, Max: 4096"
+				echo "$(date +"%F %T") INFO: HAVEGED: ArchiDroid entropy set to: $ENTROPY. Available entropy can't get below this level"
+				echo "$(date +"%F %T") INFO: HAVEGED: Current available entropy: $(cat /proc/sys/kernel/random/entropy_avail)"
+			fi
+		;;
+	esac
+}
+
+ADRELOAD() {
+	case "$1" in
+		"ALL")
+			shift 1
+			ADRELOAD "TMPFS"
+			ADRELOAD "HAVEGED"
+			ADRELOAD "FRANDOM"
+			ADRELOAD "ADBLOCK"
+			;;
+		*)
+			ADSTOP "$1"
+			ADSTART "$1"
+	esac
+}
+
+ADNOTIFY() {
+	case "$1" in
+		"TETHERING "*)
+			ADSTOP "ADBLOCK"
+			DNSMASQ_PID="$(echo "$1" | cut -d ' ' -f 2)"
+			(
+				while [[ -e "/proc/$DNSMASQ_PID" ]]; do
+					sleep 1
+				done
+				ADSTART "ADBLOCK"
+			) &
+		;;
+	esac
+}
+
+DBUPDATE() {
+	# Thanks to idcrisis, modified by JustArchi
+	local TRY=0
+	local VAL1=""
+	local VAL2=""
+	local ID=""
+
+	while [[ "$TRY" -le 5 ]] ; do
+		((TRY++))
+		if [[ "$4" = "APPEND" ]]; then
+			# Append mode, value should exist already then
+			VAL1="$(sqlite3 /data/data/com.android.providers.settings/databases/settings.db "select value from $1 where name='$2';" 2>/dev/null)"
+			VAL1="$VAL1$5$3"
+
+			# Let's update it now
+			sqlite3 /data/data/com.android.providers.settings/databases/settings.db "update $1 set value='$VAL1' where name='$2';" 2>/dev/null
+
+			# See if it worked
+			VAL2="$(sqlite3 /data/data/com.android.providers.settings/databases/settings.db "select value from $1 where name='$2';" 2>/dev/null)"
+
+			if [[ "$VAL1" = "$VAL2" ]]; then
+				# Looks good
+				if [[ "$TRY" -gt 1 ]]; then
+					echo "$(date +"%F %T") INFO: DBUPDATE APPEND SUCCEEDED with $*. It was our $TRY try"
+				fi
+				return 0
+			else
+				# We failed
+				echo "$(date +"%F %T") WARNING: DBUPDATE APPEND FAILED with $*. This is our $TRY try"
+				sleep 1
+			fi
+		else
+			# Insert/Update mode, check if value already exists
+			VAL1="$(sqlite3 /data/data/com.android.providers.settings/databases/settings.db "select value from $1 where name='$2';" 2>/dev/null)"
+			if [[ -z "$VAL1" ]]; then
+				# We don't have any value, insert mode
+				ID='null' # This actually means that we follow auto incremented key value and not putting our own
+				sqlite3 /data/data/com.android.providers.settings/databases/settings.db "insert into $1 values($ID, '$2', '$3');" 2>/dev/null
+			elif [[ "$VAL1" = "$3" ]]; then
+				# Value exists and is the same as the one we want to insert, that's great!
+				return 0
+			else
+				# Value exists but is not the one we want, update mode
+				sqlite3 /data/data/com.android.providers.settings/databases/settings.db "update $1 set value='$3' where name='$2';" 2>/dev/null
+			fi
+
+			# See if it worked
+			VAL1="$(sqlite3 /data/data/com.android.providers.settings/databases/settings.db "select value from $1 where name='$2';" 2>/dev/null)"
+			if [[ "$VAL1" = "$3" ]]; then
+				# Value exists and is the same as the one we want to insert, that's great!
+				if [[ "$TRY" -gt 1 ]]; then
+					echo "$(date +"%F %T") INFO: DBUPDATE APPEND SUCCEEDED with $*. It was our $TRY try"
+				fi
+				return 0
+			else
+				# Oops, something gone wrong
+				echo "$(date +"%F %T") WARNING: DBUPDATE FAILED with $*. This is our $TRY try"
+				sleep 1
+			fi
+		fi
+	done
+	echo "$(date +"%F %T") ERROR: Could not update $* after $TRY times. I'm giving up here, please investigate!"
+	return 1
+}
+
+# Initial variables, you should NOT change them unless you know what you're doing
+AD="/data/media/0/ArchiDroid"
+ADEVENTS="$AD/System/Events"
+ADSYS="/system/archidroid"
+ADDEV="$ADSYS/dev"
+ADTMPFS="/dev/archidroid"
+ADFIFO="$ADTMPFS/Init.fifo"
+LOG="$AD/Init.log" # "/dev/null" is no verbose
+ADSTATUS="$ADTMPFS/ARCHIDROID_INIT_STATUS"
+
+# Fix /data/media/0/0 if needed
+if [[ -d "/data/media/0/0" ]]; then
+	find "/data/media/0/0" -mindepth 1 -maxdepth 1 | while read -r line; do
+		mv "$line" "/data/media/0"
+	done
+	rmdir "/data/media/0/0"
+fi
+
+# Exit if there is no ArchiDroid folder
+if [[ ! -d "$AD" ]]; then
+	exit 1
+fi
+
+# Initial ArchiDroid dev status
+if [[ -f "$ADDEV/switches/Haveged" && "$(cat "$ADDEV/switches/Haveged")" = "Enabled" ]]; then
+	HAVEGED=1
+else
+	HAVEGED=0
+fi
+
+if [[ -f "$ADDEV/switches/Frandom" && "$(cat "$ADDEV/switches/Frandom")" = "Enabled" ]]; then
+	FRANDOM=1
+else
+	FRANDOM=0
+fi
+
+if [[ -f "$ADDEV/switches/Adblock" && "$(cat "$ADDEV/switches/Adblock")" = "Enabled" ]]; then
+	ADBLOCK=1
+	if [[ -f "$ADDEV/switches/_Adblock/ProxyDNSes" && "$(cat "$ADDEV/switches/_Adblock/ProxyDNSes")" = "Enabled" ]]; then
+		ADBLOCK_PROXYDNS=1
+		if [[ -f "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes" && "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/LocalDNSes")" = "Enabled" ]]; then
+			ADBLOCKLOCALDNSES=1
+			if [[ -f "$ADDEV/switches/_Adblock/_ProxyDNSes/_LocalDNSes/ForceLocalDNSes" && "$(cat "$ADDEV/switches/_Adblock/_ProxyDNSes/_LocalDNSes/ForceLocalDNSes")" = "Enabled" ]]; then
+				ADBLOCKSTRICTORDER=1
+			else
+				ADBLOCKSTRICTORDER=0
+			fi
+		else
+			ADBLOCKLOCALDNSES=0
+		fi
+	else
+		ADBLOCK_PROXYDNS=0
+	fi
+else
+	ADBLOCK=0
+fi
+
+# RainbowLedOnBoot
+LEDS=0
+if [[ -f "$ADDEV/switches/RainbowLedOnBoot" && "$(cat "$ADDEV/switches/RainbowLedOnBoot")" = "Enabled" ]]; then
+	if [[ -e "/sys/class/leds/led_r/brightness" && -e "/sys/class/leds/led_g/brightness" && -e "/sys/class/leds/led_b/brightness" ]]; then
+		LEDS=1
+	fi
+fi
+
+if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" || "$1" = "NOTIFY" ]]; then
+	# Allow that regardless of adstatus
+	LOG="/dev/null"
+	exec 1>"$LOG"
+	exec 2>&1
+	case "$1" in
+		"RELOAD") ADRELOAD "$2" ;;
+		"START") ADSTART "$2" ;;
+		"STOP") ADSTOP "$2" ;;
+		"NOTIFY") ADNOTIFY "$2" ;;
+	esac
+	exit 0
+elif [[ ! -f "$ADSTATUS" ]]; then
+	# First boot, good
+	# debuggerd and init.d are executed in the nearly same moment, which may cause typical race condition here
+	# It's very likely that these childs will enter this segment in the same moment, we must stop it right here
+	# If we're not the lowest PID of all the PIDs from the same process, exit
+	if [[ "$(pidof "$(basename "$0")" | awk '{print $NF}')" != "$$" ]]; then
+		exit 0
+	fi
+	ADSTART "TMPFS"
+	echo "$$" > "$ADSTATUS"
+else
+	ADSIGNAL="$(cat "$ADSTATUS")"
+	if [[ "$ADSIGNAL" = "FINISHED" ]]; then
+		# Something tried to execute already finished init, halt
+		echo "This script has been executed already"
+		exit 0
+	elif [[ "$ADSIGNAL" = "RESTART" ]]; then
+		# Backend restarts itself, good to know, allow that
+		echo "$$" > "$ADSTATUS"
+	elif [[ -e "/proc/$ADSIGNAL" ]]; then
+		# Something tried to execute already running init, double-execution?
+		exit 3
+	else
+		# Old PID is dead and didn't exit properly, probably panic
+		exit 4
+	fi
+fi
+
+# Parse args to variables
+BACKGROUND=0
+SU_SHELL=0
+for ARG in "$@"; do
+	case "$ARG" in
+		--background) BACKGROUND=1 ;;
+		--su-shell) SU_SHELL=1 ;;
+	esac
+done
+
+ADRELOAD=0
+ADMANY=0
+DBUPDATE=0
+FIRSTBOOT=0
+
+if [[ ! -f "/data/.ARCHIDROID_FIRSTBOOT_COMPLETED" ]]; then
+	FIRSTBOOT=1
+	mkfifo "$ADFIFO"
+	if [[ -d "$ADSYS/FIRSTBOOT/DATA" ]]; then
+		rm -rf "$AD/FIRSTBOOT"
+		mkdir -p "$AD/FIRSTBOOT"
+		cp -pR "$ADSYS/FIRSTBOOT/DATA" "$AD/FIRSTBOOT"
+		(
+			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (while read -r FOLDER; do
+				((ADMANY++))
+			done
+			echo "$ADMANY" > "$ADFIFO")
+		) &
+		ADMANY="$(cat "$ADFIFO")"
+	fi
+	DBUPDATE=1
+	ADRELOAD=1
+	setprop "persist.sys.root_access" "$(getprop persist.sys.root_access)" # This is required, as for some reason CM now reads the value from /data/property and not getprop()
+fi
+
+# Now we need to make sure that this is a background process to prevent slowing down bootup
+if [[ "$BACKGROUND" -eq 0 || "$SU_SHELL" -eq 0 ]]; then
+	echo "RESTART" > "$ADSTATUS"
+	su -c "$0 --background --su-shell $* &" && exit 0 # TODO: SU shell is required to workaround SELinux denials, maybe I can fix this in future
+	echo "$$" > "$ADSTATUS" # We really shouldn't be here
+fi
+
+# Redirect stdout and stderr to our log, just in case something bad happens
+if [[ -f "$LOG" ]]; then
+	mv "$LOG" "$LOG.old"
+fi
+exec 1>"$LOG"
+exec 2>&1
+
+echo "$(date +"%F %T") INFO: ArchiDroid_Init executed!"
+echo "$(date +"%F %T") INFO: ArchiDroid $(getprop ro.archidroid.version)"
+cat /proc/version
+
+echo "$(date +"%F %T") INFO: Waiting for Zygote..."
+
+LOOP=0
+while [[ "$LOOP" -lt 10 ]] && ! pgrep zygote >/dev/null 2>&1; do
+	((LOOP++))
+	sleep 1
+done
+
+if ! pgrep zygote >/dev/null 2>&1; then
+	echo "$(date +"%F %T") INFO: Zygote didn't spawn in given period, aborting backend!"
+	exit 1
+else
+	echo "$(date +"%F %T") INFO: Zygote spawned!"
+fi
+
+
+#   ____
+#  / ___| ___   _ __  ___
+# | |    / _ \ | '__|/ _ \
+# | |___| (_) || |  |  __/
+#  \____|\___/ |_|   \___|
+#
+
+# Show LiveBoot if included
+if [[ -f /system/app/LiveBoot/LiveBoot.apk && ! -f "/data/data/eu.chainfire.liveboot/files/liveboot" ]]; then # But only if user didn't touch it yet
+	cp /system/bin/app_process32 /dev/.app_process_liveboot
+	chown 0:0 /dev/.app_process_liveboot
+	chmod 700 /dev/.app_process_liveboot
+	NO_ADDR_COMPAT_LAYOUT_FIXUP=1 ANDROID_ROOT=/system CLASSPATH=/system/app/LiveBoot/LiveBoot.apk /dev/.app_process_liveboot /system/bin eu.chainfire.liveboot.a.j /system/app/LiveBoot/LiveBoot.apk /system/app/LiveBoot/lib/arm/libcfsurface.so boot dark logcatlevels=VDIWEFS logcatbuffers=MSC logcatformat=brief dmesg=0-99 lines=80 wordwrap &
+	rm /dev/.app_process_liveboot
+fi
+
+# ArchiDroid Hardswap
+SWAP_BIN="swapon"
+SWAP_CMD="-p 1"
+if ! swapon 2>&1 | grep -qi "\-p pri"; then # If swapon doesn't support priority
+	if ! busybox swapon 2>&1 | grep -qi "\-p pri"; then # If busybox swapon doesn't support priority
+		SWAP_CMD="" # Disable priority
+	else
+		SWAP_BIN="busybox swapon" # Change binary to busybox swapon, as it supports priority
+	fi
+fi
+for HSPATH in "/cache" "/preload" "/storage/sdcard1" "/storage/extSdCard"; do
+	if [[ -f "$HSPATH/ArchiDroid.swp" ]]; then
+		echo "$(date +"%F %T") INFO: Found ArchiDroid swap file in $HSPATH directory, $(busybox du -mh "$HSPATH/ArchiDroid.swp" | awk '{print $1}')"
+		$SWAP_BIN $SWAP_CMD "$HSPATH/ArchiDroid.swp"
+	fi
+done
+
+# ArchiDroid services
+ADSTART "ALL"
+
+# ArchiDroid Semaphore
+# Wait until we see some android processes to consider boot is more or less complete (initial idea thanks to AndiP71)
+# Also respect number of loops, maybe something went wrong
+echo "$(date +"%F %T") INFO: Init Semaphore started"
+LOOP=0
+while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemui >/dev/null 2>&1; do
+	((LOOP++))
+
+	if [[ "$DBUPDATE" -eq 1 ]]; then
+		if [[ -f /data/data/com.android.providers.settings/databases/settings.db && -f "$ADSYS/FIRSTBOOT/DBUPDATE.txt" ]]; then
+			echo "$(date +"%F %T") INFO: settings.db created! Performing DBUPDATE"
+
+			while read -r line; do
+				if [[ -n "$line" ]]; then
+					TABLE="$(echo "$line" | cut -d ' ' -f 1)"
+					COLUMN="$(echo "$line" | cut -d ' ' -f 2)"
+					VALUE="$(echo "$line" | cut -d ' ' -f 3)"
+					DBUPDATE "$TABLE" "$COLUMN" "$VALUE"
+				fi
+			done < "$ADSYS/FIRSTBOOT/DBUPDATE.txt"
+
+			# And don't execute twice
+			echo "$(date +"%F %T") INFO: Finished DBUPDATE"
+			DBUPDATE=0
+		fi
+	fi
+
+	if [[ "$ADMANY" -gt 0 ]]; then
+		(
+			find "$AD/FIRSTBOOT/DATA" -mindepth 1 -maxdepth 1 -type d | (
+				while read -r FOLDER; do
+					FOLDERSHORT="$(basename "$FOLDER")"
+					if [[ -d "/data/data/$FOLDERSHORT" ]]; then
+
+						echo "$(date +"%F %T") INFO: Merging settings for $FOLDER"
+
+						# Firstly, copy recursive everything i
+						find "$FOLDER" -mindepth 1 -maxdepth 1 | while read -r TOCOPY; do
+							cp -R "$TOCOPY" "/data/data/$FOLDERSHORT/"
+						done
+
+						ADOWNER="$(busybox ls -ld "/data/data/$FOLDERSHORT" | awk '{print $3}')"
+						busybox chown -hR "$ADOWNER.$ADOWNER" "/data/data/$FOLDERSHORT"
+
+						# Apply permissions for folders
+						find "/data/data/$FOLDERSHORT" -type d -mindepth 1 | while read -r mFOLDER; do
+							case "$(basename "$mFOLDER")" in # This will match filenames
+								*) chmod 771 "$mFOLDER"
+							esac
+						done
+
+						# Apply permissions for files
+						find "/data/data/$FOLDERSHORT" -type f -mindepth 1 | while read -r mFILE; do
+							case "$(basename "$mFILE")" in # This will match filenames
+								*) chmod 660 "$mFILE"
+							esac
+						done
+
+						# And we're done!
+						rm -rf "$FOLDER"
+						((ADMANY--))
+						echo "$(date +"%F %T") INFO: Merging done! $ADMANY to go"
+					fi
+				done
+				echo "$ADMANY" > "$ADFIFO"
+			)
+		) &
+		ADMANY="$(cat "$ADFIFO")"
+	fi
+
+	if [[ "$LEDS" -gt 0 ]]; then
+		while :; do
+			case "$LEDS" in
+				1) RED=10; GREEN=0; BLUE=0 ;;
+				2) RED=20; GREEN=0; BLUE=0 ;;
+				3) RED=30; GREEN=0; BLUE=0 ;;
+				4) RED=40; GREEN=0; BLUE=0 ;;
+				5) RED=40; GREEN=10; BLUE=0 ;;
+				6) RED=40; GREEN=20; BLUE=0 ;;
+				7) RED=40; GREEN=30; BLUE=0 ;;
+				8) RED=40; GREEN=40; BLUE=0 ;;
+				9) RED=30; GREEN=40; BLUE=0 ;;
+				10) RED=20; GREEN=40; BLUE=0 ;;
+				11) RED=10; GREEN=40; BLUE=0 ;;
+				12) RED=0; GREEN=40; BLUE=0 ;;
+				13) RED=0; GREEN=40; BLUE=10 ;;
+				14) RED=0; GREEN=40; BLUE=20 ;;
+				15) RED=0; GREEN=40; BLUE=30 ;;
+				16) RED=0; GREEN=40; BLUE=40 ;;
+				17) RED=0; GREEN=30; BLUE=40 ;;
+				18) RED=0; GREEN=20; BLUE=40 ;;
+				19) RED=0; GREEN=10; BLUE=40 ;;
+				20) RED=0; GREEN=0; BLUE=40 ;;
+				21) RED=10; GREEN=0; BLUE=40 ;;
+				22) RED=20; GREEN=0; BLUE=40 ;;
+				23) RED=30; GREEN=0; BLUE=40 ;;
+				24) RED=40; GREEN=0; BLUE=40 ;;
+				25) RED=30; GREEN=0; BLUE=30 ;;
+				26) RED=20; GREEN=0; BLUE=20 ;;
+				27) RED=10; GREEN=0; BLUE=10 ;;
+				28) RED=0; GREEN=0; BLUE=0 ;;
+				*) LEDS=1; break ;; # This is the last one, so we go back to the start
+			esac
+			echo "$RED" > "/sys/class/leds/led_r/brightness"
+			echo "$GREEN" > "/sys/class/leds/led_g/brightness"
+			echo "$BLUE" > "/sys/class/leds/led_b/brightness"
+			((LEDS++))
+			sleep 0.1
+		done
+	else
+		sleep 2
+	fi
+done
+
+if [[ "$LOOP" -ge 600 ]]; then
+	echo "$(date +"%F %T") WARNING: I looped $LOOP times and needed to exit from infinite loop, not good (Init Semaphore)"
+else
+	echo "$(date +"%F %T") INFO: I looped $LOOP times and didn't have to exit from infinite loop, that's nice (Init Semaphore)"
+fi
+
+if [[ "$FIRSTBOOT" -eq 1 ]]; then
+	rm -f "$ADFIFO"
+	rm -rf "$AD/FIRSTBOOT"
+	touch "/data/.ARCHIDROID_FIRSTBOOT_COMPLETED"
+fi
+
+# Execute a reboot if we need it
+if [[ -f "$AD/HARD_REBOOT_REQUIRED" ]]; then
+	echo "$(date +"%F %T") INFO: HARD_REBOOT_REQUIRED, I'm rebooting device now..."
+	rm -f "$AD/SOFT_REBOOT_REQUIRED" "$AD/HARD_REBOOT_REQUIRED"
+	sync
+	reboot
+elif [[ "$ADRELOAD" -eq 1 || -f "$AD/SOFT_REBOOT_REQUIRED" ]]; then
+	echo "$(date +"%F %T") INFO: SOFT_REBOOT_REQUIRED, I'm rebooting android interface now..."
+	rm -f "$AD/SOFT_REBOOT_REQUIRED"
+	setprop ctl.restart zygote
+fi
+
+# Finish
+echo "FINISHED" > "$ADSTATUS"
+echo "$(date +"%F %T") INFO: ArchiDroid Init finished"
+exit 0

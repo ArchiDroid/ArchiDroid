@@ -1,0 +1,162 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Lukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Romanian
+#   By                : synkus (aka oXydus)
+#   E-mail (optional) : 
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=Aplicatie extrem de customizabila care va arata informatii utile despre dispozitivul dvs. (ex. utilizare procesor) in panoul de notificare
+archidroid.apps.fdroid.desc=Catalog de aplicatii gratuite si open source pentru platforma Android. Un adaos foarte bun pentru Google Play Store
+archidroid.apps.greenify.desc=Economiseste bateria prin hibernarea aplicatiilor din fundal cand nu le utilizezi
+archidroid.apps.lmt.desc=imbunatateste dispozitivul dvs. cu functionalitate PIE, gesturi si altele
+archidroid.apps.spiritfm.desc=Aplicatie FM radio reala, tunata si over-the-air. Nu necesita acces la Internet
+archidroid.apps.titaniumbackup.desc=Aplicatie de baza pentru orice root-utilizator. Permite crearea copiilor de rezerva / restabilirea aplicatiilor si a datelor
+
+archidroid.bcm=Profiluri BCM
+archidroid.bcm.archidetect.desc=ArchiDetect va incerca sa identifice automat firmware-ul corespunzator dispozitivului dvs
+
+archidroid.bootanimation=Boot-animatie
+archidroid.bootanimation.archi1.desc=Prima boot-animatie ArchiDroid, din versiunile 1.X
+archidroid.bootanimation.archi2.desc=A doua boot-animatie ArchiDroid, din versiunile 2.X
+archidroid.bootanimation.archi3.desc=A treia boot-animatie ArchiDroid, din versiunile 3.X
+archidroid.bootanimation.none.desc=Fara boot-animatie, pentru o pornire putin mai rapida
+archidroid.bootanimation.stock.desc=Boot-animatie din versiunea de baza
+
+archidroid.changelog=Lista modificarilor
+archidroid.changelog.desc=Ce este nou
+
+archidroid.common.current=Curent
+archidroid.common.default=Valore implicita
+archidroid.common.density=Densitate
+archidroid.common.detected=Detectat
+archidroid.common.finish=Terminare
+archidroid.common.install=Instalare
+archidroid.common.installation=Instalare
+archidroid.common.none=Niciunul
+archidroid.common.reboot=Repornire
+archidroid.common.reboot.question=Doriti sa reporniti dispozitivul dvs.?
+archidroid.common.terms.check=Sunt de acord cu termenii si conditiile
+archidroid.common.terms.readme=Cititi mai intai!
+archidroid.common.terms.unchecked=Va rugam sa acceptati conditiile!
+
+archidroid.custom=Particularizare
+archidroid.custom.desc=Selectati setarile preferate
+
+archidroid.detect.fail=ArchiDroid nu a reusit sa se autoidentifice ca fiind instalat, prin urmare stergerea datelor (revenirea la setarile din fabrica) este obligatorie. ArchiDroid va formata partitia /data inainte de instalare. Datele stocate in Internal sd card sunt in siguranta!
+archidroid.detect.pass=ArchiDroid s-a autoidentificat cu succes ca fiind instalat. Doriti sa stergeti datele dvs. oricum?
+archidroid.detect.pass.no=Nu, nu sterge datele mele
+archidroid.detect.pass.yes=Da, sterge datele mele
+archidroid.detect.pass.alert.no=Bine, dar tineti cont de faptul ca ROM ar putea sa nu functioneze corect cu date incompatibile!
+archidroid.detect.pass.alert.yes=Buna alegere, ArchiDroid se va asigura ca /data este formatat inainte de instalare!
+
+archidroid.detect.previouspreset.expert.fail.incompatible=Atentie! Presetarea dvs. anterioara nu a trecut testul de integritate. Asigurati-va ca optiunile selectate sunt valide!
+archidroid.detect.previouspreset.fail.incompatible=Ne pare rau, presetarea dvs. anterioara nu a trecut testul de integritate. Puteti incerca modul expert daca stiti ce faceti
+archidroid.detect.previouspreset.fail.notavailable=Scuze, se pare ca nu aveti nicio presetare anterioara
+
+archidroid.experimental=Versiune experimentala
+archidroid.experimental.terms.check=Eu inteleg ca aceasta versiune nu este finalizata si poate chiar sa faca dispozitivul meu nefunctional
+
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+
+archidroid.hardswap.desc=Sacrifica I/O pentru o memorie mai mare
+archidroid.hardswap.size.0.desc=Acesta va elimina fisierul hardswap file de pe partitie
+archidroid.hardswap.size.default.desc=Dimensiunea maxima recomandata
+
+archidroid.install.desc=<b>ArchiDroid</b> se instaleaza. Va rugam sa asteptati cu rabdare in timp ce <b>ArchiDroid</b> se instaleaza pe dispozitivul dvs.
+archidroid.install.finish=Instalarea <b>ArchiDroid</b> s-a finalizat. Apasati <b>Terminare</b> pentru continuare
+
+archidroid.kernel=Nucleu
+archidroid.kernel.archi.desc=Ofera integrare perfecta cu ArchiDroid, optimizari in profunzime, surse la zi si multe alte imbunatatiri. Foarte recomandat
+archidroid.kernel.stock.desc=Nucleul sistemului de baza
+
+archidroid.keyboard=Tastatura
+archidroid.keyboard.google.desc=Ofera scriere prin glisare, expansiune de text, pc-tastatura optionala si alte imbunatatiri fata de AOSP tastatura standard
+archidroid.keyboard.stock.desc=Tastatura sistemului de baza
+
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Ofera integrare perfecta cu alte aplicatii Google, ex. Cautare, care va ofera utilizarea comenzilor vocale din ecranul de start
+archidroid.launcher.nova.desc=Foarte customizabil, condus de performanta, inlocuirea ecranului de start pentru Android
+archidroid.launcher.stock.desc=Launcher din sistemul de baza
+
+archidroid.prepinstall=Gata de instalare
+archidroid.prepinstall.desc=Sunteti pregatit pentru a incepe instalarea. Pentru a incepe - apasati <b>Instalare</b>. Daca doriti sa revizuiti sau sa modificati setarile dvs., apasati <b>Inapoi</b>
+
+archidroid.preset=Presetare
+archidroid.preset.barebones=Sistemul de baza fara nicio modificare
+archidroid.preset.barebones.desc=Aceasta optiune instaleaza doar ROM. Se recomanda doar pentru depanare, veti pierde cele mai multe imbunatatiri ArchiDroid
+archidroid.preset.custom=Personalizeaza
+archidroid.preset.custom.desc=Selecteaza aceasta optiune daca doriti sa personalizati fiecare element ArchiDroid inaintea instalarii. Recomandat
+archidroid.preset.previous=Presetare anterioara
+archidroid.preset.previous.desc=Daca deja ati personalizat instalarea dvs., aceasta optiune incarca si utilizeaza presetarea anterioara
+archidroid.preset.previousexpert=Presetarea anterioara Expert
+archidroid.preset.previousexpert.desc=La fel ca si presetarea sus-mentionata, dar modul expert nu forteaza verificarea integritatii si va permite sa modificati presetarea dvs. anterioara inainte de instalare. Avertisment: fiti atenti, presetarea incompatibila poate sa devina neinstalabila
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=Alegeti aceasta optiune daca doriti sau este necesar de actualizat recovery inainte de instalarea ArchiDroid
+
+archidroid.preview=Previzualizare
+archidroid.preview.desc=Daca este selectata, veti vizualiza un exemplu al optiunii dvs. pe ecranul urmator
+
+archidroid.recovery.twrp.desc=Custom recovery usor utilizabil si customizabil. Sprijinit pe scara larga, cu dezvoltare de ultima ora
+
+archidroid.superuser.chainfire.desc=Closed-source, solutie moderna pentru stock ROM si utilizatori care prefera superuser access management tool de viitor
+archidroid.superuser.koush.desc=Open-source, built-in superuser access management
+archidroid.superuser.none.desc=Fara superuser, aceasta optiune dezactiveaza root access. Puteti utiliza aceasta optiune pentru o mai multa securitate
+
+archidroid.thirdparty=Third-Party Agreement
+
+archidroid.tou=Termeni de utilizare
+
+archidroid.tweaks.cellbroadcasts=Cell broadcasts
+archidroid.tweaks.cellbroadcasts.desc=Cell broadcasts sunt proiectate pentru livrarea simultana a mesajelor catre mai multi utilizatori intr-o zona specificata. Adesea, acestea sunt utilizate in scopuri de spam. Selectati numai daca aveti nevoie de ele
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.navibar=Bara de navigare
+archidroid.tweaks.navibar.desc=Activeaza bara de navigare si dezactiveaza butoanele hardware (back, home, menu). Selectati daca preferati sa utilizati navigare pe ecran
+archidroid.tweaks.navibar.hwenabled=Activeaza butoanele hardware
+archidroid.tweaks.navibar.hwenabled.desc=In mod implicit, bara de navigare dezactiveaza butoanele hardware. Selectati daca preferati sa aveti ambele metode de navigare
+
+
+### AROMA strings
+text_about=Despre
+text_back=inapoi
+text_calibrating=Instrumente de calibrare
+text_next=Inainte
+text_no=Nu
+text_ok=OK
+text_quit_msg=Sunteti sigur sa intrerupeti instalarea?
+text_quit=Intrerupe instalarea
+text_yes=Da
+
+### End of file

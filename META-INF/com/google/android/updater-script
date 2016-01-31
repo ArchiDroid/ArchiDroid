@@ -1,0 +1,517 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014-2016 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+ui_print(">>> ArchiDroid is now loading...");
+assert(getprop("ro.product.device") == "BRINGUP" ||
+	abort("This package is for device: BRINGUP; this device is " + getprop("ro.product.device") + "."););
+
+ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Ready!");
+set_progress(0.01);
+
+
+################
+### RECOVERY ###
+################
+
+### BOOT ###
+if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "boot" then
+	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing new kernel + recovery combo");
+	package_extract_file("boot.img", file_getprop("/tmp/aroma-data/device.prop", "kernel"));
+endif;
+
+### TWRP ###
+if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "twrp" then
+	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing TWRP recovery");
+	package_extract_file("_archidroid/recoveries/twrp/recovery.img", file_getprop("/tmp/aroma-data/device.prop", "recovery"));
+endif;
+
+if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none" then
+	package_extract_dir("install", "/tmp/install");
+	set_metadata_recursive("/tmp/install", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644);
+	set_metadata_recursive("/tmp/install/bin", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755);
+
+	if file_getprop("/tmp/aroma-data/archidroidwipe.prop", "wipe") == "no" then
+		package_extract_file("META-INF/org/cyanogenmod/releasekey", "/tmp/releasekey");
+		run_program("/tmp/install/bin/otasigcheck.sh") != "31744" || abort("Can't install this package on top of incompatible data. A data wipe is required!");
+
+		if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "barebones" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Backing up all addons");
+			run_program("/tmp/install/bin/backuptool.sh", "backup");
+		endif;
+
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Wiping dalvik cache and resource cache");
+		delete_recursive("/data/dalvik-cache");
+		delete_recursive("/data/resource-cache");
+	else
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Wiping /data excluding /data/media");
+		package_extract_file("_archidroid/exec/wipe.sh", "/tmp/wipe.sh");
+		set_metadata("/tmp/wipe.sh", "uid", 0, "gid", 0, "mode", 0755);
+		run_program("/tmp/wipe.sh");
+		delete("/tmp/wipe.sh");
+	endif;
+
+	### ARCHIDROID TOOLS ###
+	package_extract_file("_archidroid/exec/adlock.sh", "/tmp/adlock.sh");
+	set_metadata("/tmp/adlock.sh", "uid", 0, "gid", 0, "mode", 0755);
+
+	set_progress(0.03);
+
+	### UNLOCK ###
+	run_program("/tmp/adlock.sh", "unlock", "/system/etc/hosts"); # AD 3.0.X regression, please delete me later (AD 3.2+)
+
+	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Wiping system partition");
+	delete_recursive("/system");
+
+	set_progress(0.1);
+
+	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing ArchiDroid base");
+	show_progress(0.4, 1500);
+	package_extract_dir("system", "/system");
+	set_progress(0.51);
+
+	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Creating symlinks");
+	### BRINGUP ###
+
+	set_progress(0.52);
+
+	if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "barebones" then
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing ArchiDroid backend");
+		package_extract_dir("_archidroid/auto", "/");
+	endif;
+
+	set_progress(0.53);
+
+	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Setting permissions");
+	### BRINGUP ###
+
+	if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") != "barebones" then
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Executing post-install ArchiDroid scripts");
+		package_extract_file("_archidroid/exec/archidroid_backend.sh", "/tmp/archidroid_backend.sh");
+		set_metadata("/tmp/archidroid_backend.sh", "uid", 0, "gid", 0, "mode", 0755);
+		run_program("/tmp/archidroid_backend.sh");
+		delete("/tmp/archidroid_backend.sh");
+	endif;
+
+	set_progress(0.54);
+
+	ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Cleaning old kernel");
+	package_extract_file("boot.img", file_getprop("/tmp/aroma-data/device.prop", "kernel"));
+
+	#################
+	### BAREBONES ###
+	#################
+	if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "barebones" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing Stock kernel");
+			# We have stock kernel already
+	else
+		##############
+		### KERNEL ###
+		##############
+
+		### STOCK ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "kernel") == "stock" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Flashing Stock kernel");
+			# We have stock kernel already
+		endif;
+
+		set_progress(0.6);
+
+
+		###############
+		### RESTORE ###
+		###############
+
+		if file_getprop("/tmp/aroma-data/archidroidwipe.prop", "wipe") == "no" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Restoring addons");
+			run_program("/tmp/install/bin/backuptool.sh", "restore");
+		endif;
+
+		set_progress(0.63);
+
+
+		############
+		### ROOT ###
+		############
+
+		### CHAINFIRE ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "superuser") == "chainfire" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing SuperSU by Chainfire");
+			package_extract_dir("_archidroid/root/chainfire/system", "/system");
+			symlink("/system/etc/install-recovery.sh", "/system/bin/install-recovery.sh");
+			set_metadata("/system/etc/install-recovery.sh", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:toolbox_exec:s0");
+			set_metadata("/system/etc/init.d/99SuperSUDaemon", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+
+			# SuperSU requires some additional work
+			package_extract_file("_archidroid/root/chainfire/chainfire.sh", "/tmp/chainfire.sh");
+			set_metadata("/tmp/chainfire.sh", "uid", 0, "gid", 0, "mode", 0755);
+			run_program("/tmp/chainfire.sh");
+			delete("/tmp/chainfire.sh");
+
+			# Apply permissions
+			set_metadata("/system/xbin/sugote", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:zygote_exec:s0");
+			set_metadata("/system/xbin/sugote-mksh", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+			set_metadata("/system/bin/.ext", "uid", 0, "gid", 0, "mode", 0777, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+			run_program("/system/xbin/su", "--install");
+		endif;
+
+		### KOUSH ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "superuser") == "koush" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Superuser by Koush");
+			# This is default already
+		endif;
+
+		### NONE ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "superuser") == "none" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Disabling root access");
+			package_extract_file("_archidroid/root/none/disableroot.sh", "/tmp/disableroot.sh");
+			set_metadata("/tmp/disableroot.sh", "uid", 0, "gid", 0, "mode", 0755);
+			run_program("/tmp/disableroot.sh");
+			delete("/tmp/disableroot.sh");
+		endif;
+
+
+		###############
+		### DENSITY ###
+		###############
+
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying ", file_getprop("/tmp/aroma-data/archidroid.prop", "density"), " density");
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "density") != "default" then
+			package_extract_file("_archidroid/exec/density.sh", "/tmp/density.sh");
+			set_metadata("/tmp/density.sh", "uid", 0, "gid", 0, "mode", 0755);
+			run_program("/tmp/density.sh", file_getprop("/tmp/aroma-data/archidroid.prop", "density"));
+			delete("/tmp/density.sh");
+		endif;
+
+		set_progress(0.64);
+
+
+		#############
+		### GAPPS ###
+		#############
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps") == "1" || file_getprop("/tmp/aroma-data/archidroid.prop", "keyboard") == "google" || file_getprop("/tmp/aroma-data/archidroid.prop", "launcher") == "google" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Apps");
+			show_progress(0.15, 40);
+			package_extract_dir("_archidroid/gapps/base", "/system");
+
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-calendar") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Calendar");
+				delete_recursive("/system/app/Calendar");
+				package_extract_dir("_archidroid/gapps/extra/calendargoogle", "/system");
+			else
+				if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-calsync") == "1" then
+					package_extract_dir("_archidroid/gapps/extra/calsync", "/system");
+				endif;
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-camera") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Camera");
+				delete_recursive("/system/app/Camera2");
+				package_extract_dir("_archidroid/gapps/extra/cameragoogle", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-chrome") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Chrome");
+				delete_recursive("/system/app/Browser");
+				package_extract_dir("_archidroid/gapps/extra/chrome", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-exchange") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Exchange Services");
+				delete_recursive("/system/app/Exchange2");
+				package_extract_dir("_archidroid/gapps/extra/exchangegoogle", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-face") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Face");
+				package_extract_dir("_archidroid/gapps/extra/facedetect", "/system");
+				package_extract_dir("_archidroid/gapps/extra/faceunlock", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-gmail") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Gmail");
+				delete_recursive("/system/app/Email");
+				package_extract_dir("_archidroid/gapps/extra/gmail", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-messenger") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Messenger");
+				delete_recursive("/system/priv-app/Mms");
+				package_extract_dir("_archidroid/gapps/extra/messenger", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-music") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Music");
+				delete_recursive("/system/app/Eleven");
+				package_extract_dir("_archidroid/gapps/extra/music", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-photos") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Photos");
+				delete_recursive("/system/app/Gallery2");
+				package_extract_dir("_archidroid/gapps/extra/photos", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-search") == "1" || file_getprop("/tmp/aroma-data/archidroid.prop", "launcher") == "google" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Search");
+				package_extract_dir("_archidroid/gapps/extra/search", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-speech") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Speech");
+				package_extract_dir("_archidroid/gapps/extra/speech", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-tag") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Tag");
+				delete_recursive("/system/priv-app/Tag");
+				package_extract_dir("_archidroid/gapps/extra/taggoogle", "/system");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-tts") == "1" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Text-To-Speech");
+				delete_recursive("/system/app/PicoTts");
+				package_extract_dir("_archidroid/gapps/extra/googletts", "/system");
+			endif;
+		endif;
+
+		set_progress(0.78);
+
+
+		#################
+		### BLOATWARE ###
+		#################
+
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-basicdreams") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Basic Dreams");
+				delete_recursive("/system/app/BasicDreams");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-cmaccount") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing CyanogenMod Account");
+				delete_recursive("/system/priv-app/CMAccount");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-cmaudiofx") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing CyanogenMod AudioFX");
+				delete_recursive("/system/priv-app/AudioFX");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-cmwallpapers") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing CyanogenMod Wallpapers");
+				delete_recursive("/system/app/CMWallpapers");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-galaxy") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Galaxy");
+				delete_recursive("/system/app/Galaxy4");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-holospiral") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Holo Spiral");
+				delete_recursive("/system/app/HoloSpiralWallpaper");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-livewallpapers") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Live Wallpapers");
+				delete_recursive("/system/app/LiveWallpapers");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-lockclock") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Lock Clock");
+				delete_recursive("/system/app/LockClock");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-noisefield") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Noise Field");
+				delete_recursive("/system/app/NoiseField");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-phasebeam") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Phase Beam");
+				delete_recursive("/system/app/PhaseBeam");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-photophase") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Photo Phase");
+				delete_recursive("/system/app/PhotoPhase");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-phototable") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Photo Table");
+				delete_recursive("/system/app/PhotoTable");
+			endif;
+			if file_getprop("/tmp/aroma-data/archidroid.prop", "bloatware-visualizationwallpapers") == "0" then
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Removing Visualization Wallpapers");
+				delete_recursive("/system/app/VisualizationWallpapers");
+			endif;
+
+		set_progress(0.82);
+
+
+		################
+		### KEYBOARD ###
+		################
+
+		### GOOGLE ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "keyboard") == "google" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Keyboard");
+			package_extract_dir("_archidroid/gapps/extra/keyboardgoogle", "/system");
+		endif;
+
+		### STOCK ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "keyboard") == "stock" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Stock Keyboard");
+		else
+			delete_recursive("/system/app/LatinIME");
+		endif;
+
+		set_progress(0.84);
+
+
+		################
+		### LAUNCHER ###
+		################
+
+		### GOOGLE ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "launcher") == "google" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Launcher");
+			package_extract_dir("_archidroid/gapps/extra/googlenow", "/system");
+		endif;
+
+		### NOVA ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "launcher") == "nova" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Nova Launcher");
+			package_extract_dir("_archidroid/apps/nova", "/");
+		endif;
+
+		### STOCK ###
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "launcher") == "stock" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Stock Launcher");
+		else
+			delete_recursive("/system/priv-app/Trebuchet");
+		endif;
+
+		set_progress(0.85);
+
+
+		##############
+		### TWEAKS ###
+		##############
+
+		ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Executing post-install ArchiDroid tweaks");
+		package_extract_file("_archidroid/tweaks/build.prop/append.sh", "/tmp/append.sh");
+		set_metadata("/tmp/append.sh", "uid", 0, "gid", 0, "mode", 0755);
+		run_program("/tmp/append.sh");
+		delete("/tmp/append.sh");
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "firmware-update") == "1" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Updating firmware");
+			# BRINGUP if needed
+		endif;
+
+#		if file_getprop("/tmp/aroma-data/archidroid.prop", "navibar") == "1" then
+#			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Navigation Bar enabled");
+#			package_extract_file("_archidroid/tweaks/build.prop/navibarON.sh", "/tmp/navibarON.sh");
+#			set_metadata("/tmp/navibarON.sh", "uid", 0, "gid", 0, "mode", 0755);
+#			run_program("/tmp/navibarON.sh", file_getprop("/tmp/aroma-data/archidroid.prop", "navibar-hwenabled"));
+#			delete("/tmp/navibarON.sh");
+#		else
+#			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Navigation Bar disabled");
+#		endif;
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "cell") == "1" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Cell Broadcasts enabled");
+		else
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Cell Broadcasts disabled");
+			delete_recursive("/system/priv-app/CellBroadcastReceiver");
+		endif;
+
+		set_progress(0.86);
+
+
+		#####################
+		### BOOTANIMATION ###
+		#####################
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation") == "archi3m" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying ArchiDroid 3.X Material bootanimation");
+			package_extract_dir("_archidroid/bootanimations/archi3m", "/");
+		endif;
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation") == "stock" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying Stock bootanimation");
+		endif;
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation") == "liveboot" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Applying Live Boot bootanimation");
+			package_extract_dir("_archidroid/bootanimations/liveboot", "/");
+			set_metadata("/system/etc/init.d/00liveboot", "uid", 0, "gid", 0, "mode", 0755);
+			package_extract_file("_archidroid/tweaks/build.prop/bootaniOFF.sh", "/tmp/bootaniOFF.sh");
+			set_metadata("/tmp/bootaniOFF.sh", "uid", 0, "gid", 0, "mode", 0755);
+			run_program("/tmp/bootaniOFF.sh");
+			delete("/tmp/bootaniOFF.sh", "/system/media/bootanimation.zip");
+		endif;
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "bootanimation") == "none" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Disabling bootanimation");
+			package_extract_file("_archidroid/tweaks/build.prop/bootaniOFF.sh", "/tmp/bootaniOFF.sh");
+			set_metadata("/tmp/bootaniOFF.sh", "uid", 0, "gid", 0, "mode", 0755);
+			run_program("/tmp/bootaniOFF.sh");
+			delete("/tmp/bootaniOFF.sh", "/system/media/bootanimation.zip");
+		endif;
+
+		set_progress(0.87);
+
+
+		############
+		### APPS ###
+		############
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "cooltool") == "1" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing CoolTool");
+			package_extract_dir("_archidroid/apps/cooltool", "/");
+		endif;
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "fdroid") == "1" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing F-Droid");
+			package_extract_dir("_archidroid/apps/fdroid", "/");
+		endif;
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "greenify") == "1" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Greenify");
+			package_extract_dir("_archidroid/apps/greenify", "/");
+		endif;
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "lmt") == "1" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing LMT");
+			package_extract_dir("_archidroid/apps/lmt", "/");
+		endif;
+
+#		if file_getprop("/tmp/aroma-data/archidroid.prop", "spiritfm") == "1" then
+#			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Spirit FM");
+#			package_extract_dir("_archidroid/apps/spiritfm", "/");
+#		endif;
+
+		if file_getprop("/tmp/aroma-data/archidroid.prop", "titaniumbackup") == "1" then
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Titanium Backup");
+			package_extract_dir("_archidroid/apps/titaniumbackup", "/");
+		endif;
+
+
+		set_progress(0.90);
+
+		### LOCK ###
+#		run_program("/tmp/adlock.sh", "lock", "/system/etc/hosts");
+		delete("/tmp/adlock.sh");
+	endif;
+	set_progress(0.98);
+endif;
+
+ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Syncing system");
+run_program("/sbin/sync");
+
+set_progress(0.99);
+
+ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Done!");
+
+ui_print("===================================");
+ui_print("  ArchiDroid flashed successfully  ");
+ui_print("===================================");
+set_progress(1.0);

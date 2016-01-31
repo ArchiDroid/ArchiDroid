@@ -1,0 +1,162 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Greek
+#   By                : rafaelkallis
+#   E-mail (optional) : rafaelkallis@gmail.com
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=Εξαιρετικά προσαρμόσιμη εφαρμογή που σας δείχνει χρήσιμες πληροφορίες σχετικά με τη συσκευή σας στο Statusbar (π.χ. βαθμός χρήσης επεξεργαστή) 
+archidroid.apps.fdroid.desc=Κατάλογος δωρεάν εφαρμογών ανοικτού κώδικα για το Android
+archidroid.apps.greenify.desc=Εξοικονομεί ενέργεια μεταφέροντας εφαρμογές που δεν χρησιμοποιείτε σε κατάσταση «χειμερίας νάρκης»
+archidroid.apps.lmt.desc=Ενισχύει τη συσκευή σας με τη λειτουργικότητα του PIE, υποστήριξη για χειρονομίες και περισσότερα
+archidroid.apps.spiritfm.desc=Εφαρμογή ραδιοφώνου με συχνότητες, δεν είναι απαραίτητη η πρόσβαση στο διαδίκτυο.
+archidroid.apps.titaniumbackup.desc=Μια κεντρική εφαρμογή για κάθε root-χρήστη. Δημιουργία αντιγράφων ασφαλείας / επαναφορά των εφαρμογών και των δεδομένων τους
+
+archidroid.bcm=BCM προφίλ
+archidroid.bcm.archidetect.desc=ArchiDetect προσπαθεί να ανιχνεύσει τo σωστό firmware για τη συσκευή σας αυτόματα
+
+archidroid.bootanimation=Κινούμενη εικόνα έναρξης λογισμικού
+archidroid.bootanimation.archi1.desc=Πρώτη κινούμενη εικόνα, από καιρούς 1.Χ
+archidroid.bootanimation.archi2.desc=Δεύτερη κινούμενη εικόνα, από καιρούς 2.Χ
+archidroid.bootanimation.archi3.desc=Τρίτη κινούμενη εικόνα, από καιρούς 3.Χ
+archidroid.bootanimation.none.desc=Καμία κινούμενη εικόνα, για ταχύτερη έναρξη λογισμικού
+archidroid.bootanimation.stock.desc=Κανονική κινούμενη εικόνα, από το βασικό σύστημα
+
+archidroid.changelog=Πρωτόκολλο αλλαγών
+archidroid.changelog.desc=Τι καινούργιο υπάρχει
+
+archidroid.common.current=Tρέχων
+archidroid.common.default=Προεπιλεγμένη επιλογή
+archidroid.common.density=Πυκνότητα
+archidroid.common.detected=Αναγνορισμένο
+archidroid.common.finish=Τέλος
+archidroid.common.install=Εγκατάσταση
+archidroid.common.installation=Εγκατάσταση
+archidroid.common.none=Καμία
+archidroid.common.reboot=Επανεκκίνηση
+archidroid.common.reboot.question=Θα θέλατε να επανεκκινίσετε τωρα;
+archidroid.common.terms.check=Συμφωνώ με τους όρους και τις προϋποθέσεις
+archidroid.common.terms.readme=Παρακαλώ διαβάστε προσεκτικά!
+archidroid.common.terms.unchecked=Παρακαλώ ελέγξτε τις προϋποθέσεις!
+
+archidroid.custom=Προσαρμόσετε
+archidroid.custom.desc=Προσαρμόσετε τις επιλογές όπως θέλετε
+
+archidroid.detect.fail=Το ArchiDroid δεν μπόρεσε να ανιχνεύσει προηγούμενη εγκατάσταση, ως εκ τούτου μια διαγραφή δεδομένων (επαναφορά εργοστασιακών ρυθμίσεων) είναι υποχρεωτική. Το ArchiDroid θα καθαρίσει τα δεδομένα σας πριν εγκατασταθεί. Τα δεδομένα της εσωτερικής sd card είναι ασφαλές κατα την διαδικασία αυτη!
+archidroid.detect.pass=Το ArchiDroid μπόρεσε να ανιχνεύσει προηγούμενη εγκατάσταση. Επιθυμείτε να διαγράψετε τα δεδομένα σας;
+archidroid.detect.pass.no=Όχι, μην διαγράψεις τα παλιά μου δεδομένα
+archidroid.detect.pass.yes=Ναι, παρακαλώ διάγραψε τα παλιά μου δεδομένα
+archidroid.detect.pass.alert.no=Εντάξει, όμως το λογισμικό μπορεί να μην λειτουργήσει ομαλά με ασυμβίβαστα δεδομένα!
+archidroid.detect.pass.alert.yes=Εξαιρετική επιλογή, το ArchiDroid θα καθαρίσει τα δεδομένα σας πριν εγκατασταθεί!
+
+archidroid.detect.previouspreset.expert.fail.incompatible=Προσοχή! Οι παλιές σας προκαθορισμένες επιλογές δεν πέρασαν τον έλεγχο ακεραιότητας.Your old preset failed integrity checkΒεβαιωθείτε ότι οι επιλογές που έχετε επιλέξει είναι έγκυρες!
+archidroid.detect.previouspreset.fail.incompatible=Λυπούμαστε, οι παλαιές προκαθορισμένες επιλογές δεν πέρασαν τον έλεγχο ακεραιότητας. Μπορείτε να δοκιμάσετε τον τρόπο εμπειρογνωμόνων, αν ξέρετε τι κάνετε
+archidroid.detect.previouspreset.fail.notavailable=Λυπούμαστε, φένετε πως δεν έχετε προκαθορισμένες επιλογές
+
+archidroid.experimental=Πειραματική κατασκευή
+archidroid.experimental.terms.check=Έχω κατανοήσει πως αυτή η κατασκευή είναι πειραματική και μπορεί να καταστρέψει την συσκευή μου
+
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+
+archidroid.hardswap.desc=Θυσία I/O για περισσότερη μνήμη
+archidroid.hardswap.size.0.desc=Αυτό θα διαγράψει το αρχείο hardswap
+archidroid.hardswap.size.default.desc=Μέγιστο συνιστώμενο μέγεθος
+
+archidroid.install.desc=<b>ArchiDroid</b>  βρίσκεται στο στάδιο της εγκατάστασης. Παρακαλώ περιμένετε<b>ArchiDroid</b> 
+archidroid.install.finish=Εγκατάσταση <b>ArchiDroid</b> έχει τελειώσει. Πατήστε <b>Τέλος</b> για να συνεχίσετε
+
+archidroid.kernel=Kernel
+archidroid.kernel.archi.desc=Τέλεια συνέργεια με ArchiDroid, βαθιές βελτιστοποιήσεις, ενημερωμένες πηγές και πολλές βελτιώσεις. Το συνιστώ
+archidroid.kernel.stock.desc=Κανονικό Kernel παρεχόμενο από το βασικό σύστημα
+
+archidroid.keyboard=Πληκτρολόγιο
+archidroid.keyboard.google.desc=Παρέχει πληκτρολόγηση χειρονομίας, επέκταση κειμένου, προαιρετική διάταξη κανονικού υπολογιστή και άλλες βελτιώσεις σε σχέση με πρότυπο πληκτρολόγιου AOSP
+archidroid.keyboard.stock.desc=Πληκτρολόγιο παρεχόμενο από το βασικό σύστημα
+
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Παρέχει εξαιρετική ενσωμάτωση με άλλες εφαρμογές Google apps
+archidroid.launcher.nova.desc=Εξαιρετικά προσαρμόσιμο, με κίνητρο την απόδοση, αντικατάσταση αρχικής οθόνης για το Android
+archidroid.launcher.stock.desc=Launcher παρεχόμενο από το βασικό σύστημα
+
+archidroid.prepinstall=Έτοιμο για εγκατάσταση
+archidroid.prepinstall.desc=Τώρα είστε έτοιμοι για εγκατάσταση. Πατήστε <b>Εγκατάσταση</b> για να ξεκινήσετε. Αν θέλετε να ανασκοπίσετε τις ρυθμίσεις σας πατήστε <b>Πίσω</b>
+
+archidroid.preset=Προκαθορισμένες επιλογές
+archidroid.preset.barebones=Bare Bones
+archidroid.preset.barebones.desc=Αυτή η επιλογή εγκαθιστά μόνο το βασικό λειτουργικό σύστημα. Συνιστάται μόνο για debugging
+archidroid.preset.custom=Προσαρμόστε
+archidroid.preset.custom.desc=Επιλέξτε αυτήν την επιλογή αν θέλετε να προσαρμόσετε κάθε πτυχή του ArchiDroid σας πριν εγκατασταθεί. Συνιστάται
+archidroid.preset.previous=Προηγούμενες επιλογές
+archidroid.preset.previous.desc=Εάν έχετε ήδη προσαρμόσει την εγκατάσταση πριν, αυτή η επιλογή φορτώνει και χρησιμοποιεί τις παλαιές σας επιλογές
+archidroid.preset.previousexpert=Προηγούμενες επιλογές, εμπειρογνωμονικά
+archidroid.preset.previousexpert.desc=Ίδιο με προηγούμενες προκαθορισμένες επιλογές παραπάνω, αλλά η εγκατάσταση εμπειρογνώμονα δεν επιβάλλει ελέγχους συμβατότητας και σας επιτρέπει να κάνετε τροποποιήσεις στις παλαιές σας επιλογές πριν να εγκατασταθεί. Προειδοποίηση: Προσέξτε, ασυμβίβαστες επιλογές μπορεί να μην επιτρέψουν την εγκατάσταση
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=Επιλέξτε αυτή την επιλογή αν επιθυμίτε την ενημέρωση εφαρμογής recovery πριν την εγκατάσταση του ArchiDroid
+
+archidroid.preview=Προεπισκόπηση
+archidroid.preview.desc=Όταν επιλεγεί, θα δείτε ένα δείγμα της επιλογής σας στην επόμενη οθόνη
+
+archidroid.recovery.twrp.desc=Προσαρμοσμένη εφαρμογή recovery  χτισμένη με την ευκολία χρήσης
+
+archidroid.superuser.chainfire.desc=Εφαρμογή κλειστού κώδικα, για αυτούς που προτιμούν το  εργαλείο διαχείρισης πρόσβασης του μέλλοντος
+archidroid.superuser.koush.desc=Εφαρμογή ανοικτού κώδικα, ενσωματωμένη διαχείριση πρόσβασης
+archidroid.superuser.none.desc=Καμία διαχείριση πρόσβασης. Απενεργοποιεί την πρόσβαση root
+
+archidroid.thirdparty=Συμφωνία Τρίτων
+
+archidroid.tou=Όροι Χρήσης
+
+archidroid.tweaks.cellbroadcasts=Εκπομπή τηλεφωνικής κυψέλης
+archidroid.tweaks.cellbroadcasts.desc=Οι εκπομπές τηλεφωνικών κυψελών έχουν σχεδιαστεί για την ταυτόχρονη παράδοση μηνυμάτων σε πολλαπλούς χρήστες σε μια συγκεκριμένη περιοχή. Συχνά χρησιμοποιούνται για τους σκοπούς της ανεπιθύμητης αλληλογραφίας. Επιλέξτε μόνο αν τα χρειάζεστε
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.navibar=Ράβδος πλοήγησης
+archidroid.tweaks.navibar.desc=Ενεργοποιεί τη μπάρα πλοήγησης, και απενεργοποιεί τα πλήκτρα υλικού (back, home, menu). Επιλέξτε αν προτιμάτε να έχετε στην οθόνη την ράβδο πλοήγησης
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
+
+
+### AROMA strings
+text_about=Περισσότερα
+text_back=Πίσω
+text_calibrating=Βαθμονόμηση εργαλείων
+text_next=Επόμενο
+text_no=Όχι
+text_ok=Εντάξει
+text_quit_msg=Επιθυμείτε να εγκαταλείψετε την εγκατάσταση;
+text_quit=Εγκατάληψη
+text_yes=Ναι
+
+### End of file

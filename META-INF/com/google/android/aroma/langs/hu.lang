@@ -1,0 +1,162 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Hungarian
+#   By                : TheMagnusson
+#   E-mail (optional) : atka369@gmail.com
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=Erősen személyre szabható program, mely hasznos információkat mutat az állapotsávon.(pl. CPU használat)
+archidroid.apps.fdroid.desc=Nyílt és ingyenes programok katalógusa Androidra. Remek kiegészítés a Google Play Store mellé.
+archidroid.apps.greenify.desc=Az akkumulátor üzemidejét hivatott hosszabbítani, az éppen nem használt háttérben futó alkalmazások hibernálásával.
+archidroid.apps.lmt.desc=A készülés kiegészítése PIE vezérlővel, és gesztus alapú parancsok beállításával.
+archidroid.apps.spiritfm.desc=Valódi, hangolt OTA FM rádió alkalmazás, mely nem igényel internet-kapcsolatot.
+archidroid.apps.titaniumbackup.desc=Minden root-felhasználó fontos alkalmazása. Segítségével menthetjük/visszaállíthatjuk alkalmazásainkat, és azok adatait.
+
+archidroid.bcm=BCM profilozása
+archidroid.bcm.archidetect.desc=Az ArchiDetect megpróbálja automatikusan felismerni a készülékhez megfelelő firmware verziót.
+
+archidroid.bootanimation=Bootanimáció
+archidroid.bootanimation.archi1.desc=Első ArchiDroid bootanimáció, a 1.X idejéből
+archidroid.bootanimation.archi2.desc=Második ArchiDroid bootanimáció, a 2.X idejéből
+archidroid.bootanimation.archi3.desc=Harmadik ArchiDroid bootanimáció, a 3.X idejéből
+archidroid.bootanimation.none.desc=Bootanimáció törlése, a csekély bootolási idő csökkentésért
+archidroid.bootanimation.stock.desc=Gyári Samsung bootanimáció használata
+
+archidroid.changelog=Változtatások
+archidroid.changelog.desc=Újdonságok
+
+archidroid.common.current=Jelenlegi
+archidroid.common.default=Alapérték
+archidroid.common.density=Képpontsűrűség
+archidroid.common.detected=Észlelt
+archidroid.common.finish=Kész
+archidroid.common.install=Telepítés
+archidroid.common.installation=Telepítés
+archidroid.common.none=Nem
+archidroid.common.reboot=Újraindítás
+archidroid.common.reboot.question=Szeretnéd most újraindítani készülékedet?
+archidroid.common.terms.check=Elfogadom a felhasználási feltételeket
+archidroid.common.terms.readme=Olvass el!
+archidroid.common.terms.unchecked=Kérlek nézd át a feltételeket!
+
+archidroid.custom=Személyre szabás
+archidroid.custom.desc=Beállítások személyre szabása
+
+archidroid.detect.fail=Nincs észlelhető ArchiDroid a készüléken, Ezért a wipe (factory reset) kötelező. Az ArchiDroid formázni fogja a /data partíciót a flashelés előtt. A belső tárhely érintetlen marad!
+archidroid.detect.pass=Sikeresen találtam egy jelenlegi ArchiDroid verziót. Szeretnéd mégis wipe-olni a készüléked?
+archidroid.detect.pass.no=Nem, ne wipe-old a régi adataimat.
+archidroid.detect.pass.yes=Igen, wipe-old régi adataimat.
+archidroid.detect.pass.alert.no=Rendben, de tartsd észben, hogy a ROM nem mükődik megfelelően inkompatibilis beállításokkal!
+archidroid.detect.pass.alert.yes=Jó döntés, az ArchiDroid ellenőrizni fogja, hogy a /data particíó megfelelően lett-e formázva!
+
+archidroid.detect.previouspreset.expert.fail.incompatible=Figyelem! Régi beállításaid beolvasása sikertelen. Ellenőrizd beállításaid helyességét!
+archidroid.detect.previouspreset.fail.incompatible=Sajnáljuk, Régi beállításaid beolvasása sikertelen. Kipróbálhatod az expert módot, ha járatos vagy a témában
+archidroid.detect.previouspreset.fail.notavailable=Sajnáljuk, úgy tűnik nem találhatók régi beállítások
+
+archidroid.experimental=Kisérleti verzió
+archidroid.experimental.terms.check=Megértettem, hogy a jelen verzió csak kísérleti, akár a telefon károsodását is okozhatják.
+
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+
+archidroid.hardswap.desc=Feláldozni az I/O-t a több memóriáért
+archidroid.hardswap.size.0.desc=Ez eltünteti a hardswap fájlt a particíóról
+archidroid.hardswap.size.default.desc=Maximum ajánlott méret
+
+archidroid.install.desc=<b>ArchiDroid</b> telepítve lesz. Kérem várj türemesen míg a varázsló kész lesz az <b>ArchiDroid</b> telepítésével
+archidroid.install.finish=<b>ArchiDroid</b> telepítése sikeresen lezajlott. Nyomd meg a <b>Kész</b> gombot a folytatáshoz
+
+archidroid.kernel=Kernel
+archidroid.kernel.archi.desc=Tökéletes együttműködést biztosít az ArchiDroid-dal, mélyen optimalizált, naprakész forrásokkal és számtalan fejlesztéssel. Erősen ajánlott
+archidroid.kernel.stock.desc=Gyári stock kernel
+
+archidroid.keyboard=Billentyűzet
+archidroid.keyboard.google.desc=Támogatja a gesztus alapú írást, szöveg kiegészítást, opcionális pc elrendezést, és egyéb funkciókat a hagyományos AOSP bilentyűzettel szemben
+archidroid.keyboard.stock.desc=Gyári billentyűzet, mely az alap rendszerrel járna
+
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Tökéletes együttműködést biztosít a Google alkalmazásokkal, pl. Search, mely lehetővé teszi a hangalapú utasítást a launcher-en keresztül
+archidroid.launcher.nova.desc=Erősen személyre szabható, ajánlott, teljesítményközpontú, sokoldalú launcher
+archidroid.launcher.stock.desc=Gyári launcher, mely az alap rendszerrel járna
+
+archidroid.prepinstall=Készen áll a flashelésre
+archidroid.prepinstall.desc=Készen állsz a telepítésre. Nyomd meg a <b>Telepítés</b> gombot a kezdéshez. Ha meggondoltad magad, vagy szeretnéd módosítani a beállításokat, nyomeg meg a <b>Visza</b> gombot
+
+archidroid.preset=Beállítások
+archidroid.preset.barebones=Csupasz csont
+archidroid.preset.barebones.desc=Ez az opció csak az alap rendszert telepíti. Csak debugging céljára ajánlott, kimaradsz minden ArchiDroid-féle jó dologból
+archidroid.preset.custom=Személyre szabás
+archidroid.preset.custom.desc=Válaszd ezt, ha a telepítés minden lépését személyre szeretnéd szabni. Ajánlott
+archidroid.preset.previous=Előző beállítások
+archidroid.preset.previous.desc=Ha már előzőleg személyre szabtad a beállításaidat, ezzel az opcióval használhatod őket újra
+archidroid.preset.previousexpert=Előző expert beállítások
+archidroid.preset.previousexpert.desc=Megegyezik az előző beállításokkal, de az expert mód nem erőlteti a kompatibilitás ellenőrzését, így módosíthatod előző beállításaidat. Figyelem: légy óvatos, az inkompatibilis beállítások nem flashelhetők!
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=Válaszd ezt, ha frissítni szeretnéd/kell a Recoveryt a flashelés előtt.
+
+archidroid.preview=Előnézet
+archidroid.preview.desc=Ha kiválasztod, választásodról egy mintát láthatsz a követkeő oldalon
+
+archidroid.recovery.twrp.desc=Custom recovery, beépítve könnyebb használattal, és beállítási lehetőségekkel. Széles körben támogatott, élvonalbeli technológiákkal
+
+archidroid.superuser.chainfire.desc=Zárt forrású, modern megoldás stock romok és felhasználók számára, akik a jövő superuser hozzáférés menedzsment eszközeit preferálják
+archidroid.superuser.koush.desc=Nyílt forrású, beépített superuser hozzáférés menedzsment.
+archidroid.superuser.none.desc=Nincs superuser, ez a beállítás megszünteti a root hozzáférést. Használhatod ezt a beállítást a nagyobb biztonságért
+
+archidroid.thirdparty=Harmadik fél általi megállapodás
+
+archidroid.tou=Használati feltételek
+
+archidroid.tweaks.cellbroadcasts=Szélessávú cellakapcsolat
+archidroid.tweaks.cellbroadcasts.desc=A szélessávú cellakapcsolat az egyidejű kézbesítésre lett kitalálva több felhasználó számára egy meghatározott területen. Gyakran használják SPAM célokra. Csak akkor használd, ha szükséged van rá
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.navibar=Navigációs sáv
+archidroid.tweaks.navibar.desc=Bekapcsolja a navigációs sávot, és kikapcsolja a hardware gombokat (vissza, home, menü). Csak akkor válaszd ki, ha jobban preferálod a kijelzőn látható gombokat
+archidroid.tweaks.navibar.hwenabled=Hardware-s gombok aktiválása
+archidroid.tweaks.navibar.hwenabled.desc=Alapból a navigációs sáv kikapcsolja a hardweres gombokat. Válaszd ezt, ha mindkét navigációs módot használni szeretnéd
+
+
+### AROMA strings
+text_about=Részletek
+text_back=Vissza
+text_calibrating=Eszközök kalibrálása
+text_next=Tovább
+text_no=Nem
+text_ok=OK
+text_quit_msg=Biztosan kilépsz a telepítésből?
+text_quit=Telepítés megszakítása
+text_yes=Igen
+
+### End of file

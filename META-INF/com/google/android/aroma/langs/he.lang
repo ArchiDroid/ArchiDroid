@@ -1,0 +1,162 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Hebrew
+#   By                : bernardoko
+#   E-mail (optional) : 
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc= אפליקציה שניתן לבצע בה המון התאמות, ומראה מידע שימושי על המכשיר (למשל שימוש במעבד) בצד העליון של המסך  
+archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary google store
+archidroid.apps.greenify.desc= חוסך בסוללה ע"י הכנסה לשינה של אפליקציות  שרצות ברקע כאשר לא עושים בהם שימוש
+archidroid.apps.lmt.desc= משפר את המכשיר שלך עם יכולות PIE, תמיכה במחוות ועוד
+archidroid.apps.spiritfm.desc= אפליקציית רדיו שאינה מצריכה חיבור לאינטרנט
+archidroid.apps.titaniumbackup.desc= אפליקציה עבור משתמשי רוט, מאפשרת לבצע גיבוי/שחזור אפליקציות  ונתונים
+
+archidroid.bcm=BCM פרופילים
+archidroid.bcm.archidetect.desc=ArchiDetect מנסה לזהות את החומרה הנכונה באופן אוטומתי
+
+archidroid.bootanimation= אנימציית איתחול
+archidroid.bootanimation.archi1.desc= 1.X אנימציית ארצידרוייד איתחול ראשונה, מתקופת 
+archidroid.bootanimation.archi2.desc= 2.X אנימציית ארצידרוייד איתחול שניה, מתקופת 
+archidroid.bootanimation.archi3.desc= 3.X אנימציית ארצידרוייד איתחול שלישית, מתקופת 
+archidroid.bootanimation.none.desc= ללא אנימציית איתחול, לאיתחול מהיר יותר
+archidroid.bootanimation.stock.desc= אנימציית איתחול של המערכת הבסיסית
+
+archidroid.changelog= יומן שינויים
+archidroid.changelog.desc= מה חדש
+
+archidroid.common.current= נוכחי
+archidroid.common.default= ערך ברירת מחדל
+archidroid.common.density= צפיצות
+archidroid.common.detected= מזוהה
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
+archidroid.common.none= אף אחד
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
+archidroid.common.terms.check= אני מסכים לתנאים 
+archidroid.common.terms.readme= !קראה זאות תחילה
+archidroid.common.terms.unchecked= !בבקשה אשר את ההסכם
+
+archidroid.custom= מותאם אישית
+archidroid.custom.desc= שנה ערכים כרצונך
+
+archidroid.detect.fail= !ארצידרוייד לא זיהה את החומרה המותקנת, לכן יבוצע ניקוי חובה של מחיצת הנתונים(חזרה להגדרות יצרן). ארצידרוייד ינקה את מחיצת הנתונים לפני הצריבה. התוכן של הכרטיס הפנימי בטוח
+archidroid.detect.pass= ?ארצידרוייד זיהה נכון את החומרה המותקנת. האם בכל זאות אתה רוצה למחוק את הנתונים
+archidroid.detect.pass.no= לא, אל תמחק את הנתונים הישנים
+archidroid.detect.pass.yes= כן, מחק את הנתונים הישנים
+archidroid.detect.pass.alert.no= !בסדר, אבל כך בחשבון שיתכן וההתקנה לא תעבוד בצורה תקינה עקב נתונים לא תואמים
+archidroid.detect.pass.alert.yes= !החלטה נכונה, ארצידרוייד יבדוק שמחיצת הנתונים נקייה לפני תחילת הצריבה
+
+archidroid.detect.previouspreset.expert.fail.incompatible= !הזהרה! ההגדרות שבחרת לא עברו את בדיקת התקינות. וודא שהאפשרויות שבחרת תקינות
+archidroid.detect.previouspreset.fail.incompatible= מצטער, ההגדרות הקודמות שלך נכשלו בבדיקת התקינות. אם אתה יודע מה אתה עושה, אתה יכול לנסות הגדרות מומחה
+archidroid.detect.previouspreset.fail.notavailable= מצטער, נראה שאין לך הגדרות קודמות
+
+archidroid.experimental= תצורה ניסיונית
+archidroid.experimental.terms.check= אני מבין שתצורה זו לא גמורה והיא עלולה לקלקל את המכשיר שלי
+
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+
+archidroid.hardswap.desc= הקרבה של מהירות קלט/פלט עבור יותר זיכרון
+archidroid.hardswap.size.0.desc=מהמחיצה hardswap  אופציה זו תסיר את קובץ ה
+archidroid.hardswap.size.default.desc= גודל מקסימלי מומלץ
+
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
+archidroid.kernel=Kernel קרנל
+archidroid.kernel.archi.desc= תכונות שמשולבות באופן מושלם עם ארצידרוייד, אופטימיזציאות, מקורות מעודכנים ועוד. מאוד מומלץ
+archidroid.kernel.stock.desc=  קרנל מסופק ע"י המערכת הבסיסית
+
+archidroid.keyboard= מקלדת
+archidroid.keyboard.google.desc= AOSP מחוות והרחבות טקסט, תצורת מחשב אופציונלית ושיפורים נוספים מעל מקלדת סטנדרטיט
+archidroid.keyboard.stock.desc= מקלדת מסופקת ע"י המערכת הבסיסית
+
+archidroid.launcher=Launcher לנצ'ר
+archidroid.launcher.google.desc= מאופיין באינטגרציה מעולה עם יתר אפליקציות גוגל, לדוגמא חיפוש, אשר יאפשר לך לעשות שימוש בפקודות קוליות במסך הבית
+archidroid.launcher.nova.desc= לנצ'ר זה מחליף את מסך הבית, ניתן לקינפוג מלא, מאוד מהיר 
+archidroid.launcher.stock.desc= לנצ'ר של המערכת הבסיסית
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
+
+archidroid.preset= הגדרות קבועות מראוש
+archidroid.preset.barebones= "ערום"
+archidroid.preset.barebones.desc= אופציה זו צורבת את הרום הבסיסי בלבד, מומלץ לצרכי דיבגינג בלבד, לא יותקנו מרבית היכולות של ארצידרוייד
+archidroid.preset.custom= התאמה אישית
+archidroid.preset.custom.desc= בחר באופציה זו אם אתה רוצה לבצע התאמה אישית לכל תכונה של ארצידרוייד בטרם צריבה, מומלץ
+archidroid.preset.previous= התאמה אישית קודמת
+archidroid.preset.previous.desc= אם בצעת התאמה אישית לפני כן, אופציה זו טוענת את ההגדרות הקודמות
+archidroid.preset.previousexpert= התאמה אישית קודמות - מומחה
+archidroid.preset.previousexpert.desc= אותו דבר כמו ההתאמה אישית מעל, אבל אינו כופה בדיקת תאימות ומאפשר לך לבצע שינויים להגדרות מותאמות הישנות לפני צריבה. זהירות: התאמות לא מתאימות אלולות לגרום לכך שלא ניתן לצרוב
+archidroid.preset.recovery=Recovery ריקברי
+archidroid.preset.recovery.desc= בחר באופציה זו אם אתה צריך/רוצה לעדכן את הריקברי לפני צריבת ארצידרוייד
+
+archidroid.preview= תצוגה מקדימה
+archidroid.preview.desc= כאשר מסומן, תראה תצוגה מקדימה של בחירתך בדף הבא
+
+archidroid.recovery.twrp.desc= ריקברי חדש קל לשימוש, אם יכולות רבות להתאמה אישית
+
+archidroid.superuser.chainfire.desc= פתרון חדש עבור רומים סגורים של יצרנים, עבור משתמשים שרוצים כלי לשימוש עתידי
+archidroid.superuser.koush.desc= גישה לניהול "סופר יוזר" המובנה בקוד הפתוח
+archidroid.superuser.none.desc= ללא "סופר יוזר", אופציה זו מבטלת את גישת הרוט. אתה יכול לעשות שימוש באופציה זו לביטחון נוסף
+
+archidroid.thirdparty=Third-Party Agreement 'הסכם צד ג
+
+archidroid.tou= תנאי שימוש
+
+archidroid.tweaks.cellbroadcasts=Cell broadcasts שידורי תא
+archidroid.tweaks.cellbroadcasts.desc= שידורי תא נועדו לשדר בו זמנית למספר משתמשים באיזור מסויים. לרוב ספאמרים עושים שימוש באופציה זו. תסמן רק אם באמת אתה צריך את זה. 
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.navibar=Navigation bar סרגל ניווט
+archidroid.tweaks.navibar.desc= מפעיל את סרגל הניווט, ומנטרל את לחצני החומרה(אחורה, בית, תפריט). בחר אם אתה מעדיף לחצנים על המסך
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
+
+
+### AROMA strings
+text_about= הודות
+text_back= חזור
+text_calibrating= כלים להגדרות
+text_next= הבא
+text_no=לא
+text_ok=OK
+text_quit_msg=?האם אתה בטוח שאתה רוצה לצאת מההתקנה
+text_quit=צא מההתקנה
+text_yes=כן
+
+### End of file

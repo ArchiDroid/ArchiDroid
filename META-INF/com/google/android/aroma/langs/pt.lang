@@ -1,0 +1,162 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Portuguese
+#   By                : emanuelparedes
+#   E-mail (optional) : 
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=Aplicação altamente customizável, que mostra informação útil sobre o dispositivo (ex: Utilização do CPU) na parte superior do ecrã
+archidroid.apps.fdroid.desc=Installable catalogue of free and open source applications for the Android platform. Great addition to proprietary google store
+archidroid.apps.greenify.desc=Poupa bateria, hibernando aplicações quando não estão a ser usadas
+archidroid.apps.lmt.desc=Melhora o dispositivo com a funcionalidade PIE, suporte para gestos e muito mais
+archidroid.apps.spiritfm.desc=Aplicação de rádio FM real, afinada e "over-the-air". Não requer ligação à internet
+archidroid.apps.titaniumbackup.desc=Uma aplicação indispensável para todos os utilizadores com acesso root. Permite efetuar cópias de segurança/restauros das aplicações e dados na hora
+
+archidroid.bcm=Perfis BCM
+archidroid.bcm.archidetect.desc=ArchiDetect tenta detetar o firmware adequado para o seu dispositivo
+
+archidroid.bootanimation=Animação de boot
+archidroid.bootanimation.archi1.desc=Primeira animação de boot ArchiDroid, dos tempos da 1.X 
+archidroid.bootanimation.archi2.desc=Segunda animação de boot ArchiDroid, dos tempos da 2.X 
+archidroid.bootanimation.archi3.desc=Terceira animação de boot ArchiDroid, 3.X 
+archidroid.bootanimation.none.desc=Sem animação de boot, para um boot um pouco mais rápido
+archidroid.bootanimation.stock.desc=Animação de boot do sistema base (stock)
+
+archidroid.changelog=Registo de alterações
+archidroid.changelog.desc=O que há de novo
+
+archidroid.common.current=Atual
+archidroid.common.default=Valor por defeito
+archidroid.common.density=Densidade
+archidroid.common.detected=Detetado
+archidroid.common.finish=Finish
+archidroid.common.install=Install
+archidroid.common.installation=Installation
+archidroid.common.none=Nenhum
+archidroid.common.reboot=Reboot
+archidroid.common.reboot.question=Would you like to reboot your device now?
+archidroid.common.terms.check=Concordo com os termos e condições
+archidroid.common.terms.readme=Leia isto em primeiro!
+archidroid.common.terms.unchecked=Por favor, verifique o acordo!
+
+archidroid.custom=Personalizar
+archidroid.custom.desc=Modifique as opções a seu gosto
+
+archidroid.detect.fail=ArchiDroid não conseguiu detetar o firmware actual, por isso é necessária uma eliminação dos dados (factory reset). Archidroid vai limpar a sua /partição de dados antes de flashar. O conteúdo do cartão SD interno não irá ser eliminado!
+archidroid.detect.pass=ArchiDroid detetou com sucesso o firmware instalado atualmente. Deseja eliminar os seus dados, mesmo assim? 
+archidroid.detect.pass.no=Não, não quero eliminar os meus dados antigos
+archidroid.detect.pass.yes=Sim, quero eliminar os meus dados antigos
+archidroid.detect.pass.alert.no=Ok, mas tenha em conta que a ROM pode não funcionar corretamente com dados incompatíveis!
+archidroid.detect.pass.alert.yes=Boa decisão, ArchiDroid vai garantir que a partição /data está limpa antes de flashar a ROM!
+
+archidroid.detect.previouspreset.expert.fail.incom patible=Aviso! As suas antigas configurações falharam no teste de integridade. Certifique-se que as suas opções escolhidas são válidas!
+archidroid.detect.previouspreset.fail.incompatible =Lamento, mas as suas antigas configurações falharam no teste de integridade. Pode testar o modo experiente, se souber o que está a fazer
+archidroid.detect.previouspreset.fail.notavailable =Lamento, não foram detetadas configurações anteriores
+
+archidroid.experimental=Versão experimental
+archidroid.experimental.terms.check=Entendo que esta versão não está finalizada, e poderá inutilizar o meu dispositivo (brick).
+
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+
+archidroid.hardswap.desc=Sacrifica o seu I/O, para ter mais memória
+archidroid.hardswap.size.0.desc=Isto irá remover o ficheiro hardswap da partição
+archidroid.hardswap.size.default.desc=Tamanho máximo recomendado
+
+archidroid.install.desc=<b>ArchiDroid</b> is now being installed. Please wait patiently while installation wizard installs <b>ArchiDroid</b> onto your device
+archidroid.install.finish=<b>ArchiDroid</b> installation has been finished. Press <b>Finish</b> to continue
+
+archidroid.kernel=Kernel
+archidroid.kernel.archi.desc=Disponibiliza uma sinergia perfeita com Archidroid, optimizações profundas, fontes atualizadas e muitas melhorias. Altamente recomendado
+archidroid.kernel.stock.desc=Kernel disponibilizado pelo sistema base
+
+archidroid.keyboard=Teclado
+archidroid.keyboard.google.desc=Com funcionalidades como escrita por gestos, expansão de texto, layout opcional de teclado como computador, e muitas outras melhorias, em comparação ao teclado AOSP.
+archidroid.keyboard.stock.desc=Teclado disponibilizado pelo sistema base
+
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Perfeita integração com as aplicações da Google, por exemplo: pesquisa Google, que permite usar comandos de voz a partir do ecrã inicial (Ok Google)
+archidroid.launcher.nova.desc=Highly customizable, performance driven, home screen replacement for Android
+archidroid.launcher.stock.desc=Launcher provided by the base system
+
+archidroid.prepinstall=Ready for flashing
+archidroid.prepinstall.desc=You are now ready to begin installation. Press <b>Install</b> to start. If you want to review or change any of your installation settings, press <b>Back</b>
+
+archidroid.preset=Predefinido
+archidroid.preset.barebones=Nu
+archidroid.preset.barebones.desc=Esta opção flasha apenas a ROM base. Recomendado apenas para depuração, visto que perde quase todos os extras Archidroid
+archidroid.preset.custom=Personalizar
+archidroid.preset.custom.desc=Selecione esta opçãop se pretende personalizar todos os aspectos da sua ROM Archidroid. Recomendado
+archidroid.preset.previous=Configuração anterior
+archidroid.preset.previous.desc=Se já personalizou a sua instalação anteriormente, esta opção carrega essa configuração
+archidroid.preset.previousexpert=Configuração anterior, em modo experiente
+archidroid.preset.previousexpert.desc=Igual à configuração supramencionada, mas o modo experiente não força a verificação de compatibilidades e permite-lhe efetuar alterações à sua antiga configuração antes de flashar. Aviso: tenha cuidado,configurações incompatíveis podem não ser flashadas
+archidroid.preset.recovery=Recuperação
+archidroid.preset.recovery.desc=Selecione esta opção se quer/precisa de atualizar a sua recuperação antes de flashar a ROM Archidroid
+
+archidroid.preview=Pré-visualizar
+archidroid.preview.desc=Quando selecionado, irá permitir ver um exemplo da sua seleção no próximo ecrã
+
+archidroid.recovery.twrp.desc=Recuperação personalizada, focada na personalização e na facilidade de uso. Vastamente suportada, com desenvolvimentos diários
+
+archidroid.superuser.chainfire.desc=Solução moderna, com código fechado, para ROMs stock, para utilizadores que preferem uma ferramenta com futuro
+archidroid.superuser.koush.desc=Gestão de superutilizador integrado, código aberto
+archidroid.superuser.none.desc=Sem superutilizador, esta opção desativa o acesso root. Pode usar esta opção se pretender segurança extra
+
+archidroid.thirdparty=Acordo de terceiros
+
+archidroid.tou=Termos de Utilização
+
+archidroid.tweaks.cellbroadcasts=Difusão celular
+archidroid.tweaks.cellbroadcasts.desc=Difusão celular foi concebida para entregas múltiplas a vários utilizadores numa área específica. Usado frequentemente para spam. Selecione apenas se precisar
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.navibar=Barra de navegação
+archidroid.tweaks.navibar.desc=Ativa a barra de navegação (inferior), e desativa as teclas de hardware (retroceder, home, menu). Selecione esta opção se prefere teclas no ecrã
+archidroid.tweaks.navibar.hwenabled=Enable hardware keys
+archidroid.tweaks.navibar.hwenabled.desc=By default, navigation bar disables hardware keys. Select this option if you want to have both navigation methods available
+
+
+### AROMA strings
+text_about=Sobre
+text_back=Atrás
+text_calibrating=Ferramentas de calibração
+text_next=Seguinte
+text_no=Não
+text_ok=OK
+text_quit_msg=Tem a certeza que pretende sair do instalador?
+text_quit=Sair da instalação
+text_yes=Sim
+
+### End of file

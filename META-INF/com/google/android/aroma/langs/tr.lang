@@ -1,0 +1,162 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : Turkish
+#   By                : LKHN
+#   E-mail (optional) : elxan.memmedli94@gmail.com
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=Cihazın üstünde faydalı bilgileri (örn CPU kullanımı) gösteren isteğe göre değiştirilebilir uygulama
+archidroid.apps.fdroid.desc=Özel Google Play Store eklentileriyle Android platformu için ücretsiz ve açık kaynak kodlu uygulamaların Kurulabilir kataloğu
+archidroid.apps.greenify.desc=Arka Plandaki uygulamaları kullanmadığınız zaman uyutarak size enerji tasarrufu sağlar
+archidroid.apps.lmt.desc=PIE işlevselliği ile cihazınızı geliştirir, jestleri ve daha fazlasını destekler
+archidroid.apps.spiritfm.desc=Internet erişimi gerektirmeyen gerçek, ayarlı, over-the-air FM radyo uygulaması
+archidroid.apps.titaniumbackup.desc=Her köklü kullanıcı için bir ana uygulama. Uygulamaları Yedekler/Geri Yükler ve verilerini geri sağlar
+
+archidroid.bcm=BCM profilleme
+archidroid.bcm.archidetect.desc=ArchiDetect otomatik olarak cihazınız için uygun firmware algılamaya çalışır
+
+archidroid.bootanimation=Önyükleme Animasyonu
+archidroid.bootanimation.archi1.desc=1.X zamanlardan ilk ArchiDroid önyükleme animasyonu
+archidroid.bootanimation.archi2.desc=2.X zamanlardan ikinci ArchiDroid önyükleme animasyonu
+archidroid.bootanimation.archi3.desc=3.X zamanlardan üçüncü ArchiDroid önyükleme animasyonu
+archidroid.bootanimation.none.desc=Biraz daha hızlı önyükleme için önyükleme animasyonu yok
+archidroid.bootanimation.stock.desc=Sistem tarafından sağlanan önyükleme animasyonu
+
+archidroid.changelog=Değişiklik listesi
+archidroid.changelog.desc=Neler yeni
+
+archidroid.common.current=Mevcut
+archidroid.common.default=Varsayılan değer
+archidroid.common.density=Yoğunluk
+archidroid.common.detected=Algılandı
+archidroid.common.finish=Bitir
+archidroid.common.install=Kur
+archidroid.common.installation=Kurulum
+archidroid.common.none=Hiçbiri
+archidroid.common.reboot=Yeniden başlat
+archidroid.common.reboot.question=Şimdi cihazınızı yeniden başlatmak ister misiniz?
+archidroid.common.terms.check=Ben hüküm ve koşulları kabul ediyorum
+archidroid.common.terms.readme=Önce bunu okuyun!
+archidroid.common.terms.unchecked=Anlaşmayı kontrol edin!
+
+archidroid.custom=Özelleştirme
+archidroid.custom.desc=İstediğiniz gibi ayarlarda değişiklik yapın
+
+archidroid.detect.fail=ArchiDroid daha önce flaşlanmış mevcut sürümünü algılayamadı,Bu nedenle veri silme (fabrika sıfırlama) zorunludur. ArchiDroid'i flaşlamadan önce veri bölümü temizlenecektir. Sizin dahili sd kart içeriği güvendedir!
+archidroid.detect.pass=ArchiDroid başarılı şekilde daha önce flaşlanmış mevcut sürümünü algıladı. Ne olursa olsun verileri silmek ister misiniz?
+archidroid.detect.pass.no=Hayır, benim eski verileri silmeyin
+archidroid.detect.pass.yes=Evet, benim eski verileri silin
+archidroid.detect.pass.alert.no=Tamam, ama ROM uyumsuz verilerle düzgün çalışmayabilir unutmayın!
+archidroid.detect.pass.alert.yes=İyi karar, ArchiDroid flaşlamadan önce önceki verilerin temiz olduğuna emin olun!
+
+archidroid.detect.previouspreset.expert.fail.incompatible=Uyarı! Ön ayarın doğruluk denetimi başarısız oldu. Seçtiğiniz seçeneklerin geçerli olduğundan emin olun!
+archidroid.detect.previouspreset.fail.incompatible=Üzgünüm, Ön ayarın doğruluk denetimi başarısız oldu. Eğer ne yaptığınızı biliyorsanız uzman modunu deneyebilirsiniz
+archidroid.detect.previouspreset.fail.notavailable=Üzgünüm, henüz herhangi bir eski ön ayar yok gibi görünüyor
+
+archidroid.experimental=Deneysel yapı
+archidroid.experimental.terms.check=Ben bu deneysel yapının bitmediğini ve cihazımı brick yapabileceğini anlıyorum
+
+archidroid.gapps.core.desc=Framework’lar, hizmetler veya mağaza gibi çekirdek Google Apps sağlar. Diğer tüm Google Apps için zorunludur
+archidroid.gapps.calendar.desc=Tescilli Google uygulaması ile AOSP Takvimi değiştirir
+archidroid.gapps.camera.desc=Tescilli Google uygulaması ile AOSP Kameranı değiştirir
+archidroid.gapps.chrome.desc=Tescilli Google uygulaması ile AOSP Tarayıcıyı değiştirir
+archidroid.gapps.exchange.desc=Tescilli Google uygulaması ile AOSP Exchange Hizmetlerini değiştirir
+archidroid.gapps.face.desc=Tescilli Google yüz algılama uygulaması ile AOSP genişletir
+archidroid.gapps.messenger.desc=Tescilli Google uygulaması ile AOSP SMS / MMS değiştirir
+archidroid.gapps.music.desc=AOSP Müziği tescilli Google uygulaması ile değiştirir
+archidroid.gapps.gmail.desc=AOSP Postanı tescilli Google uygulaması ile değiştirir
+archidroid.gapps.tts.desc=Tescilli Google uygulaması ile AOSP PicoTTS değiştirir
+archidroid.gapps.search.desc=AOSP QuickSearchBox tescilli Google uygulaması ile değiştirir
+
+archidroid.hardswap.desc=Daha fazla bellek için sizin I / O kurban eder
+archidroid.hardswap.size.0.desc=Bu bölümdeki hardswap dosyası kaldıracaktır
+archidroid.hardswap.size.default.desc= Önerilen maksimum boyut
+
+archidroid.install.desc=<b>ArchiDroid</b> 'in kurulumu devam ediyor.Lütfen sabırla kurulum sihirbazının <b>ArchiDroid</b> 'i cihazınıza kurmasını bekleyin
+archidroid.install.finish=<b>ArchiDroid</b> 'in kurulumu tamamlandı. Devam etmek için <b>Bitir</b> 'e basınız
+
+archidroid.kernel=Kernel
+archidroid.kernel.archi.desc=ArchiDroid ile sinerjide olan mükemmel özellikler, engin optimizasyonlar, güncel kaynaklar ve birçok yenilik. Şiddetle tavsiye edilir
+archidroid.kernel.stock.desc= Sistem tabanı tarafından sağlanan Kernel
+
+archidroid.keyboard=Klavye
+archidroid.keyboard.google.desc=Jest-Yazma, metin genişleme, isteğe bağlı pc düzeni ve standart AOSP klavyenin üzerinde diğer iyileştirmeli Özellikler
+archidroid.keyboard.stock.desc=Sistem tabanlı klavye
+
+archidroid.launcher= Başlatıcı
+archidroid.launcher.google.desc=Diğer Google apps entegrasyonuyla mükemmel özellikler, örneğin ana ekrandan sesli komutla arama
+archidroid.launcher.nova.desc= Android için son derece özelleştirilebilir, performans odaklı başlatıcı
+archidroid.launcher.stock.desc=Sistem tabanlı başlatıcı
+
+archidroid.prepinstall=Flaşlamak için hazır
+archidroid.prepinstall.desc=Şimdi kuruluma başlamak için hazırız. Başlatmak için <b>Kur</ b> 'a basınız. Eğer gözden geçirmek veya yükleme ayarlarından herhangi birini değiştirmek isterseniz <b>Geri</ b> 'ye basınız
+
+archidroid.preset=Hazır Ayar
+archidroid.preset.barebones=Temel unsurlar
+archidroid.preset.barebones.desc=Bu seçenek ile sadece taban ROM flaşlanır. Sadece hata ayıklama için önerilir, sen ArchiDroid 'in bütün yeteneklerini kaçıracaksın
+archidroid.preset.custom=Özelleştirme 
+archidroid.preset.custom.desc=ArchiDroid 'i flaşlamadan önce her yönü ile özelleştirmek istiyorsanız bu seçeneği seçin. Önerilen
+archidroid.preset.previous=Önceki Hazır Ayar
+archidroid.preset.previous.desc=Zaten öceden kurulumu özelleştirdiyseniz, bu seçenek eski hazır ayarı yükler ve kullanır
+archidroid.preset.previousexpert=Önceki Hazır Ayar Uzmanı
+archidroid.preset.previousexpert.desc=Yukarıdakı önceki hazır ayarla aynı ancak uzman modu uyumluluk kontrollerini zorlamaz ve flaşlama öncesi hazır ayarınızda değişiklik yapma olanağı sağlar. Uyarı: dikkatli ol, uyumsuz ön ayar flaşlanmaya bilir
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=ArchiDroid 'i flashlamadan önce recovery'ni güncellemek istyorsanız bu özelliyi seçiniz
+
+archidroid.preview=Öngörünüm
+archidroid.preview.desc=Seçildiğinde, bir sonraki ekranda seçimi bir örnek olarak göreceksiniz
+
+archidroid.recovery.twrp.desc=Kullanım kolaylığı, özelleştirme, yaygın olarak desteklenen ileri teknoloji geliştirme ile akıllarda kalan özel Recovery
+
+archidroid.superuser.chainfire.desc=Kapalı kaynak, stok ROM`lar ve kullanıcılar için modern çözüm, Geleceğin üstün kullanıcı erişim yönetimi aracını tercih edenler için 
+archidroid.superuser.koush.desc=Açık kaynak, yerleşik üstün kullanıcı erişim yönetimi
+archidroid.superuser.none.desc=Üstün kullanıcı yok, bu seçenek kök erişimini devre dışı burakır. Ekstra güvenlik için bu seçeneği kullanabilirsiniz
+
+archidroid.thirdparty=Üçüncü şahıs Anlaşması
+
+archidroid.tou=Kullanım Şartları
+
+archidroid.tweaks.cellbroadcasts=Hücre yayınları
+archidroid.tweaks.cellbroadcasts.desc=Hücre yayınları belirli bir alanda birden fazla kullanıcıya aynı anda teslimat için tasarlanmıştır. Genellikle spam amaçlı kullanılır. Sadece ihtiyacınız varsa seçin
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.navibar=Navigasyon çubuğu
+archidroid.tweaks.navibar.desc=Gezinme çubuğunu açar ve donanım tuşlarını (geri, ev, menü) devre dışı bırakır. Eğer ekranda navigasyon olmasını tercih ederseniz seçin
+archidroid.tweaks.navibar.hwenabled=Donanım tuşlarını etkinleştir
+archidroid.tweaks.navibar.hwenabled.desc=Varsayılan olarak, gezinti çubuğu donanım tuşlarını devre dışı bırakır. Eğer her ikisinide aynı anda kullanmak istiyorsanız bu özelliği seçin
+
+
+### AROMA strings
+text_about=Hakkında
+text_back=Geri
+text_calibrating=Kalibrasyon araçları
+text_next=Sonraki
+text_no=Hayır
+text_ok=Tamam
+text_quit_msg=Kurulumdan çıkmak için emin misiniz?
+text_quit=Kurulumdan çık
+text_yes=Evet
+
+### End of file

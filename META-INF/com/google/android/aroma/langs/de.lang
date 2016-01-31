@@ -1,0 +1,162 @@
+#     _             _     _ ____            _     _
+#    / \   _ __ ___| |__ (_)  _ \ _ __ ___ (_) __| |
+#   / _ \ | '__/ __| '_ \| | | | | '__/ _ \| |/ _` |
+#  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
+# /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
+#
+# Copyright 2014 Łukasz "JustArchi" Domeradzki
+# Contact: JustArchi@JustArchi.net
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language          : German
+#   By                : Depressed T.Bear
+#   E-mail (optional) : 
+
+
+### ArchiDroid strings
+archidroid.apps.cooltool.desc=Höchst anpassbare App. Zeigt ein paar praktische Statistiken in der Statusbar (z.B. CPU-Last)
+archidroid.apps.fdroid.desc=Installationskatalog von freien und Open-Source Apps für die Android-Plattform. Eine tolle Ergänzung zu dem proprietären Google Store
+archidroid.apps.greenify.desc=Praktische App, spart Energie indem ungenuzte Apps in den 'Winterschlaf' versetzt werden 
+archidroid.apps.lmt.desc=Erweitert Ihr Gerät um PIE-Funktionalität, Gesten-Unterstützung und mehr
+archidroid.apps.spiritfm.desc=Echte, getunte, Over-the-Air FM-Radio App. Internet-Zugang ist es nicht erforderlich
+archidroid.apps.titaniumbackup.desc=Ein zentrale App für jeden root-Benutzer. Sichern / Wiederherstellen von Apps und deren Daten im laufenden Betrieb
+
+archidroid.bcm=BCM Profilierung
+archidroid.bcm.archidetect.desc=ArchiDetect versucht automatisch, die richtige Firmware für Ihr Gerät zu erkennen
+
+archidroid.bootanimation=Startanimation
+archidroid.bootanimation.archi1.desc=Erste ArchiDroid Startanimation, aus 1.X Zeiten
+archidroid.bootanimation.archi2.desc=Zweite ArchiDroid Startanimation, aus 2.X Zeiten
+archidroid.bootanimation.archi3.desc=Dritte ArchiDroid Startanimation, aus 3.X Zeiten
+archidroid.bootanimation.none.desc=Keine Startanimation, für etwas schnellere Startzeit
+archidroid.bootanimation.stock.desc=Standard Startanimation des Basissystems 
+
+archidroid.changelog=Changelog
+archidroid.changelog.desc=Das gibt's neues
+
+archidroid.common.current=Aktuell
+archidroid.common.default=Standardwert
+archidroid.common.density=Dichte (DPI)
+archidroid.common.detected=Erkannt
+archidroid.common.finish=Beenden
+archidroid.common.install=Installieren
+archidroid.common.installation=Installation
+archidroid.common.none=Nichts
+archidroid.common.reboot=Neustart
+archidroid.common.reboot.question=Möchtest du das Gerät jetzt neu starten?
+archidroid.common.terms.check=Ich stimme mit den Nutzungsbedingungen überein.
+archidroid.common.terms.readme=Lies das zuerst!
+archidroid.common.terms.unchecked=Bitte überprüfe die Vereinbarung!
+
+archidroid.custom=Anpassen
+archidroid.custom.desc=Modifiziere die Einstellungen nach deinem Belieben
+
+archidroid.detect.fail=ArchiDroid hat sich nicht als derzeit installiert gefunden, daher ist eine Datenlöschung (Factory Reset) zwingend erforderlich. ArchiDroid wird Ihre /data Partition vor dem Flashen löschen. Dein interner SD-Karten Inhalt ist sicher!
+archidroid.detect.pass=ArchiDroid entdeckte, zurzeit erfolgreich installiert zu sein. Möchtest du deine alten Daten (/data Partition) trotzdem löschen?
+archidroid.detect.pass.no=Nein, Daten nicht löschen!
+archidroid.detect.pass.yes=Ja, Daten löschen!
+archidroid.detect.pass.alert.no=In Ordnung. Aber bedenke, dass die ROM möglicherweise nicht richtig mit inkompatiblen Daten arbeitet!
+archidroid.detect.pass.alert.yes=Gute Entscheidung, ArchiDroid wird sicherstellen, dass /data vor dem Flashen sauber ist!
+
+archidroid.detect.previouspreset.expert.fail.incompatible=Warnung! Deine alten Voreinstellungen sind an der Integritätsprüfung gescheitert. Stelle sicher, dass deine gewählten Optionen gültig sind!
+archidroid.detect.previouspreset.fail.incompatible=Sorry, deine alten Voreinstellungen sind an der Integritätsprüfung gescheitert. Verwende den Experten-Modus, wenn du weißt, was du tust
+archidroid.detect.previouspreset.fail.notavailable=Sorry, es scheint, als hättest du noch keine alten Voreinstellungen
+
+archidroid.experimental=Experimentelles Build
+archidroid.experimental.terms.check=Ich verstehe, dass dieses Build noch nicht fertig ist und dass es das Gerät sogar bricken kann!
+
+archidroid.gapps.core.desc=Provides core Google Apps, such as the framework, services or store. Mandatory for all other Google Apps
+archidroid.gapps.calendar.desc=Replaces AOSP Calendar with proprietary Google implementation
+archidroid.gapps.camera.desc=Replaces AOSP Camera with proprietary Google implementation
+archidroid.gapps.chrome.desc=Replaces AOSP Browser with proprietary Google implementation
+archidroid.gapps.exchange.desc=Replaces AOSP Exchange Services with proprietary Google implementation
+archidroid.gapps.face.desc=Extends AOSP with proprietary Google face detection implementation
+archidroid.gapps.messenger.desc=Replaces AOSP SMS/MMS with proprietary Google implementation
+archidroid.gapps.music.desc=Replaces AOSP Music with proprietary Google implementation
+archidroid.gapps.gmail.desc=Replaces AOSP Mail with proprietary Google implementation
+archidroid.gapps.tts.desc=Replaces AOSP PicoTTS with proprietary Google implementation
+archidroid.gapps.search.desc=Replaces AOSP QuickSearchBox with proprietary Google implementation
+
+archidroid.hardswap.desc=Opfere dein I/O für mehr Speicher
+archidroid.hardswap.size.0.desc=Dies wird die hardswap Datei von der Partition entfernen
+archidroid.hardswap.size.default.desc=Maximal empfohlene Größe
+
+archidroid.install.desc=<b>ArchiDroid</b> wird jetzt installiert. Bitte warte geduldig während der Installationsassistent <b>ArchiDroid</b> auf deinem Gerät installiert
+archidroid.install.finish=<b>ArchiDroid</b> Installation ist abgeschlossen. Drücke <b>Beenden</b>, um fortzufahren
+
+archidroid.kernel=Kernel
+archidroid.kernel.archi.desc=Verfügt über perfekte Synergie mit ArchiDroid, tiefe Optimierungen, up-to-date sources und viele Verbesserungen. Sehr zu empfehlen
+archidroid.kernel.stock.desc=Standard Kernel, bereitgestellt durch das Basissystem
+
+archidroid.keyboard=Keyboard
+archidroid.keyboard.google.desc=Stellt Gesten-Schreiben zur Verfügung, Texterweiterung, optionales PC-Layout und andere Verbesserungen gegenüber der Standard AOSP Tastatur
+archidroid.keyboard.stock.desc=Standard Tastatur, bereitgestellt durch das Basissystem
+
+archidroid.launcher=Launcher
+archidroid.launcher.google.desc=Bietet perfekte Integration mit anderen Google Apps, wie z.B. Suche, welche du verwenden kannst für Sprachbefehle direkt vom Home-Bildschirm
+archidroid.launcher.nova.desc=Wohl bester Launcher. Extrem anpassbarer, leistungsorientierter Launcher-Ersatz für Android
+archidroid.launcher.stock.desc=Standard Launcher, bereitgestellt durch das Basissystem
+
+archidroid.prepinstall=Bereit zum Flashen
+archidroid.prepinstall.desc=Du bist jetzt bereit, um die Installation zu starten. Drücke <b>Installieren</b>, um zu starten. Wenn du noch irgendwelche Installationseinstellungen überprüfen oder ändern möchtest, drücke die Taste <b>Zurück</b>
+
+archidroid.preset=Voreinstellungen
+archidroid.preset.barebones=Bare Bones
+archidroid.preset.barebones.desc=Diese Option flasht nur die Basis ROM. Nur empfohlen für das Debuggen, du wirst die meisten ArchiDroid Goodies verpassen
+archidroid.preset.custom=Anpassen
+archidroid.preset.custom.desc=Wähle diese Option, wenn du jeden Aspekt von deinem ArchiDroid vor dem Flashen anpassen möchtest. Empfohlen
+archidroid.preset.previous=Letzte Voreinstellungen
+archidroid.preset.previous.desc=Wenn du vorher bereits deine Installation angepasst hattest, lädt und verwendet diese Option deine alten Voreinstellungen
+archidroid.preset.previousexpert=Letzte Voreinstellungen (Experten)
+archidroid.preset.previousexpert.desc=Dasselbe wie letzte Voreinstellungen oben, aber der Experten-Modus erzwingt die Kompatibilitätsprüfungen nicht und ermöglicht dir, Änderungen an deinen alten Voreinstellungen vor dem Flashen zu machen. Warnung: Sei vorsichtig, inkompatible Voreinstellungen können möglicherweise nicht flashbar seien
+archidroid.preset.recovery=Recovery
+archidroid.preset.recovery.desc=Wähle diese Option aus, wenn du deine Recovery vor dem Flashen von ArchiDroid aktualisieren willst/musst
+
+archidroid.preview=Vorschau
+archidroid.preview.desc=Wenn aktiviert, siehst du ein Beispiel für deine Auswahl auf dem nächsten Bildschirm
+
+archidroid.recovery.twrp.desc=Custom Recovery entwickelt mit einfacher Bedienung und Anpassung im Focus. Weit verbreitet und unterstützt, mit modernster Entwicklung
+
+archidroid.superuser.chainfire.desc=Closed-Source, moderne Lösung für Stock-ROMs und Nutzer, welche DAS Superuser-Zugriffs-Management-Tool der Zukunft bevorzugen
+archidroid.superuser.koush.desc=Open-Source, integriertes Superuser-Zugriffs-Management.
+archidroid.superuser.none.desc=Kein Superuser, diese Option deaktiviert Root-Zugriff. Du könntest diese Option für zusätzliche Sicherheit verwenden
+
+archidroid.thirdparty=Drittanbieter-Vereinbarung
+
+archidroid.tou=Nutzungsbedingungen
+
+archidroid.tweaks.cellbroadcasts=Cell-Broadcasts
+archidroid.tweaks.cellbroadcasts.desc=Cell-Broadcasts sind für die gleichzeitige Zustellung an mehrere Benutzer in einem bestimmten Bereich konzipiert. Oft werden sie für Spam-Zwecke missbraucht. Wähle das nur, wenn du sie brauchst
+archidroid.tweaks.dualsim=Dual-sim patch
+archidroid.tweaks.dualsim.desc=This tweak enables experimental support for dual-sim device variants. Select only if your device supports dual-sim!
+archidroid.tweaks.navibar=Navigationsleiste
+archidroid.tweaks.navibar.desc=Aktiviert die Navigationsleiste und deaktiviert die Hardwaretasten (Zurück, Home, Menü). Wähle dies, wenn du es vorziehst, über den Bildschirm zu navigieren
+archidroid.tweaks.navibar.hwenabled=Aktiviere Hardwaretasten
+archidroid.tweaks.navibar.hwenabled.desc=Navigationsleiste deaktiviert standardmäßig die Hardwaretasten. Wähle diese Option, wenn du beide Navigationsmethoden verfügbar machen möchtest
+
+
+### AROMA strings
+text_about=Über
+text_back=Zurück
+text_calibrating=Kalibrierwerkzeuge
+text_next=Weiter
+text_no=Nein
+text_ok=OK
+text_quit_msg=Bist du sicher, dass du den Installer beenden willst?
+text_quit=Beende Installation
+text_yes=Ja
+
+### End of file / Ende des Lebens :D

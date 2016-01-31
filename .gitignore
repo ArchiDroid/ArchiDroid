@@ -1,0 +1,18 @@
+# ArchiDroid GAPPS temp files
+__build/open_gapps-*.zip
+
+# ArchiDroid zips
+ArchiDroid*.zip
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Mac crap
+.DS_Store
