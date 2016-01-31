@@ -40,7 +40,6 @@ CLOSED_SOURCE=0 # If 1, build.sh won't try to build it from source, but use preb
 # Try to not change these if you can
 ADROOT="$HOME/shared/git/ArchiDroid" # This is where ArchiDroid GitHub repo is located
 ADZIP="$ROMSHORT-*.zip" # This is with what defined output zip. For omni it would be "omni-*.zip"
-echo "$HOME"
 ADCOMPILEROOT="$HOME/android/$ROMSHORT" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE_CODENAME" # This is the location of output zip from above sources, usually it doesn't need to be changed
 ADSMPREBUILTS="$HOME/sabermod-prebuilts" # A directory which should contain SaberMod prebuilts from http://sabermod.com which are used during ROM compiling
@@ -198,19 +197,19 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 		sleep 1
 	fi
 
-	source build/envsetup.sh
+	source build/envsetup.sh || true
 
 	if [[ "$CACHE" -eq 1 ]]; then
 		export USE_CCACHE=1
 	fi
 
 	if [[ "$RECOVERY" -eq 1 ]]; then
-		lunch "cm_$DEVICE_CODENAME-$DEVICE_CODENAME_BUILDVARIANT"
+		lunch "cm_${DEVICE_CODENAME}-${DEVICE_BUILDVARIANT}"
 		make -j "$JOBS" recoveryimage
 		exit 0
 	fi
 
-	brunch "$DEVICE_CODENAME" "$DEVICE_CODENAME_BUILDVARIANT" || true
+	brunch "$DEVICE_CODENAME" "$DEVICE_BUILDVARIANT" || true
 
 	REALADZIP=""
 	while read ZIP; do
