@@ -197,6 +197,8 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 		sleep 1
 	fi
 
+	export BLOCK_BASED_OTA=false
+
 	source build/envsetup.sh || true
 
 	if [[ "$CACHE" -eq 1 ]]; then
