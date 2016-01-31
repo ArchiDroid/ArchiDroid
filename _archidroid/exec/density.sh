@@ -24,12 +24,10 @@
 # Sets device density
 # $1 - Target density
 
-set -e
+set -eu
 
-if [[ -z "$1" ]]; then
-	exit 1
+if [[ -f "/system/build.prop" ]]; then
+	sed -i "s/ro.sf.lcd_density=.*/ro.sf.lcd_density=$1/g" "/system/build.prop"
 fi
-
-sed -i "s/ro.sf.lcd_density=.*/ro.sf.lcd_density=$1/g" /system/build.prop
 
 exit 0
