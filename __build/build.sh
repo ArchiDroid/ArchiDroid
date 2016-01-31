@@ -35,18 +35,12 @@ ROM="CyanogenMod" # This is actually for information purpose only, can be anythi
 ROMSHORT="cm" # This however, MUST match the repo name at ArchiDroid/ArchiDroid, e.g. if it's i9300-omnirom-experimental, we must type "omnirom" here
 CLOSED_SOURCE=0 # If 1, build.sh won't try to build it from source, but use prebuilt zip instead
 
-# Detect HOME properly
-# This workaround is required because arm-eabi-nm has problems following ~. Don't change it
-HOME="$(dirname ~)"
-if [[ "$HOME" = "/" ]]; then
-	HOME="/$(basename ~)" # Root
-else
-	HOME="$HOME/$(basename ~)" # User
-fi
+# $HOME is populated by bash
 
 # Try to not change these if you can
 ADROOT="$HOME/shared/git/ArchiDroid" # This is where ArchiDroid GitHub repo is located
 ADZIP="$ROMSHORT-*.zip" # This is with what defined output zip. For omni it would be "omni-*.zip"
+echo "$HOME"
 ADCOMPILEROOT="$HOME/android/$ROMSHORT" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE_CODENAME" # This is the location of output zip from above sources, usually it doesn't need to be changed
 ADSMPREBUILTS="$HOME/sabermod-prebuilts" # A directory which should contain SaberMod prebuilts from http://sabermod.com which are used during ROM compiling
