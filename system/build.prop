@@ -1,6 +1,6 @@
 # ArchiDroid build.prop
 ro.archidroid=1
-ro.archidroid.DEVICE_CODENAME=oneplus2
+ro.archidroid.device=oneplus2
 ro.archidroid.rom=CyanogenMod
 ro.archidroid.rom.short=cm
 ro.archidroid.version=3.2
