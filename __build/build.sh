@@ -386,7 +386,7 @@ fi
 {
 	echo "# ArchiDroid build.prop"
 	echo "ro.archidroid=1"
-	echo "ro.archidroid.DEVICE_CODENAME=$DEVICE_CODENAME"
+	echo "ro.archidroid.device=$DEVICE_CODENAME"
 	echo "ro.archidroid.rom=$ROM"
 	echo "ro.archidroid.rom.short=$ROMSHORT"
 	echo "ro.archidroid.version=$VERSION"
