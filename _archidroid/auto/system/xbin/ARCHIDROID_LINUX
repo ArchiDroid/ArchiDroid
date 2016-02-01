@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2016 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,13 +35,13 @@ UNMOUNT=0
 SHELL=0
 
 LINUX_MOUNTFS() {
-	mkdir -p "$ADMNT$1" && busybox mount -t "$2" "$2" "$ADMNT$1"
+	mkdir -p "$ADMNT$1" && mount -t "$2" "$2" "$ADMNT$1"
 }
 
 LINUX_MOUNT() {
 	for ARG in "$@"; do
 		if [[ -e "$ARG" ]]; then
-			mkdir -p "$ADMNT$ARG" && busybox mount --bind "$ARG" "$ADMNT$ARG"
+			mkdir -p "$ADMNT$ARG" && mount --bind "$ARG" "$ADMNT$ARG"
 		fi
 	done
 }
@@ -49,7 +49,7 @@ LINUX_MOUNT() {
 LINUX_UMOUNT() {
 	for ARG in "$@"; do
 		if [[ -e "$ADMNT$ARG" ]]; then
-			busybox umount -f "$ADMNT$ARG"
+			umount -f "$ADMNT$ARG"
 			rmdir "$ADMNT$ARG" >/dev/null 2>&1
 		fi
 	done
@@ -57,7 +57,7 @@ LINUX_UMOUNT() {
 
 LINUX_EVERYTHING_UNMOUNTED() {
 	MOUNTED="$(mount 2>&1)"
-	for ARG in "/dev" "/proc" "/sys" "/tmp" "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"; do
+	for ARG in "/dev" "/proc" "/sys" "/tmp" "/system" "/storage/emulated" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/data"; do
 		if [[ -e "$ADMNT$ARG" ]] && echo "$MOUNTED" | grep -q "$ADMNT$ARG"; then
 			return 1
 		fi
@@ -136,7 +136,7 @@ fi
 if [[ "$INSTALL" -eq 1 ]]; then
 	if [[ ! -e "$ADMNT/bin/bash" ]]; then
 		mkdir -p "$ADMNT"
-		busybox tar -xJ -f "$ADDEBIAN/debian.tar.xz" -C "$ADMNT" || exit 1
+		7z x "$ADDEBIAN/debian.7z" -o"$ADMNT" || exit 1
 
 		# Overlay
 		find "$ADDEBIAN/overlay" -mindepth 1 -maxdepth 1 | while read -r OVERLAY; do
@@ -161,6 +161,7 @@ if [[ "$INSTALL" -eq 1 ]]; then
 			case "$(getprop ro.archidroid.device)" in
 				i9300) FB_DISPLAY="fb3"; FB_INPUT="event1" ;;
 				nicki) FB_DISPLAY="fb0"; FB_INPUT="event1" ;;
+				oneplus2) FB_DISPLAY="fb0"; FB_INPUT="event5" ;;
 			esac
 
 			# Try to auto-detect proper FB_DISPLAY if needed
@@ -205,8 +206,8 @@ if [[ "$INSTALL" -eq 1 ]]; then
 
 		LINUX_PREPARE_SHELL
 		LINUX_SHELL_COMMAND "ln -s /proc/mounts /etc/mtab" # This is done automatically on most distros on first boot, but we won't have first boot here
-		LINUX_SHELL_COMMAND "sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config" # Newer versions of SSH deny root access by default now, and since we don't have any other user, we need it
-		LINUX_SHELL_COMMAND "echo -e 'archidroid$\narchidroid$' | passwd >/null.sink 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
+		LINUX_SHELL_COMMAND "[[ -f /etc/ssh/sshd_config ]] && sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config" # Newer versions of SSH deny root access by default now, and since we don't have any other user, we need it
+		LINUX_SHELL_COMMAND "echo -e 'archidroid@\narchidroid@' | passwd >/null.sink 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
 		LINUX_SHELL_COMMAND "rm -f /null.sink" # Remove our temporary /dev/null
 		echo "INFO: ArchiDroid's Linux has been installed successfully in $ADMNT!"
 	else
@@ -226,7 +227,7 @@ if [[ "$MOUNT" -eq 1 ]]; then
 			LINUX_MOUNTFS "/tmp" "tmpfs"
 
 			# Android filesystems
-			LINUX_MOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
+			LINUX_MOUNT "/system" "/storage/emulated" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/data"
 			echo "INFO: ArchiDroid's Linux has been mounted successfully in $ADMNT!"
 		else
 			echo "NOTICE: ArchiDroid's Linux has been mounted already in $ADMNT!"
@@ -244,7 +245,7 @@ if [[ "$UNMOUNT" -eq 1 ]]; then
 			LINUX_UMOUNT "/dev/pts" "/dev/shm" "/dev" "/proc" "/sys" "/tmp"
 
 			# Android filesystems
-			LINUX_UMOUNT "/system" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/preload" "/data"
+			LINUX_UMOUNT "/system" "/storage/emulated" "/storage/sdcard0" "/storage/sdcard1" "/cache" "/data"
 
 			if LINUX_EVERYTHING_UNMOUNTED; then
 				echo "INFO: ArchiDroid's Linux has been completely unmounted in $ADMNT!"
