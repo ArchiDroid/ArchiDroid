@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2016 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@
 # This script is used to automatically update GApps in AD github tree
 # Big thanks to Open GApps contributors for providing these
 
-set -e
+set -eu
 
 arrayContainsString() {
 	for e in "${@:2}"; do
@@ -61,12 +61,17 @@ done
 
 cd "$(dirname "$0")"
 
+if [[ ! -f ../system/build.prop ]]; then
+	ERROR "build.prop doesn't exist, prepare ROM first"
+fi
+
 if [[ -f ../system/build.prop ]]; then
 	# Architecture
 	ARCH="$(grep "ro.product.cpu.abilist=" "../system/build.prop" | head -n 1 | cut -d '=' -f 2)"
 	case "$ARCH" in
 		arm64*) ARCH="arm64" ;;
 		arm*) ARCH="arm" ;;
+		*) ERROR "Unknown architecture: $ARCH"; exit 1
 	esac
 	INFO "ARCH: $ARCH"
 
@@ -77,18 +82,13 @@ if [[ -f ../system/build.prop ]]; then
 	# Android
 	ANDROID="$(grep "ro.build.version.release=" "../system/build.prop" | head -n 1 | cut -d '=' -f 2 | rev | cut -d '.' -f 2- | rev)"
 	INFO "ANDROID: $ANDROID"
-else
-	# Defaults
-	ARCH="arm"
-	DENSITY="nodpi"
-	ANDROID="5.1"
 fi
 
 if [[ "$UPDATE" -eq 1 ]]; then
 	while read ZIP; do
 		GAPPSPACKAGE="$ZIP"
 		break
-	done < <(find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-$ARCH-$ANDROID-*.zip")
+	done < <(find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-$ARCH-$ANDROID-stock-*.zip")
 else
 	LATEST="$(curl "https://api.github.com/repos/opengapps/$ARCH/releases/latest" 2>/dev/null | grep "\"tag_name\":" | head -n 1 | cut -d '"' -f 4)"
 	if [[ -z "$LATEST" ]]; then
@@ -102,7 +102,7 @@ else
 		exit 0
 	fi
 
-	find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-*.zip" -exec rm -f {} \;
+	find . -mindepth 1 -maxdepth 1 -type f -name "open_gapps-$ARCH-$ANDROID-stock-*.zip" -exec rm -f {} \;
 	wget "https://github.com/opengapps/$ARCH/releases/download/$LATEST/$GAPPSPACKAGE"
 fi
 
@@ -115,11 +115,11 @@ rm -rf tmp-gapps
 mkdir tmp-gapps
 cd tmp-gapps
 
-unzip "../$(basename "$GAPPSPACKAGE")"
+7z x "../$(basename "$GAPPSPACKAGE")"
 
 # Core files
 rm -rf "../../_archidroid/gapps/base"
-mkdir "../../_archidroid/gapps/base"
+mkdir -p "../../_archidroid/gapps/base"
 while read TAR; do
 	PACKAGE="$(basename "$TAR" | cut -d '.' -f 1)"
 
@@ -127,7 +127,7 @@ while read TAR; do
 	mkdir tmp-gapps
 	cd tmp-gapps
 
-	tar xf "../$TAR"
+	7z x "../$TAR"
 
 	# Common
 	if [[ -d "$PACKAGE/common" ]]; then
@@ -160,6 +160,7 @@ done < <(find Core -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
 
 
 # Optional files
+mkdir -p "../../_archidroid/gapps/extra"
 UPDATEDEXTRAS=()
 while read TAR; do
 	PACKAGE="$(basename "$TAR" | cut -d '.' -f 1)"
@@ -175,7 +176,7 @@ while read TAR; do
 	mkdir tmp-gapps
 	cd tmp-gapps
 
-	tar xf "../$TAR"
+	7z x "../$TAR"
 
 	rm -rf "../../../_archidroid/gapps/extra/$PACKAGE"
 	mkdir "../../../_archidroid/gapps/extra/$PACKAGE"
