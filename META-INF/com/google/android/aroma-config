@@ -346,7 +346,6 @@ if file_getprop("/tmp/aroma-data/archidroidinstallmode.prop", "preset") == "cust
 
 		"superuser", "<#selectbg_g>Superuser</#>", "", "group",
 		"koush", "Superuser by Koush", "<~archidroid.superuser.koush.desc>", "select.selected",
-		"chainfire", "SuperSU by Chainfire", "<~archidroid.superuser.chainfire.desc>", "select",
 		"none", "<~archidroid.common.none>", "<~archidroid.superuser.none.desc>", "select",
 
 		"gapps", "<#selectbg_g>Google Apps</#>", "", "group",
