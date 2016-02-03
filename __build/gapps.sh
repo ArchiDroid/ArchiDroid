@@ -115,11 +115,13 @@ rm -rf tmp-gapps
 mkdir tmp-gapps
 cd tmp-gapps
 
-7z x "../$(basename "$GAPPSPACKAGE")"
+INFO "Extracting main archive..."
+7z x "../$(basename "$GAPPSPACKAGE")" >/dev/null
 
 # Core files
 rm -rf "../../_archidroid/gapps/base"
 mkdir -p "../../_archidroid/gapps/base"
+INFO "Handling base packages..."
 while read TAR; do
 	PACKAGE="$(basename "$TAR" | cut -d '.' -f 1)"
 
@@ -127,7 +129,10 @@ while read TAR; do
 	mkdir tmp-gapps
 	cd tmp-gapps
 
-	7z x "../$TAR"
+	7z x "../$TAR" >/dev/null
+	if [[ -f "$PACKAGE.tar" ]]; then
+		7z x "$PACKAGE.tar" >/dev/null
+	fi
 
 	# Common
 	if [[ -d "$PACKAGE/common" ]]; then
@@ -162,6 +167,7 @@ done < <(find Core -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
 # Optional files
 mkdir -p "../../_archidroid/gapps/extra"
 UPDATEDEXTRAS=()
+INFO "Handling extra packages..."
 while read TAR; do
 	PACKAGE="$(basename "$TAR" | cut -d '.' -f 1)"
 
@@ -176,7 +182,10 @@ while read TAR; do
 	mkdir tmp-gapps
 	cd tmp-gapps
 
-	7z x "../$TAR"
+	7z x "../$TAR" >/dev/null
+	if [[ -f "$PACKAGE.tar" ]]; then
+		7z x "$PACKAGE.tar" >/dev/null
+	fi
 
 	rm -rf "../../../_archidroid/gapps/extra/$PACKAGE"
 	mkdir "../../../_archidroid/gapps/extra/$PACKAGE"
