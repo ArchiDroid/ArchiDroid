@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2016 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -524,19 +524,14 @@ if [[ -f /system/app/LiveBoot/LiveBoot.apk && ! -f "/data/data/eu.chainfire.live
 fi
 
 # ArchiDroid Hardswap
-SWAP_BIN="swapon"
 SWAP_CMD="-p 1"
 if ! swapon 2>&1 | grep -qi "\-p pri"; then # If swapon doesn't support priority
-	if ! busybox swapon 2>&1 | grep -qi "\-p pri"; then # If busybox swapon doesn't support priority
-		SWAP_CMD="" # Disable priority
-	else
-		SWAP_BIN="busybox swapon" # Change binary to busybox swapon, as it supports priority
-	fi
+	SWAP_CMD="" # Disable priority
 fi
 for HSPATH in "/cache" "/preload" "/storage/sdcard1" "/storage/extSdCard"; do
 	if [[ -f "$HSPATH/ArchiDroid.swp" ]]; then
 		echo "$(date +"%F %T") INFO: Found ArchiDroid swap file in $HSPATH directory, $(busybox du -mh "$HSPATH/ArchiDroid.swp" | awk '{print $1}')"
-		$SWAP_BIN $SWAP_CMD "$HSPATH/ArchiDroid.swp"
+		swapon $SWAP_CMD "$HSPATH/ArchiDroid.swp"
 	fi
 done
 
@@ -584,8 +579,8 @@ while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemui >/dev/null 2>&1; do
 							cp -R "$TOCOPY" "/data/data/$FOLDERSHORT/"
 						done
 
-						ADOWNER="$(busybox ls -ld "/data/data/$FOLDERSHORT" | awk '{print $3}')"
-						busybox chown -hR "$ADOWNER.$ADOWNER" "/data/data/$FOLDERSHORT"
+						ADOWNER="$(ls -ld "/data/data/$FOLDERSHORT" | awk '{print $3}')"
+						chown -hR "$ADOWNER.$ADOWNER" "/data/data/$FOLDERSHORT"
 
 						# Apply permissions for folders
 						find "/data/data/$FOLDERSHORT" -type d -mindepth 1 | while read -r mFOLDER; do
