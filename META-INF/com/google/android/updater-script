@@ -195,7 +195,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-camera") == "1" then
 				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Camera");
-				delete_recursive("/system/app/Camera2");
+				delete_recursive("/system/app/Camera2", "/system/app/Snap");
 				package_extract_dir("_archidroid/gapps/extra/cameragoogle", "/system");
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-chrome") == "1" then
@@ -220,7 +220,7 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-messenger") == "1" then
 				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Installing Google Messenger");
-				delete_recursive("/system/priv-app/Mms");
+				delete_recursive("/system/app/messaging", "/system/priv-app/Mms");
 				package_extract_dir("_archidroid/gapps/extra/messenger", "/system");
 			endif;
 			if file_getprop("/tmp/aroma-data/archidroid.prop", "gapps-music") == "1" then
