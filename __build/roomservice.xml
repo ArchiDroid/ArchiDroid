@@ -22,10 +22,10 @@
 	<!-- /Removed projects -->
 
 	<!-- Replaced projects -->
-		<!--
 		<remove-project name="CyanogenMod/android_build" />
-		<project name="ArchiDroid/android_build" path="build" remote="github" revision="cm-12.1-optimized" />
+		<project name="ArchiDroid/android_build" path="build" remote="github" />
 
+		<!--
 		<remove-project name="CyanogenMod/android_bootable_recovery" />
 		<project name="omnirom/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-5.1" />
 
