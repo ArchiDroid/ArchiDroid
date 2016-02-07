@@ -42,7 +42,6 @@ ADROOT="$HOME/shared/git/ArchiDroid" # This is where ArchiDroid GitHub repo is l
 ADZIP="$ROMSHORT-*.zip" # This is with what defined output zip. For omni it would be "omni-*.zip"
 ADCOMPILEROOT="$HOME/android/$ROMSHORT" # This is where AOSP sources are located
 ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE_CODENAME" # This is the location of output zip from above sources, usually it doesn't need to be changed
-ADSMPREBUILTS="$HOME/sabermod-prebuilts" # A directory which should contain SaberMod prebuilts from http://sabermod.com which are used during ROM compiling
 JOBS="$(grep -c "processor" "/proc/cpuinfo")" # Maximum number of jobs, can be declared statically if needed, default to number of threads of the CPU
 
 # Magic starts here
@@ -100,7 +99,6 @@ CACHE=0
 CLEAN=0
 PREBUILT="$CLOSED_SOURCE"
 RECOVERY=0
-SABERMODED=0
 STABLE=0
 STOCK="$CLOSED_SOURCE"
 OLD=0
@@ -127,10 +125,6 @@ for ARG in "$@" ; do
 		--recovery|recovery)
 			RECOVERY=1
 			echo "NOTICE: Building recovery image!"
-			;;
-		--sabermod|sabermod)
-			SABERMODED=1
-			echo "NOTICE: Assuming that SaberMod toolchain is being used!"
 			;;
 		--stable|stable)
 			STABLE=1
@@ -164,7 +158,7 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	if [[ "$CLEAN" -eq 1 ]]; then
-		make clean
+		make -j "$JOBS" clean
 	elif [[ -d "$ADOUT" ]]; then
 		echo "NOTICE: Performing cleaning of old build!"
 
@@ -175,26 +169,6 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 			echo "INFO: Removing old zip file: $ZIP"
 			rm -f "$ZIP"
 		done < <(find "$ADOUT" -mindepth 1 -maxdepth 1 -type f -iname "*.zip")
-	fi
-
-	# Check if we're actually using sabermod
-	if [[ "$SABERMODED" -eq 0 ]]; then
-		while read DIRECTORY; do
-			SABERMODED=1
-			break
-		done < <(find prebuilts/gcc/linux-x86 -type d -iname "*sabermod*")
-	fi
-
-	if [[ "$SABERMODED" -eq 1 ]]; then
-		if [[ -d "$ADSMPREBUILTS" ]]; then
-			export LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
-			export LD_LIBRARY_PATH="$ADSMPREBUILTS/usr/lib:$ADSMPREBUILTS/usr/lib/arm"
-			echo "NOTICE: SaberMod prebuilts found and included!"
-		else
-			echo "WARNING: SaberMod prebuilts could not be found in $ADSMPREBUILTS"
-			echo "This error is not fatal, but you may encounter problems!"
-		fi
-		sleep 1
 	fi
 
 	export BLOCK_BASED_OTA=false
