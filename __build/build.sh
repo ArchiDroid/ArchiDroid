@@ -45,15 +45,6 @@ ADOUT="$ADCOMPILEROOT/out/target/product/$DEVICE_CODENAME" # This is the locatio
 ADSMPREBUILTS="$HOME/sabermod-prebuilts" # A directory which should contain SaberMod prebuilts from http://sabermod.com which are used during ROM compiling
 JOBS="$(grep -c "processor" "/proc/cpuinfo")" # Maximum number of jobs, can be declared statically if needed, default to number of threads of the CPU
 
-# Optimize maximum number of jobs if we have limited memory
-if [[ -f "/proc/meminfo" ]]; then
-	MAX_JOBS="$(($(grep "MemTotal" /proc/meminfo | awk '{print $2}') / 1024 / 1024))"
-	if [[ "$JOBS" -gt "$MAX_JOBS" ]]; then
-		echo "INFO: We should run at $JOBS jobs, but due to small memory we'll run at $MAX_JOBS instead!"
-		JOBS="$MAX_JOBS"
-	fi
-fi
-
 # Magic starts here
 GET_FMODE() {
 	if [[ -e "$1" ]]; then
