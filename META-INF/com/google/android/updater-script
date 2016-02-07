@@ -283,7 +283,6 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 	set_metadata("/system/bin/dumpstate", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:dumpstate_exec:s0");
 	set_metadata("/system/bin/e2fsck", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:fsck_exec:s0");
 	set_metadata("/system/bin/energy-awareness", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:energyawareness_exec:s0");
-	set_metadata("/system/bin/fingerprintd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:fingerprintd_exec:s0");
 	set_metadata("/system/bin/fsck.exfat", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:fsck_exec:s0");
 	set_metadata("/system/bin/fsck.f2fs", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:fsck_exec:s0");
 	set_metadata("/system/bin/fsck.ntfs", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:fsck_exec:s0");
