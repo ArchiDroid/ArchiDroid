@@ -215,10 +215,8 @@ if [[ "$PREBUILT" -eq 0 ]]; then
 	fi
 
 	set +u
-	breakfast "cm_${DEVICE_CODENAME}-${DEVICE_BUILDVARIANT}"
+	brunch "$DEVICE_CODENAME" "$DEVICE_BUILDVARIANT" || true
 	set -u
-
-	make -j "$JOBS" bacon || true
 
 	REALADZIP=""
 	while read ZIP; do
