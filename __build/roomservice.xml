@@ -2,16 +2,17 @@
 <!-- Please read README.md before making modifications here! -->
 <manifest>
 	<!-- Additional remotes -->
+		<remote name="bitbucket" fetch="https://bitbucket.org/" />
 		<remote name="gitlab" fetch="https://gitlab.com/" />
 	<!-- /Additional remotes -->
 
 	<!-- Toolchain -->
-		<!--
+		<remove-project name="platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" />
+		<project name="UBERTC/aarch64-linux-android-4.9" path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" remote="bitbucket" revision="master" />
 		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
-		<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="github" revision="architoolchain-5.2-arm-linux-gnueabihf" />
-		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" />
-		<project name="ArchiDroid/Toolchain" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" remote="github" revision="sabermod-4.9-arm-linux-androideabi" />
-		-->
+		<project name="UBERTC/arm-eabi-4.9" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="bitbucket" revision="master" />
+		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" />
+		<project name="UBERTC/arm-linux-androideabi-4.9" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" remote="bitbucket" revision="master" />
 	<!-- /Toolchain -->
 
 	<!-- Added projects -->
