@@ -202,12 +202,34 @@ if [[ "$INSTALL" -eq 1 ]]; then
 
 		# General fixes
 		touch "$ADMNT/.nomedia" # Tell Android media process to DON'T scan this dir
-		cp /file_contexts "$ADMNT" # We need SELinux context or various apps will go crazy
+
+		if [[ -f /file_contexts ]]; then
+			cp /file_contexts "$ADMNT" # We need SELinux context or various apps will go crazy
+		fi
 
 		LINUX_PREPARE_SHELL
+
+		# Mounts
 		LINUX_SHELL_COMMAND "ln -s /proc/mounts /etc/mtab" # This is done automatically on most distros on first boot, but we won't have first boot here
+
+		# Android groups - https://android.googlesource.com/platform/system/core/+/master/include/private/android_filesystem_config.h
+		LINUX_SHELL_COMMAND "groupadd -g 3003 -r aid_inet"
+		LINUX_SHELL_COMMAND "groupadd -g 3004 -r aid_net_raw"
+		LINUX_SHELL_COMMAND "groupadd -g 3005 -r aid_net_admin"
+
+		# Add users to proper Android groups
+		LINUX_SHELL_COMMAND "usermod -G 3003 root"
+		LINUX_SHELL_COMMAND "usermod -G 3004 root"
+		LINUX_SHELL_COMMAND "usermod -G 3005 root"
+		LINUX_SHELL_COMMAND "usermod -G 3003 _apt"
+
+		# TODO: There should be much more Linux-Android fixes here
+
+		# SSH
 		LINUX_SHELL_COMMAND "[[ -f /etc/ssh/sshd_config ]] && sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config" # Newer versions of SSH deny root access by default now, and since we don't have any other user, we need it
 		LINUX_SHELL_COMMAND "echo -e 'archidroid@\narchidroid@' | passwd >/null.sink 2>&1" # By default there's no password for root required by SSH, also, log output to >/null.txt as we don't have /dev/null yet
+
+		# Cleanup
 		LINUX_SHELL_COMMAND "rm -f /null.sink" # Remove our temporary /dev/null
 		echo "INFO: ArchiDroid's Linux has been installed successfully in $ADMNT!"
 	else

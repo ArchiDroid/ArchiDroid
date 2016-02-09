@@ -44,8 +44,8 @@ This is done through informing the backend about ongoing tethering event.
 #define unlikely(x)     x
 #endif
 
-static const char* eventDirPath = "/dev/archidroid/events";
-static const char* eventFilePath = "/dev/archidroid/events/tethering";
+static const char* eventDirPath = "/dev/archidroid/Events";
+static const char* eventFilePath = "/dev/archidroid/Events/Tethering.EVENT";
 static const unsigned int delay = 2; // Specifies minimum time we need to wait for backend's reaction
 
 int main(int argc, char** argv) {
