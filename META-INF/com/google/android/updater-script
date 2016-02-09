@@ -649,7 +649,31 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 
 		if file_getprop("/tmp/aroma-data/archidroid.prop", "firmware-update") == "1" then
 			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Updating firmware");
-			# BRINGUP if needed
+			package_extract_file("RADIO/static_nvbk.bin", "/dev/block/bootdevice/by-name/oem_stanvbk");
+			ifelse(msm.boot_update("main"), (
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Firmware: Main");
+				package_extract_file("firmware-update/sdi.mbn", "/dev/block/bootdevice/by-name/sdi");
+				package_extract_file("firmware-update/hyp.mbn", "/dev/block/bootdevice/by-name/hyp");
+				package_extract_file("firmware-update/tz.mbn", "/dev/block/bootdevice/by-name/tz");
+				package_extract_file("firmware-update/emmc_appsboot.mbn", "/dev/block/bootdevice/by-name/aboot");
+				package_extract_file("firmware-update/sbl1.mbn", "/dev/block/bootdevice/by-name/sbl1");
+				package_extract_file("firmware-update/pmic.mbn", "/dev/block/bootdevice/by-name/pmic");
+				package_extract_file("firmware-update/rpm.mbn", "/dev/block/bootdevice/by-name/rpm");
+			), "");
+			ifelse(msm.boot_update("backup"), (
+				ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Firmware: Backup");
+				package_extract_file("firmware-update/hyp.mbn", "/dev/block/bootdevice/by-name/hypbak");
+				package_extract_file("firmware-update/tz.mbn", "/dev/block/bootdevice/by-name/tzbak");
+				package_extract_file("firmware-update/emmc_appsboot.mbn", "/dev/block/bootdevice/by-name/abootbak");
+				package_extract_file("firmware-update/sbl1.mbn", "/dev/block/bootdevice/by-name/sbl1bak");
+				package_extract_file("firmware-update/pmic.mbn", "/dev/block/bootdevice/by-name/pmicbak");
+				package_extract_file("firmware-update/rpm.mbn", "/dev/block/bootdevice/by-name/rpmbak");
+			), "");
+			msm.boot_update("finalize");
+			ui_print("<b><#ff0000>root</#><#ecec36>@</#><#0cdfdf>ArchiDroid</#><#ecec36>:~</#><#c00cdf>#</#></b> Firmware: Finalize");
+			package_extract_file("firmware-update/logo.bin", "/dev/block/bootdevice/by-name/LOGO");
+			package_extract_file("firmware-update/NON-HLOS.bin", "/dev/block/bootdevice/by-name/modem");
+			package_extract_file("firmware-update/BTFM.bin", "/dev/block/bootdevice/by-name/bluetooth");
 		endif;
 
 #		if file_getprop("/tmp/aroma-data/archidroid.prop", "navibar") == "1" then
