@@ -7,12 +7,14 @@
 	<!-- /Additional remotes -->
 
 	<!-- Toolchain -->
+		<!--
 		<remove-project name="platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" />
 		<project name="UBERTC/aarch64-linux-android-4.9" path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" remote="bitbucket" revision="master" />
+		-->
 		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" />
-		<project name="UBERTC/arm-eabi-4.9" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="bitbucket" revision="master" />
+		<project name="UBERTC/arm-eabi-6.0" path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" remote="bitbucket" revision="master" />
 		<remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" />
-		<project name="UBERTC/arm-linux-androideabi-4.9" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" remote="bitbucket" revision="master" />
+		<project name="UBERTC/arm-linux-androideabi-5.3" path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" remote="bitbucket" revision="master" />
 	<!-- /Toolchain -->
 
 	<!-- Added projects -->
@@ -23,6 +25,9 @@
 	<!-- /Removed projects -->
 
 	<!-- Replaced projects -->
+		<remove-project name="CyanogenMod/android_bionic" />
+		<project name="ArchiDroid/android_bionic" path="bionic" remote="github" />
+
 		<remove-project name="CyanogenMod/android_build" />
 		<project name="ArchiDroid/android_build" path="build" remote="github" />
 
@@ -136,14 +141,14 @@
 			<project name="CyanogenMod/android_external_stlport" path="external/stlport" remote="github" />
 			<project name="CyanogenMod/android_kernel_oneplus_msm8994" path="kernel/oneplus/msm8994" remote="github" />
 
-			<project name="Grarak/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" revision="cm-13.0-exp" />
+			<project name="ArchiDroid/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" />
 
 
 			<remove-project name="CyanogenMod/android_device_oneplus_oneplus2" />
-			<project name="Grarak/android_device_oneplus_oneplus2" path="device/oneplus/oneplus2" remote="github" revision="cm-13.0-exp" />
+			<project name="ArchiDroid/android_device_oneplus_oneplus2" path="device/oneplus/oneplus2" remote="github" />
 
 			<remove-project name="CyanogenMod/android_kernel_oneplus_msm8994" />
-			<project name="Grarak/android_kernel_oneplus_msm8994" path="kernel/oneplus/msm8994" remote="github" revision="cm-13.0-exp" />
+			<project name="ArchiDroid/android_kernel_oneplus_msm8994" path="kernel/oneplus/msm8994" remote="github" />
 		<!-- /oneplus2 -->
 
 		<!-- End of devices -->

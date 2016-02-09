@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2016 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -e
+set -eu
 
 if [[ -z "${CROSS_COMPILE}" ]]; then
 	echo "ERROR: Make sure that \${CROSS_COMPILE} variable is set!"
@@ -34,7 +34,7 @@ elif ! which "${CROSS_COMPILE}strip" >/dev/null; then
 	exit 1
 fi
 
-CFLAGS=(-Wall -Werror -pedantic -std=gnu11 -O3 -march=armv7-a -mfpu=neon -mfloat-abi=softfp -fgcse-las -fgcse-sm -fipa-pta -fivopts -fomit-frame-pointer -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -fgraphite -fgraphite-identity -floop-block -floop-interchange -floop-nest-optimize -floop-parallelize-all -floop-strip-mine -fmodulo-sched -fmodulo-sched-allow-regmoves -ffunction-sections -fdata-sections -fvisibility=hidden -s -flto -fPIC -fPIE -pie -DNDEBUG -D__ANDROID__ -DANDROID)
+CFLAGS=(-Wall -Werror -pedantic -std=gnu11 -O3 -march=armv7-a -mfpu=neon -mfloat-abi=softfp -fgcse-las -fgcse-sm -fipa-pta -fivopts -fomit-frame-pointer -frename-registers -fsection-anchors -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -fgraphite -fgraphite-identity -floop-block -floop-interchange -floop-nest-optimize -floop-parallelize-all -floop-strip-mine -fmodulo-sched -fmodulo-sched-allow-regmoves -ffunction-sections -fdata-sections -fvisibility=hidden -s -flto -fPIC -fPIE -pie -DNDEBUG -D__ANDROID__ -DANDROID)
 LDFLAGS=(-llog -Wl,-O3 -Wl,--as-needed -Wl,--relax -Wl,--sort-common -Wl,--gc-sections -Wl,-flto -fPIE -fPIC -pie)
 SRCFLAGS=(-DLINUX -DPIC -DPIE)
 STRIPFLAGS=(-s -R .note -R .comment -R .gnu.version -R .gnu.version_r)
@@ -43,19 +43,21 @@ if [[ -n "$SYSROOT" ]]; then
 	CFLAGS+=("--sysroot=$SYSROOT")
 fi
 
-cd "$(dirname "$0")"
+cd "$(dirname "$(readlink -f "$0")")"
 
 # addebuggerd
-"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addebuggerd addebuggerd.c && mv /tmp/addebuggerd addebuggerd
-"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" addebuggerd
+"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addebuggerd addebuggerd.c
+"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" /tmp/addebuggerd
+mv /tmp/addebuggerd addebuggerd
 
 if [[ -f "../../_archidroid/auto/system/bin/addebuggerd" ]]; then
 	cp "addebuggerd" "../../_archidroid/auto/system/bin/addebuggerd"
 fi
 
 # addnsmasq
-"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addnsmasq addnsmasq.c && mv /tmp/addnsmasq addnsmasq
-"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" addnsmasq
+"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addnsmasq addnsmasq.c
+"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" /tmp/addnsmasq
+mv /tmp/addnsmasq addnsmasq
 
 if [[ -f "../../_archidroid/auto/system/bin/addnsmasq" ]]; then
 	cp "addnsmasq" "../../_archidroid/auto/system/bin/addnsmasq"
