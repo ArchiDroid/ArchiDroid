@@ -6,7 +6,7 @@
 #  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 # /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 #
-# Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
+# Copyright 2014-2016 Łukasz "JustArchi" Domeradzki
 # Contact: JustArchi@JustArchi.net
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -e
+set -eu
 
 if [[ -z "${CROSS_COMPILE}" ]]; then
 	echo "ERROR: Make sure that \${CROSS_COMPILE} variable is set!"
@@ -43,19 +43,21 @@ if [[ -n "$SYSROOT" ]]; then
 	CFLAGS+=("--sysroot=$SYSROOT")
 fi
 
-cd "$(dirname "$0")"
+cd "$(dirname "$(readlink -f "$0")")"
 
 # addebuggerd
-"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addebuggerd addebuggerd.c && mv /tmp/addebuggerd addebuggerd
-"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" addebuggerd
+"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addebuggerd addebuggerd.c
+"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" /tmp/addebuggerd
+mv /tmp/addebuggerd addebuggerd
 
 if [[ -f "../../_archidroid/auto/system/bin/addebuggerd" ]]; then
 	cp "addebuggerd" "../../_archidroid/auto/system/bin/addebuggerd"
 fi
 
 # addnsmasq
-"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addnsmasq addnsmasq.c && mv /tmp/addnsmasq addnsmasq
-"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" addnsmasq
+"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addnsmasq addnsmasq.c
+"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" /tmp/addnsmasq
+mv /tmp/addnsmasq addnsmasq
 
 if [[ -f "../../_archidroid/auto/system/bin/addnsmasq" ]]; then
 	cp "addnsmasq" "../../_archidroid/auto/system/bin/addnsmasq"

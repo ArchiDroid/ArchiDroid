@@ -5,7 +5,7 @@
  / ___ \| | | (__| | | | | |_| | | | (_) | | (_| |
 /_/   \_\_|  \___|_| |_|_|____/|_|  \___/|_|\__,_|
 
-Copyright 2014-2015 Łukasz "JustArchi" Domeradzki
+Copyright 2014-2016 Łukasz "JustArchi" Domeradzki
 Contact: JustArchi@JustArchi.net
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,8 +44,8 @@ This is done through informing the backend about ongoing tethering event.
 #define unlikely(x)     x
 #endif
 
-static const char* eventDirPath = "/dev/archidroid/Events";
-static const char* eventFilePath = "/dev/archidroid/Events/Tethering.EVENT";
+static const char* eventDirPath = "/dev/archidroid/events";
+static const char* eventFilePath = "/dev/archidroid/events/tethering";
 static const unsigned int delay = 2; // Specifies minimum time we need to wait for backend's reaction
 
 int main(int argc, char** argv) {
