@@ -27,7 +27,7 @@ ADDEV="$ADSYS/dev"
 ADTMPFS="/dev/archidroid"
 
 AD_LAST_NETWORK_FILE="$ADTMPFS/LAST_NETWORK_DATA"
-AD_DATA_EVENTS_DIR="$AD/System/Events"
+AD_DATA_EVENTS_DIR="/storage/emulated/0/Android/data/net.justarchi.archidroid/files/Events"
 AD_DEV_EVENTS_DIR="$ADTMPFS/Events"
 LOG="$AD/EVENT_LISTENER.log"
 ADSTATUS="$ADTMPFS/ARCHIDROID_EVENT_LISTENER.PID"

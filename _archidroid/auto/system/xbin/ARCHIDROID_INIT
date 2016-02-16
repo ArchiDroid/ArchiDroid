@@ -335,7 +335,7 @@ DBUPDATE() {
 
 # Initial variables, you should NOT change them unless you know what you're doing
 AD="/data/media/0/ArchiDroid"
-ADEVENTS="$AD/System/Events"
+ADEVENTS="/storage/emulated/0/Android/data/net.justarchi.archidroid/files/Events"
 ADSYS="/system/archidroid"
 ADDEV="$ADSYS/dev"
 ADTMPFS="/dev/archidroid"
@@ -412,12 +412,6 @@ if [[ "$1" = "RELOAD" || "$1" = "STOP" || "$1" = "START" || "$1" = "NOTIFY" ]]; 
 	exit 0
 elif [[ ! -f "$ADSTATUS" ]]; then
 	# First boot, good
-	# debuggerd and init.d are executed in the nearly same moment, which may cause typical race condition here
-	# It's very likely that these childs will enter this segment in the same moment, we must stop it right here
-	# If we're not the lowest PID of all the PIDs from the same process, exit
-	if [[ "$(pidof "$(basename "$0")" | awk '{print $NF}')" != "$$" ]]; then
-		exit 0
-	fi
 	ADSTART "TMPFS"
 	echo "$$" > "$ADSTATUS"
 else
@@ -530,7 +524,7 @@ if ! swapon 2>&1 | grep -qi "\-p pri"; then # If swapon doesn't support priority
 fi
 for HSPATH in "/cache" "/preload" "/storage/sdcard1" "/storage/extSdCard"; do
 	if [[ -f "$HSPATH/ArchiDroid.swp" ]]; then
-		echo "$(date +"%F %T") INFO: Found ArchiDroid swap file in $HSPATH directory, $(busybox du -mh "$HSPATH/ArchiDroid.swp" | awk '{print $1}')"
+		echo "$(date +"%F %T") INFO: Found ArchiDroid swap file in $HSPATH directory"
 		swapon $SWAP_CMD "$HSPATH/ArchiDroid.swp"
 	fi
 done
@@ -579,7 +573,7 @@ while [[ "$LOOP" -lt 600 ]] && ! pgrep com.android.systemui >/dev/null 2>&1; do
 							cp -R "$TOCOPY" "/data/data/$FOLDERSHORT/"
 						done
 
-						ADOWNER="$(ls -ld "/data/data/$FOLDERSHORT" | awk '{print $3}')"
+						ADOWNER="$(ls -ld "/data/data/$FOLDERSHORT" | cut -d ' ' -f 3)"
 						chown -hR "$ADOWNER.$ADOWNER" "/data/data/$FOLDERSHORT"
 
 						# Apply permissions for folders
