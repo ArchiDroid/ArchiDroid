@@ -25,13 +25,6 @@
 
 set -eu
 
-# ArchiDroid Backend hook
-if [[ -f "/system/bin/addebuggerd" && -f "/system/bin/debuggerd" && ! -f "/system/bin/debuggerd.real" ]]; then
-	mv "/system/bin/debuggerd" "/system/bin/debuggerd.real"
-	mv "/system/bin/addebuggerd" "/system/bin/debuggerd"
-	chcon "u:object_r:rootfs:s0" "/system/bin/debuggerd" # Rootfs is required, as we're running backend from here
-fi
-
 # ArchiDroid Dnsmasq hook
 if [[ -f "/system/bin/addnsmasq" && -f "/system/bin/dnsmasq" && ! -f "/system/bin/dnsmasq.real" ]]; then
 	mv "/system/bin/dnsmasq" "/system/bin/dnsmasq.real"
@@ -45,11 +38,6 @@ if [[ -f "/system/archidroid/dev/spinners/_Hosts/AdAway" && ! -L "/system/archid
 fi
 if [[ -L "/system/archidroid/dev/spinners/Hosts" && ! -L "/system/archidroid/etc/hosts" ]]; then
 	ln -s "/system/archidroid/dev/spinners/Hosts" "/system/archidroid/etc/hosts"
-fi
-
-# ArchiDroid binaries
-if [[ -f "/system/xbin/ARCHIDROID_INIT" ]]; then
-	chcon "u:object_r:rootfs:s0" "/system/xbin/ARCHIDROID_INIT"
 fi
 
 exit 0

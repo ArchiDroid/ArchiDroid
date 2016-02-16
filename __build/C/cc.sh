@@ -45,15 +45,6 @@ fi
 
 cd "$(dirname "$(readlink -f "$0")")"
 
-# addebuggerd
-"${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addebuggerd addebuggerd.c
-"${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" /tmp/addebuggerd
-mv /tmp/addebuggerd addebuggerd
-
-if [[ -f "../../_archidroid/auto/system/bin/addebuggerd" ]]; then
-	cp "addebuggerd" "../../_archidroid/auto/system/bin/addebuggerd"
-fi
-
 # addnsmasq
 "${CROSS_COMPILE}gcc" "${SRCFLAGS[@]}" "${CFLAGS[@]}" "${LDFLAGS[@]}" -o /tmp/addnsmasq addnsmasq.c
 "${CROSS_COMPILE}strip" "${STRIPFLAGS[@]}" /tmp/addnsmasq
