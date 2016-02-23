@@ -161,7 +161,7 @@ while read TAR; do
 	rm -rf tmp-gapps
 
 	SUCCESS "CORE $PACKAGE"
-done < <(find Core -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
+done < <(find Core -mindepth 1 -maxdepth 1 -type f -name "*.tar.*")
 
 
 # Optional files
@@ -217,7 +217,7 @@ while read TAR; do
 	rm -rf tmp-gapps
 
 	SUCCESS "OPTIONAL $PACKAGE"
-done < <(find GApps -mindepth 1 -maxdepth 1 -type f -name "*.tar.xz")
+done < <(find GApps -mindepth 1 -maxdepth 1 -type f -name "*.tar.*")
 
 cd ..
 rm -rf tmp-gapps
