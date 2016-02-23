@@ -129,7 +129,7 @@ while read TAR; do
 	mkdir tmp-gapps
 	cd tmp-gapps
 
-	7z x "../$TAR" >/dev/null
+	tar xf "../$TAR" >/dev/null
 	if [[ -f "$PACKAGE.tar" ]]; then
 		7z x "$PACKAGE.tar" >/dev/null
 	fi
@@ -182,7 +182,7 @@ while read TAR; do
 	mkdir tmp-gapps
 	cd tmp-gapps
 
-	7z x "../$TAR" >/dev/null
+	tar xf "../$TAR" >/dev/null
 	if [[ -f "$PACKAGE.tar" ]]; then
 		7z x "$PACKAGE.tar" >/dev/null
 	fi
