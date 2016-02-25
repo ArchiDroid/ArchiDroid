@@ -7,7 +7,7 @@
 	<!-- /Additional remotes -->
 
 	<!-- Toolchain -->
-		<project name="UBERTC/aarch64-linux-android-4.9-kernel" path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9-kernel" remote="bitbucket" revision="master" />
+		<project name="UBERTC/aarch64-linux-android-6.0-kernel" path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9-kernel" remote="bitbucket" revision="master" />
 
 		<remove-project name="platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" />
 		<project name="UBERTC/aarch64-linux-android-4.9" path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" remote="bitbucket" revision="master" />

@@ -25,7 +25,7 @@ do
 			*/[0-9][0-9]"-${skip}.sh")	continue 2;;
 		esac
 	done
-	if ls "${hook}" >/dev/null 2>&1; then
+	if [ -f "${hook}" ]; then
 		. "${hook}"
 	fi
 done
