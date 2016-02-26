@@ -1,5 +1,5 @@
 assert(getprop("ro.product.device") == "OnePlus2" || getprop("ro.build.product") == "OnePlus2" || getprop("ro.product.device") == "oneplus2" || getprop("ro.build.product") == "oneplus2" || abort("This package is for device: OnePlus2,oneplus2; this device is " + getprop("ro.product.device") + "."););
-ui_print("Target: 1456425234");
+ui_print("Target: 1456439262");
 ifelse(is_mounted("/system"), unmount("/system"));
 package_extract_dir("install", "/tmp/install");
 set_metadata_recursive("/tmp/install", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644);
