@@ -7,7 +7,7 @@
 	<!-- /Additional remotes -->
 
 	<!-- Toolchain -->
-		<project name="UBERTC/aarch64-linux-android-5.3-kernel" path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9-kernel" remote="bitbucket" revision="master" />
+		<project name="UBERTC/aarch64-linux-android-4.9-kernel" path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9-kernel" remote="bitbucket" revision="master" />
 
 		<remove-project name="platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" />
 		<project name="UBERTC/aarch64-linux-android-4.9" path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" remote="bitbucket" revision="master" />
@@ -146,9 +146,6 @@
 
 			<remove-project name="CyanogenMod/android_device_oneplus_oneplus2" />
 			<project name="ArchiDroid/android_device_oneplus_oneplus2" path="device/oneplus/oneplus2" remote="github" />
-
-			<remove-project name="CyanogenMod/android_kernel_oneplus_msm8994" />
-			<project name="ArchiDroid/android_kernel_oneplus_msm8994" path="kernel/oneplus/msm8994" remote="github" />
 		<!-- /oneplus2 -->
 
 		<!-- End of devices -->

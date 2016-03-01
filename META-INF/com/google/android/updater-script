@@ -114,11 +114,6 @@ if file_getprop("/tmp/aroma-data/archidroidrecovery.prop", "recovery") == "none"
 	symlink("/firmware/image/isdbtmm.b02", "/system/etc/firmware/isdbtmm.b02");
 	symlink("/firmware/image/isdbtmm.b03", "/system/etc/firmware/isdbtmm.b03");
 	symlink("/firmware/image/isdbtmm.mdt", "/system/etc/firmware/isdbtmm.mdt");
-	symlink("/firmware/image/keymaste.b00", "/system/etc/firmware/keymaste.b00");
-	symlink("/firmware/image/keymaste.b01", "/system/etc/firmware/keymaste.b01");
-	symlink("/firmware/image/keymaste.b02", "/system/etc/firmware/keymaste.b02");
-	symlink("/firmware/image/keymaste.b03", "/system/etc/firmware/keymaste.b03");
-	symlink("/firmware/image/keymaste.mdt", "/system/etc/firmware/keymaste.mdt");
 	symlink("/firmware/image/mba.b00", "/system/etc/firmware/mba.b00");
 	symlink("/firmware/image/mba.mdt", "/system/etc/firmware/mba.mdt");
 	symlink("/firmware/image/modem.b00", "/system/etc/firmware/modem.b00");
