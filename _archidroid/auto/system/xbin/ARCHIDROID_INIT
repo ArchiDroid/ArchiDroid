@@ -43,7 +43,6 @@ ADEVENT_ASYNC() {
 ADSTOP() {
 	case "$1" in
 		"ALL")
-			ADSTOP "HAVEGED"
 			ADSTOP "FRANDOM"
 			ADSTOP "ADBLOCK"
 			ADSTOP "EVENT_LISTENER"
@@ -83,13 +82,7 @@ ADSTOP() {
 				rm -f /dev/random && mv /dev/random.orig /dev/random
 			fi
 		;;
-		"HAVEGED")
-			ADSTOP "archidroid_haveged"
-		;;
 		"TMPFS")
-		;;
-		archidroid_haveged)
-			kill $(pidof archidroid_haveged) >/dev/null 2>&1
 		;;
 		archidroid_dnsmasq)
 			kill $(pidof archidroid_dnsmasq) >/dev/null 2>&1
@@ -107,7 +100,6 @@ ADSTART() {
 		"ALL")
 			ADSTART "TMPFS"
 			ADSTART "EVENT_LISTENER"
-			ADSTART "HAVEGED"
 			ADSTART "FRANDOM"
 			ADSTART "ADBLOCK"
 		;;
@@ -176,9 +168,6 @@ ADSTART() {
 				echo "$(date +"%F %T") INFO: INFO: Frandom has been disabled"
 			fi
 		;;
-		"HAVEGED")
-			ADSTART "archidroid_haveged"
-		;;
 		"TMPFS")
 			mkdir -p "$ADTMPFS"
 			chmod 711 "$ADTMPFS"
@@ -210,31 +199,6 @@ ADSTART() {
 				echo "$(date +"%F %T") INFO: ADBLOCK: Activated archidroid_pixelserv - local web server on 127.0.0.1:80, responding with NULLGIF"
 			fi
 		;;
-		"archidroid_haveged")
-			if [[ "$HAVEGED" -eq 1 ]]; then
-				echo "$(date +"%F %T") INFO: INFO: Activating haveged!"
-				local ENTROPY="1024" # Default: 128, Linux: 896, Max: 4096 - We want to make it high enough, but with considering battery life as well
-				ADTWEAK "/proc/sys/vm/dirty_expire_centisecs" "1000"
-				ADTWEAK "/proc/sys/vm/dirty_writeback_centisecs" "500"
-
-				if [[ -c /dev/random.orig ]]; then
-					mv /dev/random /dev/random.TEMP &&
-					mv /dev/random.orig /dev/random
-					archidroid_haveged -p "$ADTMPFS/HAVEGED.PID" -w "$ENTROPY" >/dev/null 2>&1
-					sleep 2 && # Let's give haveged some time to initialize
-					mv /dev/random /dev/random.orig &&
-					mv /dev/random.TEMP /dev/random
-				else
-					archidroid_haveged -p "$ADTMPFS/HAVEGED.PID" -w "$ENTROPY" >/dev/null 2>&1
-					sleep 2 # Let's give haveged some time to initialize
-				fi
-
-				echo "$(date +"%F %T") INFO: INFO: Activated archidroid_haveged - HArdware Volatile Entropy Gathering and Expansion Daemon, regenerating kernel's entropy pool"
-				echo "$(date +"%F %T") INFO: HAVEGED: Entropy levels: Android default: 128, Linux: 896, Max: 4096"
-				echo "$(date +"%F %T") INFO: HAVEGED: ArchiDroid entropy set to: $ENTROPY. Available entropy can't get below this level"
-				echo "$(date +"%F %T") INFO: HAVEGED: Current available entropy: $(cat /proc/sys/kernel/random/entropy_avail)"
-			fi
-		;;
 	esac
 }
 
@@ -243,7 +207,6 @@ ADRELOAD() {
 		"ALL")
 			shift 1
 			ADRELOAD "TMPFS"
-			ADRELOAD "HAVEGED"
 			ADRELOAD "FRANDOM"
 			ADRELOAD "ADBLOCK"
 			;;
@@ -357,12 +320,6 @@ if [[ ! -d "$AD" ]]; then
 fi
 
 # Initial ArchiDroid dev status
-if [[ -f "$ADDEV/switches/Haveged" && "$(cat "$ADDEV/switches/Haveged")" = "Enabled" ]]; then
-	HAVEGED=1
-else
-	HAVEGED=0
-fi
-
 if [[ -f "$ADDEV/switches/Frandom" && "$(cat "$ADDEV/switches/Frandom")" = "Enabled" ]]; then
 	FRANDOM=1
 else
