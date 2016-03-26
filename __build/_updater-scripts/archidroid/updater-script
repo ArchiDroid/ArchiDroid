@@ -1,5 +1,5 @@
 assert(getprop("ro.product.device") == "OnePlus2" || getprop("ro.build.product") == "OnePlus2" || getprop("ro.product.device") == "oneplus2" || getprop("ro.build.product") == "oneplus2" || abort("This package is for device: OnePlus2,oneplus2; this device is " + getprop("ro.product.device") + "."););
-ui_print("Target: 1458064568");
+ui_print("Target: 1458997030");
 ifelse(is_mounted("/system"), unmount("/system"));
 package_extract_dir("install", "/tmp/install");
 set_metadata_recursive("/tmp/install", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644);
@@ -227,10 +227,8 @@ set_metadata("/system/bin/irsc_util", "uid", 0, "gid", 2000, "mode", 0755, "capa
 set_metadata("/system/bin/keystore", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:keystore_exec:s0");
 set_metadata("/system/bin/laser_init", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:sensors_exec:s0");
 set_metadata("/system/bin/lmkd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:lmkd_exec:s0");
-set_metadata("/system/bin/loc_launcher", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:location_exec:s0");
 set_metadata("/system/bin/logcat", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:logcat_exec:s0");
 set_metadata("/system/bin/logd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:logd_exec:s0");
-set_metadata("/system/bin/lowi-server", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:location_exec:s0");
 set_metadata("/system/bin/mdnsd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:mdnsd_exec:s0");
 set_metadata("/system/bin/mediaserver", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:mediaserver_exec:s0");
 set_metadata("/system/bin/mkfs.exfat", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:mkfs_exec:s0");
@@ -271,8 +269,6 @@ set_metadata("/system/bin/vold", "uid", 0, "gid", 2000, "mode", 0755, "capabilit
 set_metadata("/system/bin/wcnss_filter", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:wcnss_filter_exec:s0");
 set_metadata("/system/bin/wpa_cli", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:wcnss_service_exec:s0");
 set_metadata("/system/bin/wpa_supplicant", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:wpa_exec:s0");
-set_metadata("/system/bin/xtwifi-client", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:location_exec:s0");
-set_metadata("/system/bin/xtwifi-inet-agent", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:location_exec:s0");
 set_metadata("/system/etc/dhcpcd/dhcpcd-run-hooks", "uid", 1014, "gid", 2000, "mode", 0550, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/etc/init.d", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0755, "capabilities", "0x0", "selabel", "u:object_r:userinit_exec:s0");
 set_metadata("/system/etc/init.d", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
@@ -342,7 +338,8 @@ set_metadata("/system/vendor/firmware/modem_pr/mcfg/configs/mcfg_sw/generic/oem/
 set_metadata("/system/vendor/lib", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/lib/egl", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/lib/hw", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata("/system/vendor/lib/mediadrm", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/vendor/lib/mediadrm", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/vendor/lib/mediadrm/libdrmclearkeyplugin.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/lib/soundfx", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/lib64", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/lib64/egl", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
